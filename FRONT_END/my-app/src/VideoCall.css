@@ -51,8 +51,11 @@
     cursor: pointer;
   }
 
-  .leave-button {
-    background-color: red;
+  .button-bar .leave-button {
+    background-color: rgb(185, 38, 38);
+  }
+  .button-bar .share-button {
+    background-color: rgb(6, 170, 50);
   }
 
   .button-bar button:hover {
@@ -65,9 +68,3 @@
     vertical-align: middle;
     align-self: center;
   }
-
-  /* .button-container {
-    display: flex;
-    flex-direction: column;
-    
-  } */
