@@ -1,0 +1,25 @@
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links button {
+  margin-right: 10px;
+}
+
+.majorSems button {
+  margin-left: 15px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
