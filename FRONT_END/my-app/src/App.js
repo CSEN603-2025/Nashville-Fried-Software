@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './Components/Generic/LoginPage.tsx';
-import Dashboard from './DashboardStudent.tsx';
+import LoginPage from './LoginPage.tsx';
+import Dashboard from './DashboardStudentPRO.tsx';
 function App() {
+  let VideoCall;
   return (
     <Router>
       <Routes>
@@ -10,6 +11,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboardPRO" element={<Dashboard />} />
         <Route path="/registerCompany" element={<registerCompany />} />
+        <Route path="/call" element = {<LoginPage />} />
       </Routes>
     </Router>
   );

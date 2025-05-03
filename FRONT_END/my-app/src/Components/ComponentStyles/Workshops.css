@@ -1,0 +1,52 @@
+.workshop-container {
+  background: #ffffff;
+  border-radius: 8px; /* Adjusted border radius */
+  border:0.2px solid black;
+  width: 36%;
+  padding: 0px 10px;
+  margin: 20px;
+
+}
+
+.workshop-item {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.workshop-item button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.workshop-item button:disabled {
+  background: gray;
+  cursor: default;
+}
+
+.modal-overlay {
+  border: 0.2px solid black;
+  border-radius: 8px;
+  position: fixed;
+  width: 30%; 
+  height: 30%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal-box {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100px;
+}

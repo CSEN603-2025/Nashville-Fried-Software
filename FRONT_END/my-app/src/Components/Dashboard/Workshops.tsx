@@ -1,0 +1,48 @@
+import React, { useState } from 'react';
+import '../ComponentStyles/Workshops.css'; // Link to your CSS
+
+const workshopData = [
+  { name: "Siemens", details: "Learn about automation in modern factories." },
+  { name: "PWC ETIC", details: "Cybersecurity and analytics insights." },
+  { name: "Etisalat", details: "Explore telecom innovations in the UAE." },
+];
+
+const WorkshopList = () => {
+  const [registered, setRegistered] = useState([]);
+  const [modalContent, setModalContent] = useState(null);
+  
+  const handleRegister = (name) => {
+    if (!registered.includes(name)) {
+      setRegistered((prev) => [...prev, name]);
+    }
+  };
+
+  return (
+    <div className="workshop-container">
+      <h3>Upcoming Workshops</h3>
+      <ul>
+        {workshopData.map((w, i) => (
+          <li key={i} className="workshop-item">
+            <span>{w.name}</span>
+            <button onClick={() => handleRegister(w.name)} disabled={registered.includes(w.name)}>
+              {registered.includes(w.name) ? "Registered" : "Register"}
+            </button>
+            <button onClick={() => setModalContent(w)}>Show more</button>
+          </li>
+        ))}
+      </ul>
+
+      {modalContent && (
+        <div className="modal-overlay" onClick={() => setModalContent(null)}>
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            <h4>{modalContent.name}</h4>
+            <p>{modalContent.details}</p>
+            <button onClick={() => setModalContent(null)}>Close</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default WorkshopList;
