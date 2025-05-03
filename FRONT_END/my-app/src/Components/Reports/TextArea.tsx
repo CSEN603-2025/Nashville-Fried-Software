@@ -4,7 +4,7 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   label?: string;
 }
 
-export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+    const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className = '', label, ...props }, ref) => {
     return (
       <div className="w-full">
@@ -19,4 +19,5 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   }
 );
 
+export default Textarea
 Textarea.displayName = 'Textarea';

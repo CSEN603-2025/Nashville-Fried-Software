@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import "../ComponentStyles/Sidebar.css"
 import SideBar from '../Dashboard/SideBar.tsx'
 import { Link } from 'react-router-dom';
+import  Textarea  from './Textarea.tsx';
 function Report()
 {
     return (
