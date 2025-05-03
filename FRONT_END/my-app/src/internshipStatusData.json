@@ -1,0 +1,42 @@
+[
+  {
+    "company_name": "TechNova Solutions",
+    "job_title": "Frontend Development Intern",
+    "status": "pending"
+  },
+  {
+    "company_name": "GreenByte Analytics",
+    "job_title": "Data Analyst Intern",
+    "status": "accepted"
+  },
+  {
+    "company_name": "EduSpark Learning",
+    "job_title": "Content Writer Intern",
+    "status": "rejected"
+  },
+  {
+    "company_name": "CyberCore Systems",
+    "job_title": "Cybersecurity Intern",
+    "status": "finalized"
+  },
+  {
+    "company_name": "PixelCraft Studios",
+    "job_title": "Graphic Design Intern",
+    "status": "pending"
+  },
+  {
+    "company_name": "HealthWare Labs",
+    "job_title": "Machine Learning Intern",
+    "status": "accepted"
+  },
+  {
+    "company_name": "EcoSmart Tech",
+    "job_title": "Sustainability Research Intern",
+    "status": "rejected"
+  },
+  {
+    "company_name": "BrightFuture AI",
+    "job_title": "AI Research Intern",
+    "status": "finalized"
+  }
+]

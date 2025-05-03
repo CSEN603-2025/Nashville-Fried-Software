@@ -1,0 +1,11 @@
+:root {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div h1 {
+  text-align: center;
+  margin-top: 200px;
+}

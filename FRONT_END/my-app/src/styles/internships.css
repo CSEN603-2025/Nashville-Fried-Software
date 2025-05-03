@@ -1,0 +1,10 @@
+.internshipListings {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.internshipListings div {
+  padding: 50px;
+  width: 800px;
+}
