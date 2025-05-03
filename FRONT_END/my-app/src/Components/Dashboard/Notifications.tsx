@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faCheck, faXmark, faCheckDouble } from '@fortawesome/free-solid-svg-icons';
 import '../ComponentStyles/Notifications.css'
+import { useNavigate } from 'react-router-dom';
 const Notifications = ({notifications}) =>{
     
-    const initial = notifications.map((msg) => ({ msg, read: false }));
-
+    const initial = notifications.map((msg) => ({ msg, read: false, isUrgent: false }));
+    const navigate = useNavigate();
     const [allNotifs, setAllNotifs] = useState([
       ...initial,
-      { msg: "✔️ Your last internship report status has been set!", read: false },
-      { msg: "❌ Etisalat has declined your application.", read: false },
-      { msg: "📅 SCAD Office Appointment scheduled for May 10th.", read: false },
-      { msg: "🔔 The next internship cycle will start on May 25th!", read: false },
+      { msg: "✔️ Your last internship report status has been set!", read: false, isUrgent:false },
+      { msg: "❌ Etisalat has declined your application.", read: false, isUrgent:false },
+      { msg: "📅 SCAD Office Appointment scheduled for May 10th.", read: false, isUrgent:false },
+      { msg: "🔔 The next internship cycle will start on May 25th!", read: false, isUrgent:false },
+      {msg: "STARTING NOW: CV Writing Workshop!", read: false, isUrgent:true}
     ]);
     useEffect(() => {
         const newNotifs = notifications.map((msg) => ({ msg, read: false }));
@@ -32,6 +34,10 @@ const Notifications = ({notifications}) =>{
     const markAllRead = () => {
       setAllNotifs((prev) => prev.map((n) => ({ ...n, read: true })));
     };
+
+    const handleJoin = () =>{
+      navigate('/workshop')
+    }
   
     return (
       <div className="notifs">
@@ -44,6 +50,7 @@ const Notifications = ({notifications}) =>{
             <li key={idx} onClick={() => markRead(idx)}>
               {note.msg}
               {!note.read && <span className="red-dot"></span>}
+              {note.isUrgent && <button className="urgent-btn" onClick={handleJoin}>Join Now</button>}
             </li>
           ))}
         </ul>

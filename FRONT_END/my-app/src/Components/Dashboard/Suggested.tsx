@@ -14,7 +14,7 @@ const Suggested = () =>{
             <ul>
             <li>Since you're MET, check out <span className="bolded">Etisalat</span></li> 
             <li>Tim Cheese, a colleague, endorses <span className="bolded">Microsoft</span></li>
-            <li></li>
+            <li>Tim Cheese, a colleague, endorses <span className="bolded">Microsoft</span></li>
             <li></li>
             <li></li>
             </ul>

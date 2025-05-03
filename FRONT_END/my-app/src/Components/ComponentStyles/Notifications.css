@@ -78,4 +78,20 @@
     cursor: pointer;
     font-size: 1.2rem;
   }
+
+  .urgent-btn {
+    font-size: 1.2rem;
+    margin-left: 20px;
+    padding: 5px;
+    background-color: hsl(210, 79%, 46%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .urgent-btn:hover {
+    background-color: hsl(210, 79%, 55%);
+    cursor: pointer;
+  }
+
   

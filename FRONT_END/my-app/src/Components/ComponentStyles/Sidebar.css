@@ -13,14 +13,26 @@
 }
 
 .link-container a {
+    position: relative;
     font-size: 2rem;
     text-decoration: none;
     padding: 2px;
     margin: 3px;
-}
-.link-container a:hover {
-    font-size: 2rem;
-    color:white;
-    text-decoration: none;
-}
-
+    color: white;
+  }
+  
+  .link-container a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: white;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .link-container a:hover::after {
+    width: 100%;
+  }
+  
