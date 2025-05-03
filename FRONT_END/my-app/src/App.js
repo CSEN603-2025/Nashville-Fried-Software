@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './LoginPage.tsx';
 import Dashboard from './DashboardStudentPRO.tsx';
+import Report from './Components/Reports/Report.tsx';
 function App() {
   let VideoCall;
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/dashboardPRO" element={<Dashboard />} />
         <Route path="/registerCompany" element={<registerCompany />} />
         <Route path="/call" element = {<LoginPage />} />
+        <Route path="/Report" element={<Report />} />
       </Routes>
     </Router>
   );
