@@ -1,33 +1,65 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import "../ComponentStyles/Sidebar.css"
 import SideBar from '../Dashboard/SideBar.tsx'
-import { Link } from 'react-router-dom';
-import  Textarea  from './Textarea.tsx';
-function Report()
-{
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="w-full max-w-2xl space-y-4 px-4">
-          {/* Title Text Box */}
-          <Textarea
-            placeholder="Title"
-            className="h-10 border-gray-300 rounded-md shadow-sm"
+import "../ComponentStyles/Report.css"
+
+function Report() {
+  const [reports, setReports] = useState(['Report 1', 'Report 2', 'Report 3']);
+  const [creating, setCreating] = useState(false);
+  const [newReportTitle, setNewReportTitle] = useState('');
+
+  const handleClick = (reportName: string) => {
+    alert(`You clicked on ${reportName}`);
+  };
+
+  const handleCreate = () => {
+    setCreating(true);
+  };
+
+  const handleSave = () => {
+    if (newReportTitle.trim() !== '') {
+      setReports([...reports, newReportTitle.trim()]);
+      setNewReportTitle('');
+      setCreating(false);
+    }
+  };
+
+  const handleBack = () => {
+    setCreating(false);
+    setNewReportTitle('');
+  };
+
+  return (
+    <div className="report-container">
+      <SideBar />
+
+      {!creating ? (
+        <>
+          <button className="create-button" onClick={handleCreate}>Create New Report</button>
+          <ul className="report-list">
+            {reports.map((report) => (
+              <li key={report} onClick={() => handleClick(report)} className="report-item">
+                {report}
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <div className="create-form">
+          <textarea
+            className="report-textarea title-box"
+            placeholder="Enter report title..."
+            value={newReportTitle}
+            onChange={(e) => setNewReportTitle(e.target.value)}
           />
-  
-          {/* Introduction Text Box */}
-          <Textarea
-            placeholder="Introduction"
-            className="h-24 border-gray-300 rounded-md shadow-sm"
-          />
-  
-          {/* Body Text Box */}
-          <Textarea
-            placeholder="Main Body"
-            className="h-64 border-gray-300 rounded-md shadow-sm"
-          />
+          <div className="form-buttons">
+            <button className="save-button" onClick={handleSave}>Save</button>
+            <button className="back-button" onClick={handleBack}>Back</button>
+          </div>
         </div>
-      </div>
-    )
+      )}
+    </div>
+  );
 }
 
 export default Report;
