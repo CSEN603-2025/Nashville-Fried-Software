@@ -28,11 +28,11 @@ const RecordedWorkshop = () => {
         ></iframe>
         <div className="sidebar">
             {!notesOpened && (<button className='notes-button' onClick={() => setNotesOpened(true)}>
-                <img src={notesIcon} alt = '' className="button-icon" />
+                <img src={notesIcon} alt = '' className="button-icon1" />
                 Notes
             </button>)}
             {!notesOpened && (<button onClick={() => {setHasLeft(true)}} className="notes-button">
-                <img src={leaveIcon} alt = '' className="button-icon" />
+                <img src={leaveIcon} alt = '' className="button-icon1" />
                 Leave
             </button>)}
         </div>

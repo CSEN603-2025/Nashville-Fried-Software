@@ -1,6 +1,6 @@
 
 import React from 'react';
-import './VideoCall.css';
+import styles from './VideoCall.module.css';
 import {useState, useEffect, useRef} from 'react'
 import leaveIcon from './assets/leave.svg';
 import muteIcon from './assets/mute.svg';
@@ -12,7 +12,6 @@ import videoOffIcon from './assets/novideo.svg';
 import porkyJohn from './assets/john.png';
 import muteSound from './assets/mute.wav'
 import unmuteSound from './assets/unute.wav'
-import Webcam, { WebcamProps } from 'react-webcam'
 
 
 
@@ -119,63 +118,73 @@ function VideoCall() {
     
     return(
         
-      <>
-        <div className="container">
-            <div className="card">
-            {shared && (<video className="screen-share" width = {400} height = {200} ref = {videoRef} autoPlay/>)}
-            <div className="card-title">Video call</div>
-            {showLeaveNotice && (
-                <div className="leave-notice">John Pork has left the call.</div>
+        <>
+        <div className={styles['container']}>
+            <div className={styles['card']}>
+            {shared && (
+                <video className={styles['screen-share']} width={400} height={200} ref={videoRef} autoPlay />
             )}
-            <div className="card-text">
-            {showImage && !shared ? (
-                <div className='callerCard'>
-                    <img src={porkyJohn} alt="No participants" className="center-image speaking" />
+            <div className={styles['card-title']}>Video call</div>
+            {showLeaveNotice && (
+                <div className={styles['leave-notice']}>John Pork has left the call.</div>
+            )}
+            <div className={styles['card-text']}>
+                {showImage && !shared ? (
+                <div className={styles['callerCard']}>
+                    <img src={porkyJohn} alt="No participants" className={`${styles['center-image']} ${styles['speaking']}`} />
                     John Pork
                 </div>
-            ) : !shared && !sharedVideo ?(
-              'There are no participants in this call.'
-            ) : ''}
-            {sharedVideo && (<div className='callerCard'>
-                <video className="center-image" width = {400} height = {200} ref = {cameraRef} autoPlay/>
-                You
-            </div>)}
+                ) : !shared && !sharedVideo ? (
+                'There are no participants in this call.'
+                ) : ''}
+                {sharedVideo && (
+                <div className={styles['callerCard']}>
+                    <video className={styles['center-image']} width={400} height={200} ref={cameraRef} autoPlay />
+                    You
+                </div>
+                )}
+            </div>
 
-          </div>
-            <div className="button-bar">
+            <div className={styles['button-bar']}>
                 <button onClick={toggleMute}>
-                    <img src={muteImage} alt = '' className="button-icon" />
-                    {muteImage != muteIcon ? 'Unmute' : 'Mute'}
+                <img src={muteImage} alt='' className={styles['button-icon']} />
+                {muteImage !== muteIcon ? 'Unmute' : 'Mute'}
                 </button>
                 <button onClick={shareCamera}>
-                    <img src={videoImage} alt = '' className="button-icon" />
-                    Video
+                <img src={videoImage} alt='' className={styles['button-icon']} />
+                Video
                 </button>
-                <button onClick={shareScreen} className="share-button">
-                    <img src={shareIcon} alt = '' className="button-icon" />
-                    {shared ? 'Stop sharing' : 'Share Screen'}
+                <button onClick={shareScreen} className={styles['share-button']}>
+                <img src={shareIcon} alt='' className={styles['button-icon']} />
+                {shared ? 'Stop sharing' : 'Share Screen'}
                 </button>
-                <button className="participants-button">
-                    <div className="icon-wrapper">
-                        <img src={participantsIcon} alt='' className="button-icon" />
-                        <span className="badge">{showImage ? 2 : 1}</span> 
-                    </div>
-                    Participants
+                <button className={styles['participants-button']}>
+                <div className={styles['icon-wrapper']}>
+                    <img src={participantsIcon} alt='' className={styles['button-icon']} />
+                    <span className={styles['badge']}>{showImage ? 2 : 1}</span>
+                </div>
+                Participants
                 </button>
-                <button onClick = {handleLeaveClick} ref={leaveButtonRef} className="leave-button red-button">
-                    <img src={leaveIcon} alt = '' className="button-icon" />
-                    Leave
+                <button onClick={handleLeaveClick} ref={leaveButtonRef} className={`${styles['leave-button']} ${styles['red-button']}`}>
+                <img src={leaveIcon} alt='' className={styles['button-icon']} />
+                Leave
                 </button>
+
                 {showModal && (
-                    <div className="leave-modal">
-                        <button id = 'stringy3ny3ady' className="modal-button leave-call" onClick={confirmLeave}>Leave Call</button>
-                        <button className="modal-button cancel" onClick={cancelLeave}>Cancel</button>
-                    </div>
+                <div className={styles['leave-modal']}>
+                    <button id='stringy3ny3ady' className={`${styles['modal-button']} ${styles['leave-call']}`} onClick={confirmLeave}>
+                    Leave Call
+                    </button>
+                    <button className={`${styles['modal-button']} ${styles['cancel']}`} onClick={cancelLeave}>
+                    Cancel
+                    </button>
+                </div>
                 )}
             </div>
             </div>
         </div>
-      </>
+        </>
+
     )
 
 }

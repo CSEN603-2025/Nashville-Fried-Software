@@ -1,4 +1,4 @@
-  /* Apply this class to the parent container */
+
   .bigboy{
     position: relative;
   }
@@ -21,13 +21,13 @@
 
   .video-container.blurred {
     filter: blur(8px);
-    pointer-events: none; /* Disable interactions while blurred */
+    pointer-events: none;  
   }
 
   .video-wrapper {
     display: flex;
-    justify-content: center; /* horizontal */
-    align-items: center;     /* vertical */
+    justify-content: center; 
+    align-items: center;     
     flex-direction: row;
     position: relative;
     flex: 2;
@@ -58,7 +58,7 @@
     gap: 200px;
     align-items: baseline;
   }
-  /* Position the button */
+
   .notes-button {
     background: white;
     border: 1px solid #ccc;
@@ -80,7 +80,7 @@
     background: #eee;
   }
   
-  .button-icon {
+  .button-icon1 {
     width: 60px;
     height: 60px;
   }
@@ -99,8 +99,8 @@
     transition: transform 0.6s ease, opacity 0.6s ease;
     transform: translateX(100%);
     opacity: 0;
-    pointer-events: none; /* Prevent interaction while hidden */
-    position: relative; /* Ensure layout consistency */
+    pointer-events: none; 
+    position: relative; 
   }
   
   .notes-section.open {
@@ -166,7 +166,7 @@
   .note-item {
   background: linear-gradient(135deg, #ffffff, #f9f9f9);
   border: 1px solid #ddd;
-  border-left: 4px solid #1976d2; /* Accent bar on the left */
+  border-left: 4px solid #1976d2; 
   border-radius: 8px;
   padding: 12px 14px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
@@ -197,7 +197,7 @@
     display: flex;
     flex-direction: row;
     padding: 10px 16px;
-    background-color: #1976d2; /* calm blue */
+    background-color: #1976d2; 
     color: #000;
     font-weight: bold;
     font-size: 18px;
@@ -230,4 +230,4 @@
     gap: 100px;
     justify-content: center;
     align-items: center;
-  }
+  } 
