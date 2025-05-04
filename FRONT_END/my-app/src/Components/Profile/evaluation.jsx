@@ -2,12 +2,12 @@ import React from "react";
 import "../../styles/eval.css";
 import "../../styles/global.css";
 
-const evaluation = () => {
+const Evaluation = () => {
   return (
     <>
       <h1 style={{ textAlign: "center" }}>Evaluate a Company</h1>
       <div className="formBox">
-        <form action="/submit-evaluation" method="POST">
+        <form>
           {/* <!-- Company Evaluation Textbox --> */}
           <label for="company_evaluation">
             Your Evaluation of the Company:
@@ -43,4 +43,4 @@ const evaluation = () => {
   );
 };
 
-export default evaluation;
+export default Evaluation;

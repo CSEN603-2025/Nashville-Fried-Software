@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import internshipListings from "../../internshipListings.json";
-import statusData from "../../internshipStatusData.json";
+// import statusData from "../../internshipStatusData.json";
 import internshipHistory from "../../internshipHistory.json";
 import "../../styles/global.css";
 import "../../styles/internships.css";
@@ -142,7 +142,7 @@ const Internships = () => {
         )}
       </div>
 
-      <h1 style={{ textAlign: "center" }}>Internships you applied to</h1>
+      {/* <h1 style={{ textAlign: "center" }}>Internships you applied to</h1>
       <div className="internshipListings">
         {statusData.map((item, index) => (
           <div
@@ -161,7 +161,7 @@ const Internships = () => {
             </h4>
           </div>
         ))}
-      </div>
+      </div> */}
 
       <h1 style={{ textAlign: "center" }}>Past/Present Internships</h1>
       <div

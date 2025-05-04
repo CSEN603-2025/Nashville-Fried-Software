@@ -1,8 +1,21 @@
 import React from "react";
+import { useState } from "react";
 import "../../styles/profile.css";
 import "../../styles/global.css";
+import completedInternships from "../../previousInternships.json";
 
-const profile = () => {
+const Profile = () => {
+  const [selectedMajor, setSelectedMajor] = useState("");
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setConfirmationMessage(
+      `You selected Major: ${selectedMajor}, Semester: ${selectedSemester}`
+    );
+  };
+
   let companies = [
     "Microsoft",
     "Apple",
@@ -18,9 +31,13 @@ const profile = () => {
     "Applied Arts",
   ];
   let semesters = ["3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th"];
-  const combinations = majors.flatMap((major) =>
-    semesters.map((semester) => `${major} - ${semester}`)
-  );
+  let jobInterests = [
+    "Backend Development",
+    "Frontend Development",
+    "Cybersecurity",
+    "Data Science",
+  ];
+  let collegeActivities = ["coding competitions", "clubs", "group projects"];
   let name = "John Pork";
   let pro = true;
   return (
@@ -40,7 +57,7 @@ const profile = () => {
             </metadata>
             <g
               transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
-              fill="#000000"
+              fill="#FFFFFF"
               stroke="none"
             >
               <path
@@ -65,39 +82,98 @@ const profile = () => {
           {" " + name}
           {pro === true ? "[Pro]" : ""}
         </h1>
-        <div className="links">
-          <button>Dashboard</button>
-          <button>Edit Profile</button>
-          <button>Internships</button>
-          <button>Evaluations</button>
-          <button>Reports</button>
-        </div>
       </div>
       <div className="hero">
-        <div className="companyViews">
-          <h2>Companies which viewed your profile:</h2>
+        <div className="profileInfo">
+          <h2>Profile Information</h2>
+          <h4>Job Interests:</h4>
           <ul>
-            {companies.map((company) => (
-              <li>{company}</li>
+            {jobInterests.map((jobInterest) => (
+              <li>{jobInterest}</li>
             ))}
           </ul>
+          <h4>College Activities:</h4>
+          <ul>
+            {collegeActivities.map((collegeActivity) => (
+              <li>{collegeActivity}</li>
+            ))}
+          </ul>
+          <h4>Previous Internships:</h4>
+          <div className="previousInternships">
+            {completedInternships.map((internship, index) => (
+              <div
+                key={index}
+                style={{
+                  border: "2px solid black",
+                  padding: "10px",
+                  margin: "10px",
+                  display: "inline-block",
+                }}
+              >
+                <h3>{internship.company_name}</h3>
+                <h4>
+                  {internship.company_name} - {internship.job_title}
+                </h4>
+                <h4>Responsibilities: </h4>
+                <ul>
+                  {internship.responsibilities.map((responsibility) => (
+                    <li>{responsibility}</li>
+                  ))}
+                </ul>
+                <h4>Duration: {internship.duration}</h4>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="majorSems">
-          <h2>Majors:</h2>
-          <ul>
-            {combinations.map((combination) => (
-              <>
-                <li>
-                  {combination}
-                  <button> Select</button>
-                </li>
-              </>
-            ))}
-          </ul>
+        <div className="row">
+          <div className="companyViews">
+            <h2>Companies which viewed your profile:</h2>
+            <ul>
+              {companies.map((company, idx) => (
+                <li key={idx}>{company}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="majorSems">
+            <h2>Select a Major & Semester:</h2>
+            <form onSubmit={handleSubmit}>
+              <label>
+                Major:
+                <select
+                  value={selectedMajor}
+                  onChange={(e) => setSelectedMajor(e.target.value)}
+                >
+                  <option value="">--Select Major--</option>
+                  {majors.map((major, idx) => (
+                    <option key={idx} value={major}>
+                      {major}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Semester:
+                <select
+                  value={selectedSemester}
+                  onChange={(e) => setSelectedSemester(e.target.value)}
+                >
+                  <option value="">--Select Semester--</option>
+                  {semesters.map((sem, idx) => (
+                    <option key={idx} value={sem}>
+                      {sem}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <button type="submit">Submit</button>
+            </form>
+            {confirmationMessage && <p>{confirmationMessage}</p>}
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default profile;
+export default Profile;
