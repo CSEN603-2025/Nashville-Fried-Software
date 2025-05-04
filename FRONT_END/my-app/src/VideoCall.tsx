@@ -29,9 +29,8 @@ function VideoCall() {
     const [sharedVideo, setSharedVideo] = useState(false);
     const [showImage, setShowImage] = useState(true);
     const [showLeaveNotice, setShowLeaveNotice] = useState(false);
-    const webRef = useRef<Webcam>(null);
     const [showModal, setShowModal] = useState(false);
-    const leaveButtonRef = useRef<HTMLButtonElement>(null);
+    const leaveButtonRef = useRef(null);
 
     const shareScreen = async () => {
         if (!shared){
