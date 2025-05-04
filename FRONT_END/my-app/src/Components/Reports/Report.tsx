@@ -25,9 +25,8 @@ function Report() {
   const [body, setBody] = useState('');
 
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedReportId, setSelectedReportId] = useState(null);
   const [showCommentsModal, setShowCommentsModal] = useState(false);
+  const [selectedReportId, setSelectedReportId] = useState(null);
 
   const handleClick = (index: number) => {
     const selected = reports[index];
@@ -85,7 +84,6 @@ function Report() {
     setReports(reports.map(report =>
       report.id === reportId ? { ...report, submitted: true } : report
     ));
-    setShowModal(false);
   };
 
   const handleViewSubmission = (reportId) => {
@@ -179,10 +177,7 @@ function Report() {
                     {!report.submitted && (
                       <button
                         className="submit-button"
-                        onClick={() => {
-                          setSelectedReportId(report.id);
-                          setShowModal(true);
-                        }}
+                        onClick={() => handleReportSubmit(report.id)}
                       >
                         Submit
                       </button>
@@ -205,42 +200,6 @@ function Report() {
                   </li>
                 ))}
               </ul>
-              <div className="submit-report-container">
-                {showModal && (
-                  <div className="submit-modal">
-                    <div className="submit-modal-content">
-                      <h3>Confirm Report Submission</h3>
-                      <ul>
-                        {reports
-                          .filter(report => !report.submitted)
-                          .map((report) => (
-                            <li
-                              key={report.id}
-                              onClick={() => {
-                                setSelectedReportId(report.id);
-                              }}
-                              className={`submit-report-selection ${selectedReportId === report.id ? 'selected' : ''}`}
-                            >
-                              {report.title}
-                            </li>
-                          ))}
-                      </ul>
-                      <button
-                        className="confirm-submit"
-                        onClick={() => handleReportSubmit(selectedReportId)}
-                      >
-                        Confirm Submit
-                      </button>
-                      <button
-                        className="cancel-submit"
-                        onClick={() => setShowModal(false)}
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
             </div>
 
             {/* Courses List */}
