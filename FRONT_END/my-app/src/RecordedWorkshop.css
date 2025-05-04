@@ -40,7 +40,7 @@
 
 
   .video-wrapper.shrink {
-    transform: scaleX(0.95);
+    transform: scaleX(1);
   }
     
   .video-frame {

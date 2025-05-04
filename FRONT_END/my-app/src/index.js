@@ -7,6 +7,6 @@ import RecordedWorkshop from './RecordedWorkshop.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <RecordedWorkshop />
+    <VideoCall />
 );
 
