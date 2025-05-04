@@ -5,25 +5,22 @@ import "../../styles/viewInternship.css";
 
 const ViewInternship = () => {
   let id = 0;
+  const internship = internshipListings[id];
+
   return (
-    <div>
-      <h1>{internshipListings[id].company_name}</h1>
-      <h4>Job Title:{internshipListings[id].job_title}</h4>
-      <h4>Duration:{internshipListings[id].duration}</h4>
-      <h4>
-        Paid or Unpaid:
-        {internshipListings[id].paid === true ? "Paid" : "Unpaid"}
-      </h4>
-      <h4>Expected Salary:{internshipListings[id].expected_salary}</h4>
-      <h4>
-        Skills Required:{internshipListings[id].skills_required.toString()}
-      </h4>
-      <h4>Job description:</h4>
-      <p>{internshipListings[id].job_description}</p>
+    <div className="view-internship-container">
+      <h1>{internship.company_name}</h1>
+      <h4>Job Title: {internship.job_title}</h4>
+      <h4>Duration: {internship.duration}</h4>
+      <h4>Paid or Unpaid: {internship.paid ? "Paid" : "Unpaid"}</h4>
+      <h4>Expected Salary: {internship.expected_salary}</h4>
+      <h4>Skills Required: {internship.skills_required.join(", ")}</h4>
+      <h4>Job Description:</h4>
+      <p>{internship.job_description}</p>
       <button>Apply to Internship</button>
-      <form action="/action_page.php">
-        <label>Upload Extra Documents: [This is optional]</label>
-        <input type="file" id="myFile" name="filename" />
+      <form>
+        <label>Upload Extra Documents (optional):</label>
+        <input type="file" name="filename" />
       </form>
     </div>
   );

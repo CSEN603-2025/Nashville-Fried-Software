@@ -121,14 +121,7 @@ const Internships = () => {
       <div className="internshipListings">
         {filteredInternships.length > 0 ? (
           filteredInternships.map((internship, index) => (
-            <div
-              key={index}
-              style={{
-                border: "2px solid black",
-                padding: "10px",
-                margin: "10px",
-              }}
-            >
+            <div key={index}>
               <h3>{internship.company_name}</h3>
               <h4>Job Title: {internship.job_title}</h4>
               <h4>Duration: {internship.duration}</h4>
@@ -214,6 +207,11 @@ const Internships = () => {
               <h4>Job Title: {item.job_title}</h4>
               <h4>Date: {item.date}</h4>
               <h4>Status: {item.status}</h4>
+              {item.status === "internship complete" ? (
+                <button>View Internship</button>
+              ) : (
+                ""
+              )}
             </div>
           ))
         ) : (

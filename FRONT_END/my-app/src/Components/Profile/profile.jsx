@@ -85,39 +85,40 @@ const Profile = () => {
       </div>
       <div className="hero">
         <div className="profileInfo">
-          <h2>Profile Information</h2>
-          <h4>Job Interests:</h4>
-          <ul>
-            {jobInterests.map((jobInterest) => (
-              <li>{jobInterest}</li>
-            ))}
-          </ul>
-          <h4>College Activities:</h4>
-          <ul>
-            {collegeActivities.map((collegeActivity) => (
-              <li>{collegeActivity}</li>
-            ))}
-          </ul>
-          <h4>Previous Internships:</h4>
+          <h2 style={{ textAlign: "center" }}>Profile Information</h2>
+          <div className="interests-activities-wrapper">
+            <div className="section-box">
+              <h4>Job Interests</h4>
+              <div className="interest-container">
+                {jobInterests.map((jobInterest, idx) => (
+                  <div className="interest-box" key={`ji-${idx}`}>
+                    {jobInterest}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="section-box">
+              <h4>College Activities</h4>
+              <div className="interest-container">
+                {collegeActivities.map((activity, idx) => (
+                  <div className="interest-box" key={`ca-${idx}`}>
+                    {activity}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <h3 style={{ textAlign: "center" }}>Previous Internships:</h3>
           <div className="previousInternships">
             {completedInternships.map((internship, index) => (
-              <div
-                key={index}
-                style={{
-                  border: "2px solid black",
-                  padding: "10px",
-                  margin: "10px",
-                  display: "inline-block",
-                }}
-              >
+              <div key={index} className="internship-card">
                 <h3>{internship.company_name}</h3>
-                <h4>
-                  {internship.company_name} - {internship.job_title}
-                </h4>
+                <h4>{internship.job_title}</h4>
                 <h4>Responsibilities: </h4>
                 <ul>
-                  {internship.responsibilities.map((responsibility) => (
-                    <li>{responsibility}</li>
+                  {internship.responsibilities.map((responsibility, idx) => (
+                    <li key={idx}>{responsibility}</li>
                   ))}
                 </ul>
                 <h4>Duration: {internship.duration}</h4>
@@ -127,7 +128,7 @@ const Profile = () => {
         </div>
         <div className="row">
           <div className="companyViews">
-            <h2>Companies which viewed your profile:</h2>
+            <h2>Which companies viewed your profile:</h2>
             <ul>
               {companies.map((company, idx) => (
                 <li key={idx}>{company}</li>
@@ -136,39 +137,41 @@ const Profile = () => {
           </div>
 
           <div className="majorSems">
-            <h2>Select a Major & Semester:</h2>
-            <form onSubmit={handleSubmit}>
-              <label>
-                Major:
-                <select
-                  value={selectedMajor}
-                  onChange={(e) => setSelectedMajor(e.target.value)}
-                >
-                  <option value="">--Select Major--</option>
-                  {majors.map((major, idx) => (
-                    <option key={idx} value={major}>
-                      {major}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Semester:
-                <select
-                  value={selectedSemester}
-                  onChange={(e) => setSelectedSemester(e.target.value)}
-                >
-                  <option value="">--Select Semester--</option>
-                  {semesters.map((sem, idx) => (
-                    <option key={idx} value={sem}>
-                      {sem}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <button type="submit">Submit</button>
-            </form>
-            {confirmationMessage && <p>{confirmationMessage}</p>}
+            <div>
+              <h2>Select a Major & Semester:</h2>
+              <form onSubmit={handleSubmit}>
+                <label>
+                  Major:
+                  <select
+                    value={selectedMajor}
+                    onChange={(e) => setSelectedMajor(e.target.value)}
+                  >
+                    <option value="">--Select Major--</option>
+                    {majors.map((major, idx) => (
+                      <option key={idx} value={major}>
+                        {major}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Semester:
+                  <select
+                    value={selectedSemester}
+                    onChange={(e) => setSelectedSemester(e.target.value)}
+                  >
+                    <option value="">--Select Semester--</option>
+                    {semesters.map((sem, idx) => (
+                      <option key={idx} value={sem}>
+                        {sem}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <button type="submit">Submit</button>
+              </form>
+              {confirmationMessage && <p>{confirmationMessage}</p>}
+            </div>
           </div>
         </div>
       </div>
