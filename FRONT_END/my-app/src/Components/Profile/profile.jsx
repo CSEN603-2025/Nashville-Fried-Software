@@ -153,12 +153,20 @@ const Profile = () => {
                       <input
                         value={editingText}
                         onChange={(e) => setEditingText(e.target.value)}
-                        onBlur={() => {
-                          const updated = [...jobInterestsState];
-                          updated[idx] = editingText.trim();
-                          setJobInterestsState(updated);
-                          setEditingJobIndex(null);
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            const trimmed = editingText.trim();
+                            const updated = [...jobInterestsState];
+                            if (trimmed === "") {
+                              updated.splice(idx, 1); // Remove item
+                            } else {
+                              updated[idx] = trimmed; // Update item
+                            }
+                            setJobInterestsState(updated);
+                            setEditingJobIndex(null);
+                          }
                         }}
+                        onBlur={() => setEditingJobIndex(null)} // Optionally cancel on blur
                         autoFocus
                       />
                     ) : (
@@ -249,12 +257,20 @@ const Profile = () => {
                       <input
                         value={editingText}
                         onChange={(e) => setEditingText(e.target.value)}
-                        onBlur={() => {
-                          const updated = [...collegeActivitiesState];
-                          updated[idx] = editingText.trim();
-                          setCollegeActivitiesState(updated);
-                          setEditingActivityIndex(null);
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            const trimmed = editingText.trim();
+                            const updated = [...collegeActivitiesState];
+                            if (trimmed === "") {
+                              updated.splice(idx, 1);
+                            } else {
+                              updated[idx] = trimmed;
+                            }
+                            setCollegeActivitiesState(updated);
+                            setEditingActivityIndex(null);
+                          }
                         }}
+                        onBlur={() => setEditingActivityIndex(null)}
                         autoFocus
                       />
                     ) : (
