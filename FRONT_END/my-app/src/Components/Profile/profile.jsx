@@ -5,9 +5,26 @@ import "../../styles/global.css";
 import completedInternships from "../../previousInternships.json";
 
 const Profile = () => {
+  let jobInterests = [
+    "Backend Development",
+    "Frontend Development",
+    "Cybersecurity",
+    "Data Science",
+  ];
+  let collegeActivities = ["coding competitions", "clubs", "group projects"];
   const [selectedMajor, setSelectedMajor] = useState("");
   const [selectedSemester, setSelectedSemester] = useState("");
   const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [isEditingJobInterests, setIsEditingJobInterests] = useState(false);
+  const [isEditingActivities, setIsEditingActivities] = useState(false);
+  const [jobInterestInput, setJobInterestInput] = useState("");
+  const [activityInput, setActivityInput] = useState("");
+  const [jobInterestsState, setJobInterestsState] = useState(jobInterests);
+  const [collegeActivitiesState, setCollegeActivitiesState] =
+    useState(collegeActivities);
+  const [editingJobIndex, setEditingJobIndex] = useState(null);
+  const [editingActivityIndex, setEditingActivityIndex] = useState(null);
+  const [editingText, setEditingText] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,13 +48,6 @@ const Profile = () => {
     "Applied Arts",
   ];
   let semesters = ["3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th"];
-  let jobInterests = [
-    "Backend Development",
-    "Frontend Development",
-    "Cybersecurity",
-    "Data Science",
-  ];
-  let collegeActivities = ["coding competitions", "clubs", "group projects"];
   let name = "John Pork";
   let pro = true;
   return (
@@ -47,8 +57,8 @@ const Profile = () => {
           <svg
             version="1.0"
             xmlns="http://www.w3.org/2000/svg"
-            width="20.000000pt"
-            height="20.000000pt"
+            width="25.000000pt"
+            height="25.000000pt"
             viewBox="0 0 1215.000000 1280.000000"
             preserveAspectRatio="xMidYMid meet"
           >
@@ -78,7 +88,6 @@ const Profile = () => {
               />
             </g>
           </svg>
-
           {" " + name}
           {pro === true ? "[Pro]" : ""}
         </h1>
@@ -88,22 +97,196 @@ const Profile = () => {
           <h2 style={{ textAlign: "center" }}>Profile Information</h2>
           <div className="interests-activities-wrapper">
             <div className="section-box">
-              <h4>Job Interests</h4>
+              <h4>
+                Job Interests:
+                <svg
+                  width="20px"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="editButton"
+                  onClick={() =>
+                    setIsEditingJobInterests(!isEditingJobInterests)
+                  }
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z"
+                    fill="#0F0F0F"
+                  />
+                </svg>
+              </h4>
+
+              {isEditingJobInterests && (
+                <div className="edit-input">
+                  <input
+                    type="text"
+                    placeholder="Add job interest"
+                    value={jobInterestInput}
+                    onChange={(e) => setJobInterestInput(e.target.value)}
+                  />
+                  <button
+                    onClick={() => {
+                      if (jobInterestInput.trim()) {
+                        setJobInterestsState([
+                          ...jobInterestsState,
+                          jobInterestInput.trim(),
+                        ]);
+                        setJobInterestInput("");
+                      }
+                    }}
+                  >
+                    Add
+                  </button>
+                  <button onClick={() => setIsEditingJobInterests(false)}>
+                    Done
+                  </button>
+                </div>
+              )}
+
               <div className="interest-container">
-                {jobInterests.map((jobInterest, idx) => (
-                  <div className="interest-box" key={`ji-${idx}`}>
-                    {jobInterest}
+                {jobInterestsState.map((jobInterest, idx) => (
+                  <div className="interest-box editable" key={`ji-${idx}`}>
+                    {editingJobIndex === idx ? (
+                      <input
+                        value={editingText}
+                        onChange={(e) => setEditingText(e.target.value)}
+                        onBlur={() => {
+                          const updated = [...jobInterestsState];
+                          updated[idx] = editingText.trim();
+                          setJobInterestsState(updated);
+                          setEditingJobIndex(null);
+                        }}
+                        autoFocus
+                      />
+                    ) : (
+                      <>
+                        {jobInterest}
+                        {isEditingJobInterests && (
+                          <>
+                            <button
+                              className="edit-btn"
+                              onClick={() => {
+                                setEditingText(jobInterest);
+                                setEditingJobIndex(idx);
+                              }}
+                            >
+                              ✏
+                            </button>
+                            <button
+                              className="remove-btn"
+                              onClick={() =>
+                                setJobInterestsState(
+                                  jobInterestsState.filter((_, i) => i !== idx)
+                                )
+                              }
+                            >
+                              ✕
+                            </button>
+                          </>
+                        )}
+                      </>
+                    )}
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="section-box">
-              <h4>College Activities</h4>
+              <h4>
+                College Activities:
+                <svg
+                  width="20px"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="editButton"
+                  onClick={() => setIsEditingActivities(!isEditingActivities)}
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z"
+                    fill="#0F0F0F"
+                  />
+                </svg>
+              </h4>
+
+              {isEditingActivities && (
+                <div className="edit-input">
+                  <input
+                    type="text"
+                    placeholder="Add activity"
+                    value={activityInput}
+                    onChange={(e) => setActivityInput(e.target.value)}
+                  />
+                  <button
+                    onClick={() => {
+                      if (activityInput.trim()) {
+                        setCollegeActivitiesState([
+                          ...collegeActivitiesState,
+                          activityInput.trim(),
+                        ]);
+                        setActivityInput("");
+                      }
+                    }}
+                  >
+                    Add
+                  </button>
+                  <button onClick={() => setIsEditingActivities(false)}>
+                    Done
+                  </button>
+                </div>
+              )}
+
               <div className="interest-container">
-                {collegeActivities.map((activity, idx) => (
-                  <div className="interest-box" key={`ca-${idx}`}>
-                    {activity}
+                {collegeActivitiesState.map((activity, idx) => (
+                  <div className="interest-box editable" key={`ca-${idx}`}>
+                    {editingActivityIndex === idx ? (
+                      <input
+                        value={editingText}
+                        onChange={(e) => setEditingText(e.target.value)}
+                        onBlur={() => {
+                          const updated = [...collegeActivitiesState];
+                          updated[idx] = editingText.trim();
+                          setCollegeActivitiesState(updated);
+                          setEditingActivityIndex(null);
+                        }}
+                        autoFocus
+                      />
+                    ) : (
+                      <>
+                        {activity}
+                        {isEditingActivities && (
+                          <>
+                            <button
+                              className="edit-btn"
+                              onClick={() => {
+                                setEditingText(activity);
+                                setEditingActivityIndex(idx);
+                              }}
+                            >
+                              ✏
+                            </button>
+                            <button
+                              className="remove-btn"
+                              onClick={() =>
+                                setCollegeActivitiesState(
+                                  collegeActivitiesState.filter(
+                                    (_, i) => i !== idx
+                                  )
+                                )
+                              }
+                            >
+                              ✕
+                            </button>
+                          </>
+                        )}
+                      </>
+                    )}
                   </div>
                 ))}
               </div>
@@ -128,7 +311,7 @@ const Profile = () => {
         </div>
         <div className="row">
           <div className="companyViews">
-            <h2>Which companies viewed your profile:</h2>
+            <h2>Which companies viewed your profile: </h2>
             <ul>
               {companies.map((company, idx) => (
                 <li key={idx}>{company}</li>
