@@ -18,16 +18,21 @@ const WorkshopList = () => {
   };
 
   return (
-    <div className="workshop-container">
+    <>
       <h3>Upcoming Workshops</h3>
-      <ul>
+    <div className="workshop-container">
+      <ul className="ws-list">
         {workshopData.map((w, i) => (
           <li key={i} className="workshop-item">
             <span>{w.name}</span>
+          
+            <span className="btn-box">
             <button onClick={() => handleRegister(w.name)} disabled={registered.includes(w.name)}>
               {registered.includes(w.name) ? "Registered" : "Register"}
             </button>
             <button onClick={() => setModalContent(w)}>Show more</button>
+            </span>
+            
           </li>
         ))}
       </ul>
@@ -42,6 +47,7 @@ const WorkshopList = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

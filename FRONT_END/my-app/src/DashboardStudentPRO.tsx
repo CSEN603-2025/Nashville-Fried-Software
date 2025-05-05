@@ -5,7 +5,7 @@ import Workshops from './Components/Dashboard/Workshops.tsx'
 import Suggested from './Components/Dashboard/Suggested.tsx';
 import Notifications from './Components/Dashboard/Notifications.tsx'
 import CallBanner from "./Components/Dashboard/CallBanner.tsx";
-
+import ProCard from "./Components/Dashboard/ProCard.tsx";
 import './Styles/Dashboard.css'
 const DashboardStudent = () =>{
     const [notifications, setNotifications] = useState([]);
@@ -15,7 +15,7 @@ const DashboardStudent = () =>{
         <div className="main-display">
             <CallBanner onMissedCall={(msg) => setNotifications((prev) => [...prev, msg])}/>
             <div className="two-cards">
-                <Workshops/>
+                <ProCard/>
                 <Suggested/>
             </div>
             <div className="one-card">
