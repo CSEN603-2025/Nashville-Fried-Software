@@ -9,6 +9,9 @@
   border: 2px solid black; /* outer border around the full scrollable area */
   border-radius: 12px;
   background-color: #f9f9f9;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 90%;
 }
 
 .internshipListings > div {
@@ -59,7 +62,6 @@
   background-color: #f4f4f4;
   border-radius: 12px;
   max-width: 1000px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .search-container input,
