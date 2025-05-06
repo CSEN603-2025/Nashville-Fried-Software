@@ -26,13 +26,64 @@ const Profile = () => {
   const [editingActivityIndex, setEditingActivityIndex] = useState(null);
   const [editingText, setEditingText] = useState("");
 
+  // New states for the internship form
+  const [isAddingInternship, setIsAddingInternship] = useState(false);
+  const [companyName, setCompanyName] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [responsibilities, setResponsibilities] = useState([""]);
+  const [duration, setDuration] = useState("");
+  const [warning, setWarning] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setConfirmationMessage(
       selectedMajor === "" || selectedSemester === ""
-        ? ""
+        ? "Some fields missing"
         : `You selected Major: ${selectedMajor}, Semester: ${selectedSemester}`
     );
+  };
+
+  const handleAddResponsibility = () => {
+    setResponsibilities([...responsibilities, ""]);
+  };
+
+  const handleResponsibilityChange = (index, value) => {
+    const updatedResponsibilities = responsibilities.map((resp, idx) =>
+      idx === index ? value : resp
+    );
+    setResponsibilities(updatedResponsibilities);
+  };
+
+  const handleAddInternship = (e) => {
+    e.preventDefault();
+    // Trim inputs and validate
+    const isEmpty =
+      !companyName.trim() ||
+      !jobTitle.trim() ||
+      !duration.trim() ||
+      responsibilities.some((r) => !r.trim());
+
+    if (isEmpty) {
+      setWarning("Please fill out all fields before submitting.");
+      return;
+    }
+
+    // Assuming you want to save this internship in a list (like completedInternships)
+    const newInternship = {
+      company_name: companyName,
+      job_title: jobTitle,
+      responsibilities,
+      duration,
+    };
+
+    completedInternships.push(newInternship);
+    // Reset the form and hide it
+    setIsAddingInternship(false);
+    setCompanyName("");
+    setJobTitle("");
+    setResponsibilities([""]);
+    setDuration("");
+    setWarning("");
   };
 
   let companies = [
@@ -341,6 +392,7 @@ const Profile = () => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className="addInternship"
+              onClick={() => setIsAddingInternship(true)}
             >
               <path
                 d="M4 12H20M12 4V20"
@@ -351,6 +403,71 @@ const Profile = () => {
               />
             </svg>
           </h3>
+          {/* Show the form if isAddingInternship is true */}
+          {isAddingInternship && (
+            <div className="internship-form-overlay">
+              <div className="internship-form">
+                <form onSubmit={handleAddInternship}>
+                  <label>
+                    Company Name:
+                    <input
+                      type="text"
+                      value={companyName}
+                      onChange={(e) => setCompanyName(e.target.value)}
+                    />
+                  </label>
+                  <label>
+                    Job Title:
+                    <input
+                      type="text"
+                      value={jobTitle}
+                      onChange={(e) => setJobTitle(e.target.value)}
+                    />
+                  </label>
+                  <label>
+                    Responsibilities:
+                    {responsibilities.map((responsibility, index) => (
+                      <div key={index}>
+                        <input
+                          type="text"
+                          value={responsibility}
+                          onChange={(e) =>
+                            handleResponsibilityChange(index, e.target.value)
+                          }
+                        />
+                        {index === responsibilities.length - 1 && (
+                          <button
+                            type="button"
+                            onClick={handleAddResponsibility}
+                          >
+                            Add Responsibility
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </label>
+                  <label>
+                    Duration:
+                    <input
+                      type="text"
+                      value={duration}
+                      onChange={(e) => setDuration(e.target.value)}
+                    />
+                  </label>
+                  {warning && (
+                    <p style={{ color: "red", marginTop: "10px" }}>{warning}</p>
+                  )}
+                  <button type="submit">Save Internship</button>
+                  <button
+                    type="button"
+                    onClick={() => setIsAddingInternship(false)}
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
           <div className="previousInternships">
             {completedInternships.map((internship, index) => (
               <div key={index} className="internship-card">
