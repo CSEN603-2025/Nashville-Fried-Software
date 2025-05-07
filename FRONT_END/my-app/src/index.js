@@ -8,6 +8,6 @@ import LiveWorkshop from './LiveWorkshop.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <VideoCall />
+    <LiveWorkshop />
 );
 

@@ -13,9 +13,12 @@ import sendIcon from './assets/send.svg'
 const LiveWorkshop = () => {
 
   const messagesEndRef = useRef(null);
+  const [showMessageNotice, setShowMessageNotice] = useState(false);
+
   const [unread, setUnread] = useState(0);
   const [notesOpened, setNotesOpened] = useState(false)
   const [hasLeft, setHasLeft] = useState(false)
+  const [msgNotice, setMsgNotice] = useState({user: null, content: null});
   const [messages, setMessages] = useState([
     { user: 'Mo', content: 'Hey, how are you?' },
     { user: 'You', content: 'I’m good, thanks! How about you?' },
@@ -38,8 +41,12 @@ const LiveWorkshop = () => {
       setTimeout(() => {
         const randomUser = users[Math.floor(Math.random() * users.length)];
         const randomMessage = messagesPool[Math.floor(Math.random() * messagesPool.length)];
-  
-        setMessages(prev => [...prev, { user: randomUser, content: randomMessage }]);
+        let newMsg = { user: randomUser, content: randomMessage }
+        setMsgNotice(newMsg);
+        setMessages(prev => [...prev, newMsg]);
+        setShowMessageNotice(true);
+            const timer = setTimeout(() => setShowMessageNotice(false), 2000);
+            return () => clearTimeout(timer);
       }, randomDelay);
     }, 4000); // check every 4 seconds
   
@@ -87,7 +94,14 @@ const LiveWorkshop = () => {
             e.currentTarget.play();
         }}
         />
+        {showMessageNotice && !notesOpened &&(
+                <div className='message-notice'>
+                  <strong>{msgNotice.user} : </strong>
+                  {msgNotice.content}
+                </div>
+            )}
         </div>
+
         <div className="sidebar">
             {!notesOpened && (<div className="button-wrapper">
                 <button className="notes-button" onClick={() => {setNotesOpened(true); setUnread(0)}}>
