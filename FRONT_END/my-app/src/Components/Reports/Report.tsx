@@ -66,19 +66,23 @@ function Report() {
         setCreating(false);
         setViewingReport(null);
       } else if (viewingReport !== null) {
+        // Update the existing report with new data
         setReports(reports.map(report =>
           report.id === viewingReport
             ? { ...report, title: title.trim(), intro: intro.trim(), body: body.trim(), courses: selectedCourses }
             : report
         ));
+        // Clear the form fields after saving
+        setViewingReport(null);
+        setEditing(false);
       }
       setTitle('');
       setIntro('');
       setBody('');
       setSelectedCourses([]);
-      setEditing(false);
     }
   };
+  
 
   const handleBack = () => {
     setCreating(false);
@@ -222,7 +226,6 @@ function Report() {
                     >
                       Delete
                     </button>
-                    
                   </li>
                 ))}
               </ul>
