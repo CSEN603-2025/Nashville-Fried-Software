@@ -3,8 +3,8 @@ import { useState } from "react";
 import internshipListings from "../../internshipListings.json";
 // import statusData from "../../internshipStatusData.json";
 import internshipHistory from "../../internshipHistory.json";
-import "../../Styles/global.css";
-import "../../Styles/internships.css";
+import "../../styles/global.css";
+import "../../styles/internships.css";
 
 const Internships = () => {
   const [view, setView] = useState("available");

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import "../../Styles/profile.css";
-import "../../Styles/global.css";
+import "../../styles/profile.css";
+import "../../styles/global.css";
 import completedInternships from "../../previousInternships.json";
 
 const Profile = () => {
