@@ -1,0 +1,243 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+
+
+.webcam-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures video covers the area */
+}
+
+  .card {
+    background-color: black;
+    color: white;
+    width: 1000px;
+    height: 700px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .card-title {
+    text-align: left;
+    font-size: 18px;
+  }
+
+  .card-text {
+    text-align: center;
+    font-size: 18px;
+    margin: auto 0;
+    gap: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Centers children horizontally */
+    align-items: center; /* Centers children vertically */
+  }
+
+  .button-bar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .button-bar button {
+    padding: 6px 12px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    background-color: gray;
+    cursor: pointer;
+  }
+
+  .button-bar .leave-button {
+    background-color: rgb(185, 38, 38);
+  }
+  .button-bar .share-button {
+    background-color: rgb(6, 170, 50);
+  }
+
+  .button-bar button:hover {
+    opacity: 0.8;
+  }
+
+  .button-bar .participants-button:hover{
+    opacity: 1;
+  }
+
+  .button-icon {
+    width: 45px;
+    height: 45px;
+    vertical-align: middle;
+    align-self: center;
+  }
+
+  .card {
+    position: relative; /* Needed so modal is positioned inside this */
+    padding: 20px;
+    background-color: #111; /* or whatever dark background you're using */
+    border-radius: 10px;
+    color: white;
+  }
+  
+  .leave-modal {
+    position: absolute;
+    bottom: 0px;  /* Adjust for your layout */
+    right: -10px;   /* Adjust for your layout */
+    background: #fff;
+    width: 180px;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .modal-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #e53935;
+  }
+  
+  
+  
+  .cancel {
+    background-color: #ccc;
+    color: #333;
+  }
+
+  .button-bar .leave-call {
+    background-color: #e53935;
+  }
+
+  .center-image {
+    width: 300px; /* Adjust the size of the image */
+    height: 300px; /* Keep it square */
+    object-fit: cover;  /* Ensure the image covers the square */
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+
+  .callerCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+  }
+
+  /* Green pulse animation */
+  .center-image.speaking {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    position: relative;
+    animation: pulse 1.2s infinite;
+    box-shadow: 0 0 0 rgba(0, 255, 0, 0.4);
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 15px rgba(0, 255, 0, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+    }
+  }
+
+  .leave-notice {
+    position: absolute;
+    top: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(30, 30, 30, 0.95);
+    color: white;
+    font-size: 38px;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    animation: fadeOut 5s ease forwards;
+    z-index: 10;
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  #stringy3ny3ady{
+    background-color: #e53935;
+  }
+
+  .icon-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .badge {
+    position: absolute;
+    top: -3px;
+    right: -24px;
+    background: grey;
+    color: black;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .screen-share {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.6; /* optional: dim the video so content is clearer */
+  }
+  
+  .card-title,
+  .card-text,
+  .button-bar,
+  .leave-modal,
+  .leave-notice {
+    position: relative;
+    z-index: 1;
+  }
+  
