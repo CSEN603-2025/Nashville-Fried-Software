@@ -1,6 +1,7 @@
 
 import React from 'react';
 import styles from './Styles/VideoCall.module.css';
+import {useNavigate} from 'react-router-dom'
 import {useState, useEffect, useRef} from 'react'
 import leaveIcon from './assets/leave.svg';
 import muteIcon from './assets/mute.svg';
@@ -16,7 +17,7 @@ import unmuteSound from './assets/unute.wav'
 
 
 function VideoCall() {
-
+    const navigator = useNavigate()
     const videoRef = useRef(null);
     const cameraRef = useRef(null)
     let stream;
@@ -71,11 +72,6 @@ function VideoCall() {
         setShowModal(prev => !prev);
     };
 
-    const confirmLeave = () => {
-        // Handle leaving the call
-        alert("You have left the call.");
-        setShowModal(false);
-    };
 
     const cancelLeave = () => {
         setShowModal(false);
@@ -172,7 +168,7 @@ function VideoCall() {
 
                 {showModal && (
                 <div className={styles['leave-modal']}>
-                    <button id='stringy3ny3ady' className={`${styles['modal-button']} ${styles['leave-call']}`} onClick={confirmLeave}>
+                    <button onClick = {() => {navigator('/dashboard')}} id='stringy3ny3ady' className={`${styles['modal-button']} ${styles['leave-call']}`}>
                     Leave Call
                     </button>
                     <button className={`${styles['modal-button']} ${styles['cancel']}`} onClick={cancelLeave}>

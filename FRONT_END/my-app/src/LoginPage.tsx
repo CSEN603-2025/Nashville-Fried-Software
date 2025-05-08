@@ -7,7 +7,11 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault(); // prevent page reload
         // Add login/auth logic here
-        navigate('/dashboard'); // route to dashboard
+        const form = e.currentTarget;
+        const email = (form.elements.namedItem('Email') as HTMLInputElement).value.trim();
+        const password = (form.elements.namedItem('Password') as HTMLInputElement).value;
+        if(email == '1') navigate('/dashboard'); // route to dashboard
+        if(email == '2') navigate('/scaddashboard'); // route to dashboard
       };
 
     const handleClick = (e) =>{

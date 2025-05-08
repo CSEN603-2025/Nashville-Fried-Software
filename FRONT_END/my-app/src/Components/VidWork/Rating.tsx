@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import '../ComponentStyles/Rating.css'
 
 
 
 const Rating = () => {
+  const navigate = useNavigate()
   const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState('');
 
@@ -32,7 +34,7 @@ const Rating = () => {
           value={feedback}
           onChange={handleFeedbackChange}
         />
-        <button className="submit-button">
+        <button onClick = {() => {navigate('/dashboard')}}  className="submit-button">
           Submit and Exit
         </button>
       </div>
