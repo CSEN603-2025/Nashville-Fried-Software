@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Rating.css'
+import '../ComponentStyles/Rating.css'
 
 
 

@@ -6,10 +6,10 @@ function SideBar()
     return (
             <div className="link-container">
                 <h2>Welcome, Student</h2>
-                <Link to="/profile">My Profile</Link>
-                <Link to="/internships">Internships</Link>
-                <Link to="/evals">Internship Evaluation</Link>
-                <Link to="/reports">Reports</Link>
+                <Link to="/Profile">My Profile</Link>
+                <Link to="/Internships">Internships</Link>
+                <Link to="/Evaluation">Internship Evaluation</Link>
+                <Link to="/Report">Reports</Link>
             </div>
     )
 }

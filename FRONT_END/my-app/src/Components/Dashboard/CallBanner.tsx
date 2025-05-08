@@ -22,7 +22,7 @@ const CallBanner = ({ onMissedCall }) => {
   const handleAccept = () => {
     setVisible(false);
     navigator.vibrate?.(0); // Stop vibration
-    navigate('/call')
+    navigate('/VideoCall')
   };
 
   const handleReject = () => {

@@ -38,45 +38,6 @@
       "Work with the editorial team for content review"
     ],
     "duration": "2 months"
-  },
-  {
-    "company_name": "ByteBridge AI",
-    "job_title": "Machine Learning Intern",
-    "responsibilities": [
-      "Clean and preprocess data sets",
-      "Implement basic ML algorithms",
-      "Evaluate model performance"
-    ],
-    "duration": "4 months"
-  },
-  {
-    "company_name": "FinSight Analytics",
-    "job_title": "Data Analyst Intern",
-    "responsibilities": [
-      "Analyze financial data and trends",
-      "Build dashboards using Tableau",
-      "Assist in preparing investor reports"
-    ],
-    "duration": "3 months"
-  },
-  {
-    "company_name": "InnoTech Labs",
-    "job_title": "UI/UX Design Intern",
-    "responsibilities": [
-      "Design wireframes and prototypes",
-      "Conduct user research and usability testing",
-      "Collaborate with developers to implement designs"
-    ],
-    "duration": "2 months"
-  },
-  {
-    "company_name": "CleanEnergy Co.",
-    "job_title": "Sustainability Research Intern",
-    "responsibilities": [
-      "Research eco-friendly technologies",
-      "Assist in compiling policy reports",
-      "Support grant proposal writing"
-    ],
-    "duration": "5 months"
   }
+ 
 ]
