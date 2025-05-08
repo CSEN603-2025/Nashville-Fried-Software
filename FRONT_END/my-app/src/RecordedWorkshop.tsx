@@ -1,11 +1,11 @@
 import React from 'react';
-import './RecordedWorkshop.css';
+import './Styles/RecordedWorkshop.css';
 import {useState, useEffect, useRef} from 'react'
 import notesIcon from './assets/notes.svg';
 import addIcon from './assets/add.svg';
 import deleteIcon from './assets/delete.svg';
 import leaveIcon from './assets/leave.svg';
-import Rating from './Rating.tsx'
+import Rating from './Components/VidWork/Rating.tsx'
 
 
 const RecordedWorkshop = () => {

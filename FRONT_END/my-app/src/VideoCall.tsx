@@ -1,6 +1,6 @@
 
 import React from 'react';
-import styles from './VideoCall.module.css';
+import styles from './Styles/VideoCall.module.css';
 import {useState, useEffect, useRef} from 'react'
 import leaveIcon from './assets/leave.svg';
 import muteIcon from './assets/mute.svg';
