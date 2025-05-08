@@ -5,9 +5,9 @@ import "../ComponentStyles/Report.css";
 
 function Report() {
   const [reports, setReports] = useState([
-    { id: 1, title: 'Report 1', intro: 'Intro 1', body: 'Body 1', submitted: false, appealed: false },
-    { id: 2, title: 'Report 2', intro: 'Intro 2', body: 'Body 2', submitted: false, appealed: false },
-    { id: 3, title: 'Report 3', intro: 'Intro 3', body: 'Body 3', submitted: false, appealed: false },
+    { id: 1, title: 'Report 1', intro: 'Intro 1', body: 'Body 1', submitted: false, appealed: false, courses: [] },
+    { id: 2, title: 'Report 2', intro: 'Intro 2', body: 'Body 2', submitted: false, appealed: false, courses: [] },
+    { id: 3, title: 'Report 3', intro: 'Intro 3', body: 'Body 3', submitted: false, appealed: false, courses: [] },
   ]);
 
   const [comments, setComments] = useState({
@@ -23,17 +23,21 @@ function Report() {
   const [title, setTitle] = useState('');
   const [intro, setIntro] = useState('');
   const [body, setBody] = useState('');
-
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
-  const [showCommentsModal, setShowCommentsModal] = useState(false);
-  const [selectedReportId, setSelectedReportId] = useState(null);
 
-  const handleClick = (index: number) => {
-    const selected = reports[index];
+  const [showCommentsModal, setShowCommentsModal] = useState(false);
+  const [selectedReportId, setSelectedReportId] = useState<number | null>(null);
+
+  const courseList = ['CA', 'SE', 'DMET', 'NETWORKS'];
+
+  const handleClick = (reportId: number) => {
+    const selected = reports.find(report => report.id === reportId);
+    if (!selected) return;
     setTitle(selected.title);
     setIntro(selected.intro);
     setBody(selected.body);
-    setViewingReport(index);
+    setSelectedCourses(selected.courses || []);
+    setViewingReport(reportId);
     setEditing(false);
   };
 
@@ -41,19 +45,38 @@ function Report() {
     setTitle('');
     setIntro('');
     setBody('');
+    setSelectedCourses([]);
     setCreating(true);
     setViewingReport(null);
   };
 
   const handleSave = () => {
     if (title.trim()) {
-      const newReport = { id: reports.length + 1, title: title.trim(), intro: intro.trim(), body: body.trim(), submitted: false, appealed: false };
-      setReports([...reports, newReport]);
-      setCreating(false);
-      setViewingReport(null);
+      if (creating) {
+        const newReport = {
+          id: reports.length > 0 ? Math.max(...reports.map(r => r.id)) + 1 : 1,
+          title: title.trim(),
+          intro: intro.trim(),
+          body: body.trim(),
+          submitted: false,
+          appealed: false,
+          courses: selectedCourses
+        };
+        setReports([...reports, newReport]);
+        setCreating(false);
+        setViewingReport(null);
+      } else if (viewingReport !== null) {
+        setReports(reports.map(report =>
+          report.id === viewingReport
+            ? { ...report, title: title.trim(), intro: intro.trim(), body: body.trim(), courses: selectedCourses }
+            : report
+        ));
+      }
       setTitle('');
       setIntro('');
       setBody('');
+      setSelectedCourses([]);
+      setEditing(false);
     }
   };
 
@@ -63,6 +86,7 @@ function Report() {
     setTitle('');
     setIntro('');
     setBody('');
+    setSelectedCourses([]);
     setEditing(false);
   };
 
@@ -70,23 +94,23 @@ function Report() {
     setEditing(true);
   };
 
-  const handleDelete = (indexToDelete: number) => {
-    setReports(reports.filter((_, index) => index !== indexToDelete));
+  const handleDelete = (reportId: number) => {
+    setReports(reports.filter(report => report.id !== reportId));
   };
 
   const handleCourseToggle = (course: string) => {
-    setSelectedCourses((prev) =>
+    setSelectedCourses(prev =>
       prev.includes(course) ? prev.filter(c => c !== course) : [...prev, course]
     );
   };
 
-  const handleReportSubmit = (reportId) => {
+  const handleReportSubmit = (reportId: number) => {
     setReports(reports.map(report =>
       report.id === reportId ? { ...report, submitted: true } : report
     ));
   };
 
-  const handleViewSubmission = (reportId) => {
+  const handleViewSubmission = (reportId: number) => {
     setShowCommentsModal(true);
     setSelectedReportId(reportId);
   };
@@ -95,11 +119,13 @@ function Report() {
     setShowCommentsModal(false);
   };
 
-  const handleAppeal = (reportId) => {
+  const handleAppeal = (reportId: number) => {
     setReports(reports.map(report =>
-      report.id === reportId ? { ...report, appealed: true, title: `${report.title} (appealed)` } : report
+      report.id === reportId && !report.appealed
+        ? { ...report, appealed: true }
+        : report
     ));
-    setShowCommentsModal(false);  // Close the comments modal after appealing
+    setShowCommentsModal(false);
   };
 
   return (
@@ -107,57 +133,54 @@ function Report() {
       <SideBar />
 
       <div className="report-content">
-        {creating ? (
+        {creating || viewingReport !== null ? (
           <div className="create-form">
-            <textarea
-              className="report-textarea title-box"
-              placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <textarea
-              className="report-textarea intro-box"
-              placeholder="Introduction"
-              value={intro}
-              onChange={(e) => setIntro(e.target.value)}
-            />
-            <textarea
-              className="report-textarea body-box"
-              placeholder="Report Body"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-            />
-            <div className="form-buttons">
-              <button className="save-button" onClick={handleSave}>Save</button>
-              <button className="back-button" onClick={handleBack}>Back</button>
+            <div className="form-columns">
+              <div className="report-fields">
+                <textarea
+                  className="report-textarea title-box"
+                  placeholder="Title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  disabled={!creating && !editing}
+                />
+                <textarea
+                  className="report-textarea intro-box"
+                  placeholder="Introduction"
+                  value={intro}
+                  onChange={(e) => setIntro(e.target.value)}
+                  disabled={!creating && !editing}
+                />
+                <textarea
+                  className="report-textarea body-box"
+                  placeholder="Report Body"
+                  value={body}
+                  onChange={(e) => setBody(e.target.value)}
+                  disabled={!creating && !editing}
+                />
+              </div>
+              <div className="courses-list-container">
+                <h2 className="courses-title"><strong>COURSES</strong></h2>
+                <ul className="courses-list">
+                  {courseList.map(course => (
+                    <li key={course} className="course-item">
+                      <label>
+                        <input
+                          type="checkbox"
+                          checked={selectedCourses.includes(course)}
+                          onChange={() => handleCourseToggle(course)}
+                          disabled={!creating && !editing}
+                        />
+                        {course}
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
-        ) : viewingReport !== null ? (
-          <div className="create-form">
-            <textarea
-              className="report-textarea title-box"
-              placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              disabled={!editing}
-            />
-            <textarea
-              className="report-textarea intro-box"
-              placeholder="Introduction"
-              value={intro}
-              onChange={(e) => setIntro(e.target.value)}
-              disabled={!editing}
-            />
-            <textarea
-              className="report-textarea body-box"
-              placeholder="Report Body"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-              disabled={!editing}
-            />
             <div className="form-buttons">
-              {!editing && <button className="create-button" onClick={handleEdit}>Edit</button>}
-              {editing && <button className="save-button" onClick={handleSave}>Save</button>}
+              {(creating || editing) && <button className="save-button" onClick={handleSave}>Save</button>}
+              {!creating && !editing && <button className="create-button" onClick={handleEdit}>Edit</button>}
               <button className="back-button" onClick={handleBack}>Back</button>
             </div>
           </div>
@@ -171,23 +194,25 @@ function Report() {
               <ul className="report-list">
                 {reports.map((report) => (
                   <li key={report.id} className="report-item">
-                    <span onClick={() => handleClick(report.id)} style={{ flexGrow: 1, cursor: 'pointer' }}>
+                    <span
+                      onClick={() => handleClick(report.id)}
+                      style={{ flexGrow: 1, cursor: 'pointer' }}
+                    >
                       {report.title}
+                      {report.appealed && (
+                        <span className="appeal-label" style={{ marginLeft: 8, color: '#d9534f', fontWeight: 'bold' }}>
+                          (Appeal Pending)
+                        </span>
+                      )}
                     </span>
                     {!report.submitted && (
-                      <button
-                        className="submit-button"
-                        onClick={() => handleReportSubmit(report.id)}
-                      >
+                      <button className="submit-button" onClick={() => handleReportSubmit(report.id)}>
                         Submit
                       </button>
                     )}
                     {report.submitted && (
-                      <button
-                        className="view-button"
-                        onClick={() => handleViewSubmission(report.id)}
-                      >
-                        View Submission
+                      <button className="view-button" onClick={() => handleViewSubmission(report.id)}>
+                        View Comments
                       </button>
                     )}
                     <button
@@ -197,25 +222,7 @@ function Report() {
                     >
                       Delete
                     </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Courses List */}
-            <div className="courses-list-container">
-              <h2 className="courses-title"><strong>COURSES</strong></h2>
-              <ul className="courses-list">
-                {['CA', 'SE', 'DMET', 'NETWORKS'].map(course => (
-                  <li key={course} className="course-item">
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={selectedCourses.includes(course)}
-                        onChange={() => handleCourseToggle(course)}
-                      />
-                      {course}
-                    </label>
+                    
                   </li>
                 ))}
               </ul>
@@ -225,7 +232,7 @@ function Report() {
       </div>
 
       {/* Comments Modal */}
-      {showCommentsModal && (
+      {showCommentsModal && selectedReportId !== null && (
         <div className="comments-modal">
           <div className="comments-modal-content">
             <h3>Comments</h3>
@@ -233,8 +240,9 @@ function Report() {
             <button
               className="appeal-button"
               onClick={() => handleAppeal(selectedReportId)}
+              disabled={reports.find(r => r.id === selectedReportId)?.appealed}
             >
-              Appeal
+              {reports.find(r => r.id === selectedReportId)?.appealed ? "Appeal Submitted" : "Appeal"}
             </button>
             <button className="close-comments-modal" onClick={closeCommentsModal}>
               Close

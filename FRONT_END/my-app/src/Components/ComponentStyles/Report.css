@@ -352,13 +352,16 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
+  border: 2px solid #ccc; /* <-- Added border */
   max-width: 400px;
   width: 100%;
   text-align: center;
 }
 
+
 .comments-modal button {
   margin-top: 10px;
+  margin-right: 10px; /* <-- Added spacing between buttons */
   padding: 10px 20px;
   border: none;
   cursor: pointer;
@@ -367,6 +370,7 @@
   background-color: #007BFF;
   color: white;
 }
+
 
 .comments-modal button:hover {
   background-color: #0056b3;
@@ -389,8 +393,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 1000; /* Ensure it appears on top */
 }
+
 
 .comments-modal-content {
   background: white;
@@ -422,4 +427,9 @@
 }
 .appeal-button:hover {
   background-color: #ff4500;
+}
+.appeal-label {
+  margin-left: 10px;
+  color: orange;
+  font-weight: bold;
 }
