@@ -36,7 +36,7 @@ const Notifications = ({notifications}) =>{
     };
 
     const handleJoin = () =>{
-      navigate('/Workshops')
+      navigate('/workshop')
     }
   
     return (

@@ -1,11 +1,11 @@
 import React from 'react';
-import './Styles/LiveWorkshop.css';
+import './LiveWorkshop.css';
 import {useState, useEffect, useRef} from 'react'
 import chatIcon from './assets/chat.svg';
 import addIcon from './assets/add.svg';
 import deleteIcon from './assets/delete.svg';
 import leaveIcon from './assets/leave.svg';
-import Rating from './Components/VidWork/Rating.tsx'
+import Rating from './Rating.tsx'
 import workshopVideo from './assets/workshop.mp4'
 import sendIcon from './assets/send.svg'
 
