@@ -1,7 +1,7 @@
 import React from "react";
 import internshipListings from "../../internshipListings.json";
-import "../../styles/global.css";
-import "../../styles/viewInternship.css";
+import "../../Styles/global.css";
+import "../../Styles/viewInternship.css";
 
 const ViewInternship = () => {
   let id = 0;
