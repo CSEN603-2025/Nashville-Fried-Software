@@ -1,0 +1,435 @@
+/* ==== Layout ==== */
+.report-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f9fafb;
+}
+
+/* Sidebar-adjacent content */
+.report-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start; /* Align to the left */
+  align-items: flex-start;
+  padding: 40px; /* Fixed margin */
+  box-sizing: border-box;
+  margin-left: 420px; /* Shifted slightly to the left from the previous value */
+}
+
+/* ==== Box-Styled Report List ==== */
+.report-list {
+  width: 500px; /* Adjusted width for smaller boxes */
+  height: 350px; /* Adjusted height for smaller boxes */
+  list-style: none;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  margin-left: 0; /* Align with the right content */
+  font-family: 'Arial', sans-serif; /* Make sure the report list uses this font */
+}
+
+/* ==== Report List Title and Button Alignment ==== */
+.report-list-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.report-list-title {
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.create-button {
+  width: 160px;
+  height: 40px;
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.create-button:hover {
+  background-color: #45a049;
+}
+
+/* ==== Buttons ==== */
+.save-button, .back-button {
+  margin: 10px;
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.save-button:hover, .back-button:hover {
+  background-color: #45a049;
+}
+
+/* ==== Create Form ==== */
+.create-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+/* ==== Text Box Container ==== */
+.report-container {
+  display: flex;
+  justify-content: flex-start; /* Align to the left */
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #f9fafb;
+  box-sizing: border-box;
+}
+
+/* ==== Text Boxes Stack ==== */
+.report-form {
+  width: 100%;
+  max-width: 500px; /* Adjusted for smaller size */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-right: 2rem;
+}
+
+/* ==== Shared Textarea Styles ==== */
+.report-textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 14px;
+  resize: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+/* ==== Specific Textarea Heights ==== */
+.title-box {
+  height: 40px;
+}
+
+.intro-box {
+  height: 120px;
+}
+
+.body-box {
+  height: 300px;
+}
+
+.delete-button {
+  padding: 6px 10px;
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+/* ==== Report List Container ==== */
+.report-list-container {
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* ==== Report List Title ==== */
+.report-list-title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+/* ==== Reports List Items ==== */
+.report-list li {
+  margin: 10px 0; /* Added spacing between items */
+  font-size: 18px; /* Larger font size */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Faint line between items */
+  padding-bottom: 10px;
+}
+
+.report-list li:last-child {
+  border-bottom: none; /* Remove the bottom border from the last item */
+}
+
+/* ==== COURSES Section ==== */
+.courses-list-container {
+  width: 500px; /* Adjusted width for smaller boxes */
+  height: 350px; /* Adjusted height for smaller boxes */
+  list-style: none;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  margin-left: 60px; /* Significantly shifted right */
+  font-family: 'Arial', sans-serif; /* Ensure the font matches the reports list */
+}
+
+.courses-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.courses-list {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+  border: 2px solid #ccc; /* Updated to match outer border color */
+  border-radius: 5px;
+}
+
+.courses-list li {
+  margin: 10px 0; /* Added spacing between items */
+  font-size: 18px; /* Larger font size */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Faint line between items */
+  padding-bottom: 10px;
+}
+
+.courses-list li:last-child {
+  border-bottom: none; /* Remove the bottom border from the last item */
+}
+
+.courses-list input {
+  margin-right: 8px;
+}
+
+/* ==== MAJORS Section ==== */
+.majors-list-container {
+  margin-top: 20px;
+  padding: 10px; /* Padding around the outer border */
+  border: 2px solid #000; /* Outer border around the entire container */
+  border-radius: 5px; /* Optional: rounded corners for a more polished look */
+}
+
+.majors-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.majors-list {
+  list-style-type: none;
+  padding: 10px; /* Padding inside the inner border */
+  margin: 0;
+  border: 2px solid #333; /* Inner border around the actual list */
+  border-radius: 5px; /* Optional: rounded corners for the inner border */
+}
+
+.majors-list li {
+  margin: 5px 0;
+}
+
+/* ==== Submit Modal Styling ==== */
+.submit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.submit-modal ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.submit-modal button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 6px;
+}
+
+.submit-modal button:hover {
+  background-color: #0056b3;
+}
+
+.submit-report-selection {
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  text-align: left;
+  cursor: pointer;
+}
+
+.submit-report-selection:hover {
+  background-color: #f0f0f0;
+}
+
+.submit-report-selection:focus {
+  outline: none;
+  background-color: #007BFF;
+  color: white;
+}
+
+.confirm-submit {
+  background-color: #007BFF;
+  color: white;
+}
+
+.cancel-submit {
+  background-color: #ccc;
+  color: black;
+}
+
+/* ==== Report Submitted Button Next to Report Name ==== */
+.report-list li .submitted-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.report-list li .submitted-button:hover {
+  background-color: #0056b3;
+}
+
+.report-list li .submitted-button:focus {
+  outline: none;
+}
+
+/* ==== Comments Modal Styling ==== */
+.comments-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comments-modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #ccc; /* <-- Added border */
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.comments-modal button {
+  margin-top: 10px;
+  margin-right: 10px; /* <-- Added spacing between buttons */
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 6px;
+  background-color: #007BFF;
+  color: white;
+}
+
+
+.comments-modal button:hover {
+  background-color: #0056b3;
+}
+
+/* ==== Submit Report Selection Highlighting ==== */
+.submit-report-selection.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+/* ==== Comments Modal ==== */
+.comments-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears on top */
+}
+
+
+.comments-modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.close-comments-modal {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ==== Appeal Button ==== */
+.appeal-button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.appeal-button:hover {
+  background-color: #ff4500;
+}
+.appeal-label {
+  margin-left: 10px;
+  color: orange;
+  font-weight: bold;
+}
