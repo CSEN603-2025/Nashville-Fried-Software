@@ -46,6 +46,11 @@ const Profile = () => {
   const handleAddResponsibility = () => {
     setResponsibilities([...responsibilities, ""]);
   };
+  const handleRemoveResponsibility = () => {
+    if (responsibilities.length > 1) {
+      setResponsibilities(responsibilities.slice(0, -1));
+    }
+  };
 
   const handleResponsibilityChange = (index, value) => {
     const updatedResponsibilities = responsibilities.map((resp, idx) =>
@@ -392,7 +397,10 @@ const Profile = () => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className="addInternship"
-              onClick={() => setIsAddingInternship(true)}
+              onClick={() => {
+                setIsAddingInternship(true);
+                setWarning("");
+              }}
             >
               <path
                 d="M4 12H20M12 4V20"
@@ -443,6 +451,15 @@ const Profile = () => {
                             Add Responsibility
                           </button>
                         )}
+                        {index === responsibilities.length - 1 &&
+                          responsibilities.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={handleRemoveResponsibility}
+                            >
+                              Remove Responsibility
+                            </button>
+                          )}
                       </div>
                     ))}
                   </label>

@@ -19,6 +19,8 @@ const Internships = () => {
   const [statusFilter, setStatusFilter] = useState("");
   const [dateFilter, setDateFilter] = useState("");
 
+  let isStudent = false;
+
   const filteredData = internshipHistory.filter((item) => {
     const matchesCompany = item.company_name
       .toLowerCase()
@@ -64,33 +66,37 @@ const Internships = () => {
   return (
     <>
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
-        <button
-          onClick={() => setView("available")}
-          style={{
-            marginRight: "10px",
-            padding: "10px 20px",
-            backgroundColor: view === "available" ? "#007bff" : "#ccc",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-          }}
-        >
-          Available Internships
-        </button>
-        <button
-          onClick={() => setView("history")}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: view === "history" ? "#007bff" : "#ccc",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-          }}
-        >
-          Past/Present Internships
-        </button>
+        {isStudent && (
+          <>
+            <button
+              onClick={() => setView("available")}
+              style={{
+                marginRight: "10px",
+                padding: "10px 20px",
+                backgroundColor: view === "available" ? "#007bff" : "#ccc",
+                color: "white",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+            >
+              Available Internships
+            </button>
+            <button
+              onClick={() => setView("history")}
+              style={{
+                padding: "10px 20px",
+                backgroundColor: view === "history" ? "#007bff" : "#ccc",
+                color: "white",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+            >
+              Past/Present Internships
+            </button>
+          </>
+        )}
       </div>
 
       {view === "available" && (

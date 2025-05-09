@@ -233,10 +233,10 @@ p {
 /* Enlarged internship section */
 .internship-form {
   background: white;
-  padding: 2rem;
+  padding: 50px;
   border-radius: 1rem;
-  max-width: 80%;
-  max-height: 80%;
+  min-width: 500px;
+  max-height: 500px;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   font-size: 1.2rem; /* make it bigger */
