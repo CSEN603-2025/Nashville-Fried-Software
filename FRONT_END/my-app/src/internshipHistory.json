@@ -1,35 +1,41 @@
 [
   {
+    "id": 1,
     "company_name": "TechNova Solutions",
     "job_title": "Frontend Development Intern",
     "date": "2025-01-15",
     "status": "internship complete"
   },
   {
+    "id": 2,
     "company_name": "GreenByte Analytics",
     "job_title": "Data Analyst Intern",
     "date": "2025-03-01",
     "status": "current intern"
   },
   {
+    "id": 3,
     "company_name": "EduSpark Learning",
     "job_title": "Content Writer Intern",
     "date": "2024-12-10",
     "status": "internship complete"
   },
   {
+    "id": 4,
     "company_name": "CyberCore Systems",
     "job_title": "Cybersecurity Intern",
     "date": "2025-02-20",
     "status": "current intern"
   },
   {
+    "id": 5,
     "company_name": "PixelCraft Studios",
     "job_title": "Graphic Design Intern",
     "date": "2024-11-01",
     "status": "internship complete"
   },
   {
+    "id": 6,
     "company_name": "HealthWare Labs",
     "job_title": "Machine Learning Intern",
     "date": "2025-04-05",

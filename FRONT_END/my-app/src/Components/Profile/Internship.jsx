@@ -69,6 +69,10 @@ const Internships = () => {
   const toViewInternship = (index) => {
     navigate("/viewInternship/" + index);
   };
+
+  const toViewCompletedInternship = (index) => {
+    navigate("/viewCompletedInternship/" + index);
+  };
   return (
     <>
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -256,7 +260,9 @@ const Internships = () => {
                   <h4>Date: {item.date}</h4>
                   <h4>Status: {item.status}</h4>
                   {item.status === "internship complete" && (
-                    <button>View Internship</button>
+                    <button onClick={() => toViewCompletedInternship(index)}>
+                      View Internship
+                    </button>
                   )}
                 </div>
               ))

@@ -10,6 +10,7 @@ import Evaluation from "./Components/Profile/evaluation.jsx";
 import LiveWorkshop from "./LiveWorkshop.tsx";
 import RecordedWorkshop from "./RecordedWorkshop.tsx";
 import ViewInternship from "./Components/Profile/viewInternship.jsx";
+import ViewCompletedInternship from "./Components/Profile/viewCompletedInternship.jsx";
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
         <Route path="/Workshops" element={<LiveWorkshop />} />
         <Route path="/RecWorkshop" element={<RecordedWorkshop />} />
         <Route path="/viewInternship/:id" element={<ViewInternship />} />
+        <Route
+          path="/viewCompletedInternship/:id"
+          element={<ViewCompletedInternship />}
+        />
       </Routes>
     </Router>
   );
