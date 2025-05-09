@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import internshipListings from "../../internshipListingsCompany.json";
 import internshipHistory from "../../internshipHistory.json";
 import "../ComponentStyles/CompanyInternshipPosts.css";
@@ -16,41 +16,45 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
   const [statusFilter, setStatusFilter] = useState("");
   const [dateFilter, setDateFilter] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [internships,  setInternships] = useState( internshipListings.filter((internship) => {
-      const matchesCompany = internship.company_name
-      .toLowerCase()
-      .includes(CompanyName.toLowerCase());
-      const matchesTitle = internship.job_title
-      .toLowerCase()
-      .includes(titleSearch.toLowerCase());
-      const matchesIndustry = industryFilter
-      ? internship.industry.toLowerCase() === industryFilter.toLowerCase()
-      : true;
-      const matchesDuration = durationFilter
-      ? internship.duration.toLowerCase() === durationFilter.toLowerCase()
-      : true;
-      const matchesPaid = paidFilter
-      ? paidFilter === "paid"
-      ? internship.paid
-      : !internship.paid
-      : true;
-      return (
-          matchesCompany &&
-          matchesTitle &&
-          matchesIndustry &&
-          matchesDuration &&
-          matchesPaid
-        );
-    }))
   const [formData, setFormData] = useState({
-    job_title: "",
-    duration: "",
-    paid: false,
-    expected_salary: "",
-    skills_required: "",
-    job_description: ""
-  });
+      job_title: "",
+      duration: "",
+      paid: false,
+      expected_salary: "",
+      skills_required: "",
+      job_description: ""
+    });
+  const [internships, setInternships] = useState([]);
 
+  useEffect(() => {
+    const filteredInternships = internshipListings.filter((internship) => {
+      const matchesCompany = internship.company_name
+        .toLowerCase()
+        .includes(CompanyName.toLowerCase());
+      const matchesTitle = internship.job_title
+        .toLowerCase()
+        .includes(titleSearch.toLowerCase());
+      const matchesIndustry = industryFilter
+        ? internship.industry.toLowerCase() === industryFilter.toLowerCase()
+        : true;
+      const matchesDuration = durationFilter
+        ? internship.duration.toLowerCase() === durationFilter.toLowerCase()
+        : true;
+      const matchesPaid = paidFilter
+        ? paidFilter === "paid"
+          ? internship.paid
+          : !internship.paid
+        : true;
+      return (
+        matchesCompany &&
+        matchesTitle &&
+        matchesIndustry &&
+        matchesDuration &&
+        matchesPaid
+      );
+    });
+    setInternships(filteredInternships);
+  }, [CompanyName, titleSearch, industryFilter, durationFilter, paidFilter]);
 
   const handleDeletePost = (id) =>{
     setInternships(internships.filter((item) => item.id !== id));

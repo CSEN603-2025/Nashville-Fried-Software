@@ -162,6 +162,7 @@
 }
 
 .jobmodal {
+  animation: fadeIn 0.2s ease-in;
   background: #fff;
   border-radius: 10px;
   padding: 20px 30px;
