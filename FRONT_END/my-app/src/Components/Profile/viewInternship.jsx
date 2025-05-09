@@ -2,9 +2,10 @@ import React from "react";
 import internshipListings from "../../internshipListings.json";
 import "../../Styles/global.css";
 import "../../Styles/viewInternship.css";
+import { useParams } from "react-router-dom";
 
 const ViewInternship = () => {
-  let id = 0;
+  const { id } = useParams();
   const internship = internshipListings[id];
 
   return (

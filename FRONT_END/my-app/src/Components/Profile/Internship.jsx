@@ -3,10 +3,12 @@ import { useState } from "react";
 import internshipListings from "../../internshipListings.json";
 // import statusData from "../../internshipStatusData.json";
 import internshipHistory from "../../internshipHistory.json";
+import { useNavigate } from "react-router-dom";
 import "../../Styles/global.css";
 import "../../Styles/internships.css";
 
 const Internships = () => {
+  const navigate = useNavigate();
   const [view, setView] = useState("available");
   const [companySearch, setCompanySearch] = useState("");
   const [titleSearch, setTitleSearch] = useState("");
@@ -63,6 +65,10 @@ const Internships = () => {
       matchesPaid
     );
   });
+
+  const toViewInternship = (index) => {
+    navigate("/viewInternship/" + index);
+  };
   return (
     <>
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -166,7 +172,9 @@ const Internships = () => {
                   <h3>{internship.company_name}</h3>
                   <h4>Job Title: {internship.job_title}</h4>
                   <h4>Duration: {internship.duration}</h4>
-                  <button>View Internship</button>
+                  <button onClick={() => toViewInternship(index)}>
+                    View Internship
+                  </button>
                 </div>
               ))
             ) : (
