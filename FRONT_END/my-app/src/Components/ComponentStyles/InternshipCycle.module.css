@@ -1,0 +1,89 @@
+.internship-cycle {
+    margin-top: 1rem;
+    font-size: 1rem;
+    padding: 16px;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .internship-cycle:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .internship-cycle h2 {
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .cycle-dates {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.75rem 0;
+  }
+  
+  .date-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1rem;
+    color: #444;
+  }
+  
+  .date-label button {
+    background: none;
+    border: none;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .date-label button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .edit-icon {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+  }
+  
+  .date-label button:hover .edit-icon {
+    transform: scale(1.1);
+  }
+  
+  .progress-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  
+  .progress-bar {
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+  }
+  
+  .progress-bar:hover {
+    background-color: #d5d5d5;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .progress-bar:hover .progress-fill {
+    background-color: #43a047; /* Slightly darker on hover */
+  }
+  
+  .progress-text {
+    font-size: 0.875rem;
+    color: #666;
+    text-align: right;
+  }
+  

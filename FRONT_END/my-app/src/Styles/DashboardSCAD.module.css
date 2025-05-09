@@ -1,0 +1,93 @@
+.cntnr{
+    display: grid;
+    grid-template-columns: 20% 1fr; /* 30% for the left column, the rest for the right */
+     /* Optional spacing between columns */
+  }
+
+.card-container{
+   margin: 20px;
+   width: 40%;
+   border-radius: 8px;
+   border: 0.2px solid black;
+   padding-left: 10px;
+   padding-right: 10px;
+}
+  
+.main-display{
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.two-cards{
+    height: 40vh;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    justify-content: space-around;
+}
+
+
+
+.one-card {
+    display: flex;
+    height: 28vh;
+    background-color: rgb(209, 209, 209);
+    width: 90%; /* Takes the full width of the main-display container */
+    margin-top: 20px; /* Optional: Adds space above the one-card section */
+    margin-left: 55px;
+    border-radius: 8px;
+    border: 0.2px solid black;
+}
+
+.call-banner {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; /* Adjust width as needed */
+    max-width: 500px;
+    background: #ffffff;
+    border: 3px solid #121212;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: vibrate 0.5s linear infinite;
+    border-radius: 30px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  
+  .call-banner .btns {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .call-banner button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .accept {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .reject {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  @keyframes vibrate {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+  }

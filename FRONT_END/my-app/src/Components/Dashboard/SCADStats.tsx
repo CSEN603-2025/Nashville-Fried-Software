@@ -6,7 +6,8 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
-import '../ComponentStyles/SCADStats.css';
+import styles from '../ComponentStyles/SCADStats.module.css';
+import InternshipCycle from './InternshipCycle.tsx'
 
 const COLORS = ['#4CAF50', '#F44336', '#FFEB3B']; // green, red, yellow
 
@@ -18,9 +19,29 @@ const SCADStats: React.FC = () => {
         averageReviewTime: '2.3 days'
       };
     
-      const topCourses = ['CS101', 'INT204', 'UX300', 'ML450', 'DS410'];
-      const topRatedCompanies = ['OpenAI', 'Google', 'Spotify', 'Netflix', 'Salesforce'];
-      const topInternshipCompanies = ['Amazon', 'Tesla', 'IBM', 'Meta', 'SAP'];
+      const topCourses = [
+        { name: 'CS101', score: 87 },
+        { name: 'INT204', score: 73 },
+        { name: 'UX300', score: 92 },
+        { name: 'ML450', score: 65 },
+        { name: 'DS410', score: 78 },
+      ];
+      
+      const topRatedCompanies = [
+        { name: 'OpenAI', score: 4.8 },
+        { name: 'Google', score: 4.5 },
+        { name: 'Spotify', score: 3.9 },
+        { name: 'Netflix', score: 4.2 },
+        { name: 'Salesforce', score: 4.0 },
+      ];
+      
+      const topInternshipCompanies = [
+        { name: 'Amazon', score: 162 },
+        { name: 'Tesla', score: 134 },
+        { name: 'IBM', score: 89 },
+        { name: 'Meta', score: 177 },
+        { name: 'SAP', score: 105 },
+      ];
     
       const pieData = [
         { name: 'Accepted', value: reportStats.accepted },
@@ -28,23 +49,36 @@ const SCADStats: React.FC = () => {
         { name: 'Flagged', value: reportStats.flagged }
       ];
 
-  const renderList = (title: string, items: string[]) => (
-    <div className="list-card">
-      <h3>{title}</h3>
-      <ul>
-        {items.slice(0, 5).map((item, idx) => (
-          <li key={idx}>{item}</li>
-        ))}
-      </ul>
-    </div>
-  );
+      const renderList = (
+        title: string,
+        score: string,
+        items: { name: string; score: number }[]
+      ) => (
+        <div className={styles["list-card"]}>
+          <h3>{title}</h3>
+          
+          <div className={styles["list-header"]}>
+            <span>Name</span>
+            <span className={styles["score"]}>{score}</span>
+          </div>
+      
+          <ul className={styles["list"]}>
+            {items.slice(0, 5).map((item, idx) => (
+              <li key={idx} className={styles["list-item"]}>
+                <span>{item.name}</span>
+                <span className={styles["score"]}>{item.score}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
 
   return (
-    <div className="dashboard-container">
+    <div className={styles["dashboard-container"]}>
       {/* Chart and Review Time */}
-      <div className="chart-section">
-        <div className="chart-container">
-        <div className='pie-chart'>
+      <div className={styles["chart-section"]}>
+        <div className={styles["chart-container"]}>
+        <div className={styles['pie-chart']}>
           <ResponsiveContainer width="100%" height={300}>
           <PieChart>
           <Pie
@@ -64,7 +98,7 @@ const SCADStats: React.FC = () => {
                     y={y}
                     textAnchor="middle"
                     dominantBaseline="central"
-                    className = 'pie-label'
+                    className = {styles['pie-label']}
                 >
                     {`${pieData[index].name}: ${pieData[index].value}`}
                 </text>
@@ -80,17 +114,17 @@ const SCADStats: React.FC = () => {
           <p>Report Stats</p>
           </div>
         </div>
-        <div className="review-time">
-          <p><strong>Avg. Review Time:</strong></p>
-          <p className="review-value">{reportStats.averageReviewTime}</p>
+        <div className={styles["review-time"]}>
+          <InternshipCycle startDate="2025-04-01" endDate="2025-07-31" />
+          <strong>Average Review Time:  {reportStats.averageReviewTime}</strong>
         </div>
       </div>
 
       {/* Top lists */}
-      <div className="top-lists">
-        {renderList("Most Used Courses", topCourses)}
-        {renderList("Top Rated Companies", topRatedCompanies)}
-        {renderList("Top Internship Companies", topInternshipCompanies)}
+      <div className={styles["top-lists"]}>
+        {renderList("Most Used Courses", '% Usage', topCourses)}
+        {renderList("Top Rated Companies", 'Rating', topRatedCompanies)}
+        {renderList("Top Internship Companies", 'Intenrship Count', topInternshipCompanies)}
       </div>
     </div>
   );
