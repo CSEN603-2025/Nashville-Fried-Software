@@ -190,27 +190,6 @@ const Internships = () => {
         </>
       )}
 
-      {/* <h1 style={{ textAlign: "center" }}>Internships you applied to</h1>
-      <div className="internshipListings">
-        {statusData.map((item, index) => (
-          <div
-            key={index}
-            style={{
-              border: "2px solid black",
-              padding: "10px",
-              margin: "10px",
-            }}
-          >
-            <h3>{item.company_name}</h3>
-            <h4>Job Title: {item.job_title}</h4>
-            <h4>
-              Status:{" "}
-              {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
-            </h4>
-          </div>
-        ))}
-      </div> */}
-
       {view === "history" && (
         <>
           <h1 style={{ textAlign: "center" }}>Past/Present Internships</h1>
