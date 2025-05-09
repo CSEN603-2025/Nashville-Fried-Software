@@ -1,9 +1,30 @@
-import React, { useState } from 'react';
-import ContactBook from './Components/Appointments/ContactBook.tsx';
-import AppointmentRequestForm from './Components/Appointments/AppointmentRequestForm.tsx';
-import AppointmentNotifications from './Components/Appointments/AppointmentNotifications.tsx';
+'use client';
 
-const mockUsers = [
+import React, { useState } from 'react';
+import ContactBook from './Components/Appointments/ContactBook';
+import AppointmentRequestForm from './Components/Appointments/AppointmentRequestForm';
+import AppointmentNotifications from './Components/Appointments/AppointmentNotifications';
+
+type User = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  profilePictureUrl: string;
+  isOnline: boolean;
+};
+
+type AppointmentRequest = {
+  id: number;
+  sender: User;
+  recipient: User;
+  subject: string;
+  date: string;
+  time: string;
+  message: string;
+  status: 'pending' | 'accepted' | 'rejected';
+};
+
+const mockUsers: User[] = [
   {
     id: 1,
     firstName: 'Alice',
@@ -30,76 +51,106 @@ const mockUsers = [
 let requestIdCounter = 1;
 
 function AppointmentsPage() {
-  const [selectedUser, setSelectedUser] = useState<null | typeof mockUsers[0]>(null);
-  const [incomingRequests, setIncomingRequests] = useState<any[]>([]);
-  const [outgoingRequests, setOutgoingRequests] = useState<any[]>([]);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [incomingRequests, setIncomingRequests] = useState<AppointmentRequest[]>([]);
+  const [outgoingRequests, setOutgoingRequests] = useState<AppointmentRequest[]>([]);
 
-  const currentUser = {
+  const currentUser: User = {
     id: 99,
     firstName: 'You',
     lastName: 'User',
     profilePictureUrl: 'https://example.com/you.jpg',
+    isOnline: true,
   };
 
-  const handleStartAppointment = (user: typeof mockUsers[0]) => {
+  const handleStartAppointment = (user: User) => {
     setSelectedUser(user);
   };
 
-  const handleSendRequest = (requestData: {
+  const handleSendRequest = ({
+    recipientId,
+    subject,
+    date,
+    time,
+    message,
+  }: {
     recipientId: number;
     subject: string;
     date: string;
     time: string;
     message: string;
   }) => {
-    const recipient = mockUsers.find((u) => u.id === requestData.recipientId);
+    const recipient = mockUsers.find((u) => u.id === recipientId);
     if (!recipient) return;
 
-    const newRequest = {
+    const newRequest: AppointmentRequest = {
       id: requestIdCounter++,
       sender: currentUser,
       recipient,
-      subject: requestData.subject,
-      date: requestData.date,
-      time: requestData.time,
-      message: requestData.message,
+      subject,
+      date,
+      time,
+      message,
       status: 'pending',
     };
 
-    // Add to outgoing and incoming for demo purposes
     setOutgoingRequests((prev) => [...prev, newRequest]);
-    setIncomingRequests((prev) => [...prev, { ...newRequest, sender: recipient, recipient: currentUser }]);
 
+    // For demo: recipient sends the same request back to simulate "incoming"
+    const mirroredRequest: AppointmentRequest = {
+      ...newRequest,
+      id: requestIdCounter++,
+      sender: recipient,
+      recipient: currentUser,
+    };
+
+    setIncomingRequests((prev) => [...prev, mirroredRequest]);
     setSelectedUser(null);
   };
 
   const handleRespondToRequest = (requestId: number, response: 'accepted' | 'rejected') => {
     setIncomingRequests((prev) =>
-      prev.map((r) =>
-        r.id === requestId ? { ...r, status: response } : r
-      )
+      prev.map((r) => (r.id === requestId ? { ...r, status: response } : r))
     );
   };
 
   return (
-    <div>
+    <main>
       <h1>Manage Appointments</h1>
 
       <ContactBook users={mockUsers} onStartAppointment={handleStartAppointment} />
 
       {selectedUser && (
-        <AppointmentRequestForm
-          recipient={selectedUser}
-          onSendRequest={handleSendRequest}
-        />
-      )}
+  <AppointmentRequestForm
+    recipient={{
+      id: selectedUser.id.toString(),
+      firstName: selectedUser.firstName,
+      lastName: selectedUser.lastName,
+      profilePicture: selectedUser.profilePictureUrl,
+      isOnline: selectedUser.isOnline,
+    }}
+    onSendRequest={handleSendRequest}
+  />
+)}
+
 
       <AppointmentNotifications
         incomingRequests={incomingRequests}
-        outgoingRequests={outgoingRequests}
-        onRespondToRequest={handleRespondToRequest}
+        sentResponses={outgoingRequests.map(({ id, recipient, status }) => ({
+          id: id.toString(),
+          recipient: {
+            id: recipient.id.toString(),
+            firstName: recipient.firstName,
+            lastName: recipient.lastName,
+            profilePicture: recipient.profilePictureUrl,
+            isOnline: recipient.isOnline,
+          },
+          status,
+        }))}
+        onAccept={(id) => handleRespondToRequest(Number(id), 'accepted')}
+        onReject={(id) => handleRespondToRequest(Number(id), 'rejected')}
       />
-    </div>
+    </main>
   );
 }
 

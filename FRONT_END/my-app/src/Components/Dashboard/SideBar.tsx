@@ -10,6 +10,8 @@ function SideBar()
                 <Link to="/Internships">Internships</Link>
                 <Link to="/Evaluation">Internship Evaluation</Link>
                 <Link to="/Report">Reports</Link>
+                <Link to="/Appointments">Appointments</Link>
+                <Link to="/Assessments">Assessments</Link>
             </div>
     )
 }

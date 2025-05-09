@@ -1,0 +1,57 @@
+.contact-book {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.contact-book h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding: 0.75rem 0;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-info img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.contact-info span {
+  font-size: 1rem;
+  color: #333;
+}
+
+.request-button {
+  padding: 0.4rem 0.8rem;
+  background-color: #3498db;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.request-button:hover {
+  background-color: #2980b9;
+}

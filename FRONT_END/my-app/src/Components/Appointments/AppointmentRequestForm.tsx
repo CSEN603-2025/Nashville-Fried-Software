@@ -1,23 +1,26 @@
 import React, { useState, type FormEvent } from 'react';
+import './AppointmentRequestForm.css';
 
 type Profile = {
   id: string;
   firstName: string;
   lastName: string;
   profilePicture: string;
+  isOnline?: boolean;
 };
 
 type AppointmentRequestFormProps = {
   recipient: Profile;
-  onSend: (data: {
+  onSendRequest: (requestData: {
+    recipientId: number;
+    subject: string;
     date: string;
     time: string;
-    subject: string;
     message: string;
   }) => void;
 };
 
-function AppointmentRequestForm({ recipient, onSend }: AppointmentRequestFormProps) {
+function AppointmentRequestForm({ recipient, onSendRequest }: AppointmentRequestFormProps) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [subject, setSubject] = useState('');
@@ -25,7 +28,13 @@ function AppointmentRequestForm({ recipient, onSend }: AppointmentRequestFormPro
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSend({ date, time, subject, message });
+    onSendRequest({
+    recipientId: parseInt(recipient.id, 10), // convert from string to number if needed
+    subject,
+    date,
+    time,
+   message,
+  });
     setDate('');
     setTime('');
     setSubject('');

@@ -1,20 +1,33 @@
 import React from 'react';
-
-type Contact = {
-  id: string;
+import './ContactBook.css';
+interface User {
+  id: number;
   firstName: string;
   lastName: string;
-  profilePicture: string;
-};
+  profilePictureUrl: string;
+  isOnline: boolean;
+}
+interface ContactBookProps {
+  users: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    profilePictureUrl: string;
+    isOnline: boolean; // ← Add this to match the full User type
+  }[];
+  onStartAppointment: (user: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    profilePictureUrl: string;
+    isOnline: boolean; // ← Include this field
+  }) => void;
+}
 
-type ContactBookProps = {
-  contacts: Contact[];
-  onSelect: (contact: Contact) => void;
-};
 
-function ContactBook({ contacts, onSelect }: ContactBookProps) {
-  // Sort contacts alphabetically by last name
-  const sortedContacts = [...contacts].sort((a, b) =>
+
+function ContactBook({ users, onStartAppointment }: ContactBookProps) {
+  const sortedUsers = [...users].sort((a, b) =>
     a.lastName.localeCompare(b.lastName)
   );
 
@@ -22,11 +35,16 @@ function ContactBook({ contacts, onSelect }: ContactBookProps) {
     <div>
       <h2>Contact Book</h2>
       <ul>
-        {sortedContacts.map((contact) => (
-          <li key={contact.id}>
-            <img src={contact.profilePicture} alt={`${contact.firstName} ${contact.lastName}`} width="50" height="50" />
-            <span>{contact.firstName} {contact.lastName}</span>
-            <button onClick={() => onSelect(contact)}>Request Appointment</button>
+        {sortedUsers.map((user) => (
+          <li key={user.id}>
+            <img
+              src={user.profilePictureUrl}
+              alt={`${user.firstName} ${user.lastName}`}
+              width={50}
+              height={50}
+            />
+            <span>{user.firstName} {user.lastName}</span>
+            <button onClick={() => onStartAppointment(user)}>Request Appointment</button>
           </li>
         ))}
       </ul>

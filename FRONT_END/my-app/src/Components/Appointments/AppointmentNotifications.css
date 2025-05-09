@@ -1,0 +1,81 @@
+.notifications-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.notifications-container h3 {
+  color: #2c3e50;
+  margin-top: 1rem;
+}
+
+.notifications-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  border-bottom: 1px solid #eee;
+  padding: 1rem 0;
+}
+
+.notification-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.notification-item div {
+  flex: 1;
+}
+
+.notification-item strong {
+  display: block;
+  color: #34495e;
+  margin-bottom: 0.25rem;
+}
+
+.notification-item p {
+  margin: 0.25rem 0;
+  color: #555;
+}
+
+.notification-item .online-status {
+  color: green;
+  font-weight: 600;
+}
+
+.response-buttons {
+  margin-top: 0.5rem;
+}
+
+.response-buttons button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.response-buttons .accept {
+  background-color: #2ecc71;
+}
+
+.response-buttons .reject {
+  background-color: #e74c3c;
+}
+
+.response-buttons .accept:hover {
+  background-color: #27ae60;
+}
+
+.response-buttons .reject:hover {
+  background-color: #c0392b;
+}
