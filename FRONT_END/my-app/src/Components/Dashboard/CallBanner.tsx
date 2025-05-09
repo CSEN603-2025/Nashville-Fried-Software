@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CallBanner = ({ onMissedCall }) => {
-    const [visible, setVisible] = useState(true);
-    const navigate = useNavigate();
-    
+  const [visible, setVisible] = useState(true);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setVisible(false);
@@ -22,7 +22,7 @@ const CallBanner = ({ onMissedCall }) => {
   const handleAccept = () => {
     setVisible(false);
     navigator.vibrate?.(0); // Stop vibration
-    navigate('/call')
+    navigate("/VideoCall");
   };
 
   const handleReject = () => {
@@ -37,8 +37,12 @@ const CallBanner = ({ onMissedCall }) => {
     <div className="call-banner">
       <span>📞 Incoming call from John Pork!</span>
       <div className="btns">
-        <button className="accept" onClick={handleAccept}>Accept</button>
-        <button className="reject" onClick={handleReject}>Reject</button>
+        <button className="accept" onClick={handleAccept}>
+          Accept
+        </button>
+        <button className="reject" onClick={handleReject}>
+          Reject
+        </button>
       </div>
     </div>
   );

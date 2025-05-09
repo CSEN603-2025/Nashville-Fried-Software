@@ -1,6 +1,6 @@
 import React from "react";
-import "../../styles/eval.css";
-import "../../styles/global.css";
+import "../../Styles/eval.css";
+import "../../Styles/global.css";
 
 const Evaluation = () => {
   return (
