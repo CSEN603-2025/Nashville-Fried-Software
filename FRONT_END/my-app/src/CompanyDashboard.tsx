@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import react from "react";
-import SideBar from './Components/Dashboard/SideBar'
-import Workshops from './Components/Dashboard/Workshops'
+import SideBarCompany from './Components/Dashboard/SideBarCompany'
 import Suggested from './Components/Dashboard/Suggested';
-import Notifications from './Components/Dashboard/Notifications'
-import CallBanner from "./Components/Dashboard/CallBanner";
+import Notifications from './Components/Dashboard/NotificationsCompany'
 import ProCard from "./Components/Dashboard/ProCard";
 import './Styles/Dashboard.css'
-const DashboardStudent = () =>{
+const CompanyDashboard = () =>{
     const [notifications, setNotifications] = useState([]);
+    
     return (
     <div className="cntnr">
-        <SideBar/>
+        <SideBarCompany/>
         <div className="main-display">
-            <CallBanner onMissedCall={(msg) => setNotifications((prev) => [...prev, msg])}/>
+            {/* <CallBanner onMissedCall={(msg) => setNotifications((prev) => [...prev, msg])}/> */}
             <div className="two-cards">
                 <ProCard/>
                 <Suggested/>
@@ -29,4 +27,4 @@ const DashboardStudent = () =>{
 )
 }
 
-export default DashboardStudent;
+export default CompanyDashboard;

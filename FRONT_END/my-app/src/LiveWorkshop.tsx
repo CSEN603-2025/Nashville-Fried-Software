@@ -5,7 +5,7 @@ import chatIcon from './assets/chat.svg';
 import addIcon from './assets/add.svg';
 import deleteIcon from './assets/delete.svg';
 import leaveIcon from './assets/leave.svg';
-import Rating from './Components/VidWork/Rating.tsx'
+import Rating from './Components/VidWork/Rating'
 import workshopVideo from './assets/workshop.mp4'
 import sendIcon from './assets/send.svg'
 

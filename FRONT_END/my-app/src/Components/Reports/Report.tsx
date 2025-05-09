@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../ComponentStyles/Sidebar.css";
-import SideBar from '../Dashboard/SideBar.tsx';
+import SideBar from '../Dashboard/SideBar';
 import "../ComponentStyles/Report.css";
 
 function Report() {

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../ComponentStyles/ProCard.css'
-import Workshops from './Workshops.tsx';
-import AppointmentsList from './AppointmentsList.tsx';
+import Workshops from './Workshops';
+import AppointmentsList from './AppointmentsList';
 
 
 const ProCard = () =>{

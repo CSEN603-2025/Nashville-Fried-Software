@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ContactBook from './Components/Appointments/ContactBook.tsx';
-import AppointmentRequestForm from './Components/Appointments/AppointmentRequestForm.tsx';
-import AppointmentNotifications from './Components/Appointments/AppointmentNotifications.tsx';
+import ContactBook from './Components/Appointments/ContactBook';
+import AppointmentRequestForm from './Components/Appointments/AppointmentRequestForm';
+import AppointmentNotifications from './Components/Appointments/AppointmentNotifications';
 
 const mockUsers = [
   {
