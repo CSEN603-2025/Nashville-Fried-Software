@@ -106,11 +106,14 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
       setShowModal(false);
     };
     return (
-        
         <div className="internship-container">
       {view === "available" && (
         <div className="view-section">
-          <h1 className="section-title">Your Internships</h1>
+            <div className="top-stuff">
+                <button className="new-job-btn"onClick={handlePostingClick}>Add New Posting</button>
+                <h1 className="section-title">Your Internship Postings</h1>
+            </div>
+        
           <div className="search-container-company">
             <div className="search-row">
               <input
@@ -122,7 +125,6 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
               />
             </div>
             <div className="search-row">
-                <button onClick={handlePostingClick}>Add New Posting</button>
               <select
                 value={durationFilter}
                 onChange={(e) => setDurationFilter(e.target.value)}
@@ -166,8 +168,8 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
         </div>
       )}
       {showModal && (
-        <div className="modal-overlay">
-          <div className="modal">
+        <div className="jobmodal-overlay">
+          <div className="jobmodal">
             <h2>Add New Internship</h2>
             <form onSubmit={handleFormSubmit} className="internship-form">
               <input name="job_title" placeholder="Internship Title" value={formData.job_title} onChange={handleFormChange} required />

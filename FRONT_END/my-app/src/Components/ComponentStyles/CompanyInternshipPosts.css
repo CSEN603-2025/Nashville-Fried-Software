@@ -38,20 +38,30 @@
   gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 8px;
+  margin: 10px;
+}
+
+.new-job-btn{
+    margin-left: 8px;
 }
 
 .search-row:last-child {
   margin-bottom: 0;
 }
 
+
 .search-input,
 .search-select {
-  flex: 1;
   min-width: 0;
   padding: 6px 8px;
   font-size: 13px;
   border: 1px solid #ddd;
   border-radius: 4px;
+}
+
+
+.search-select{
+    flex:0.4
 }
 
 .search-input:focus,
@@ -137,6 +147,74 @@
   
 
 }
+
+.jobmodal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.jobmodal {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px 30px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.internship-form {
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+  gap: 12px;
+}
+
+.internship-form input,
+.internship-form textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.internship-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.internship-form button {
+  padding: 10px;
+  border: none;
+  background-color: var(--primary-color, #007bff);
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.internship-form button[type="button"] {
+  background-color: #999;
+}
+
+.internship-form label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+}
+.internship-form input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
 
 @keyframes fadeIn {
   from {
