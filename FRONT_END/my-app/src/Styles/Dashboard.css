@@ -11,6 +11,7 @@
    border: 0.2px solid black;
    padding-left: 10px;
    padding-right: 10px;
+   box-sizing: border-box;
 }
   
 .main-display{
@@ -21,6 +22,7 @@
 }
 
 .two-cards{
+    animation: fadeIn 0.3s ease-in-out;
     height: 40vh;
     display: flex;
     flex-direction: row;
@@ -32,6 +34,7 @@
 
 
 .one-card {
+    animation: fadeIn 0.3s ease-in-out;
     display: flex;
     height: 50vh;
     background-color: rgb(209, 209, 209);
@@ -91,3 +94,14 @@
     75% { transform: translateX(-2px); }
     100% { transform: translateX(0); }
   }
+
+  @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
