@@ -33,18 +33,18 @@ const LoginPage = () => {
 
 
     return (
-        <>
-        <form onSubmit={handleSubmit}>
-            <h1>Welcome to SCADtopia!</h1>
-            <div className="container">
-                {err && <div>ERROR ERROR ERROR</div>}
-                <label htmlFor="Email"> Email</label> <input type="text" name="Email" id="" required onChange={handleChange} />
-                <label htmlFor="Password"> Password</label> <input type="text" name="Password" id=""  required/>
-                <button type="submit">Login</button>
+        <div className="bg">
+        <form onSubmit={handleSubmit} className="login-form">
+            <h1>Welcome To <span className="scadtopia">SCADtopia!</span></h1>
+            <div className="form-container">
+                {err && <div className="login-err">ERROR INVALID USERNAME OR PASSWORD!</div>}
+                <label className="login-field" htmlFor="Email"> Email</label> <input type="text" name="Email" id="" required onChange={handleChange} />
+                <label htmlFor="Password" className="login-field"> Password</label> <input type="password" name="Password" id=""  required/>
+                <button className="login-btn" type="submit">Login</button>
             </div>
         </form>
         <button className="register-btn" onClick={handleClick}> New Company? Click here to register</button>
-        </>
+        </div>
 
     )
 }
