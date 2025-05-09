@@ -19,7 +19,7 @@ const Internships = () => {
   const [statusFilter, setStatusFilter] = useState("");
   const [dateFilter, setDateFilter] = useState("");
 
-  let isStudent = false;
+  let isStudent = true;
 
   const filteredData = internshipHistory.filter((item) => {
     const matchesCompany = item.company_name
