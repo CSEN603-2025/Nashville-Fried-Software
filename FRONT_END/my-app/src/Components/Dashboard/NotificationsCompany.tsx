@@ -9,10 +9,6 @@ const Notifications = ({notifications}) =>{
     const navigate = useNavigate();
     const [allNotifs, setAllNotifs] = useState([
       ...initial,
-      { msg: "✔️ Your last internship report status has been set!", read: false, isUrgent:false },
-      { msg: "❌ Etisalat has declined your application.", read: false, isUrgent:false },
-      { msg: "📅 SCAD Office Appointment scheduled for May 10th.", read: false, isUrgent:false },
-      { msg: "🔔 The next internship cycle will start on May 25th!", read: false, isUrgent:false },
       {msg: "John Pork has applied for your Backend Intern Position!", read: false, isUrgent:true}
     ]);
     useEffect(() => {

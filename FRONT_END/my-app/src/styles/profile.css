@@ -5,6 +5,18 @@
   font-size: 24px;
   display: flex;
   align-items: center;
+  max-height: 20vh;
+}
+.cntnr{
+    display: grid;
+    grid-template-columns: 30% 1fr; /* 30% for the left column, the rest for the right */
+     /* Optional spacing between columns */
+  }
+
+.main-display{
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
 }
 
 .hero {

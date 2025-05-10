@@ -3,6 +3,7 @@ import { useState } from "react";
 import "../../Styles/profile.css";
 import "../../Styles/global.css";
 import completedInternships from "../../previousInternships.json";
+import SideBar from "../Dashboard/SideBar";
 
 const Profile = () => {
   let jobInterests = [
@@ -104,7 +105,10 @@ const Profile = () => {
   let name = "John Pork";
   let pro = true;
   return (
-    <>
+    <div className="cntnr">
+    <SideBar/>
+    <div className="main-display">
+    
       <div className="Navbar">
         <h1>
           <svg
@@ -533,7 +537,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
+    </div>
   );
 };
 

@@ -25,6 +25,9 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
       job_description: ""
     });
   const [internships, setInternships] = useState([]);
+  const [selectedInternship, setSelectedInternship] = useState(null);
+  const [isEditingModal, setIsEditingModal] = useState(false);
+  const [editModalData, setEditModalData] = useState(null);
 
   useEffect(() => {
     const filteredInternships = internshipListings.filter((internship) => {
@@ -56,12 +59,18 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
     setInternships(filteredInternships);
   }, [CompanyName, titleSearch, industryFilter, durationFilter, paidFilter]);
 
-  const handleDeletePost = (id) =>{
+  const handleViewInternship = (internship) => {
+    setSelectedInternship(internship);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedInternship(null);
+  };
+
+  const handleDeletePost = (id) => {
     setInternships(internships.filter((item) => item.id !== id));
-    console.log(internships);
-
-  }
-
+    setSelectedInternship(null);
+  };
 
   const filteredData = internshipHistory.filter((item) => {
     const matchesCompany = item.company_name
@@ -109,7 +118,37 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
       setInternships((prev) => [...prev, newInternship]);
       setShowModal(false);
     };
-    return (
+
+  const handleEditModal = () => {
+    setIsEditingModal(true);
+    setEditModalData({ ...selectedInternship });
+  };
+
+  const handleEditModalChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setEditModalData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const handleSaveModalEdit = () => {
+    setInternships((prev) => prev.map((item) =>
+      item.id === editModalData.id ? { ...editModalData, skills_required: typeof editModalData.skills_required === 'string' ? editModalData.skills_required.split(',').map(s => s.trim()) : editModalData.skills_required } : item
+    ));
+    setSelectedInternship({ ...editModalData, skills_required: typeof editModalData.skills_required === 'string' ? editModalData.skills_required.split(',').map(s => s.trim()) : editModalData.skills_required });
+    setIsEditingModal(false);
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+  };
+
+  const handleCancelModalEdit = () => {
+    setIsEditingModal(false);
+    setEditModalData(null);
+  };
+
+  return (
         <div className="internship-container">
       {view === "available" && (
         <div className="view-section">
@@ -155,12 +194,11 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
             {internships.length > 0 ? (
               internships.map((internship, index) => (
                 <div key={index} className="internship-card">
-                  <button onClick= {() => handleDeletePost(internship.id)} >Delete Posting</button>
                   <h3 className="company-name">{internship.job_title}</h3>
                   <h4 className="job-detail">{internship.job_description}</h4>
                   <h4 className="job-detail">Duration: {internship.duration}</h4>
                   <h4 className="job-detail">Total Applicants: {internship.totalApps}</h4>
-                  <button className="view-btn">View Internship</button>
+                  <button className="view-btn" onClick={() => handleViewInternship(internship)}>View Internship</button>
                 </div>
               ))
             ) : (
@@ -190,6 +228,67 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
               <button type="submit">Submit</button>
               <button type="button" onClick={() => setShowModal(false)}>Cancel</button>
             </form>
+          </div>
+        </div>
+      )}
+      {selectedInternship && (
+        <div className="jobmodal-overlay">
+          <div className="jobmodal">
+            <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+              <h2 style={{ flex: 1 }}>{selectedInternship.job_title}</h2>
+              {!isEditingModal && (
+                <button style={{ padding: '4px 12px', fontSize: '0.95rem', margin: 0 }} onClick={handleEditModal}>Edit</button>
+              )}
+            </div>
+            {isEditingModal ? (
+              <>
+                <label style={{ marginBottom: 6 }}>
+                  Job Title:
+                  <input name="job_title" value={editModalData.job_title} onChange={handleEditModalChange} style={{ width: '100%', marginTop: 2 }} />
+                </label>
+                <label style={{ marginBottom: 6 }}>
+                  Description:
+                  <textarea name="job_description" value={editModalData.job_description} onChange={handleEditModalChange} style={{ width: '100%', marginTop: 2 }} />
+                </label>
+                <label style={{ marginBottom: 6 }}>
+                  Duration:
+                  <input name="duration" value={editModalData.duration} onChange={handleEditModalChange} style={{ width: '100%', marginTop: 2 }} />
+                </label>
+                <label style={{ marginBottom: 6 }}>
+                  Paid:
+                  <input name="paid" type="checkbox" checked={editModalData.paid} onChange={handleEditModalChange} style={{ marginLeft: 8 }} />
+                </label>
+                {editModalData.paid && (
+                  <label style={{ marginBottom: 6 }}>
+                    Expected Salary:
+                    <input name="expected_salary" value={editModalData.expected_salary} onChange={handleEditModalChange} style={{ width: '100%', marginTop: 2 }} />
+                  </label>
+                )}
+                <label style={{ marginBottom: 6 }}>
+                  Skills Required (comma separated):
+                  <input name="skills_required" value={typeof editModalData.skills_required === 'string' ? editModalData.skills_required : editModalData.skills_required.join(', ')} onChange={handleEditModalChange} style={{ width: '100%', marginTop: 2 }} />
+                </label>
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '10px' }}>
+                  <button onClick={handleCancelModalEdit}>Cancel</button>
+                  <button onClick={handleSaveModalEdit}>Save</button>
+                </div>
+              </>
+            ) : (
+              <>
+                <p><strong>Description:</strong> {selectedInternship.job_description}</p>
+                <p><strong>Duration:</strong> {selectedInternship.duration}</p>
+                <p><strong>Paid:</strong> {selectedInternship.paid ? 'Yes' : 'No'}</p>
+                {selectedInternship.paid && (
+                  <p><strong>Expected Salary:</strong> {selectedInternship.expected_salary}</p>
+                )}
+                <p><strong>Skills Required:</strong> {selectedInternship.skills_required && selectedInternship.skills_required.join ? selectedInternship.skills_required.join(', ') : selectedInternship.skills_required}</p>
+                <p><strong>Total Applicants:</strong> {selectedInternship.totalApps}</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '10px' }}>
+                  <button onClick={handleCloseModal}>Close</button>
+                  <button className="delete-btn" onClick={() => handleDeletePost(selectedInternship.id)}>Delete Posting</button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
