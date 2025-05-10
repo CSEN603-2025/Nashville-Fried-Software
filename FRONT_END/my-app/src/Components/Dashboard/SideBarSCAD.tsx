@@ -8,7 +8,7 @@ function SideBar()
                 <h2>Welcome, SCAD</h2>
                 <Link to="/Students">Students</Link>
                 <Link to="/Appointmentscad">Make Appointment</Link>
-                <Link to="/Workshopscad">Workshops</Link>
+                <Link to="/WorkshopSCAD">Workshops</Link>
                 <Link to="/ReportSCAD">Reports</Link>
                 <Link to="/Internshipsscad">Available Internships</Link>
             </div>
