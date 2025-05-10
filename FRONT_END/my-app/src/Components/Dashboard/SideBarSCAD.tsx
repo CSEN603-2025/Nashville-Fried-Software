@@ -9,7 +9,7 @@ function SideBar()
                 <Link to="/Students">Students</Link>
                 <Link to="/Appointmentscad">Make Appointment</Link>
                 <Link to="/Workshopscad">Workshops</Link>
-                <Link to="/Reportscad">Reports</Link>
+                <Link to="/ReportSCAD">Reports</Link>
                 <Link to="/Internshipsscad">Available Internships</Link>
             </div>
     )

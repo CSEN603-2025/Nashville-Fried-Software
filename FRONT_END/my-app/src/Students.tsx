@@ -9,6 +9,7 @@ import {useNavigate} from 'react-router-dom'
 
 const Students = () => {
     const navigator = useNavigate()
+    const [statusFilter, setStatusFilter] = useState('-1')
     const [studentsList, setStudentsList] = useState([
         { name: "Alice Johnson", age: 21, major: "Computer Science", monthsCompleted: 2, interests: ["AI", "Web Dev", "Cybersecurity"], requested: false, pro: true, replied: false},
         { name: "Bob Smith", age: 22, major: "Information Systems", monthsCompleted: 1, interests: ["Data Analysis", "Cloud"], requested: true, pro: false , replied: false},
@@ -31,9 +32,22 @@ const Students = () => {
     <div className={styles["cntnr"]}>
       <SideBar />
       <div className={styles['main-display']}>
+      <div className={styles['header-row']}>
         <h1 className={styles['page-title']}>Students</h1>
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className={styles['duration-filter']}
+        >
+          <option value="-1">All Statuses</option>
+          <option value="0">0 months</option>
+          <option value="1">1 month</option>
+          <option value="2">2 months</option>
+          <option value="3">3 months</option>
+        </select>
+      </div>
         <div className={styles['student-list']}>
-          {studentsList.map((student, idx) => (
+          {studentsList.filter(student => (parseInt(statusFilter) == -1 || student.monthsCompleted == parseInt(statusFilter))).map((student, idx) => (
             <div className={styles['student-card']} key={idx}>
               <div className={styles['student-info']}>
                 <div className={styles['student-name-container']}>

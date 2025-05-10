@@ -112,3 +112,31 @@
   .score {
     text-align: right;
   }
+
+  .report-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+  }
+  
+  .report-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .report-btn {
+    padding: 0.4rem 0.8rem;
+    background: linear-gradient(to right, #cba0db, #ffffff);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .report-btn:hover {
+    background: linear-gradient(to right, #b88fd1, #f2f2f2);
+  }
+  

@@ -230,3 +230,19 @@
   .profile-btn{
     margin-bottom: 65px;
   }
+
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .duration-filter {
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   PieChart,
   Pie,
@@ -12,6 +12,7 @@ import InternshipCycle from './InternshipCycle.tsx'
 const COLORS = ['#4CAF50', '#F44336', '#FFEB3B']; // green, red, yellow
 
 const SCADStats: React.FC = () => {
+    const [generateText,setGenerateText] = useState('Generate report')
     const reportStats = {
         accepted: 42,
         rejected: 17,
@@ -111,7 +112,10 @@ const SCADStats: React.FC = () => {
             </Pie>
             </PieChart>
           </ResponsiveContainer>
-          <p>Report Stats</p>
+          <div className={styles['report-header']}>
+            <span className={styles['report-title']}>Report Stats</span>
+            <button onClick={() => {setGenerateText('Report generated')}} className={styles['report-btn']}>{generateText}</button>
+          </div>
           </div>
         </div>
         <div className={styles["review-time"]}>
