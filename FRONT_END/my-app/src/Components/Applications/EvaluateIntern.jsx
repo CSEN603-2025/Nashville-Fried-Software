@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import "../../Styles/evalIntern.css";
-import "../../Styles/global.css";
+import styles from "../../Styles/evalIntern.module.css";
 
 const EvaluateIntern = () => {
   const [evalStatus, setEvalStatus] = useState(false);
   return (
     <>
-      <h1 style={{ textAlign: "center", marginTop: "30px" }}>
-        Evaluate Student
-      </h1>
-      <div className="formBox">
+      <h1>Evaluate Student</h1>
+      <div className={styles["formBox"]}>
         <form>
           {/* Student  Evaluation Textbox */}
           <label htmlFor="company_evaluation">

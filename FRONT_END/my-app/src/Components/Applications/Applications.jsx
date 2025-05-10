@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import applicants from "../../applicants.json";
 import currentInterns from "../../currentInterns.json";
-import "../../Styles/global.css";
-import "../../Styles/internships.css";
+import styles from "../../Styles/internships.module.css";
 
 const Applications = () => {
   const navigate = useNavigate();
@@ -48,49 +47,38 @@ const Applications = () => {
 
   return (
     <>
-      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      <div className={styles["internshipNavigator"]}>
         <button
           onClick={() => setView("applicants")}
-          style={{
-            marginRight: "10px",
-            padding: "10px 20px",
-            backgroundColor: view === "applicants" ? "#007bff" : "#ccc",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-          }}
+          className={
+            view === "applicants"
+              ? styles["enabledButton"]
+              : styles["disabledButton"]
+          }
         >
           Applicants
         </button>
         <button
           onClick={() => setView("currentInterns")}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: view === "currentInterns" ? "#007bff" : "#ccc",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-          }}
+          className={
+            view === "currentInterns"
+              ? styles["enabledButton"]
+              : styles["disabledButton"]
+          }
         >
           Current Interns
         </button>
       </div>
       {view === "applicants" && (
         <>
-          <h1 style={{ textAlign: "center" }}>Applicants</h1>
+          <h1>Applicants</h1>
           <div className="search-container">
             {/* your companySearch, titleSearch, industryFilter, etc. inputs */}
             {/* Search and Filters */}
-            <div
-              className="search-container"
-              style={{ textAlign: "center", marginBottom: "20px" }}
-            >
+            <div className={styles["search-container"]}>
               <select
                 value={industryFilter}
                 onChange={(e) => setIndustryFilter(e.target.value)}
-                style={{ marginRight: "10px", padding: "8px" }}
               >
                 <option value="">All Internship Posts</option>
                 <option value="Software Engineering Intern">
@@ -104,7 +92,7 @@ const Applications = () => {
               </select>
             </div>
           </div>
-          <div className="internshipListings">
+          <div className={styles["internshipListings"]}>
             {filteredApplicants.length > 0 ? (
               filteredApplicants.map((applicant, index) => (
                 <div key={index}>
@@ -116,40 +104,32 @@ const Applications = () => {
                 </div>
               ))
             ) : (
-              <p style={{ textAlign: "center" }}>
-                No internships match your search.
-              </p>
+              <p>No Applicants match your search.</p>
             )}
           </div>
         </>
       )}
       {view === "currentInterns" && (
         <>
-          <h1 style={{ textAlign: "center" }}>Current Interns</h1>
-          <div className="search-container">
+          <h1>Current Interns</h1>
+          <div className={styles["search-container"]}>
             {/* your searchCompany, searchTitle, statusFilter, dateFilter inputs */}
-            <div
-              className="search-container"
-              style={{ textAlign: "center", marginBottom: "20px" }}
-            >
+            <div className={styles["search-container"]}>
               <input
                 type="text"
                 placeholder="Search by name"
                 value={searchName}
                 onChange={(e) => setSearchName(e.target.value)}
-                style={{ marginRight: "10px", padding: "8px" }}
               />
               <input
                 type="text"
                 placeholder="Search by job title"
                 value={searchTitle}
                 onChange={(e) => setSearchTitle(e.target.value)}
-                style={{ marginRight: "10px", padding: "8px" }}
               />
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                style={{ marginRight: "10px", padding: "8px" }}
               >
                 <option value="">All Interns</option>
                 <option value="current intern">Current Intern</option>
@@ -159,7 +139,7 @@ const Applications = () => {
               </select>
             </div>
           </div>
-          <div className="internshipListings">
+          <div className={styles["internshipListings"]}>
             {filteredInterns.length > 0 ? (
               filteredInterns.map((item, index) => (
                 <div key={index}>
@@ -174,9 +154,7 @@ const Applications = () => {
                 </div>
               ))
             ) : (
-              <p style={{ textAlign: "center" }}>
-                No records match your filters.
-              </p>
+              <p>No records match your filters.</p>
             )}
           </div>
         </>

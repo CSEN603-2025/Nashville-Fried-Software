@@ -1,11 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import internshipListings from "../../internshipListings.json";
-// import statusData from "../../internshipStatusData.json";
 import internshipHistory from "../../internshipHistory.json";
 import { useNavigate } from "react-router-dom";
-import "../../Styles/global.css";
-import "../../Styles/internships.css";
+import styles from "../../Styles/internships.module.css";
 
 const Internships = () => {
   const navigate = useNavigate();
@@ -75,33 +73,26 @@ const Internships = () => {
   };
   return (
     <>
-      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      <div className={styles["internshipNavigator"]}>
         {isStudent && (
           <>
             <button
               onClick={() => setView("available")}
-              style={{
-                marginRight: "10px",
-                padding: "10px 20px",
-                backgroundColor: view === "available" ? "#007bff" : "#ccc",
-                color: "white",
-                border: "none",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
+              className={
+                view === "available"
+                  ? styles["enabledButton"]
+                  : styles["disabledButton"]
+              }
             >
               Available Internships
             </button>
             <button
               onClick={() => setView("history")}
-              style={{
-                padding: "10px 20px",
-                backgroundColor: view === "history" ? "#007bff" : "#ccc",
-                color: "white",
-                border: "none",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
+              className={
+                view === "history"
+                  ? styles["enabledButton"]
+                  : styles["disabledButton"]
+              }
             >
               Past/Present Internships
             </button>
@@ -111,32 +102,26 @@ const Internships = () => {
 
       {view === "available" && (
         <>
-          <h1 style={{ textAlign: "center" }}>Available Internships</h1>
-          <div className="search-container">
+          <h1>Available Internships</h1>
+          <div className={styles["search-container"]}>
             {/* your companySearch, titleSearch, industryFilter, etc. inputs */}
             {/* Search and Filters */}
-            <div
-              className="search-container"
-              style={{ textAlign: "center", marginBottom: "20px" }}
-            >
+            <div className={styles["search-container"]}>
               <input
                 type="text"
                 placeholder="Search by company name"
                 value={companySearch}
                 onChange={(e) => setCompanySearch(e.target.value)}
-                style={{ marginRight: "10px", padding: "8px" }}
               />
               <input
                 type="text"
                 placeholder="Search by job title"
                 value={titleSearch}
                 onChange={(e) => setTitleSearch(e.target.value)}
-                style={{ marginRight: "10px", padding: "8px" }}
               />
               <select
                 value={industryFilter}
                 onChange={(e) => setIndustryFilter(e.target.value)}
-                style={{ marginRight: "10px", padding: "8px" }}
               >
                 <option value="">All Industries</option>
                 <option value="Software Development">
@@ -150,7 +135,6 @@ const Internships = () => {
               <select
                 value={durationFilter}
                 onChange={(e) => setDurationFilter(e.target.value)}
-                style={{ marginRight: "10px", padding: "8px" }}
               >
                 <option value="">All Durations</option>
                 <option value="2 months">2 months</option>
@@ -161,7 +145,7 @@ const Internships = () => {
               <select
                 value={paidFilter}
                 onChange={(e) => setPaidFilter(e.target.value)}
-                style={{ padding: "8px" }}
+                className={styles["paidFilter"]}
               >
                 <option value="">All Payment Options</option>
                 <option value="paid">Paid</option>
@@ -169,7 +153,7 @@ const Internships = () => {
               </select>
             </div>
           </div>
-          <div className="internshipListings">
+          <div className={styles["internshipListings"]}>
             {filteredInternships.length > 0 ? (
               filteredInternships.map((internship, index) => (
                 <div key={index}>
@@ -182,9 +166,7 @@ const Internships = () => {
                 </div>
               ))
             ) : (
-              <p style={{ textAlign: "center" }}>
-                No internships match your search.
-              </p>
+              <p>No internships match your search.</p>
             )}
           </div>
         </>
@@ -192,31 +174,25 @@ const Internships = () => {
 
       {view === "history" && (
         <>
-          <h1 style={{ textAlign: "center" }}>Past/Present Internships</h1>
-          <div className="search-container">
+          <h1>Past/Present Internships</h1>
+          <div className={styles["search-container"]}>
             {/* your searchCompany, searchTitle, statusFilter, dateFilter inputs */}
-            <div
-              className="search-container"
-              style={{ textAlign: "center", marginBottom: "20px" }}
-            >
+            <div className={styles["search-container"]}>
               <input
                 type="text"
                 placeholder="Search by company name"
                 value={searchCompany}
                 onChange={(e) => setSearchCompany(e.target.value)}
-                style={{ marginRight: "10px", padding: "8px" }}
               />
               <input
                 type="text"
                 placeholder="Search by job title"
                 value={searchTitle}
                 onChange={(e) => setSearchTitle(e.target.value)}
-                style={{ marginRight: "10px", padding: "8px" }}
               />
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                style={{ marginRight: "10px", padding: "8px" }}
               >
                 <option value="">All Statuses</option>
                 <option value="current intern">Current Intern</option>
@@ -226,11 +202,11 @@ const Internships = () => {
                 type="date"
                 value={dateFilter}
                 onChange={(e) => setDateFilter(e.target.value)}
-                style={{ padding: "8px" }}
+                className={styles["paidFilter"]}
               />
             </div>
           </div>
-          <div className="internshipListings">
+          <div className={styles["internshipListings"]}>
             {filteredData.length > 0 ? (
               filteredData.map((item, index) => (
                 <div key={index}>
@@ -246,9 +222,7 @@ const Internships = () => {
                 </div>
               ))
             ) : (
-              <p style={{ textAlign: "center" }}>
-                No records match your filters.
-              </p>
+              <p>No records match your filters.</p>
             )}
           </div>
         </>

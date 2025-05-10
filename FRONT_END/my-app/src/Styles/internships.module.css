@@ -1,3 +1,44 @@
+.internshipNavigator {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.enabledButton {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.disabledButton {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #ccc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+h1 {
+  text-align: center;
+}
+
+.search-container input {
+  margin-right: 10px;
+}
+
+.search-container select {
+  margin-right: 10px;
+}
+
+.paidFilter {
+  padding: 8px;
+}
+
 .internshipListings {
   display: flex;
   flex-direction: column;
@@ -12,6 +53,10 @@
   max-width: 800px;
   margin: 0 auto;
   width: 90%;
+}
+
+.internshipListings p {
+  text-align: center;
 }
 
 .internshipListings > div {
@@ -62,6 +107,8 @@
   background-color: #f4f4f4;
   border-radius: 12px;
   max-width: 1000px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .search-container input,

@@ -1,5 +1,10 @@
+h1 {
+  text-align: center;
+  margin-top: 30px;
+}
+
 .formBox {
-  max-width: 800px;
+  min-width: 800px;
   margin: 40px auto;
   padding: 50px;
   background-color: #ffffff;

@@ -1,7 +1,6 @@
 import React from "react";
 import completedInternships from "../../internshipHistory.json";
-import "../../Styles/global.css";
-import "../../Styles/viewInternship.css";
+import styles from "../../Styles/viewInternship.module.css";
 import { useParams } from "react-router-dom";
 
 const ViewCompletedInternship = () => {
@@ -9,7 +8,7 @@ const ViewCompletedInternship = () => {
   const internship = completedInternships[id];
 
   return (
-    <div className="view-internship-container">
+    <div className={styles["view-internship-container"]}>
       <h1>{internship.company_name}</h1>
       <h2>Job Title: {internship.job_title}</h2>
       <h3>Date {internship.date}</h3>

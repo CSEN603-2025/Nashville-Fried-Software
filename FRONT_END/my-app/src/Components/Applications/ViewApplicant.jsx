@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import applicants from "../../applicants.json";
-import "../../Styles/global.css";
-import "../../Styles/viewInternship.css";
+import styles from "../../Styles/viewInternship.module.css";
 import { useParams } from "react-router-dom";
 
 const ViewApplicant = () => {
@@ -12,7 +11,7 @@ const ViewApplicant = () => {
   const [reviewStatus, setReviewStatus] = useState(false);
 
   return (
-    <div className="view-internship-container">
+    <div className={styles["view-internship-container"]}>
       <h1>{applicant.name}</h1>
       <h4>Job Title: {applicant.jobTitle}</h4>
       <h4>Interests</h4>

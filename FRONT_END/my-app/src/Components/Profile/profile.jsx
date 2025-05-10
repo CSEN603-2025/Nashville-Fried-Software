@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "../../Styles/profile.css";
-import "../../Styles/global.css";
+import styles from "../../Styles/profile.module.css";
 import completedInternships from "../../previousInternships.json";
 
 const Profile = () => {
@@ -110,7 +109,7 @@ const Profile = () => {
   let pro = true;
   return (
     <>
-      <div className="Navbar">
+      <div className={styles["Navbar"]}>
         <h1>
           <svg
             version="1.0"
@@ -150,11 +149,11 @@ const Profile = () => {
           {pro === true ? "[Pro]" : ""}
         </h1>
       </div>
-      <div className="hero">
-        <div className="profileInfo">
-          <h2 style={{ textAlign: "center" }}>Profile Information</h2>
-          <div className="interests-activities-wrapper">
-            <div className="section-box">
+      <div className={styles["hero"]}>
+        <div className={styles["profileInfo"]}>
+          <h2>Profile Information</h2>
+          <div className={styles["interests-activities-wrapper"]}>
+            <div className={styles["section-box"]}>
               <h4>
                 Job Interests:
                 <svg
@@ -178,7 +177,7 @@ const Profile = () => {
               </h4>
 
               {isEditingJobInterests && (
-                <div className="edit-input">
+                <div className={styles["edit-input"]}>
                   <input
                     type="text"
                     placeholder="Add job interest"
@@ -204,9 +203,12 @@ const Profile = () => {
                 </div>
               )}
 
-              <div className="interest-container">
+              <div className={styles["interest-container"]}>
                 {jobInterestsState.map((jobInterest, idx) => (
-                  <div className="interest-box editable" key={`ji-${idx}`}>
+                  <div
+                    className={`${styles["interest-box"]} ${styles["editable"]}`}
+                    key={`ji-${idx}`}
+                  >
                     {editingJobIndex === idx ? (
                       <input
                         value={editingText}
@@ -253,7 +255,7 @@ const Profile = () => {
                             </svg>
 
                             <button
-                              className="remove-btn"
+                              className={styles["remove-btn"]}
                               onClick={() =>
                                 setJobInterestsState(
                                   jobInterestsState.filter((_, i) => i !== idx)
@@ -271,7 +273,7 @@ const Profile = () => {
               </div>
             </div>
 
-            <div className="section-box">
+            <div className={styles["section-box"]}>
               <h4>
                 College Activities:
                 <svg
@@ -293,7 +295,7 @@ const Profile = () => {
               </h4>
 
               {isEditingActivities && (
-                <div className="edit-input">
+                <div className={styles["edit-input"]}>
                   <input
                     type="text"
                     placeholder="Add activity"
@@ -319,9 +321,12 @@ const Profile = () => {
                 </div>
               )}
 
-              <div className="interest-container">
+              <div className={styles["interest-container"]}>
                 {collegeActivitiesState.map((activity, idx) => (
-                  <div className="interest-box editable" key={`ca-${idx}`}>
+                  <div
+                    className={`${styles["interest-box"]} ${styles["editable"]}`}
+                    key={`ca-${idx}`}
+                  >
                     {editingActivityIndex === idx ? (
                       <input
                         value={editingText}
@@ -368,7 +373,7 @@ const Profile = () => {
                             </svg>
 
                             <button
-                              className="remove-btn"
+                              className={styles["remove-btn"]}
                               onClick={() =>
                                 setCollegeActivitiesState(
                                   collegeActivitiesState.filter(
@@ -413,8 +418,8 @@ const Profile = () => {
           </h3>
           {/* Show the form if isAddingInternship is true */}
           {isAddingInternship && (
-            <div className="internship-form-overlay">
-              <div className="internship-form">
+            <div className={styles["internship-form-overlay"]}>
+              <div className={styles["internship-form"]}>
                 <form onSubmit={handleAddInternship}>
                   <label>
                     Company Name:
@@ -485,9 +490,9 @@ const Profile = () => {
               </div>
             </div>
           )}
-          <div className="previousInternships">
+          <div className={styles["previousInternships_m"]}>
             {completedInternships.map((internship, index) => (
-              <div key={index} className="internship-card">
+              <div key={index} className={styles["internship-card"]}>
                 <h3>{internship.company_name}</h3>
                 <h4>{internship.job_title}</h4>
                 <h4>Responsibilities: </h4>
@@ -501,8 +506,8 @@ const Profile = () => {
             ))}
           </div>
         </div>
-        <div className="row">
-          <div className="companyViews">
+        <div className={styles["row"]}>
+          <div className={styles["companyViews"]}>
             <h2>Which companies viewed your profile: </h2>
             <ul>
               {companies.map((company, idx) => (
@@ -511,7 +516,7 @@ const Profile = () => {
             </ul>
           </div>
 
-          <div className="majorSems">
+          <div className={styles["majorSems"]}>
             <div>
               <h2>Select a Major & Semester:</h2>
               <form onSubmit={handleSubmit}>
