@@ -1,0 +1,58 @@
+.formBox {
+  min-width: 800px;
+  margin: 40px auto;
+  padding: 50px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.formBox label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.formBox textarea {
+  width: 100%;
+  min-height: 180px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: inherit;
+  margin-bottom: 20px;
+}
+
+.formBox p {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.formBox input[type="radio"] {
+  margin-right: 6px;
+}
+
+.formBox label input[type="radio"] {
+  margin-right: 4px;
+  margin-left: 0;
+}
+
+.formBox input[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.formBox input[type="submit"]:hover {
+  background-color: #0056b3;
+}

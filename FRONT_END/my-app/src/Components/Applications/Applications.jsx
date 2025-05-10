@@ -39,11 +39,11 @@ const Applications = () => {
   });
 
   const toViewApplicant = (index) => {
-    return;
+    navigate("/viewApplicant/" + index);
   };
 
-  const toEvaluateIntern = (index) => {
-    return;
+  const toEvaluateIntern = () => {
+    navigate("/evaluateIntern");
   };
 
   return (
@@ -167,8 +167,8 @@ const Applications = () => {
                   <h4>Job Title: {item.jobTitle}</h4>
                   <h4>Status: {item.internshipStatus}</h4>
                   {item.internshipStatus === "completed internship" && (
-                    <button onClick={() => toEvaluateIntern(index)}>
-                      View Internship
+                    <button onClick={() => toEvaluateIntern()}>
+                      Evaluate Intern
                     </button>
                   )}
                 </div>

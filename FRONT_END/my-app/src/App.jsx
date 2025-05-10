@@ -12,6 +12,8 @@ import RecordedWorkshop from "./RecordedWorkshop.tsx";
 import ViewInternship from "./Components/Profile/viewInternship.jsx";
 import ViewCompletedInternship from "./Components/Profile/viewCompletedInternship.jsx";
 import Applications from "./Components/Applications/Applications.jsx";
+import ViewApplicant from "./Components/Applications/ViewApplicant.jsx";
+import EvaluateIntern from "./Components/Applications/EvaluateIntern.jsx";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           element={<ViewCompletedInternship />}
         />
         <Route path="/Applications" element={<Applications />} />
+        <Route path="/viewApplicant/:id" element={<ViewApplicant />} />
+        <Route path="/evaluateIntern" element={<EvaluateIntern />} />
       </Routes>
     </Router>
   );
