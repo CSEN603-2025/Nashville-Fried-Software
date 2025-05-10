@@ -4,7 +4,7 @@ import styles from "../../Styles/profile.module.css";
 import completedInternships from "../../previousInternships.json";
 import SideBar from "../Dashboard/SideBar";
 
-const Profile = () => {
+const Profile = ({ pro }) => {
   let jobInterests = [
     "Backend Development",
     "Frontend Development",
@@ -109,7 +109,6 @@ const Profile = () => {
   ];
   let semesters = ["3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th"];
   let name = "John Pork";
-  let pro = true;
   return (
     <div className="cntnr">
       <SideBar />
@@ -118,7 +117,9 @@ const Profile = () => {
           <div className="profile-grid-top">
             <div className="profile-info-col">
               <div className={styles["profileInfo"]}>
-                <h2>Profile Information</h2>
+                <h2>
+                  Profile Information: {name} {pro ? "[PRO]" : ""}
+                </h2>
                 <div className={styles["interests-activities-wrapper"]}>
                   <div className={styles["section-box"]}>
                     <h4>
@@ -365,80 +366,95 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className="collapsible-internships">
-                  <h3>Previous Internships <button onClick={ () =>{setIsAddingInternship(true);setWarning("")}}>+</button></h3>
+                  <h3>
+                    Previous Internships{" "}
+                    <button
+                      onClick={() => {
+                        setIsAddingInternship(true);
+                        setWarning("");
+                      }}
+                    >
+                      +
+                    </button>
+                  </h3>
                   {isAddingInternship && (
-            <div className={styles["internship-form-overlay"]}>
-              <div className={styles["internship-form"]}>
-                <form onSubmit={handleAddInternship}>
-                  <label>
-                    Company Name:
-                    <input
-                      type="text"
-                      value={companyName}
-                      onChange={(e) => setCompanyName(e.target.value)}
-                    />
-                  </label>
-                  <label>
-                    Job Title:
-                    <input
-                      type="text"
-                      value={jobTitle}
-                      onChange={(e) => setJobTitle(e.target.value)}
-                    />
-                  </label>
-                  <label>
-                    Responsibilities:
-                    {responsibilities.map((responsibility, index) => (
-                      <div key={index}>
-                        <input
-                          type="text"
-                          value={responsibility}
-                          onChange={(e) =>
-                            handleResponsibilityChange(index, e.target.value)
-                          }
-                        />
-                        {index === responsibilities.length - 1 && (
+                    <div className={styles["internship-form-overlay"]}>
+                      <div className={styles["internship-form"]}>
+                        <form onSubmit={handleAddInternship}>
+                          <label>
+                            Company Name:
+                            <input
+                              type="text"
+                              value={companyName}
+                              onChange={(e) => setCompanyName(e.target.value)}
+                            />
+                          </label>
+                          <label>
+                            Job Title:
+                            <input
+                              type="text"
+                              value={jobTitle}
+                              onChange={(e) => setJobTitle(e.target.value)}
+                            />
+                          </label>
+                          <label>
+                            Responsibilities:
+                            {responsibilities.map((responsibility, index) => (
+                              <div key={index}>
+                                <input
+                                  type="text"
+                                  value={responsibility}
+                                  onChange={(e) =>
+                                    handleResponsibilityChange(
+                                      index,
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                                {index === responsibilities.length - 1 && (
+                                  <button
+                                    type="button"
+                                    onClick={handleAddResponsibility}
+                                  >
+                                    Add Responsibility
+                                  </button>
+                                )}
+                                {index === responsibilities.length - 1 &&
+                                  responsibilities.length > 1 && (
+                                    <button
+                                      type="button"
+                                      onClick={handleRemoveResponsibility}
+                                    >
+                                      Remove Responsibility
+                                    </button>
+                                  )}
+                              </div>
+                            ))}
+                          </label>
+                          <label>
+                            Duration:
+                            <input
+                              type="text"
+                              value={duration}
+                              onChange={(e) => setDuration(e.target.value)}
+                            />
+                          </label>
+                          {warning && (
+                            <p style={{ color: "red", marginTop: "10px" }}>
+                              {warning}
+                            </p>
+                          )}
+                          <button type="submit">Save Internship</button>
                           <button
                             type="button"
-                            onClick={handleAddResponsibility}
+                            onClick={() => setIsAddingInternship(false)}
                           >
-                            Add Responsibility
+                            Cancel
                           </button>
-                        )}
-                        {index === responsibilities.length - 1 &&
-                          responsibilities.length > 1 && (
-                            <button
-                              type="button"
-                              onClick={handleRemoveResponsibility}
-                            >
-                              Remove Responsibility
-                            </button>
-                          )}
+                        </form>
                       </div>
-                    ))}
-                  </label>
-                  <label>
-                    Duration:
-                    <input
-                      type="text"
-                      value={duration}
-                      onChange={(e) => setDuration(e.target.value)}
-                    />
-                  </label>
-                  {warning && (
-                    <p style={{ color: "red", marginTop: "10px" }}>{warning}</p>
+                    </div>
                   )}
-                  <button type="submit">Save Internship</button>
-                  <button
-                    type="button"
-                    onClick={() => setIsAddingInternship(false)}
-                  >
-                    Cancel
-                  </button>
-                </form>
-              </div>
-            </div>
-          )}
                   <ul className={styles["collapsible-list"]}>
                     {completedInternships.map((internship, idx) => (
                       <li key={idx} className={styles["collapsible-item"]}>
@@ -492,16 +508,22 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-                <h3 className="whichcompanies">Which companies viewed your profile: </h3>
-            <div className="company-views-col">
-              <div className={styles["companyViews"]}>
-                <ul>
-                  {companies.map((company, idx) => (
-                    <li key={idx}>{company}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            {pro && (
+              <>
+                <h3 className="whichcompanies">
+                  Which companies viewed your profile:{" "}
+                </h3>
+                <div className="company-views-col">
+                  <div className={styles["companyViews"]}>
+                    <ul>
+                      {companies.map((company, idx) => (
+                        <li key={idx}>{company}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
           <div className="profile-grid-bottom">
             <div className="major-sems-col">
