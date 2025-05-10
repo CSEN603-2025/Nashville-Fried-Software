@@ -1,14 +1,11 @@
 import React from "react";
-import "../../Styles/eval.css";
-import "../../Styles/global.css";
+import styles from "../../Styles/eval.module.css";
 
 const Evaluation = () => {
   return (
     <>
-      <h1 style={{ textAlign: "center", marginTop: "30px" }}>
-        Evaluate a Company
-      </h1>
-      <div className="formBox">
+      <h1>Evaluate a Company</h1>
+      <div className={styles["formBox"]}>
         <form>
           {/* Company Evaluation Textbox */}
           <label htmlFor="company_evaluation">

@@ -1,14 +1,14 @@
 import React from "react";
 import internshipListings from "../../internshipListings.json";
-import "../../Styles/global.css";
-import "../../Styles/viewInternship.css";
+import styles from "../../Styles/viewInternship.module.css";
+import { useParams } from "react-router-dom";
 
 const ViewInternship = () => {
-  let id = 0;
+  const { id } = useParams();
   const internship = internshipListings[id];
 
   return (
-    <div className="view-internship-container">
+    <div className={styles["view-internship-container"]}>
       <h1>{internship.company_name}</h1>
       <h4>Job Title: {internship.job_title}</h4>
       <h4>Duration: {internship.duration}</h4>

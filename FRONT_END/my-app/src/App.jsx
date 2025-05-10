@@ -11,6 +11,12 @@ import Evaluation from './Components/Profile/evaluation.jsx'
 import LiveWorkshop from './LiveWorkshop.tsx'
 import RecordedWorkshop from './RecordedWorkshop.tsx'
 import CompanyDashboard from './CompanyDashboard.jsx';
+import ViewInternship from "./Components/Profile/viewInternship.jsx";
+import ViewCompletedInternship from "./Components/Profile/viewCompletedInternship.jsx";
+import Applications from "./Components/Applications/Applications.jsx";
+import ViewApplicant from "./Components/Applications/ViewApplicant.jsx";
+import EvaluateIntern from "./Components/Applications/EvaluateIntern.jsx";
+
 function App() {
   return (
     <Router>
@@ -29,9 +35,16 @@ function App() {
         <Route path="/Report" element={<Report />} />
         <Route path="/Workshops" element={<LiveWorkshop />} />
         <Route path="/RecWorkshop" element={<RecordedWorkshop />} />
+        <Route path="/viewInternship/:id" element={<ViewInternship />} />
+        <Route
+          path="/viewCompletedInternship/:id"
+          element={<ViewCompletedInternship />}
+        />
+        <Route path="/Applications" element={<Applications />} />
+        <Route path="/viewApplicant/:id" element={<ViewApplicant />} />
+        <Route path="/evaluateIntern" element={<EvaluateIntern />} />
       </Routes>
     </Router>
-
   );
 }
 

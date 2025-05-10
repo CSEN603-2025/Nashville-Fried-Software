@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Alice Johnson",
+    "jobTitle": "Software Engineering Intern",
+    "jobInterests": ["Web Development", "Machine Learning", "Mobile Apps"],
+    "major": "Computer Science",
+    "semester": "6",
+    "applicationStatus": "under review"
+  },
+  {
+    "name": "Brian Lee",
+    "jobTitle": "Data Analyst Intern",
+    "jobInterests": ["Data Visualization", "Business Intelligence", "SQL"],
+    "major": "Information Systems",
+    "semester": "5",
+    "applicationStatus": "finalised"
+  },
+  {
+    "name": "Chloe Kim",
+    "jobTitle": "Product Management Intern",
+    "jobInterests": ["Agile Development", "User Research", "Market Analysis"],
+    "major": "Business Administration",
+    "semester": "7",
+    "applicationStatus": "under review"
+  },
+  {
+    "name": "David Patel",
+    "jobTitle": "Cybersecurity Intern",
+    "jobInterests": [
+      "Network Security",
+      "Penetration Testing",
+      "Cloud Security"
+    ],
+    "major": "Cybersecurity",
+    "semester": "4",
+    "applicationStatus": "finalised"
+  },
+  {
+    "name": "Emily Zhang",
+    "jobTitle": "UX Design Intern",
+    "jobInterests": ["Wireframing", "Prototyping", "User Testing"],
+    "major": "Human-Computer Interaction",
+    "semester": "6",
+    "applicationStatus": "under review"
+  }
+]

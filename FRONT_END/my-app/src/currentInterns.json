@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Nathan Rivera",
+    "jobTitle": "Backend Developer Intern",
+    "jobInterests": ["APIs", "Databases", "Scalability"],
+    "major": "Software Engineering",
+    "semester": "7",
+    "internshipStatus": "current intern"
+  },
+  {
+    "name": "Sophia Martinez",
+    "jobTitle": "Marketing Analyst Intern",
+    "jobInterests": ["SEO", "Social Media", "Content Strategy"],
+    "major": "Marketing",
+    "semester": "6",
+    "internshipStatus": "completed internship"
+  },
+  {
+    "name": "Liam Walker",
+    "jobTitle": "DevOps Intern",
+    "jobInterests": ["CI/CD", "Cloud Infrastructure", "Monitoring"],
+    "major": "Information Technology",
+    "semester": "5",
+    "internshipStatus": "current intern"
+  },
+  {
+    "name": "Isabella Chen",
+    "jobTitle": "Graphic Design Intern",
+    "jobInterests": ["Illustration", "Branding", "Typography"],
+    "major": "Graphic Design",
+    "semester": "6",
+    "internshipStatus": "completed internship"
+  },
+  {
+    "name": "Ethan Hughes",
+    "jobTitle": "AI Research Intern",
+    "jobInterests": [
+      "Neural Networks",
+      "Natural Language Processing",
+      "Computer Vision"
+    ],
+    "major": "Artificial Intelligence",
+    "semester": "8",
+    "internshipStatus": "current intern"
+  }
+]
