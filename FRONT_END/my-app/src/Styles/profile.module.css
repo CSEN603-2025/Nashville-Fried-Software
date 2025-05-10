@@ -80,7 +80,6 @@ body {
 }
 
 .profileInfo ul {
-  list-style-type: disc;
   margin-left: 20px;
 }
 
@@ -266,4 +265,152 @@ p {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   font-size: 1.2rem; /* make it bigger */
   z-index: 1001;
+}
+
+.profile-main-content {
+  margin-left: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  animation: slideInProfile 0.7s cubic-bezier(.23,1.12,.72,1.01);
+}
+
+.profile-grid-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+  align-items: flex-start;
+}
+.profile-info-col {
+  min-width: 0;
+}
+.company-views-col {
+  min-width: 0;
+}
+
+.profile-grid-middle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.profile-grid-bottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+  align-items: flex-start;
+}
+.previous-internships-col {
+  min-width: 0;
+}
+.major-sems-col {
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .profile-main-content {
+    margin-left: 0;
+    padding: 0 16px;
+  }
+  .profile-grid-top, .profile-grid-middle, .profile-grid-bottom {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 800px) {
+  .profile-main-content {
+    margin-left: 0;
+    padding: 0 4px;
+  }
+  .profile-grid-top, .profile-grid-middle, .profile-grid-bottom {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@keyframes slideInProfile {
+  0% {
+    opacity: 0;
+    transform: translateX(80px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.profileInfo, .section-box, .companyViews, .majorSems, .previousInternships > div {
+  transition: box-shadow 0.25s, transform 0.18s;
+} 
+ .profileInfo:hover, .section-box:hover, .companyViews:hover, .majorSems:hover, .previousInternships > div:hover {
+  box-shadow: 0 6px 24px rgba(58,123,213,0.13);
+}
+
+button, .editButton, .addInternship {
+  transition: background 0.18s, color 0.18s, transform 0.12s;
+}
+button:hover, .editButton:hover, .addInternship:hover {
+  color: white;
+  background-color: #007bff;
+}
+
+.collapsible-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 90%;
+}
+.collapsible-item {
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: #f9fafb;
+
+  box-shadow: 0 1px 4px rgba(58,123,213,0.07);
+  transition: box-shadow 0.18s;
+}
+.collapsible-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #007bff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.whichcompanies{
+  font-size: 50rem;
+}
+.arrow-icon {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+.collapsible-panel {
+  background: #fff;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(.23,1.12,.72,1.01);
+}
+.collapsible-content {
+  padding: 10px 18px 12px 18px;
+  color: #333;
+  font-size: 0.97rem;
+  animation: fadeInProfileCollapse 0.3s;
+}
+@keyframes fadeInProfileCollapse {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

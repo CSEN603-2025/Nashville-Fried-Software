@@ -5,6 +5,8 @@ function SideBar() {
   return (
     <div className="link-container">
       <h2>Welcome, Student</h2>
+
+      <Link to="/dashboard">Dashboard</Link>
       <Link to="/Profile">My Profile</Link>
       <Link to="/Internships">Internships</Link>
       <Link to="/Evaluation">Internship Evaluation</Link>
