@@ -6,7 +6,7 @@ function SideBar()
     return (
             <div className="link-container">
                 <h2>Welcome, SCAD</h2>
-                <Link to="/Studentscad">Students</Link>
+                <Link to="/Students">Students</Link>
                 <Link to="/Appointmentscad">Make Appointment</Link>
                 <Link to="/Workshopscad">Workshops</Link>
                 <Link to="/Reportscad">Reports</Link>

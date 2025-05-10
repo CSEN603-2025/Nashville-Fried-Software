@@ -11,6 +11,7 @@ import Evaluation from './Components/Profile/evaluation.jsx'
 import LiveWorkshop from './LiveWorkshop.tsx'
 import RecordedWorkshop from './RecordedWorkshop.tsx'
 import DashboardSCAD from './DashboardSCAD.tsx'
+import Students from './Students.tsx'
 function App() {
   return (
     <Router>
@@ -30,6 +31,7 @@ function App() {
         <Route path="/RecWorkshop" element={<RecordedWorkshop />} />
         <Route path="/scaddashboard" element={<DashboardSCAD />} />
         <Route path="/RecWorkshop" element={<RecordedWorkshop />} />
+        <Route path="/Students" element={<Students />} />
       </Routes>
     </Router>
 

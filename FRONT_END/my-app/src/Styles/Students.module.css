@@ -1,0 +1,232 @@
+.cntnr{
+    display: grid;
+    grid-template-columns: 20% 1fr; /* 30% for the left column, the rest for the right */
+     /* Optional spacing between columns */
+  }
+
+  .main-display{
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.interests-row {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  .student-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .student-detail {
+    font-size: 1rem;
+    color: black;
+  }
+  
+  .interests-title {
+    font-size: 1rem;
+    font-weight: 500;
+    font-weight: bold;
+    color: black;
+    margin-right: 0.5rem;
+  }
+  
+  .interests-list {
+    display: flex;
+    gap: 0.5rem;
+
+  }
+  
+  .interest-pill {
+    margin-top: 10px;
+    padding: 0rem 0.8rem;
+    border-radius: 10px;
+    background: linear-gradient(to right, #a18cd1, #fbc2eb);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    max-height: 30px;
+  }
+  
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .student-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .student-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    margin-right: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+  }
+
+
+.student-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  }
+  
+  .student-info {
+    flex: 0.8;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    width: 30%;
+  }
+  
+  .internship-status {
+    flex: 0.8;
+    text-align: center;
+
+  }
+  
+  .status-title {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    font-size: 24px;
+  }
+  
+  .progress-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #e0f7fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 3px solid #00bcd4;
+    margin: 0 auto;
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .accept-btn,
+  .reject-btn .replied-btn,
+  .request-btn,
+  .requested-btn, .profile-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .accept-btn {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .accept-btn:hover {
+    background-color: #43a047;
+  }
+  
+  .reject-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .reject-btn:hover {
+    background-color: #e53935;
+  }
+
+  .request-btn {
+    background: linear-gradient(45deg, #cba0db, #b9b4b4);
+    color: #fff;
+    border: 1px solid #cba0db;
+  }
+  
+  .request-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #a779c6, #b6b2b8);
+  }
+  
+  /* For "Response sent" button (grey) */
+  .replied-btn {
+    background-color: #e0e0e0;
+    color: #555;
+    border: 1px solid #b0b0b0;
+  }
+  
+  .replied-btn:hover {
+    transform: scale(1.05);
+    background-color: #d0d0d0;
+  }
+  
+  /* For "Request sent" button (grey) */
+  .requested-btn {
+    background-color: #e0e0e0;
+    color: #555;
+    border: 1px solid #b0b0b0;
+  }
+  
+  .requested-btn:hover {
+    transform: scale(1.05);
+    background-color: #d0d0d0;
+  }
+
+  .student-name-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  /* Style for the PRO badge container */
+  .pro-badge-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for the PRO badge image */
+  .pro-badge {
+    width: 30px; /* Adjust size of the badge */
+    height: 30px;
+  }
+  
+  /* Style for the PRO text */
+  .pro-text {
+    font-size: 32px;
+    font-weight: bold;
+    color: rgb(217, 162, 23);/* Green color for PRO text */
+  }
+
+  .actions-placeholder {
+    min-width: 170px; /* enough space to not push internship-status when .actions is hidden */
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .profile-btn{
+    margin-bottom: 65px;
+  }
