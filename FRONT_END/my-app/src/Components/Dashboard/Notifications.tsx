@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "../ComponentStyles/Notifications.css";
 import { useNavigate } from "react-router-dom";
-const Notifications = ({ notifications }) => {
+const Notifications = ({ notifications, pro }) => {
   const initial = notifications.map((msg) => ({
     msg,
     read: false,
@@ -27,18 +27,17 @@ const Notifications = ({ notifications }) => {
       read: false,
       isUrgent: false,
     },
-    {
-      msg: "📅 SCAD Office Appointment scheduled for May 10th.",
-      read: false,
-      isUrgent: false,
-    },
+       (pro ? { msg: "SCAD Appointment Scheduled for May 10th", read: false, isUrgent: true } : { msg:"Deloitte has declined your application.", read:false, isUrgent:false})
+,
     {
       msg: "🔔 The next internship cycle will start on May 25th!",
       read: false,
       isUrgent: false,
     },
-    { msg: "STARTING NOW: CV Writing Workshop!", read: false, isUrgent: true },
+    (pro ? { msg: "STARTING NOW: CV Writing Workshop!", read: false, isUrgent: true } : { msg:"PWC ETIC has declined your application.", read:false, isUrgent:false})
+    ,
   ]);
+
   useEffect(() => {
     const newNotifs = notifications.map((msg) => ({ msg, read: false }));
     setAllNotifs((prev) => {

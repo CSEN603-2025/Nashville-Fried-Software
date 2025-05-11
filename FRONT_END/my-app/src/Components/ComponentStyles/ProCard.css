@@ -13,3 +13,60 @@
   background: #3a7bd5;
   color: #fff;
 }
+
+.not-pro {
+ position: relative;
+  overflow: hidden;
+  width: 83%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  color: #1a1a1a;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.not-pro > h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+
+.not-pro::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-20deg);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.not-pro:hover::before {
+  animation: shimmer 1s forwards;
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+

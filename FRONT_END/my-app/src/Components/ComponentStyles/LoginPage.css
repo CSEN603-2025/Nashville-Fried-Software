@@ -54,7 +54,7 @@
 
 
 
-  h1{
+  .login-form > h1{
     margin-bottom: 200px;
     text-align: center;
     color: white;
@@ -71,37 +71,25 @@
   .login-form{
     margin-top: 0;
   }
+  .login-input {
+     width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 20px;
+
+  }
   
-  /* Style input fields */
-  input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    color: #333;
-  }
-  input[type="password"] {
-    width: 100%;
-    font-size: 1.2rem;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    color: #333;
-  }
   
   /* Style the submit button */
 
   
   /* Add a small gap between the form elements */
-  input[type="text"], button[type="submit"] {
-    margin-bottom: 20px;
-  }
-
+  
   .register-btn {
     position: fixed;
   bottom: 20px;

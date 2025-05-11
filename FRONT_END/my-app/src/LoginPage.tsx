@@ -38,8 +38,8 @@ const LoginPage = () => {
             <h1>Welcome To <span className="scadtopia">SCADtopia!</span></h1>
             <div className="form-container">
                 {err && <div className="login-err">ERROR INVALID USERNAME OR PASSWORD!</div>}
-                <label className="login-field" htmlFor="Email"> Email</label> <input type="text" name="Email" id="" required onChange={handleChange} />
-                <label htmlFor="Password" className="login-field"> Password</label> <input type="password" name="Password" id=""  required/>
+                <label className="login-field" htmlFor="Email"> Email</label> <input className="login-input" type="text" name="Email" id="" required onChange={handleChange} />
+                <label htmlFor="Password" className="login-field"> Password</label> <input className="login-input" type="password" name="Password" id=""  required/>
                 <button className="login-btn" type="submit">Login</button>
             </div>
         </form>
