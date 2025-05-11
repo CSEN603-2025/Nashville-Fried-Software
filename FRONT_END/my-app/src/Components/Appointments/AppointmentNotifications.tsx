@@ -65,7 +65,7 @@ function AppointmentNotifications({
         </ul>
       )}
 
-      <h3>Responses to Sent Requests</h3>
+      <h3>Responses</h3>
       {sentResponses.length === 0 ? (
         <p>No responses yet.</p>
       ) : (
@@ -81,8 +81,10 @@ function AppointmentNotifications({
               <div>
                 <strong>{res.recipient.firstName} {res.recipient.lastName}</strong>
                 <p>Status: {res.status}</p>
-                {res.status === 'accepted' && res.recipient.isOnline && (
-                  <p style={{ color: 'green' }}>Online</p>
+                {res.status === 'accepted' && (
+                  <p style={{ color: res.recipient.isOnline ? 'green' : 'gray' }}>
+                    {res.recipient.isOnline ? 'Online' : 'Offline'}
+                  </p>
                 )}
               </div>
             </li>
