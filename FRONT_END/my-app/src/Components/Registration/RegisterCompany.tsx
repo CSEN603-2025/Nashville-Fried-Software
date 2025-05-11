@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../ComponentStyles/RegisterCompany.css';
 
 function RegisterCompany() {
-  const [email, setEmail] = useState('');
+  const [companyEmail, setCompanyEmail] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [industry, setIndustry] = useState('');
   const [companySize, setCompanySize] = useState('');
@@ -13,7 +13,7 @@ function RegisterCompany() {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleRegister = () => {
-    if (!email || !companyName || !industry || !companySize || !companyLogo) {
+    if (!companyEmail || !companyName || !industry || !companySize || !companyLogo) {
       setErrorMessage('All fields must be filled out.');
       return;
     }
@@ -38,11 +38,11 @@ function RegisterCompany() {
         <h2 className="register-title">Register</h2>
         <div className="register-fields">
           <div className="input-group">
-            <label>Email</label>
+            <label>Company Email</label>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={companyEmail}
+              onChange={(e) => setCompanyEmail(e.target.value)}
               className="register-input"
             />
           </div>
