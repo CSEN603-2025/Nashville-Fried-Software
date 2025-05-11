@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useEffect, useTransition } from 'react';
 import ContactBook from './Components/Appointments/ContactBook';
 import AppointmentRequestForm from './Components/Appointments/AppointmentRequestForm';

@@ -1,62 +1,101 @@
 /* Style the container */
-.container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.bg{
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(-45deg, #5ee7df, #b490ca, #3bb1c8, #1da2d8);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
+
+}
+
+.form-container {
+  width: 60%;
+  margin: 0 auto;
+  padding: 80px;
+  border: 4px solid transparent;
+  border-radius: 20px;
+  opacity: 0.95;
+  background: 
+    linear-gradient(#e1f0f7, #e1f0f7) padding-box,
+    linear-gradient(270deg, #1da2d8, #3bb1c8, #5ee7df, #1da2d8) border-box;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  animation: animateBorder 6s linear infinite;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+@keyframes animateBorder {
+  0% {
+    background-position: 0% 50%;
   }
-  h1{
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.login-err{
+  font-weight: 800;
+  font-size: 1.75rem;
+}
+
+.login-btn {
+  background-color: #1da2d8;
+  width: 45%;
+  font-size: 1.25rem;
+  margin-left: 25%;
+}
+
+.login-field{
+  font-size: 1.6rem;
+  font-weight: 600;
+  display: block;
+}
+
+
+
+  .login-form > h1{
+    margin-bottom: 200px;
     text-align: center;
+    color: white;
+    font-size: 4rem;
   }
   /* Style labels */
-  label {
+  .field {
     display: block;
     margin-bottom: 8px;
-    font-size: 14px;
+    font-size: 1.15rem;
     font-weight: bold;
     color: #333;
   }
-  
-  /* Style input fields */
-  input[type="text"] {
-    width: 100%;
+  .login-form{
+    margin-top: 0;
+  }
+  .login-input {
+     width: 100%;
     padding: 10px;
+    font-size: 1.2rem;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
     color: #333;
+    margin-bottom: 20px;
+
   }
+  
   
   /* Style the submit button */
-  button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #45a049;
-  }
+
   
   /* Add a small gap between the form elements */
-  input[type="text"], button[type="submit"] {
-    margin-bottom: 15px;
-  }
-
+  
   .register-btn {
     position: fixed;
   bottom: 20px;
   right: 20px;
   padding: 15px 25px;
-  background-color: #007bff;
+  background-color: #1da2d8;
   color: white;
   border: none;
   border-radius: 50px;
@@ -66,9 +105,43 @@
   transition: all 0.3s ease;
   }
 
+  .scadtopia {
+  font-size: 72px;
+  color: #b490ca;
+  font-weight: bold;
+  background: linear-gradient(90deg, #b490ca, #9b70b4, #b490ca);
+  background-size: 200% 100%;
+  color: transparent;
+  background-clip: text;
+  animation: shinyEffect 3s infinite linear;
+  text-shadow: 
+    1px 1px 2px white, 
+    -1px -1px 2px white, 
+    1px -1px 2px white, 
+    -1px 1px 2px white;
+}
+
+@keyframes shinyEffect {
+  0% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
   .register-btn:hover{
     background-color: #0056b3;
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
+
+  @keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
   
