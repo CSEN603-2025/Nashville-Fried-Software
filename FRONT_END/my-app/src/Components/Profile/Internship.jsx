@@ -23,7 +23,7 @@ const Internships = () => {
   const [selectedInternship, setSelectedInternship] = useState(null);
   const [completedInternship, setCompletedInternship] = useState(null);
 
-  let isStudent = true;
+  let isStudent = false;
 
   const filteredData = internshipHistory.filter((item) => {
     const matchesCompany = item.company_name
@@ -174,9 +174,11 @@ const Internships = () => {
                     <h3>{internship.company_name}</h3>
                     <h4>Job Title: {internship.job_title}</h4>
                     <h4>Duration: {internship.duration}</h4>
-                    <button onClick={() => toViewInternship(index)}>
-                      View Internship
-                    </button>
+                    {isStudent && (
+                      <button onClick={() => toViewInternship(index)}>
+                        View Internship
+                      </button>
+                    )}
                   </div>
                 ))
               ) : (
