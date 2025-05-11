@@ -15,6 +15,7 @@ import ViewCompletedInternship from "./Components/Profile/viewCompletedInternshi
 import Applications from "./Components/Applications/Applications.jsx";
 import ViewApplicant from "./Components/Applications/ViewApplicant.jsx";
 import EvaluateIntern from "./Components/Applications/EvaluateIntern.jsx";
+import ViewStudent from "./Components/companyTest/viewStudent.jsx";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/Applications" element={<Applications />} />
         <Route path="/viewApplicant/:id" element={<ViewApplicant />} />
         <Route path="/evaluateIntern" element={<EvaluateIntern />} />
+        <Route path="/viewStudent" element={<ViewStudent />} />
       </Routes>
     </Router>
   );
