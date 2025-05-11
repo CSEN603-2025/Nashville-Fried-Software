@@ -16,6 +16,11 @@ import Applications from "./Components/Applications/Applications.jsx";
 import ViewApplicant from "./Components/Applications/ViewApplicant.jsx";
 import EvaluateIntern from "./Components/Applications/EvaluateIntern.jsx";
 import ViewStudent from "./Components/companyTest/viewStudent.jsx";
+import DashboardSCAD from './DashboardSCAD.tsx'
+import Students from './Students.tsx'
+import ReportSCAD from './ReportSCAD.tsx'
+import WorkshopSCAD from './WorkshopSCAD.tsx'
+import CompanySCAD from './CompanySCAD.tsx'
 
 function App() {
   return (
@@ -45,6 +50,13 @@ function App() {
         <Route path="/viewApplicant/:id" element={<ViewApplicant />} />
         <Route path="/evaluateIntern" element={<EvaluateIntern />} />
         <Route path="/viewStudent" element={<ViewStudent />} />
+        <Route path="/facultydashboard" element={<DashboardSCAD scad={false}/>} />
+        <Route path="/scaddashboard" element={<DashboardSCAD scad={true}/>} />
+        <Route path="/Students" element={<Students />} />
+        <Route path="/ReportSCAD" element={<ReportSCAD scad={true}/>} />
+        <Route path="/ReportFaculty" element={<ReportSCAD scad={false}/>} />
+        <Route path="/WorkshopSCAD" element={<WorkshopSCAD />} />
+        <Route path="/CompanySCAD" element={<CompanySCAD />} />
       </Routes>
     </Router>
   );
