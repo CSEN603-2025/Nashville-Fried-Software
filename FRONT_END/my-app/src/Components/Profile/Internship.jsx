@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "../../Styles/internships.module.css";
 import SideBar from "../Dashboard/SideBar";
 
-const Internships = () => {
+const Internships = ({isStudent = false}) => {
   const navigate = useNavigate();
   const [view, setView] = useState("available");
   const [companySearch, setCompanySearch] = useState("");
@@ -23,7 +23,7 @@ const Internships = () => {
   const [selectedInternship, setSelectedInternship] = useState(null);
   const [completedInternship, setCompletedInternship] = useState(null);
 
-  let isStudent = false;
+  
 
   const filteredData = internshipHistory.filter((item) => {
     const matchesCompany = item.company_name
@@ -87,15 +87,16 @@ const Internships = () => {
     <div className="cntnr">
       <SideBar />
       <div className="main-display">
-        <div className={styles["internshipNavigator"]}>
-          {isStudent && (
+      
+       { isStudent ?
+       (<div className={styles["toggle-container"]}>
             <>
               <button
                 onClick={() => setView("available")}
                 className={
                   view === "available"
-                    ? styles["enabledButton"]
-                    : styles["disabledButton"]
+                    ? `{ ${styles["toggle-option"]} ${styles["active"]} }`
+                    : `{ ${styles["toggle-option"]} ${styles["inactive"]} }`
                 }
               >
                 Available Internships
@@ -104,19 +105,22 @@ const Internships = () => {
                 onClick={() => setView("history")}
                 className={
                   view === "history"
-                    ? styles["enabledButton"]
-                    : styles["disabledButton"]
+                    ? `{ ${styles["toggle-option"]} ${styles["active"]} }`
+                    :  `{ ${styles["toggle-option"]} ${styles["inactive"]} }`
                 }
               >
                 Past/Present Internships
               </button>
             </>
-          )}
+        
         </div>
+       )  : <>
+              <h1 className="scad-title">Available Internships</h1>
+            </>
+        }
 
         {view === "available" && (
           <>
-            <h1>Available Internships</h1>
             <div className={styles["search-container"]}>
               {/* your companySearch, titleSearch, industryFilter, etc. inputs */}
               {/* Search and Filters */}
@@ -190,7 +194,6 @@ const Internships = () => {
 
         {view === "history" && (
           <>
-            <h1>Past/Present Internships</h1>
             <div className={styles["search-container"]}>
               {/* your searchCompany, searchTitle, statusFilter, dateFilter inputs */}
               <div className={styles["search-container"]}>

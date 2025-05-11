@@ -36,7 +36,8 @@ function App() {
         <Route path="/VideoCall" element={<VideoCall />} />
         <Route path="/Profile" element={<Profile pro={false} />} />
         <Route path="/ProfilePro" element={<Profile pro={true} />} />
-        <Route path="/Internships" element={<Internships />} />
+        <Route path="/Internships" element={<Internships isStudent={true} />} />
+        <Route path="/Internshipscad" element={<Internships isStudent={false} />} />
         <Route path="/Evaluation" element={<Evaluation />} />
         <Route path="/Report" element={<Report />} />
         <Route path="/Workshops" element={<LiveWorkshop />} />

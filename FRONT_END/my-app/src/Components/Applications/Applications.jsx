@@ -60,13 +60,13 @@ const Applications = () => {
     <div className="cntnr">
       <SideBar />
       <div className="main-display">
-        <div className={styles["internshipNavigator"]}>
+        <div className={styles["toggle-container"]}>
           <button
             onClick={() => setView("applicants")}
             className={
               view === "applicants"
-                ? styles["enabledButton"]
-                : styles["disabledButton"]
+                ? `{ ${styles["toggle-option"]} ${styles["active"]} }`
+                : `{ ${styles["toggle-option"]} ${styles["inactive"]} }`
             }
           >
             Applicants
@@ -75,8 +75,8 @@ const Applications = () => {
             onClick={() => setView("currentInterns")}
             className={
               view === "currentInterns"
-                ? styles["enabledButton"]
-                : styles["disabledButton"]
+                ? `{ ${styles["toggle-option"]} ${styles["active"]} }`
+                : `{ ${styles["toggle-option"]} ${styles["inactive"]} }`
             }
           >
             Current Interns
@@ -84,7 +84,6 @@ const Applications = () => {
         </div>
         {view === "applicants" && (
           <>
-            <h1>Applicants</h1>
             <div className="search-container">
               {/* your companySearch, titleSearch, industryFilter, etc. inputs */}
               {/* Search and Filters */}
@@ -126,7 +125,6 @@ const Applications = () => {
         )}
         {view === "currentInterns" && (
           <>
-            <h1>Current Interns</h1>
             <div className={styles["search-container"]}>
               {/* your searchCompany, searchTitle, statusFilter, dateFilter inputs */}
               <div className={styles["search-container"]}>

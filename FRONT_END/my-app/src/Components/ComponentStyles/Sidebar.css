@@ -53,3 +53,37 @@
 .link-container a:hover::after {
   width: 100%;
 }
+
+.dashboard-span{
+  position: relative;
+  margin-top: 500px;
+  text-align: center;
+}
+ .scadtopia {
+
+  font-size: 72px;
+  color: #b490ca;
+  font-weight: bold;
+  background: linear-gradient(90deg, #b490ca, #9b70b4, #b490ca);
+  background-size: 200% 100%;
+  color: transparent;
+  background-clip: text;
+  animation: shinyEffect 3s infinite linear;
+  text-shadow: 
+    1px 1px 2px white, 
+    -1px -1px 2px white, 
+    1px -1px 2px white, 
+    -1px 1px 2px white;
+}
+
+@keyframes shinyEffect {
+  0% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

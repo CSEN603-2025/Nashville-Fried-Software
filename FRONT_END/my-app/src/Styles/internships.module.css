@@ -1,18 +1,31 @@
+
+
 .cntnr {
   display: grid;
-  grid-template-columns: 30% 1fr; /* 30% for the left column, the rest for the right */
+  grid-template-columns: 33% 1fr; /* 30% for the left column, the rest for the right */
   /* Optional spacing between columns */
 }
+
 
 .main-display {
   grid-column: 2;
   display: flex;
   flex-direction: column;
+  
 }
 
 .internshipNavigator {
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 40px;
+  
+}
+.internshipNavigator button {
+  font-size: 22px;
+  font-weight: 700;
+  padding: 15px;
+  border-radius: 12px;
+  
 }
 
 .enabledButton {
@@ -43,6 +56,7 @@ h1 {
 
 .search-container input {
   margin-right: 10px;
+  width: 700px;
 }
 
 .search-container select {
@@ -54,17 +68,16 @@ h1 {
 }
 
 .internshipListings {
+  animation: fadeIn 0.5s ease-in-out; 
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
   max-height: 80vh;
   overflow-y: auto;
-  border: 2px solid black; /* outer border around the full scrollable area */
   border-radius: 12px;
-  background-color: #f9f9f9;
-  max-width: 800px;
+  background: linear-gradient(135deg, #5db2ff 0%, #3a7bd5 100%);
   margin: 0 auto;
   width: 90%;
 }
@@ -74,15 +87,54 @@ h1 {
 }
 
 .internshipListings > div {
-  width: 80%;
-  max-width: 500px;
-  border: 2px solid #888; /* border around each card */
+  min-width: 29.5%;
+  max-width: 29.5%;
+  min-height: 190px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 10px;
   background-color: #fff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0; /* Start with opacity 0 for the fade-in effect */
+  transform: translateY(20px); /* Start slightly below for the slide-in effect */
+  animation: fadeInUp 0.5s ease-out forwards;
 }
+
+/* Keyframe for fade-in and slide-up effect */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sequential Animation Delay (based on nth-child) */
+.internshipListings > div:nth-child(1) {
+  animation-delay: 0s; /* No delay for the first element */
+}
+
+.internshipListings > div:nth-child(2) {
+  animation-delay: 0.2s; /* 0.2s delay for the second element */
+}
+
+.internshipListings > div:nth-child(3) {
+  animation-delay: 0.4s; /* 0.4s delay for the third element */
+}
+
+.internshipListings > div:nth-child(4) {
+  animation-delay: 0.6s; /* 0.6s delay for the fourth element */
+}
+
+.internshipListings > div:nth-child(5) {
+  animation-delay: 0.8s; /* 0.8s delay for the fifth element */
+}
+.internshipListings > div:nth-child(6) {
+  animation-delay: 1s; /* 0.8s delay for the fifth element */
+}
+
 
 .internshipListings > div:hover {
   transform: translateY(-4px);
@@ -112,34 +164,49 @@ h1 {
 }
 
 .search-container {
+  animation: fadeIn 0.2s ease-in-out; 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #f4f4f4;
+  background: linear-gradient(135deg, #5db2ff 0%, #3a7bd5 100%);
   border-radius: 12px;
   max-width: 1000px;
   text-align: center;
   margin-bottom: 20px;
 }
 
+
 .search-container input,
 .search-container select {
-  padding: 10px 14px;
+  padding: 12px 16px; /* Increased padding for better clickable area */
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 14px;
   min-width: 200px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  background-color: #fff; /* Ensuring background is white for contrast */
 }
 
 .search-container input:focus,
 .search-container select:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2); /* Soft focus effect */
   outline: none;
+  background-color: #f0f8ff; /* Light blue background on focus */
+}
+
+.search-container input::placeholder,
+.search-container select {
+  color: #999; /* Light gray placeholder text */
+  transition: color 0.2s ease;
+}
+
+.search-container input:focus::placeholder,
+.search-container select:focus {
+  color: #007bff; /* Change placeholder text color to blue when focused */
 }
 
 .jobmodal-overlay {
@@ -223,4 +290,62 @@ h1 {
   color: #fff;
   border-color: #e53935;
   box-shadow: 0 2px 8px rgba(229, 57, 53, 0.15);
+}
+
+
+ @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container for the toggle */
+.toggle-container {
+  display: flex;
+  border-radius: 25px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  width: 500px;
+  height: 100px;
+  align-self: center;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+
+/* Default style for both options */
+.toggle-option {
+  flex: 1;
+  font-size: 25px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* Unselected option styling */
+.toggle-option.inactive {
+  background-color: #f8f8f8;
+  color: #666;
+  border: none;
+  font-weight: normal;
+}
+
+/* Selected option styling with all four visual cues */
+.toggle-option.active {
+  background-color: white;       /* 1. Light shading */
+  color: #0078d7;                /* 2. Bold text label (color) */
+  font-weight: bold;             /* 2. Bold text label (weight) */
+  border: 1px solid #0078d7;     /* 3. Darker border */
+  border-radius: 25px;           /* Makes the border rounded */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);  /* 4. Light shadow to create visual distinction */
 }

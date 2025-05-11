@@ -21,16 +21,16 @@ const Evaluation = () => {
             ></textarea>
             {/* Recommendation Radio Buttons */}
             <p>Would you recommend this company to other students?</p>
-            <label>
+          <div className={styles['radio-container']}>
+            <label className={styles['radio-label']}>
               <input type="radio" name="recommendation" value="yes" required />
               Yes
             </label>{" "}
-            <label>
+            <label className={styles['radio-label']}>
               <input type="radio" name="recommendation" value="no" />
               No
             </label>
-            <br />
-            <br />
+          </div>
             <input type="submit" value="Submit Evaluation" />
           </form>
         </div>

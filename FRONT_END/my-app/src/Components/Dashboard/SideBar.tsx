@@ -12,6 +12,10 @@ function SideBar() {
       <Link to="/Evaluation">Internship Evaluation</Link>
       <Link to="/Report">Reports</Link>
       <Link to="/Applications">Applications</Link>
+
+
+
+      <span className="scadtopia dashboard-span">SCADtopia</span>
     </div>
   );
 }
