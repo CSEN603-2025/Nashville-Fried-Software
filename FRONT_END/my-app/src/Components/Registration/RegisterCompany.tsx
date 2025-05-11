@@ -12,32 +12,44 @@ function RegisterCompany() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [notification, setNotification] = useState<string | null>(null);
-  const [notificationType, setNotificationType] = useState<'accepted' | 'rejected' | null>(null);
 
   const handleRegister = () => {
+    // Validation for empty fields
     if (!companyEmail || !companyName || !industry || !companySize || !companyLogo) {
       setErrorMessage('All fields must be filled out.');
       return;
     }
 
+    // Validate email format
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(companyEmail)) {
+      setErrorMessage('Please enter a valid Company Email.');
+      return;
+    }
+
+    // Validate company size (only numbers)
+    const sizeRegex = /^[0-9]+$/;
+    if (!sizeRegex.test(companySize)) {
+      setErrorMessage('Company Size should be a number.');
+      return;
+    }
+
+    // Check if documents are uploaded
     if (!documentsUploaded) {
       setErrorMessage('Please upload your documents before registering.');
       return;
     }
 
+    // If all validations pass, set registration state
     setIsRegistered(true);
     setErrorMessage('');
     
-    // Generate a random result for the application status
-    const isAccepted = Math.random() > 0.5;
-    const applicationStatus = isAccepted ? 'Company Application Accepted' : 'Company Application Rejected';
-    setNotification(applicationStatus);
-    setNotificationType(isAccepted ? 'accepted' : 'rejected');
+    // Display simple notification for email checking
+    setNotification('Check your Email to check application Status');
 
     // Hide the notification after 5 seconds
     setTimeout(() => {
       setNotification(null);
-      setNotificationType(null);
     }, 5000);
   };
 
@@ -49,7 +61,7 @@ function RegisterCompany() {
   return (
     <div className="register-container">
       {notification && (
-        <div className={`notification ${notificationType}`}>
+        <div className="simple-notification">
           {notification}
         </div>
       )}
@@ -90,6 +102,7 @@ function RegisterCompany() {
               value={companySize}
               onChange={(e) => setCompanySize(e.target.value)}
               className="register-input"
+              placeholder="Numbers only"
             />
           </div>
           <div className="input-group">
