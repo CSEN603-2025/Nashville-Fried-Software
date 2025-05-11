@@ -1,16 +1,21 @@
 import React, {useState} from 'react';
 import "../ComponentStyles/Sidebar.css"
 import { Link } from 'react-router-dom';
-function SideBar()
+
+interface SCADStatsProps {
+    scad: boolean;
+  }
+const SideBar: React.FC<SCADStatsProps> = ({ scad }) =>
 {
     return (
             <div className="link-container">
                 <h2>Welcome, SCAD</h2>
-                <Link to="/Students">Students</Link>
-                <Link to="/Appointmentscad">Make Appointment</Link>
-                <Link to="/WorkshopSCAD">Workshops</Link>
-                <Link to="/ReportSCAD">Reports</Link>
-                <Link to="/Internshipsscad">Available Internships</Link>
+                {scad ? <Link to="/scaddashboard">Dashboard</Link> : <Link to="/facultydashboard">Dashboard</Link>}
+                {scad && (<Link to="/Students">Students</Link>)}
+                {scad && (<Link to="/CompanySCAD">Companies</Link>)}
+                {scad && (<Link to="/WorkshopSCAD">Workshops</Link>)}
+                {scad ? <Link to="/ReportSCAD">Reports</Link> : <Link to="/ReportFaculty">Reports</Link>}
+                {scad && (<Link to="/InternshipSCAD">Available Internships</Link>)}
             </div>
     )
 }

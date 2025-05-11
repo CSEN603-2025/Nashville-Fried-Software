@@ -6,21 +6,25 @@ import Notificationscad from './Components/Dashboard/Notificationscad.tsx'
 import CallBanner from "./Components/Dashboard/CallBanner.tsx";
 import styles from './Styles/DashboardSCAD.module.css'
 
-const DashboardStudent = () =>{
+
+interface SCADStatsProps {
+    scad: boolean;
+  }
+const DashboardSCAD: React.FC<SCADStatsProps> = ({ scad }) =>{
     const [notifications, setNotifications] = useState([]);
     return (
     <div className={styles["cntnr"]}>
-        <SideBar/>
+        <SideBar scad={scad}/>
         <div className={styles['main-display']}>
-            <CallBanner onMissedCall={(msg) => setNotifications((prev) => [...prev, msg])}/>
-            <Stats/>
-            <div className={styles["one-card"]}>
+            {scad && (<CallBanner onMissedCall={(msg) => setNotifications((prev) => [...prev, msg])}/>)}
+            <Stats scad={scad}/>
+            {scad && (<div className={styles["one-card"]}>
                 <Notificationscad notifications ={notifications}/>
-            </div>
+            </div>)}
         </div>
     </div>
 
 )
 }
 
-export default DashboardStudent;
+export default DashboardSCAD;

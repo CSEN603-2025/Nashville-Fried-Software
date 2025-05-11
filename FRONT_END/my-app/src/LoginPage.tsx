@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import './Components/ComponentStyles/LoginPage.css'
 const LoginPage = () => {
     const navigate = useNavigate();
 
@@ -12,6 +11,7 @@ const LoginPage = () => {
         const password = (form.elements.namedItem('Password') as HTMLInputElement).value;
         if(email == '1') navigate('/dashboard'); // route to dashboard
         if(email == '2') navigate('/scaddashboard'); // route to dashboard
+        if(email == '3') navigate('/facultydashboard'); // route to dashboard
       };
 
     const handleClick = (e) =>{

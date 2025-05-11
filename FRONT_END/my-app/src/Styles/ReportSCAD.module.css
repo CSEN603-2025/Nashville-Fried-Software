@@ -11,7 +11,12 @@
 
 }
 
-
+.edit-icon {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
 
 .header-row {
     display: flex;
@@ -81,7 +86,7 @@
     color: #d4a300;
   }
   
-  .rejected {
+  .rejected, .flagged {
     color: red;
   }
   
@@ -264,6 +269,7 @@
     text-align: centre;
     font-size: 20px;
     margin-left: 10px;
+    margin-top: 10px;
   }
 
   .evaluation-grid {
@@ -274,4 +280,57 @@
     margin-top: 1rem;
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
+  }
+
+  .modal-status{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .modal-status button{
+    height: 26px;
+    background-color: transparent;
+    width: 26px;
+    padding: 2px;
+    align-self: center;
+  }
+  .modal-status p{
+    margin-bottom: 10px;
+    align-self: center;
+  }
+
+
+  .modal-status button:hover{
+    background-color: #ccc;
+  }
+
+  .status-list {
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    width: 100%;
+    align-self: center;
+    height: 35px;
+    max-width: 200px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .status-list:focus {
+    outline: none;
+    border-color: #4CAF50;
+    background-color: #eaf7ea;
+  }
+  
+  .status-list option {
+    padding: 8px;
+    background-color: #fff;
+  }
+  
+  .status-list option:hover {
+    background-color: #f1f1f1;
   }

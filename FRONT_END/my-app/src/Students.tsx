@@ -30,7 +30,7 @@ const Students = () => {
 
   return (
     <div className={styles["cntnr"]}>
-      <SideBar />
+      <SideBar scad={true}/>
       <div className={styles['main-display']}>
       <div className={styles['header-row']}>
         <h1 className={styles['page-title']}>Students</h1>

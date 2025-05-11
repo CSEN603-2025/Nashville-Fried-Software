@@ -9,9 +9,12 @@ import {
 import styles from '../ComponentStyles/SCADStats.module.css';
 import InternshipCycle from './InternshipCycle.tsx'
 
+interface SCADStatsProps {
+  scad: boolean;
+}
 const COLORS = ['#4CAF50', '#F44336', '#FFEB3B']; // green, red, yellow
 
-const SCADStats: React.FC = () => {
+const SCADStats: React.FC<SCADStatsProps> = ({ scad }) => {
     const [generateText,setGenerateText] = useState('Generate report')
     const reportStats = {
         accepted: 42,
@@ -119,7 +122,7 @@ const SCADStats: React.FC = () => {
           </div>
         </div>
         <div className={styles["review-time"]}>
-          <InternshipCycle startDate="2025-04-01" endDate="2025-07-31" />
+          <InternshipCycle startDate="2025-04-01" endDate="2025-07-31" scad={scad}/>
           <strong>Average Review Time:  {reportStats.averageReviewTime}</strong>
         </div>
       </div>

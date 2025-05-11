@@ -2,7 +2,7 @@ import editIcon from '../../assets/edit.svg';
 import React, { useState } from 'react';
 import styles from '../ComponentStyles/InternshipCycle.module.css';
 
-const InternshipCycle = ({ startDate, endDate }: { startDate: string; endDate: string }) => {
+const InternshipCycle = ({ startDate, endDate , scad}: { startDate: string; endDate: string;scad:boolean }) => {
   const [start, setStart] = useState(new Date(startDate));
   const [end, setEnd] = useState(new Date(endDate));
   const [editingStart, setEditingStart] = useState(false);
@@ -59,9 +59,9 @@ const InternshipCycle = ({ startDate, endDate }: { startDate: string; endDate: s
           ) : (
             <>
               <span>{formatDate(start)}</span>
-              <button onClick={() => setEditingStart(true)}>
+              {scad && (<button onClick={() => setEditingStart(true)}>
                 <img src={editIcon} className={styles["edit-icon"]} />
-              </button>
+              </button>)}
             </>
           )}
         </div>
@@ -79,9 +79,9 @@ const InternshipCycle = ({ startDate, endDate }: { startDate: string; endDate: s
           ) : (
             <>
               <span>{formatDate(end)}</span>
-              <button onClick={() => setEditingEnd(true)}>
+              {scad && (<button onClick={() => setEditingEnd(true)}>
                 <img src={editIcon} className={styles["edit-icon"]} />
-              </button>
+              </button>)}
             </>
           )}
         </div>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import SideBar from './Components/Dashboard/SideBarSCAD.tsx';
 import styles from './Styles/ReportSCAD.module.css';
+import editIcon from './assets/edit.svg';
 
-const ReportSCAD = () => {
+const ReportSCAD = ({scad} : {scad:boolean}) => {
   const [statusFilter, setStatusFilter] = useState('-1');
   const [showModal, setShowModal] = useState(false);
   const [clarificationText, setClarificationText] = useState('');
@@ -159,9 +160,27 @@ const ReportSCAD = () => {
     setPdfText("Download PDF")
   };
 
+  const handleStatusChange = (e) => {
+      const newStatus = e.target.value;
+      if (!selectedReport) return;
+
+      setReports((prevReports) =>
+        prevReports.map((report) =>
+          report === selectedReport
+            ? { ...report, status: newStatus }
+            : report
+        )
+      );
+
+      setSelectedReport((prev) =>
+        prev ? { ...prev, status: newStatus } : null
+      );
+      
+  }
+
   return (
     <div className={styles["cntnr"]}>
-      <SideBar />
+      <SideBar scad={scad}/>
       <div className={styles['main-display']}>
         <div className={styles['header-row']}>
           <h1 className={styles['page-title']}>Reports</h1>
@@ -174,6 +193,7 @@ const ReportSCAD = () => {
             <option value="Pending">Pending</option>
             <option value="Rejected">Rejected</option>
             <option value="Accepted">Accepted</option>
+            <option value="Accepted">Flagged</option>
           </select>
         </div>
         <div className={styles['report-list']}>
@@ -224,6 +244,19 @@ const ReportSCAD = () => {
                     <div key={index} className={styles['course-card']}>{course}</div>
                     ))}
                 </div>
+              </div>
+              <div className={styles["modal-status"]}> 
+                <p>Status: </p>
+                <select
+                  value={selectedReport.status}
+                  onChange={handleStatusChange}
+                  className={styles['status-list']}
+                  disabled={scad}
+                  >
+                  <option value="Accepted">Accepted</option>
+                  <option value="Rejected">Rejected</option>
+                  <option value="Flagged">Flagged</option>
+                  </select>
               </div>
               
               <button onClick={() => {setPdfText('PDF downloaded')}} className={styles['download-btn']}>{pdfText}</button>
