@@ -38,27 +38,27 @@ function AppointmentNotifications({
   onReject,
 }: AppointmentNotificationsProps) {
   return (
-    <section>
+    <section className="notifications-container">
       <h3>Incoming Requests</h3>
       {incomingRequests.length === 0 ? (
-        <p>No new requests.</p>
+        <p className="no-requests">No new requests.</p>
       ) : (
-        <ul>
+        <ul className="request-list">
           {incomingRequests.map((req) => (
-            <li key={req.id}>
+            <li key={req.id} className="notification-item">
               <img
                 src={req.sender.profilePicture}
                 alt={`${req.sender.firstName} ${req.sender.lastName}`}
-                width={50}
-                height={50}
               />
               <div>
                 <strong>{req.sender.firstName} {req.sender.lastName}</strong>
                 <p>Subject: {req.subject}</p>
                 <p>{req.message}</p>
                 <p>{req.date} at {req.time}</p>
-                <button onClick={() => onAccept(req.id)}>Accept</button>
-                <button onClick={() => onReject(req.id)}>Reject</button>
+                <div className="response-buttons">
+                  <button className="accept" onClick={() => onAccept(req.id)}>Accept</button>
+                  <button className="reject" onClick={() => onReject(req.id)}>Reject</button>
+                </div>
               </div>
             </li>
           ))}
@@ -67,22 +67,20 @@ function AppointmentNotifications({
 
       <h3>Responses</h3>
       {sentResponses.length === 0 ? (
-        <p>No responses yet.</p>
+        <p className="no-responses">No responses yet.</p>
       ) : (
-        <ul>
+        <ul className="response-list">
           {sentResponses.map((res) => (
-            <li key={res.id}>
+            <li key={res.id} className="notification-item">
               <img
                 src={res.recipient.profilePicture}
                 alt={`${res.recipient.firstName} ${res.recipient.lastName}`}
-                width={50}
-                height={50}
               />
               <div>
                 <strong>{res.recipient.firstName} {res.recipient.lastName}</strong>
                 <p>Status: {res.status}</p>
                 {res.status === 'accepted' && (
-                  <p style={{ color: res.recipient.isOnline ? 'green' : 'gray' }}>
+                  <p className="online-status">
                     {res.recipient.isOnline ? 'Online' : 'Offline'}
                   </p>
                 )}

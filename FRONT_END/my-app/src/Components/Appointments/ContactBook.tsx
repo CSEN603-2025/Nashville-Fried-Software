@@ -1,5 +1,6 @@
 import React from 'react';
 import './ContactBook.css';
+
 interface User {
   id: number;
   firstName: string;
@@ -7,24 +8,23 @@ interface User {
   profilePictureUrl: string;
   isOnline: boolean;
 }
+
 interface ContactBookProps {
   users: {
     id: number;
     firstName: string;
     lastName: string;
     profilePictureUrl: string;
-    isOnline: boolean; // ← Add this to match the full User type
+    isOnline: boolean;
   }[];
   onStartAppointment: (user: {
     id: number;
     firstName: string;
     lastName: string;
     profilePictureUrl: string;
-    isOnline: boolean; // ← Include this field
+    isOnline: boolean;
   }) => void;
 }
-
-
 
 function ContactBook({ users, onStartAppointment }: ContactBookProps) {
   const sortedUsers = [...users].sort((a, b) =>
@@ -32,19 +32,25 @@ function ContactBook({ users, onStartAppointment }: ContactBookProps) {
   );
 
   return (
-    <div>
-      <h2>Contact Book</h2>
-      <ul>
+    <div className="contact-book-container">
+      <h2 className="contact-book-title">Contact Book</h2>
+      <ul className="contact-list">
         {sortedUsers.map((user) => (
-          <li key={user.id}>
+          <li key={user.id} className="contact-item">
             <img
               src={user.profilePictureUrl}
               alt={`${user.firstName} ${user.lastName}`}
-              width={50}
-              height={50}
+              className="contact-avatar"
             />
-            <span>{user.firstName} {user.lastName}</span>
-            <button onClick={() => onStartAppointment(user)}>Request Appointment</button>
+            <span className="contact-name">
+              {user.firstName} {user.lastName}
+            </span>
+            <button
+              className="contact-button"
+              onClick={() => onStartAppointment(user)}
+            >
+              Request Appointment
+            </button>
           </li>
         ))}
       </ul>

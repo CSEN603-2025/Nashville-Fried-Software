@@ -5,6 +5,7 @@ import ContactBook from './Components/Appointments/ContactBook';
 import AppointmentRequestForm from './Components/Appointments/AppointmentRequestForm';
 import AppointmentNotifications from './Components/Appointments/AppointmentNotifications';
 import { useEffect } from 'react'; 
+import './Appointments.css';
 type User = {
   id: number;
   firstName: string;
@@ -147,14 +148,18 @@ function AppointmentsPage() {
 
   return (
     <main className="appointments-page">
-      <h1 className="page-title">Manage Appointments</h1>
+  <h1 className="page-title">Manage Appointments</h1>
 
-      <section className="contact-book-section">
-        <ContactBook users={mockUsers} onStartAppointment={handleStartAppointment} />
-      </section>
+  <div className="appointments-layout">
+    {/* Left Side: Contact Book */}
+    <section className="contact-book-section">
+      <ContactBook users={mockUsers} onStartAppointment={handleStartAppointment} />
+    </section>
 
+    {/* Right Side: Appointment Request Form + Notifications */}
+    <section className="right-side">
       {selectedUser && (
-        <section className="appointment-form-section">
+        <div className="appointment-form-section">
           <AppointmentRequestForm
             recipient={{
               id: selectedUser.id.toString(),
@@ -165,41 +170,44 @@ function AppointmentsPage() {
             }}
             onSendRequest={handleSendRequest}
           />
-        </section>
+        </div>
       )}
 
-      <section className="notifications-section">
+      <div className="notifications-section">
         <AppointmentNotifications
-  incomingRequests={incomingRequests.map(({ id, sender, subject, date, time, message }) => ({
-    id: id.toString(),
-    sender: {
-      id: sender.id.toString(),
-      firstName: sender.firstName,
-      lastName: sender.lastName,
-      profilePicture: sender.profilePictureUrl,
-      isOnline: sender.isOnline,
-    },
-    subject,
-    date,
-    time,
-    message,
-  }))}
-  sentResponses={outgoingRequests.map(({ id, recipient, status }) => ({
-    id: id.toString(),
-    recipient: {
-      id: recipient.id.toString(),
-      firstName: recipient.firstName,
-      lastName: recipient.lastName,
-      profilePicture: recipient.profilePictureUrl,
-      isOnline: recipient.isOnline,
-    },
-    status,
-  }))}
-  onAccept={(id) => handleRespondToRequest(Number(id), 'accepted')}
-  onReject={(id) => handleRespondToRequest(Number(id), 'rejected')}
-/>
-      </section>
-    </main>
+          incomingRequests={incomingRequests.map(({ id, sender, subject, date, time, message }) => ({
+            id: id.toString(),
+            sender: {
+              id: sender.id.toString(),
+              firstName: sender.firstName,
+              lastName: sender.lastName,
+              profilePicture: sender.profilePictureUrl,
+              isOnline: sender.isOnline,
+            },
+            subject,
+            date,
+            time,
+            message,
+          }))}
+          sentResponses={outgoingRequests.map(({ id, recipient, status }) => ({
+            id: id.toString(),
+            recipient: {
+              id: recipient.id.toString(),
+              firstName: recipient.firstName,
+              lastName: recipient.lastName,
+              profilePicture: recipient.profilePictureUrl,
+              isOnline: recipient.isOnline,
+            },
+            status,
+          }))}
+          onAccept={(id) => handleRespondToRequest(Number(id), 'accepted')}
+          onReject={(id) => handleRespondToRequest(Number(id), 'rejected')}
+        />
+      </div>
+    </section>
+  </div>
+</main>
+
   );
 }
 
