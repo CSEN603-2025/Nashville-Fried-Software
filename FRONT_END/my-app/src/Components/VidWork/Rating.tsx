@@ -20,34 +20,32 @@ const Rating = () => {
   };
 
   return (
+    <div>
     <div className="rating-box">
       Please rate your experience!
-        <div className="stars-container">
+      <div className="stars-container">
 
-          {Array.from({ length: 5 }, (_, index) => (
-            <div key={index} className="star-container" onClick={() => handleRating(index + 1)}>
-              <span className="star">{index < rating ? '★' : '☆'}</span>
-            </div>
-          ))}
-        </div>
-        <textarea
-          className="feedback-textarea"
-          placeholder="Enter your feedback here..."
-          value={feedback}
-          onChange={handleFeedbackChange}
-        />
-        <button onClick = {() => {navigate('/dashboard')}}  className="submit-button">
-          Submit and Exit
-        </button>
+        {Array.from({ length: 5 }, (_, index) => (
+          <div key={index} className="star-container" onClick={() => handleRating(index + 1)}>
+            <span className="star">{index < rating ? '★' : '☆'}</span>
+          </div>
+        ))}
       </div>
       <textarea
         className="feedback-textarea"
         placeholder="Enter your feedback here..."
         value={feedback}
-        onChange={handleFeedbackChange}
-      />
-      <button className="submit-button">Submit and Exit</button>
+        onChange={handleFeedbackChange} />
+      <button onClick={() => { navigate('/dashboard'); } } className="submit-button">
+        Submit and Exit
+      </button>
+    </div><textarea
+        className="feedback-textarea"
+        placeholder="Enter your feedback here..."
+        value={feedback}
+        onChange={handleFeedbackChange} /><button className="submit-button">Submit and Exit</button>
     </div>
+
   );
 };
 

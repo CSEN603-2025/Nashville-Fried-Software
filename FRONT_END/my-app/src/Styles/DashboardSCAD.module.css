@@ -1,6 +1,6 @@
 .cntnr{
     display: grid;
-    grid-template-columns: 20% 1fr; /* 30% for the left column, the rest for the right */
+    grid-template-columns: 33% 1fr; /* 30% for the left column, the rest for the right */
      /* Optional spacing between columns */
   }
 
@@ -34,12 +34,11 @@
 .one-card {
     display: flex;
     height: 28vh;
-    background-color: rgb(209, 209, 209);
+    background-color: rgb(255, 255, 255);
     width: 90%; /* Takes the full width of the main-display container */
-    margin-top: 20px; /* Optional: Adds space above the one-card section */
+    margin-top: 10px; /* Optional: Adds space above the one-card section */
     margin-left: 55px;
     border-radius: 8px;
-    border: 0.2px solid black;
 }
 
 .call-banner {

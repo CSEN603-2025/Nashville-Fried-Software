@@ -6,7 +6,7 @@
   .chart-section {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 10px;
     margin-bottom: 60px;
   }
   
@@ -18,7 +18,8 @@
   .review-time{
     flex: 1; /* Allow it to grow inside flex container */
     min-width: 250px;
-    max-width: 90%;
+    max-width: 100%;
+    margin-left: 10px;
     background-color: #ebebebe7;
     padding: 16px;
     gap: 100px;
