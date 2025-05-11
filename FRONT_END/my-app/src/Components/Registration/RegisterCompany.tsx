@@ -11,6 +11,8 @@ function RegisterCompany() {
   const [documentsUploaded, setDocumentsUploaded] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [notification, setNotification] = useState<string | null>(null);
+  const [notificationType, setNotificationType] = useState<'accepted' | 'rejected' | null>(null);
 
   const handleRegister = () => {
     if (!companyEmail || !companyName || !industry || !companySize || !companyLogo) {
@@ -25,6 +27,18 @@ function RegisterCompany() {
 
     setIsRegistered(true);
     setErrorMessage('');
+    
+    // Generate a random result for the application status
+    const isAccepted = Math.random() > 0.5;
+    const applicationStatus = isAccepted ? 'Company Application Accepted' : 'Company Application Rejected';
+    setNotification(applicationStatus);
+    setNotificationType(isAccepted ? 'accepted' : 'rejected');
+
+    // Hide the notification after 5 seconds
+    setTimeout(() => {
+      setNotification(null);
+      setNotificationType(null);
+    }, 5000);
   };
 
   const handleUploadDocuments = () => {
@@ -34,6 +48,11 @@ function RegisterCompany() {
 
   return (
     <div className="register-container">
+      {notification && (
+        <div className={`notification ${notificationType}`}>
+          {notification}
+        </div>
+      )}
       <div className="register-box">
         <h2 className="register-title">Register</h2>
         <div className="register-fields">
