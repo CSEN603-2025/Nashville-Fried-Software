@@ -112,10 +112,8 @@ const CompanySCAD = () => {
     <div className={styles["cntnr"]}>
       <SideBar scad={true}/>
       <div className={styles['main-display']}>
-
+      <h1 className={styles['page-title']}>Applying companies</h1>
         <div className={styles['header-row']}>
-            <h1 className={styles['page-title']}>Applying companies</h1>
-
             <input
                 type="text"
                 placeholder="Enter company name"

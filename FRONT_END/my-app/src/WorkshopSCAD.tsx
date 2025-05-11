@@ -179,6 +179,7 @@ const WorkshopSCAD = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     disabled={!isEditing}
+                    required
                 />
                 </label>
 
@@ -191,6 +192,7 @@ const WorkshopSCAD = () => {
                     value={formData.speaker}
                     onChange={handleInputChange}
                     disabled={!isEditing}
+                    required
                 />
                 </label>
 
@@ -203,6 +205,7 @@ const WorkshopSCAD = () => {
                     value={formData.startDateTime}
                     onChange={handleInputChange}
                     disabled={!isEditing}
+                    required
                     />
                 </label>
                 <label>
@@ -213,6 +216,7 @@ const WorkshopSCAD = () => {
                     value={formData.endDateTime}
                     onChange={handleInputChange}
                     disabled={!isEditing}
+                    required
                     />
                 </label>
                 </div>

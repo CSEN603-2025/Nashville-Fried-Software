@@ -5,6 +5,7 @@ import internshipHistory from "../../internshipHistory.json";
 import { useNavigate } from "react-router-dom";
 import styles from "../../Styles/internships.module.css";
 import SideBar from "../Dashboard/SideBar";
+import SideBarSCAD from "../Dashboard/SideBarSCAD";
 
 const Internships = ({isStudent = false}) => {
   const navigate = useNavigate();
@@ -85,10 +86,10 @@ const Internships = ({isStudent = false}) => {
   };
   return (
     <div className="cntnr">
-      <SideBar />
+      {isStudent ? (<SideBar />) : (<SideBarSCAD scad={true}/>)}
       <div className="main-display">
       
-       { isStudent ?
+       { isStudent?
        (<div className={styles["toggle-container"]}>
             <>
               <button

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "../../Styles/evalIntern.module.css";
-import SideBar from "../Dashboard/SideBar";
+import SideBar from "../Dashboard/SideBarCompany";
 
 const EvaluateIntern = () => {
   const [evalStatus, setEvalStatus] = useState(false);

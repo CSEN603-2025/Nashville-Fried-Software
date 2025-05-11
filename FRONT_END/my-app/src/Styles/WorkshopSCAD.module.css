@@ -187,13 +187,14 @@
     font-size: 24px;
     background: transparent;
     border: none;
-    color: #555;
+    color: red;
     cursor: pointer;
     transition: color 0.2s ease-in-out;
   }
   
   .close-button:hover {
-    color: #d00;
+    background-color: red;
+    color: #555;
   }
 
   .add-icon{

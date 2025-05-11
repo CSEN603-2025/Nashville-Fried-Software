@@ -6,9 +6,9 @@ function SideBar()
     return (
             <div className="link-container">
                 <h2>Welcome, Company</h2>
-                <Link to="/Profile">My Profile</Link>
-                <Link to="/compints">Internships</Link>
-                <Link to="/evalcompany">Internship Evaluation</Link>
+                <Link to="/company">My Profile</Link>
+                <Link to="/Applications">Internships</Link>
+                <Link to="/evaluateIntern">Internship Evaluation</Link>
                 <Link to="/companyreports">Reports</Link>
 
                 <span className="scadtopia dashboard-span">SCADtopia</span>

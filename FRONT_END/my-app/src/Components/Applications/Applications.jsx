@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import applicants from "../../applicants.json";
 import currentInterns from "../../currentInterns.json";
 import styles from "../../Styles/internships.module.css";
-import SideBar from "../Dashboard/SideBar";
+import SideBar from "../Dashboard/SideBarCompany";
 
 const Applications = () => {
   const navigate = useNavigate();

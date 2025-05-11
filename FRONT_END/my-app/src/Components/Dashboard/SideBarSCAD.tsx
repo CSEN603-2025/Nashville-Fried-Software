@@ -15,7 +15,7 @@ const SideBar: React.FC<SCADStatsProps> = ({ scad }) =>
                 {scad && (<Link to="/CompanySCAD">Companies</Link>)}
                 {scad && (<Link to="/WorkshopSCAD">Workshops</Link>)}
                 {scad ? <Link to="/ReportSCAD">Reports</Link> : <Link to="/ReportFaculty">Reports</Link>}
-                {scad && (<Link to="/InternshipSCAD">Available Internships</Link>)}
+                {scad && (<Link to="/Internshipscad">Available Internships</Link>)}
 
                 <span className="scadtopia dashboard-span">SCADtopia</span>
             </div>

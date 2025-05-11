@@ -145,11 +145,6 @@ button:hover {
   background-color: #0056b3;
 }
 
-p {
-  margin-top: 10px;
-  color: green;
-  font-weight: bold;
-}
 
 .companyViews {
   max-height: 300px; /* Adjust height as needed */

@@ -2,22 +2,18 @@ import React, { useState } from "react";
 import SideBar from './Components/Dashboard/SideBarSCAD.tsx';
 import styles from './Styles/Students.module.css';
 import { replace } from "react-router-dom";
-import proBadge from './assets/pro-badge.svg'
+import linkIcon from './assets/linkIcon.svg'
 import {useNavigate} from 'react-router-dom'
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import currentInterns from './currentInterns.json'
 
 
 
 const Students = () => {
     const navigator = useNavigate()
     const [statusFilter, setStatusFilter] = useState('-1')
-    const [studentsList, setStudentsList] = useState([
-        { name: "Alice Johnson", age: 21, major: "Computer Science", monthsCompleted: 2, interests: ["AI", "Web Dev", "Cybersecurity"], requested: false, pro: true, replied: false},
-        { name: "Bob Smith", age: 22, major: "Information Systems", monthsCompleted: 1, interests: ["Data Analysis", "Cloud"], requested: true, pro: false , replied: false},
-        { name: "Carol Lee", age: 20, major: "Software Engineering", monthsCompleted: 3, interests: ["Mobile Dev", "Game Dev"], requested: false, pro: true , replied: false},
-        { name: "David Kim", age: 23, major: "Data Science", monthsCompleted: 2, interests: ["Machine Learning", "AI", "Big Data"], requested: true, pro: true , replied: false},
-        { name: "Emily Davis", age: 24, major: "Cybersecurity", monthsCompleted: 0, interests: ["Network Security", "Ethical Hacking"], requested: false, pro: false , replied: false},
-        { name: "Frank Zhang", age: 22, major: "Software Engineering", monthsCompleted: 1, interests: ["Frontend Dev", "UI/UX"], requested: true, pro: false , replied: false},
-    ]);
+    const [studentsList, setStudentsList] = useState(currentInterns);
 
     const replyTo = (index: number) => {
         setStudentsList(prevList => {
@@ -51,35 +47,39 @@ const Students = () => {
             <div className={styles['student-card']} key={idx}>
               <div className={styles['student-info']}>
                 <div className={styles['student-name-container']}>
-                    <p className={styles['student-name']}><strong>{student.name}</strong></p>
+                    <h3 className={styles['student-name']}>{student.name}</h3>
                     {student.pro && (
                     <div className={styles['pro-badge-container']}>
-                        <img src={proBadge} alt="PRO Badge" className={styles['pro-badge']} />
                         <span className={styles['pro-text']}>PRO</span>
                     </div>
                     )}
-                    <button className="profile-btn" onClick={() => {navigator('/profile')}}>Go to profile</button>
+                    <button className={styles["profile-btn"]} onClick={() => {navigator(`/ViewStudent/${idx}`)}}>
+                      <img src={linkIcon} className={styles['link-icon']} />
+                    </button>
                 </div>
                 <p className={styles['student-detail']}>Age: {student.age}</p>
                 <p className={styles['student-detail']}>Major: {student.major}</p>
                 <div className={styles['interests-row']}>
                   <p className={styles['interests-title']}>Job Interests:</p>
                   <div className={styles['interests-list']}>
-                    {student.interests.map((interest, i) => (
+                    {student.jobInterests.map((interest, i) => (
                       <span className={styles['interest-pill']} key={i}>{interest}</span>
                     ))}
                   </div>
                 </div>
               </div>
               <div className={styles['internship-status']}>
-                <p className={styles['status-title']}>Internship Status</p>
-                <div
-                  className={styles['progress-circle']}
-                  style={{
-                    background: `conic-gradient(#cba0db ${student.monthsCompleted / 3 * 100}%, #e0e0e0 0)`
-                  }}
-                >
-                  <span>{student.monthsCompleted}/3</span>
+                <p id={styles['status-title']}>Internship Status</p>
+                <div className={styles['progress-circle']}>
+                  <CircularProgressbar
+                    value={student.monthsCompleted/3 * 100}
+                    text={`${student.monthsCompleted}/3`}
+                    styles={buildStyles({
+                      pathColor: '#00bcd4',
+                      textColor: '#00bcd4',
+                      trailColor: '#eee',
+                    })}
+                  />
                 </div>
               </div>
               <div className={styles['actions-placeholder']}>

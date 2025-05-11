@@ -15,12 +15,12 @@ import ViewCompletedInternship from "./Components/Profile/viewCompletedInternshi
 import Applications from "./Components/Applications/Applications.jsx";
 import ViewApplicant from "./Components/Applications/ViewApplicant.jsx";
 import EvaluateIntern from "./Components/Applications/EvaluateIntern.jsx";
-import ViewStudent from "./Components/companyTest/viewStudent.jsx";
 import DashboardSCAD from './DashboardSCAD.tsx'
 import Students from './Students.tsx'
 import ReportSCAD from './ReportSCAD.tsx'
 import WorkshopSCAD from './WorkshopSCAD.tsx'
 import CompanySCAD from './CompanySCAD.tsx'
+import ViewStudent from './Components/companyTest/ViewStudent.jsx'
 
 function App() {
   return (
@@ -32,7 +32,6 @@ function App() {
         <Route path="/company" element={<CompanyDashboard />} />
         <Route path="/registerCompany" element={<registerCompany />} />
         <Route path="/call" element={<LoginPage />} />
-        <Route path="/Report" element={<Report />} />
         <Route path="/VideoCall" element={<VideoCall />} />
         <Route path="/Profile" element={<Profile pro={false} />} />
         <Route path="/ProfilePro" element={<Profile pro={true} />} />
@@ -50,7 +49,7 @@ function App() {
         <Route path="/Applications" element={<Applications />} />
         <Route path="/viewApplicant/:id" element={<ViewApplicant />} />
         <Route path="/evaluateIntern" element={<EvaluateIntern />} />
-        <Route path="/viewStudent" element={<ViewStudent />} />
+        <Route path="/viewStudent/:id" element={<ViewStudent />} />
         <Route path="/facultydashboard" element={<DashboardSCAD scad={false}/>} />
         <Route path="/scaddashboard" element={<DashboardSCAD scad={true}/>} />
         <Route path="/Students" element={<Students />} />
@@ -58,6 +57,9 @@ function App() {
         <Route path="/ReportFaculty" element={<ReportSCAD scad={false}/>} />
         <Route path="/WorkshopSCAD" element={<WorkshopSCAD />} />
         <Route path="/CompanySCAD" element={<CompanySCAD />} />
+        <Route path="/ViewStudent" element={<ViewStudent />} />
+
+        
       </Routes>
     </Router>
   );

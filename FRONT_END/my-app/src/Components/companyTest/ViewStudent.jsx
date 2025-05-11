@@ -2,22 +2,22 @@ import React from "react";
 import { useState } from "react";
 import styles from "../../Styles/profile.module.css";
 import completedInternships from "../../previousInternships.json";
-import SideBar from "../Dashboard/SideBar";
+import SideBar from "../Dashboard/SideBarSCAD";
+import { useParams } from "react-router-dom";
+import currentInterns from "../../currentInterns.json";
+
 
 const ViewStudent = () => {
+  const { id } = useParams();
+  const applicant = currentInterns[id];
   const [expandedInternship, setExpandedInternship] = useState(null);
-  let jobInterests = [
-    "Backend Development",
-    "Frontend Development",
-    "Cybersecurity",
-    "Data Science",
-  ];
+  let jobInterests = applicant.jobInterests
   let collegeActivities = ["coding competitions", "clubs", "group projects"];
-  let name = "John Pork";
-  let pro = true;
+  let name = applicant.name;
+  let pro = applicant.pro;
   return (
     <div className="cntnr">
-      <SideBar />
+      <SideBar scad={true}/>
       <div className="main-display">
         <div className="profile-main-content">
           <div className="profile-grid-top">
@@ -79,7 +79,7 @@ const ViewStudent = () => {
                                 : "")
                             }
                           >
-                            ▼
+                            ▶
                           </span>
                         </button>
                         <div

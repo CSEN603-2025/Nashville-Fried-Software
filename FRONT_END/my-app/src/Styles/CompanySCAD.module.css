@@ -118,6 +118,11 @@
   .modal p{
     color: #333;
   }
+
+  .page-title{
+    font-size: 43px;
+    margin-bottom: 2rem;
+  }
   
   .close-btn {
 
@@ -133,7 +138,7 @@
 
   .close-btn:hover{
     transform: scale(1.05);
-    background-color: #f5f5f5;
+    background-color:#f44336;
   }
   
   .modal-title {

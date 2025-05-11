@@ -5,7 +5,11 @@
     "jobInterests": ["APIs", "Databases", "Scalability"],
     "major": "Software Engineering",
     "semester": "7",
-    "internshipStatus": "current intern"
+    "monthsCompleted": 2,
+    "pro": true,
+    "age": 22,
+    "requested": false,
+    "replied": false
   },
   {
     "name": "Sophia Martinez",
@@ -13,7 +17,11 @@
     "jobInterests": ["SEO", "Social Media", "Content Strategy"],
     "major": "Marketing",
     "semester": "6",
-    "internshipStatus": "completed internship"
+    "monthsCompleted": 1,
+    "pro": true,
+    "age": 21,
+    "requested": true,
+    "replied": false
   },
   {
     "name": "Liam Walker",
@@ -21,7 +29,11 @@
     "jobInterests": ["CI/CD", "Cloud Infrastructure", "Monitoring"],
     "major": "Information Technology",
     "semester": "5",
-    "internshipStatus": "current intern"
+    "monthsCompleted": 3,
+    "pro": true,
+    "age": 20,
+    "requested": false,
+    "replied": false
   },
   {
     "name": "Isabella Chen",
@@ -29,18 +41,22 @@
     "jobInterests": ["Illustration", "Branding", "Typography"],
     "major": "Graphic Design",
     "semester": "6",
-    "internshipStatus": "completed internship"
+    "monthsCompleted": 0,
+    "pro": true,
+    "age": 21,
+    "requested": true,
+    "replied": false
   },
   {
     "name": "Ethan Hughes",
     "jobTitle": "AI Research Intern",
-    "jobInterests": [
-      "Neural Networks",
-      "Natural Language Processing",
-      "Computer Vision"
-    ],
+    "jobInterests": ["Neural Networks", "Natural Language Processing", "Computer Vision"],
     "major": "Artificial Intelligence",
     "semester": "8",
-    "internshipStatus": "current intern"
+    "monthsCompleted": 2,
+    "pro": false,
+    "age": 23,
+    "requested": false,
+    "replied": false
   }
 ]
