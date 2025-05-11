@@ -1,11 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useTransition } from 'react';
 import ContactBook from './Components/Appointments/ContactBook';
 import AppointmentRequestForm from './Components/Appointments/AppointmentRequestForm';
 import AppointmentNotifications from './Components/Appointments/AppointmentNotifications';
-import { useEffect } from 'react'; 
+import SideBar from './Components/Dashboard/SideBar';
 import './Appointments.css';
+
+
+// Type Definitions
 type User = {
   id: number;
   firstName: string;
@@ -24,7 +27,6 @@ type AppointmentRequest = {
   message: string;
   status: 'pending' | 'accepted' | 'rejected';
 };
-
 
 const mockUsers: User[] = [
   {
@@ -56,6 +58,7 @@ function AppointmentsPage() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [incomingRequests, setIncomingRequests] = useState<AppointmentRequest[]>([]);
   const [outgoingRequests, setOutgoingRequests] = useState<AppointmentRequest[]>([]);
+  const [isPending, startTransition] = useTransition();
 
   const currentUser: User = {
     id: 99,
@@ -69,145 +72,156 @@ function AppointmentsPage() {
     setSelectedUser(user);
   };
 
- const handleSendRequest = ({
-  recipientId,
-  subject,
-  date,
-  time,
-  message,
-}: {
-  recipientId: number;
-  subject: string;
-  date: string;
-  time: string;
-  message: string;
-}) => {
-  const recipient = mockUsers.find((u) => u.id === recipientId);
-  if (!recipient) return;
-
-  const newRequest: AppointmentRequest = {
-    id: requestIdCounter++,
-    sender: currentUser,
-    recipient,
+  const handleSendRequest = ({
+    recipientId,
     subject,
     date,
     time,
     message,
-    status: 'pending',
-  };
+  }: {
+    recipientId: number;
+    subject: string;
+    date: string;
+    time: string;
+    message: string;
+  }) => {
+    const recipient = mockUsers.find((u) => u.id === recipientId);
+    if (!recipient) return;
 
-  setOutgoingRequests((prev) => [...prev, newRequest]);
-  setSelectedUser(null);
-
-  // Simulate the recipient accepting after 3 seconds
-  setTimeout(() => {
-    setOutgoingRequests((prev) =>
-      prev.map((r) =>
-        r.id === newRequest.id ? { ...r, status: 'accepted' } : r
-      )
-    );
-  }, 3000);
-};
-
-  const handleRespondToRequest = (requestId: number, response: 'accepted' | 'rejected') => {
-  setIncomingRequests((prev) => {
-    const target = prev.find((r) => r.id === requestId);
-    if (!target) return prev;
-
-    if (response === 'accepted') {
-      const newResponse = {
-        id: requestId,
-        recipient: target.sender,
-        status: 'accepted',
-      };
-      setOutgoingRequests((prevOut) => [...prevOut, newResponse]);
-    }
-
-    return prev.filter((r) => r.id !== requestId); // remove from incoming
-  });
-};
-
-  useEffect(() => {
-  const timer = setTimeout(() => {
-    const simulatedRequest: AppointmentRequest = {
+    const newRequest: AppointmentRequest = {
       id: requestIdCounter++,
-      sender: mockUsers[0], // Alice sends the request
-      recipient: currentUser,
-      subject: 'Quick Catch-Up',
-      date: '2025-05-15',
-      time: '14:30',
-      message: 'Hey! Let’s touch base about the project.',
+      sender: currentUser,
+      recipient,
+      subject,
+      date,
+      time,
+      message,
       status: 'pending',
     };
 
-    setIncomingRequests((prev) => [...prev, simulatedRequest]);
-  }, 3000); 
+    setOutgoingRequests((prev) => [...prev, newRequest]);
+    setSelectedUser(null);
 
-  return () => clearTimeout(timer); // Cleanup on unmount
-}, []);
+    // Simulate async server response
+    setTimeout(() => {
+      startTransition(() => {
+        setOutgoingRequests((prev) =>
+          prev.map((r) =>
+            r.id === newRequest.id ? { ...r, status: 'accepted' } : r
+          )
+        );
+      });
+    }, 3000);
+  };
+
+  const handleRespondToRequest = (requestId: number, response: 'accepted' | 'rejected') => {
+    setIncomingRequests((prev) => {
+      const target = prev.find((r) => r.id === requestId);
+      if (!target) return prev;
+
+      if (response === 'accepted') {
+        const newResponse: AppointmentRequest = {
+          id: requestId,
+          sender: currentUser,
+          recipient: target.sender,
+          subject: 'Response',
+          date: '',
+          time: '',
+          message: '',
+          status: 'accepted',
+        };
+        setOutgoingRequests((prevOut) => [...prevOut, newResponse]);
+      }
+
+      return prev.filter((r) => r.id !== requestId);
+    });
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const simulatedRequest: AppointmentRequest = {
+        id: requestIdCounter++,
+        sender: mockUsers[0],
+        recipient: currentUser,
+        subject: 'Quick Catch-Up',
+        date: '2025-05-15',
+        time: '14:30',
+        message: 'Hey! Let’s touch base about the project.',
+        status: 'pending',
+      };
+
+      setIncomingRequests((prev) => [...prev, simulatedRequest]);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <main className="appointments-page">
-  <h1 className="page-title">Manage Appointments</h1>
+    <div className="cntnr">
+      <div className="main-display">
+        <SideBar />
+      
 
-  <div className="appointments-layout">
-    {/* Left Side: Contact Book */}
-    <section className="contact-book-section">
-      <ContactBook users={mockUsers} onStartAppointment={handleStartAppointment} />
-    </section>
+      <main className="appointments-content">
+        <h1 className="page-title">Manage Appointments</h1>
 
-    {/* Right Side: Appointment Request Form + Notifications */}
-    <section className="right-side">
-      {selectedUser && (
-        <div className="appointment-form-section">
-          <AppointmentRequestForm
-            recipient={{
-              id: selectedUser.id.toString(),
-              firstName: selectedUser.firstName,
-              lastName: selectedUser.lastName,
-              profilePicture: selectedUser.profilePictureUrl,
-              isOnline: selectedUser.isOnline,
-            }}
-            onSendRequest={handleSendRequest}
-          />
+        <div className="appointments-inner">
+          <section className="contact-book-section">
+            <ContactBook users={mockUsers} onStartAppointment={handleStartAppointment} />
+          </section>
+
+          <section className="right-side">
+            {selectedUser && (
+              <div className="appointment-form-section">
+                <AppointmentRequestForm
+                  recipient={{
+                    id: selectedUser.id.toString(),
+                    firstName: selectedUser.firstName,
+                    lastName: selectedUser.lastName,
+                    profilePicture: selectedUser.profilePictureUrl,
+                    isOnline: selectedUser.isOnline,
+                  }}
+                  onSendRequest={handleSendRequest}
+                />
+              </div>
+            )}
+
+            <div className="notifications-section">
+              <AppointmentNotifications
+                incomingRequests={incomingRequests.map(({ id, sender, subject, date, time, message }) => ({
+                  id: id.toString(),
+                  sender: {
+                    id: sender.id.toString(),
+                    firstName: sender.firstName,
+                    lastName: sender.lastName,
+                    profilePicture: sender.profilePictureUrl,
+                    isOnline: sender.isOnline,
+                  },
+                  subject,
+                  date,
+                  time,
+                  message,
+                }))}
+                sentResponses={outgoingRequests.map(({ id, recipient, status }) => ({
+                  id: id.toString(),
+                  recipient: {
+                    id: recipient.id.toString(),
+                    firstName: recipient.firstName,
+                    lastName: recipient.lastName,
+                    profilePicture: recipient.profilePictureUrl,
+                    isOnline: recipient.isOnline,
+                  },
+                  status,
+                }))}
+                onAccept={(id) => handleRespondToRequest(Number(id), 'accepted')}
+                onReject={(id) => handleRespondToRequest(Number(id), 'rejected')}
+              />
+            </div>
+          </section>
         </div>
-      )}
-
-      <div className="notifications-section">
-        <AppointmentNotifications
-          incomingRequests={incomingRequests.map(({ id, sender, subject, date, time, message }) => ({
-            id: id.toString(),
-            sender: {
-              id: sender.id.toString(),
-              firstName: sender.firstName,
-              lastName: sender.lastName,
-              profilePicture: sender.profilePictureUrl,
-              isOnline: sender.isOnline,
-            },
-            subject,
-            date,
-            time,
-            message,
-          }))}
-          sentResponses={outgoingRequests.map(({ id, recipient, status }) => ({
-            id: id.toString(),
-            recipient: {
-              id: recipient.id.toString(),
-              firstName: recipient.firstName,
-              lastName: recipient.lastName,
-              profilePicture: recipient.profilePictureUrl,
-              isOnline: recipient.isOnline,
-            },
-            status,
-          }))}
-          onAccept={(id) => handleRespondToRequest(Number(id), 'accepted')}
-          onReject={(id) => handleRespondToRequest(Number(id), 'rejected')}
-        />
-      </div>
-    </section>
-  </div>
-</main>
-
+      </main>
+    </div>
+    </div>
   );
 }
 

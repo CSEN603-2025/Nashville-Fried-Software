@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import './SoftwareEngineeringAssessment.css';
+import SideBar from '../Dashboard/SideBar';
+
 type Question = {
   id: string;
   questionText: string;
@@ -71,6 +73,10 @@ const Assessments: React.FC<AssessmentProps> = () => {
   };
 
   return (
+    <div className="cntnr">
+      <div className="main-display">
+        <SideBar />
+
     <div className="assessment-container">
       <h1 className="assessment-title">Software Engineering Assessment</h1>
 
@@ -109,6 +115,8 @@ const Assessments: React.FC<AssessmentProps> = () => {
       <button className="upload-button" onClick={handleUploadScore}>
         Upload Score
       </button>
+    </div>
+    </div>
     </div>
   );
 };

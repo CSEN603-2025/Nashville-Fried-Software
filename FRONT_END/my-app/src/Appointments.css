@@ -45,3 +45,15 @@
   border-radius: 8px;
   border: 1px solid #ddd;
 }
+.cntnr{
+    display: grid;
+    grid-template-columns: 20% 1fr; /* 30% for the left column, the rest for the right /
+     / Optional spacing between columns */
+  }
+
+  .main-display{
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+
+}
