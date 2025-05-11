@@ -7,18 +7,20 @@ import '../ComponentStyles/Rating.css'
 const Rating = () => {
   const navigate = useNavigate()
   const [rating, setRating] = useState(0);
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState("");
 
   const handleRating = (newRating: number) => {
     setRating(newRating);
   };
 
-  const handleFeedbackChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleFeedbackChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setFeedback(event.target.value);
   };
 
   return (
-      <div className="rating-box">
+    <div className="rating-box">
       Please rate your experience!
         <div className="stars-container">
 
@@ -38,6 +40,14 @@ const Rating = () => {
           Submit and Exit
         </button>
       </div>
+      <textarea
+        className="feedback-textarea"
+        placeholder="Enter your feedback here..."
+        value={feedback}
+        onChange={handleFeedbackChange}
+      />
+      <button className="submit-button">Submit and Exit</button>
+    </div>
   );
 };
 

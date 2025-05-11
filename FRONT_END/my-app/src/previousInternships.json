@@ -1,25 +1,5 @@
 [
   {
-    "company_name": "TechNova Solutions",
-    "job_title": "Software Development Intern",
-    "responsibilities": [
-      "Assist in developing web applications using React and Node.js",
-      "Write unit and integration tests",
-      "Collaborate with senior developers on feature implementation"
-    ],
-    "duration": "3 months"
-  },
-  {
-    "company_name": "GreenLeaf Marketing",
-    "job_title": "Digital Marketing Assistant",
-    "responsibilities": [
-      "Create and schedule social media posts",
-      "Monitor campaign performance using Google Analytics",
-      "Assist in SEO optimization tasks"
-    ],
-    "duration": "6 months"
-  },
-  {
     "company_name": "HealthFirst Clinic",
     "job_title": "Administrative Part-time Assistant",
     "responsibilities": [
@@ -30,14 +10,33 @@
     "duration": "Part-time (20 hrs/week)"
   },
   {
-    "company_name": "EduMentors Inc.",
-    "job_title": "Content Writing Intern",
+    "company_name": "ByteBridge AI",
+    "job_title": "Machine Learning Intern",
     "responsibilities": [
-      "Write blog posts and study materials",
-      "Research academic topics across disciplines",
-      "Work with the editorial team for content review"
+      "Clean and preprocess data sets",
+      "Implement basic ML algorithms",
+      "Evaluate model performance"
+    ],
+    "duration": "4 months"
+  },
+  {
+    "company_name": "FinSight Analytics",
+    "job_title": "Data Analyst Intern",
+    "responsibilities": [
+      "Analyze financial data and trends",
+      "Build dashboards using Tableau",
+      "Assist in preparing investor reports"
+    ],
+    "duration": "3 months"
+  },
+  {
+    "company_name": "InnoTech Labs",
+    "job_title": "UI/UX Design Intern",
+    "responsibilities": [
+      "Design wireframes and prototypes",
+      "Conduct user research and usability testing",
+      "Collaborate with developers to implement designs"
     ],
     "duration": "2 months"
   }
- 
 ]

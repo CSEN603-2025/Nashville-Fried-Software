@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "company_name": "TechNova Solutions",
+    "job_title": "Frontend Development Intern",
+    "duration": "3 months",
+    "paid": true,
+    "expected_salary": "1500 USD/month",
+    "skills_required": ["HTML", "CSS", "JavaScript", "React"],
+    "job_description": "Assist in developing and maintaining user-facing features of our web platform. Work closely with design and backend teams to deliver a seamless user experience.",
+    "industry": "Software Development"
+  },
+  {
+    "id": 2,
+    "company_name": "GreenByte Analytics",
+    "job_title": "Data Analyst Intern",
+    "duration": "6 months",
+    "paid": true,
+    "expected_salary": "1000 USD/month",
+    "skills_required": ["Python", "Pandas", "SQL", "Data Visualization"],
+    "job_description": "Support the analytics team in collecting, cleaning, and analyzing data to generate actionable insights. Create dashboards and reports for stakeholders.",
+    "industry": "Data Analytics"
+  },
+  {
+    "id": 3,
+    "company_name": "EduSpark Learning",
+    "job_title": "Content Writer Intern",
+    "duration": "2 months",
+    "paid": false,
+    "expected_salary": null,
+    "skills_required": ["Creative Writing", "Grammar", "SEO", "Research"],
+    "job_description": "Develop engaging educational content for blogs and e-learning platforms. Ensure content accuracy and optimize for search engines.",
+    "industry": "Education",
+    "totalApps": 3
+  },
+  {
+    "id": 10,
+    "company_name": "EduSpark Learning",
+    "job_title": "Content Writer Intern",
+    "duration": "2 months",
+    "paid": false,
+    "expected_salary": null,
+    "skills_required": ["Creative Writing", "Grammar", "SEO", "Research"],
+    "job_description": "Develop engaging educational content for blogs and e-learning platforms. Ensure content accuracy and optimize for search engines.",
+    "industry": "Education",
+    "totalApps": 23
+
+  },
+  {
+    "id": 11,
+    "company_name": "EduSpark Learning",
+    "job_title": "Backend Intern",
+    "duration": "2 months",
+    "paid": false,
+    "expected_salary": null,
+    "skills_required": ["Creative Writing", "Grammar", "SEO", "Research"],
+    "job_description": "Develop engaging educational content for blogs and e-learning platforms. Ensure content accuracy and optimize for search engines.",
+    "industry": "Education",
+    "totalApps": 256
+  },
+  {
+    "id": 12,
+    "company_name": "EduSpark Learning",
+    "job_title": "Marketing Intern",
+    "duration": "2 months",
+    "paid": false,
+    "expected_salary": null,
+    "skills_required": ["Creative Writing", "Grammar", "SEO", "Research"],
+    "job_description": "Develop engaging educational content for blogs and e-learning platforms. Ensure content accuracy and optimize for search engines.",
+    "industry": "Education",
+    "totalApps": 72
+
+  },
+  {
+    "id": 4,
+    "company_name": "CyberCore Systems",
+    "job_title": "Cybersecurity Intern",
+    "duration": "4 months",
+    "paid": true,
+    "expected_salary": "1200 USD/month",
+    "skills_required": ["Networking", "Linux", "Python", "Security Tools"],
+    "job_description": "Assist in monitoring network security and responding to incidents. Conduct vulnerability assessments and document findings.",
+    "industry": "Cybersecurity"
+  },
+  {
+    "id": 5,
+    "company_name": "PixelCraft Studios",
+    "job_title": "Graphic Design Intern",
+    "duration": "3 months",
+    "paid": false,
+    "expected_salary": null,
+    "skills_required": [
+      "Adobe Photoshop",
+      "Illustrator",
+      "Creativity",
+      "Typography"
+    ],
+    "job_description": "Work with the design team to create visual content for marketing and social media. Contribute to branding and UI/UX projects.",
+    "industry": "Design & Media"
+  }
+]

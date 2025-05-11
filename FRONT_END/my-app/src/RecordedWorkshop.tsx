@@ -5,7 +5,7 @@ import notesIcon from './assets/notes.svg';
 import addIcon from './assets/add.svg';
 import deleteIcon from './assets/delete.svg';
 import leaveIcon from './assets/leave.svg';
-import Rating from './Components/VidWork/Rating.tsx'
+import Rating from './Components/VidWork/Rating'
 
 
 const RecordedWorkshop = () => {
