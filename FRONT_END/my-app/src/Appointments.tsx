@@ -220,7 +220,7 @@ function AppointmentsPage() {
         </div>
       </main>
     </div>
-    </div>
+  </div>
   );
 }
 
