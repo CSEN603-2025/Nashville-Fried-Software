@@ -134,7 +134,7 @@ function Report() {
 
   return (
     <div className="report-layout">
-      <SideBar />
+      <SideBar active='Reports'/>
 
       <div className="report-content">
         {creating || viewingReport !== null ? (

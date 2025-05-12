@@ -29,7 +29,8 @@
 
 
 
-.link-container a {
+.link, .active-link {
+  display: inline-block;
   position: relative;
   font-size: 2rem;
   text-decoration: none;
@@ -37,22 +38,38 @@
   margin: 3px;
   color: white;
   font-weight: 700;
+  width: fit-content;
 }
 
-.link-container a::after {
+.link::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
   height: 2px;
-  width: 0;
+  width: 0px;
   background-color: white;
   transition: width 0.3s ease-in-out;
 }
 
-.link-container a:hover::after {
-  width: 100%;
+.link:hover::after {
+  width: 419px;
 }
+
+.active-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 419px;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+}
+
+
+
+
 
 .dashboard-span{
   position: relative;

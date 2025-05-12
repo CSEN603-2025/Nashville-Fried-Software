@@ -26,7 +26,7 @@ const Students = () => {
 
   return (
     <div className={styles["cntnr"]}>
-      <SideBar scad={true}/>
+      <SideBar scad={true} active='Students'/>
       <div className={styles['main-display']}>
       <div className={styles['header-row']}>
         <h1 className={styles['page-title']}>Students</h1>

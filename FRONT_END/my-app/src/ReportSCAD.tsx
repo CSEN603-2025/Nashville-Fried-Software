@@ -180,7 +180,7 @@ const ReportSCAD = ({scad} : {scad:boolean}) => {
 
   return (
     <div className={styles["cntnr"]}>
-      <SideBar scad={scad}/>
+      <SideBar scad={scad} active='Reports'/>
       <div className={styles['main-display']}>
         <div className={styles['header-row']}>
           <h1 className={styles['page-title']}>Reports</h1>

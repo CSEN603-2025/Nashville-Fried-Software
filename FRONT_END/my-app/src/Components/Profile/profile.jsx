@@ -111,7 +111,7 @@ const Profile = ({ pro }) => {
   let name = "John Pork";
   return (
     <div className="cntnr">
-      <SideBar />
+      <SideBar active="Profile"/>
       <div className="main-display">
         <div className="profile-main-content">
           <div className="profile-grid-top">

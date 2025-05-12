@@ -5,7 +5,7 @@ import SideBar from "../Dashboard/SideBar";
 const Evaluation = () => {
   return (
     <div className="cntnr">
-      <SideBar />
+      <SideBar active="Evaluations"/>
       <div className="main-display">
         <h1>Evaluate a Company</h1>
         <div className={styles["formBox"]}>

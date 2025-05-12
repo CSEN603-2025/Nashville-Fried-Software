@@ -11,7 +11,7 @@ const DashboardStudent = ({pro}) =>{
     const [notifications, setNotifications] = useState([]);
     return (
     <div className="cntnr">
-        <SideBar/>
+        <SideBar active="Dashboard"/>
         <div className="main-display">
             {pro && <CallBanner onMissedCall={(msg) => setNotifications((prev) => [...prev, msg])}/>}
             <div className="two-cards">

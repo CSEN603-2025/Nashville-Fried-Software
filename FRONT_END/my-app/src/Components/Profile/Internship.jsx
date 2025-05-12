@@ -86,7 +86,7 @@ const Internships = ({isStudent = false}) => {
   };
   return (
     <div className="cntnr">
-      {isStudent ? (<SideBar />) : (<SideBarSCAD scad={true}/>)}
+      {isStudent ? (<SideBar active="Internships"/>) : (<SideBarSCAD scad={true} active='Interniships'/>)}
       <div className="main-display">
       
        { isStudent?

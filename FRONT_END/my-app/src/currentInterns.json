@@ -9,7 +9,8 @@
     "pro": true,
     "age": 22,
     "requested": false,
-    "replied": false
+    "replied": false,
+    "internshipStatus": "completed internship"
   },
   {
     "name": "Sophia Martinez",
@@ -21,7 +22,8 @@
     "pro": true,
     "age": 21,
     "requested": true,
-    "replied": false
+    "replied": false,
+    "internshipStatus": "completed internship"
   },
   {
     "name": "Liam Walker",
@@ -33,7 +35,8 @@
     "pro": true,
     "age": 20,
     "requested": false,
-    "replied": false
+    "replied": false,
+    "internshipStatus": "current intern"
   },
   {
     "name": "Isabella Chen",
@@ -45,7 +48,8 @@
     "pro": true,
     "age": 21,
     "requested": true,
-    "replied": false
+    "replied": false,
+    "internshipStatus": "internship pending"
   },
   {
     "name": "Ethan Hughes",
@@ -57,6 +61,7 @@
     "pro": false,
     "age": 23,
     "requested": false,
-    "replied": false
+    "replied": false,
+    "internshipStatus": "internship pending"
   }
 ]

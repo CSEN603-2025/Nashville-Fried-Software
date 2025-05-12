@@ -58,7 +58,7 @@ const Applications = () => {
 
   return (
     <div className="cntnr">
-      <SideBar />
+      <SideBar active='Internships'/>
       <div className="main-display">
         <div className={styles["toggle-container"]}>
           <button
