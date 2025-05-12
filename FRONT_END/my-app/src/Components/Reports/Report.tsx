@@ -17,16 +17,16 @@ function Report({pro}) {
   });
 
   const [creating, setCreating] = useState(false);
-  const [viewingReport, setViewingReport] = useState<null | number>(null);
+  const [viewingReport, setViewingReport] = useState(null);
   const [editing, setEditing] = useState(false);
 
   const [title, setTitle] = useState('');
   const [intro, setIntro] = useState('');
   const [body, setBody] = useState('');
-  const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+  const [selectedCourses, setSelectedCourses] = useState([]);
 
   const [showCommentsModal, setShowCommentsModal] = useState(false);
-  const [selectedReportId, setSelectedReportId] = useState<number | null>(null);
+  const [selectedReportId, setSelectedReportId] = useState(null);
 
   const courseList = ['CA', 'SE', 'DMET', 'NETWORKS'];
 

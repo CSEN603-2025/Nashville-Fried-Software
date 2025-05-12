@@ -25,6 +25,7 @@ import WorkshopSCAD from "./WorkshopSCAD.tsx";
 import CompanySCAD from "./CompanySCAD.tsx";
 import AppointmentsPage from './Appointments.tsx'
 import Assessments from './Components/Assessment/AssessmentForm.jsx';
+import RegisterCompany from "./Components/Registration/RegisterCompany.jsx";
 
 function App() {
   return (
@@ -34,7 +35,6 @@ function App() {
         <Route path="/dashboard" element={<Dashboard pro={false} />} />
         <Route path="/dashboardPRO" element={<Dashboard pro={true} />} />
         <Route path="/company" element={<CompanyDashboard />} />
-        <Route path="/registerCompany" element={<registerCompany />} />
         <Route path="/call" element={<LoginPage />} />
         <Route path="/VideoCall" element={<VideoCall />} />
         <Route path="/Profile" element={<Profile pro={false} />} />
@@ -71,6 +71,7 @@ function App() {
         
         <Route path="/Appointments" element={<AppointmentsPage />} />
         <Route path="/Assessments" element={<Assessments />} />
+        <Route path="/RegisterCompany" element={<RegisterCompany />} />
       </Routes>
     </Router>
 
