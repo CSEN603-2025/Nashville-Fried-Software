@@ -190,6 +190,34 @@ const Evaluation = ({ pro }) => {
                 />
               </label>
 
+              <div className={styles["recommend-section"]}>
+                <span>Would you recommend this company?</span>
+                <label>
+                  <input
+                    id={styles['yes']}
+                    type="radio"
+                    name="recommend"
+                    value="yes"
+                    checked={formData.recommend === "yes"}
+                    onChange={handleInputChange}
+                    disabled={!isEditing}
+                  />
+                  Yes
+                </label>
+                <label>
+                  <input
+                  id={styles['no']}
+                    type="radio"
+                    name="recommend"
+                    value="no"
+                    checked={formData.recommend === "no"}
+                    onChange={handleInputChange}
+                    disabled={!isEditing}
+                  />
+                  No
+                </label>
+              </div>
+
               {error && (
                 <p className={styles["error-message"]}>{errorMessage}</p>
               )}
