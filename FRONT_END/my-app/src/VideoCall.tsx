@@ -168,7 +168,7 @@ function VideoCall() {
 
                 {showModal && (
                 <div className={styles['leave-modal']}>
-                    <button onClick = {() => {navigator('/dashboard')}} id='stringy3ny3ady' className={`${styles['modal-button']} ${styles['leave-call']}`}>
+                    <button onClick = {() => {navigator('/dashboardPRO')}} id='stringy3ny3ady' className={`${styles['modal-button']} ${styles['leave-call']}`}>
                     Leave Call
                     </button>
                     <button className={`${styles['modal-button']} ${styles['cancel']}`} onClick={cancelLeave}>

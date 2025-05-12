@@ -36,7 +36,7 @@ const Rating = () => {
         placeholder="Enter your feedback here..."
         value={feedback}
         onChange={handleFeedbackChange} />
-      <button onClick={() => { navigate('/dashboard'); } } className="submit-button">
+      <button onClick={() => { navigate('/dashboardPRO'); } } className="submit-button">
         Submit and Exit
       </button>
     </div><textarea

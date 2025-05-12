@@ -15,6 +15,7 @@ const Internships = ({ isStudent = false, pro=false }) => {
   const [industryFilter, setIndustryFilter] = useState("");
   const [durationFilter, setDurationFilter] = useState("");
   const [paidFilter, setPaidFilter] = useState("");
+  const [applyText, setApplyText] = useState("Apply to Internship");
 
   const [searchCompany, setSearchCompany] = useState("");
   const [searchTitle, setSearchTitle] = useState("");
@@ -70,6 +71,12 @@ const Internships = ({ isStudent = false, pro=false }) => {
   const toViewInternship = (index) => {
     setSelectedInternship(filteredInternships[index]);
   };
+
+  const handleFormApply = (s) =>{
+     setSelectedInternship({ ...s, applied: true });
+    // setApplyText("Applying...")
+    // setTimeout(()=> setApplyText("Applied!"), 1000);
+  }
 
   const handleCloseModal = () => {
     setSelectedInternship(null);
@@ -299,7 +306,7 @@ const Internships = ({ isStudent = false, pro=false }) => {
                 <p>{selectedInternship.job_description}</p>
                 {isStudent && (
                   <>
-                  <button>Apply to Internship</button>
+                  <button onClick={() => handleFormApply(selectedInternship)}>{selectedInternship.applied ? "Applied!" : "Apply to Internship"}</button>
                 <form>
                   <label>Upload Extra Documents (optional):</label>
                   <input type="file" name="filename" />

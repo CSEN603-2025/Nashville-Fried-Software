@@ -8,7 +8,8 @@
     "expected_salary": "1500 USD/month",
     "skills_required": ["HTML", "CSS", "JavaScript", "React"],
     "job_description": "Assist in developing and maintaining user-facing features of our web platform. Work closely with design and backend teams to deliver a seamless user experience.",
-    "industry": "Software Development"
+    "industry": "Software Development",
+    "applied" : false
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "expected_salary": "1000 USD/month",
     "skills_required": ["Python", "Pandas", "SQL", "Data Visualization"],
     "job_description": "Support the analytics team in collecting, cleaning, and analyzing data to generate actionable insights. Create dashboards and reports for stakeholders.",
-    "industry": "Data Analytics"
+    "industry": "Data Analytics",
+    "applied" : false
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "expected_salary": null,
     "skills_required": ["Creative Writing", "Grammar", "SEO", "Research"],
     "job_description": "Develop engaging educational content for blogs and e-learning platforms. Ensure content accuracy and optimize for search engines.",
-    "industry": "Education"
+    "industry": "Education",
+    "applied" : false
   },
   {
     "id": 4,
@@ -41,7 +44,8 @@
     "expected_salary": "1200 USD/month",
     "skills_required": ["Networking", "Linux", "Python", "Security Tools"],
     "job_description": "Assist in monitoring network security and responding to incidents. Conduct vulnerability assessments and document findings.",
-    "industry": "Cybersecurity"
+    "industry": "Cybersecurity",
+    "applied" : false
   },
   {
     "id": 5,
@@ -57,6 +61,7 @@
       "Typography"
     ],
     "job_description": "Work with the design team to create visual content for marketing and social media. Contribute to branding and UI/UX projects.",
-    "industry": "Design & Media"
+    "industry": "Design & Media",
+    "applied" : false
   }
 ]
