@@ -1,23 +1,26 @@
 import React, { useState, type FormEvent } from 'react';
+import './AppointmentRequestForm.css';
 
 type Profile = {
   id: string;
   firstName: string;
   lastName: string;
   profilePicture: string;
+  isOnline?: boolean;
 };
 
 type AppointmentRequestFormProps = {
   recipient: Profile;
-  onSend: (data: {
+  onSendRequest: (requestData: {
+    recipientId: number;
+    subject: string;
     date: string;
     time: string;
-    subject: string;
     message: string;
   }) => void;
 };
 
-function AppointmentRequestForm({ recipient, onSend }: AppointmentRequestFormProps) {
+function AppointmentRequestForm({ recipient, onSendRequest }: AppointmentRequestFormProps) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [subject, setSubject] = useState('');
@@ -25,7 +28,13 @@ function AppointmentRequestForm({ recipient, onSend }: AppointmentRequestFormPro
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSend({ date, time, subject, message });
+    onSendRequest({
+      recipientId: parseInt(recipient.id, 10), // convert from string to number if needed
+      subject,
+      date,
+      time,
+      message,
+    });
     setDate('');
     setTime('');
     setSubject('');
@@ -33,25 +42,50 @@ function AppointmentRequestForm({ recipient, onSend }: AppointmentRequestFormPro
   };
 
   return (
-    <div>
+    <div className="appointment-form-container">
       <h3>Request Appointment with {recipient.firstName} {recipient.lastName}</h3>
-      <img src={recipient.profilePicture} alt={`${recipient.firstName} ${recipient.lastName}`} width="50" height="50" />
-      <form onSubmit={handleSubmit}>
+      <img
+        className="profile-picture"
+        src={recipient.profilePicture}
+        alt={`${recipient.firstName} ${recipient.lastName}`}
+        width="50"
+        height="50"
+      />
+      <form className="appointment-form" onSubmit={handleSubmit}>
         <div>
           <label>Date: </label>
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            required
+          />
         </div>
         <div>
           <label>Time: </label>
-          <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required />
+          <input
+            type="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            required
+          />
         </div>
         <div>
           <label>Subject: </label>
-          <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} required />
+          <input
+            type="text"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            required
+          />
         </div>
         <div>
           <label>Message: </label>
-          <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          />
         </div>
         <button type="submit">Send Request</button>
       </form>

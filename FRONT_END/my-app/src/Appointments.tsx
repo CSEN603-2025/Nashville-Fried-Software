@@ -1,28 +1,52 @@
-import React, { useState } from 'react';
+'use client';
+import React, { useState, useEffect, useTransition } from 'react';
 import ContactBook from './Components/Appointments/ContactBook';
 import AppointmentRequestForm from './Components/Appointments/AppointmentRequestForm';
 import AppointmentNotifications from './Components/Appointments/AppointmentNotifications';
+import SideBar from './Components/Dashboard/SideBar';
+import './Appointments.css';
 
-const mockUsers = [
+
+// Type Definitions
+type User = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  profilePictureUrl: string;
+  isOnline: boolean;
+};
+
+type AppointmentRequest = {
+  id: number;
+  sender: User;
+  recipient: User;
+  subject: string;
+  date: string;
+  time: string;
+  message: string;
+  status: 'pending' | 'accepted' | 'rejected';
+};
+
+const mockUsers: User[] = [
   {
     id: 1,
     firstName: 'Alice',
     lastName: 'Johnson',
-    profilePictureUrl: 'https://example.com/alice.jpg',
+    profilePictureUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
     isOnline: true,
   },
   {
     id: 2,
     firstName: 'Brian',
     lastName: 'Smith',
-    profilePictureUrl: 'https://example.com/brian.jpg',
+    profilePictureUrl: 'https://randomuser.me/api/portraits/men/2.jpg',
     isOnline: false,
   },
   {
     id: 3,
     firstName: 'Carmen',
     lastName: 'Taylor',
-    profilePictureUrl: 'https://example.com/carmen.jpg',
+    profilePictureUrl: 'https://randomuser.me/api/portraits/women/3.jpg',
     isOnline: true,
   },
 ];
@@ -30,76 +54,173 @@ const mockUsers = [
 let requestIdCounter = 1;
 
 function AppointmentsPage() {
-  const [selectedUser, setSelectedUser] = useState<null | typeof mockUsers[0]>(null);
-  const [incomingRequests, setIncomingRequests] = useState<any[]>([]);
-  const [outgoingRequests, setOutgoingRequests] = useState<any[]>([]);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [incomingRequests, setIncomingRequests] = useState<AppointmentRequest[]>([]);
+  const [outgoingRequests, setOutgoingRequests] = useState<AppointmentRequest[]>([]);
+  const [isPending, startTransition] = useTransition();
 
-  const currentUser = {
+  const currentUser: User = {
     id: 99,
     firstName: 'You',
     lastName: 'User',
-    profilePictureUrl: 'https://example.com/you.jpg',
+    profilePictureUrl: 'https://randomuser.me/api/portraits/lego/1.jpg',
+    isOnline: true,
   };
 
-  const handleStartAppointment = (user: typeof mockUsers[0]) => {
+  const handleStartAppointment = (user: User) => {
     setSelectedUser(user);
   };
 
-  const handleSendRequest = (requestData: {
+  const handleSendRequest = ({
+    recipientId,
+    subject,
+    date,
+    time,
+    message,
+  }: {
     recipientId: number;
     subject: string;
     date: string;
     time: string;
     message: string;
   }) => {
-    const recipient = mockUsers.find((u) => u.id === requestData.recipientId);
+    const recipient = mockUsers.find((u) => u.id === recipientId);
     if (!recipient) return;
 
-    const newRequest = {
+    const newRequest: AppointmentRequest = {
       id: requestIdCounter++,
       sender: currentUser,
       recipient,
-      subject: requestData.subject,
-      date: requestData.date,
-      time: requestData.time,
-      message: requestData.message,
+      subject,
+      date,
+      time,
+      message,
       status: 'pending',
     };
 
-    // Add to outgoing and incoming for demo purposes
     setOutgoingRequests((prev) => [...prev, newRequest]);
-    setIncomingRequests((prev) => [...prev, { ...newRequest, sender: recipient, recipient: currentUser }]);
-
     setSelectedUser(null);
+
+    // Simulate async server response
+    setTimeout(() => {
+      startTransition(() => {
+        setOutgoingRequests((prev) =>
+          prev.map((r) =>
+            r.id === newRequest.id ? { ...r, status: 'accepted' } : r
+          )
+        );
+      });
+    }, 3000);
   };
 
   const handleRespondToRequest = (requestId: number, response: 'accepted' | 'rejected') => {
-    setIncomingRequests((prev) =>
-      prev.map((r) =>
-        r.id === requestId ? { ...r, status: response } : r
-      )
-    );
+    setIncomingRequests((prev) => {
+      const target = prev.find((r) => r.id === requestId);
+      if (!target) return prev;
+
+      if (response === 'accepted') {
+        const newResponse: AppointmentRequest = {
+          id: requestId,
+          sender: currentUser,
+          recipient: target.sender,
+          subject: 'Response',
+          date: '',
+          time: '',
+          message: '',
+          status: 'accepted',
+        };
+        setOutgoingRequests((prevOut) => [...prevOut, newResponse]);
+      }
+
+      return prev.filter((r) => r.id !== requestId);
+    });
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const simulatedRequest: AppointmentRequest = {
+        id: requestIdCounter++,
+        sender: mockUsers[0],
+        recipient: currentUser,
+        subject: 'Quick Catch-Up',
+        date: '2025-05-15',
+        time: '14:30',
+        message: 'Hey! Let’s touch base about the project.',
+        status: 'pending',
+      };
+
+      setIncomingRequests((prev) => [...prev, simulatedRequest]);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div>
-      <h1>Manage Appointments</h1>
+    <div className="cntnr">
+      <div className="main-display">
+        <SideBar />
+      
 
-      <ContactBook users={mockUsers} onStartAppointment={handleStartAppointment} />
+      <main className="appointments-content">
+        <h1 className="page-title">Manage Appointments</h1>
 
-      {selectedUser && (
-        <AppointmentRequestForm
-          recipient={selectedUser}
-          onSendRequest={handleSendRequest}
-        />
-      )}
+        <div className="appointments-inner">
+          <section className="contact-book-section">
+            <ContactBook users={mockUsers} onStartAppointment={handleStartAppointment} />
+          </section>
 
-      <AppointmentNotifications
-        incomingRequests={incomingRequests}
-        outgoingRequests={outgoingRequests}
-        onRespondToRequest={handleRespondToRequest}
-      />
+          <section className="right-side">
+            {selectedUser && (
+              <div className="appointment-form-section">
+                <AppointmentRequestForm
+                  recipient={{
+                    id: selectedUser.id.toString(),
+                    firstName: selectedUser.firstName,
+                    lastName: selectedUser.lastName,
+                    profilePicture: selectedUser.profilePictureUrl,
+                    isOnline: selectedUser.isOnline,
+                  }}
+                  onSendRequest={handleSendRequest}
+                />
+              </div>
+            )}
+
+            <div className="notifications-section">
+              <AppointmentNotifications
+                incomingRequests={incomingRequests.map(({ id, sender, subject, date, time, message }) => ({
+                  id: id.toString(),
+                  sender: {
+                    id: sender.id.toString(),
+                    firstName: sender.firstName,
+                    lastName: sender.lastName,
+                    profilePicture: sender.profilePictureUrl,
+                    isOnline: sender.isOnline,
+                  },
+                  subject,
+                  date,
+                  time,
+                  message,
+                }))}
+                sentResponses={outgoingRequests.map(({ id, recipient, status }) => ({
+                  id: id.toString(),
+                  recipient: {
+                    id: recipient.id.toString(),
+                    firstName: recipient.firstName,
+                    lastName: recipient.lastName,
+                    profilePicture: recipient.profilePictureUrl,
+                    isOnline: recipient.isOnline,
+                  },
+                  status,
+                }))}
+                onAccept={(id) => handleRespondToRequest(Number(id), 'accepted')}
+                onReject={(id) => handleRespondToRequest(Number(id), 'rejected')}
+              />
+            </div>
+          </section>
+        </div>
+      </main>
     </div>
+  </div>
   );
 }
 

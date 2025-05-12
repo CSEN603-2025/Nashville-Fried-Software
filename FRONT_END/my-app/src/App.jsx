@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./LoginPage.tsx";
@@ -21,6 +23,8 @@ import Students from "./Students.tsx";
 import ReportSCAD from "./ReportSCAD.tsx";
 import WorkshopSCAD from "./WorkshopSCAD.tsx";
 import CompanySCAD from "./CompanySCAD.tsx";
+import AppointmentsPage from './Appointments.tsx'
+import Assessments from './Components/Assessment/AssessmentForm.jsx';
 
 function App() {
   return (
@@ -65,8 +69,11 @@ function App() {
         <Route path="/ViewStudent" element={<ViewStudent />} />
 
         
+        <Route path="/Appointments" element={<AppointmentsPage />} />
+        <Route path="/Assessments" element={<Assessments />} />
       </Routes>
     </Router>
+
   );
 }
 

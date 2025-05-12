@@ -1,32 +1,56 @@
 import React from 'react';
+import './ContactBook.css';
 
-type Contact = {
-  id: string;
+interface User {
+  id: number;
   firstName: string;
   lastName: string;
-  profilePicture: string;
-};
+  profilePictureUrl: string;
+  isOnline: boolean;
+}
 
-type ContactBookProps = {
-  contacts: Contact[];
-  onSelect: (contact: Contact) => void;
-};
+interface ContactBookProps {
+  users: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    profilePictureUrl: string;
+    isOnline: boolean;
+  }[];
+  onStartAppointment: (user: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    profilePictureUrl: string;
+    isOnline: boolean;
+  }) => void;
+}
 
-function ContactBook({ contacts, onSelect }: ContactBookProps) {
-  // Sort contacts alphabetically by last name
-  const sortedContacts = [...contacts].sort((a, b) =>
+function ContactBook({ users, onStartAppointment }: ContactBookProps) {
+  const sortedUsers = [...users].sort((a, b) =>
     a.lastName.localeCompare(b.lastName)
   );
 
   return (
-    <div>
-      <h2>Contact Book</h2>
-      <ul>
-        {sortedContacts.map((contact) => (
-          <li key={contact.id}>
-            <img src={contact.profilePicture} alt={`${contact.firstName} ${contact.lastName}`} width="50" height="50" />
-            <span>{contact.firstName} {contact.lastName}</span>
-            <button onClick={() => onSelect(contact)}>Request Appointment</button>
+    <div className="contact-book-container">
+      <h2 className="contact-book-title">Contact Book</h2>
+      <ul className="contact-list">
+        {sortedUsers.map((user) => (
+          <li key={user.id} className="contact-item">
+            <img
+              src={user.profilePictureUrl}
+              alt={`${user.firstName} ${user.lastName}`}
+              className="contact-avatar"
+            />
+            <span className="contact-name">
+              {user.firstName} {user.lastName}
+            </span>
+            <button
+              className="contact-button"
+              onClick={() => onStartAppointment(user)}
+            >
+              Request Appointment
+            </button>
           </li>
         ))}
       </ul>
