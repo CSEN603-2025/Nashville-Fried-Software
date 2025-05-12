@@ -52,13 +52,13 @@ const Applications = () => {
     setReviewStatus(false);
   };
 
-  const toEvaluateIntern = (name) => {
-    navigate("/evaluateIntern/" + name);
+  const toEvaluateIntern = (index) => {
+    setSelectedApplicant(currentInterns[index]);
   };
 
   return (
     <div className="cntnr">
-      <SideBar active='Internships'/>
+      <SideBar active="Internships" />
       <div className="main-display">
         <div className={styles["toggle-container"]}>
           <button
@@ -160,8 +160,8 @@ const Applications = () => {
                     <h4>Job Title: {item.jobTitle}</h4>
                     <h4>Status: {item.internshipStatus}</h4>
                     {item.internshipStatus === "completed internship" && (
-                      <button onClick={() => toEvaluateIntern(item.name)}>
-                        Evaluate Intern
+                      <button onClick={() => toEvaluateIntern(index)}>
+                        View Intern
                       </button>
                     )}
                   </div>

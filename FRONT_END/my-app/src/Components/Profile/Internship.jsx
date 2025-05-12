@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import styles from "../../Styles/internships.module.css";
 import SideBar from "../Dashboard/SideBar";
 import SideBarSCAD from "../Dashboard/SideBarSCAD";
-import internshipStatusData from '../../internshipStatusData.json'
-import SideBarCompany from '../Dashboard/SideBarCompany'
-const Internships = ({ isStudent = false, pro=false , isCompany  = false}) => {
+import internshipStatusData from "../../internshipStatusData.json";
+import SideBarCompany from "../Dashboard/SideBarCompany";
+const Internships = ({ isStudent = false, pro = false, isCompany = false }) => {
   const navigate = useNavigate();
   const [view, setView] = useState("available");
   const [companySearch, setCompanySearch] = useState("");
@@ -73,18 +73,18 @@ const Internships = ({ isStudent = false, pro=false , isCompany  = false}) => {
     setSelectedInternship(filteredInternships[index]);
   };
 
-  const handleFormApply = (s) =>{
-     setSelectedInternship({ ...s, applied: true });
+  const handleFormApply = (s) => {
+    setSelectedInternship({ ...s, applied: true });
     // setApplyText("Applying...")
     // setTimeout(()=> setApplyText("Applied!"), 1000);
-  }
+  };
 
   const handleCloseModal = () => {
     setSelectedInternship(null);
   };
 
-  const toViewCompletedInternship = (name) => {
-    navigate("/Evaluation/" + name);
+  const toViewCompletedInternship = (index) => {
+    setCompletedInternship(filteredData[index]);
   };
 
   const handleCloseCompleted = () => {
@@ -92,11 +92,16 @@ const Internships = ({ isStudent = false, pro=false , isCompany  = false}) => {
   };
   return (
     <div className="cntnr">
-      {isStudent ? (<SideBar active="Internships" pro={pro}/>) : isCompany ? (<SideBarCompany active = "Internshipcompany"/>) : (<SideBarSCAD scad={true} active='Internships'/>)}
+      {isStudent ? (
+        <SideBar active="Internships" pro={pro} />
+      ) : isCompany ? (
+        <SideBarCompany active="Internshipcompany" />
+      ) : (
+        <SideBarSCAD scad={true} active="Internships" />
+      )}
       <div className="main-display">
-      
-       { isStudent?
-       (<div className={styles["toggle-container"]}>
+        {isStudent ? (
+          <div className={styles["toggle-container"]}>
             <>
               <button
                 onClick={() => setView("available")}
@@ -127,7 +132,7 @@ const Internships = ({ isStudent = false, pro=false , isCompany  = false}) => {
                     : `{ ${styles["toggle-option"]} ${styles["inactive"]} }`
                 }
               >
-               Applied Internships 
+                Applied Internships
               </button>
             </>
           </div>
@@ -192,7 +197,6 @@ const Internships = ({ isStudent = false, pro=false , isCompany  = false}) => {
             <div className={styles["internshipListings"]}>
               {filteredInternships.length > 0 ? (
                 filteredInternships.map((internship, index) => (
-                  
                   <div key={index}>
                     <h3>{internship.company_name}</h3>
                     <h4>Job Title: {internship.job_title}</h4>
@@ -255,12 +259,8 @@ const Internships = ({ isStudent = false, pro=false , isCompany  = false}) => {
                     <h4>Date: {item.date}</h4>
                     <h4>Status: {item.status}</h4>
                     {item.status === "internship complete" && (
-                      <button
-                        onClick={() =>
-                          toViewCompletedInternship(item.company_name)
-                        }
-                      >
-                        Evaluate Company
+                      <button onClick={() => toViewCompletedInternship(index)}>
+                        View Internship
                       </button>
                     )}
                   </div>
@@ -277,14 +277,11 @@ const Internships = ({ isStudent = false, pro=false , isCompany  = false}) => {
             <div className={styles["internshipListings"]}>
               {internshipStatusData.map((item, index) => (
                 <div key={index}>
-                    <h3>{item.company_name}</h3>
-                    <h4>Job Title: {item.job_title}</h4>
-                    <h4>Status: {item.status}</h4>
-                  </div>
-              ))
-            }
-                
-                
+                  <h3>{item.company_name}</h3>
+                  <h4>Job Title: {item.job_title}</h4>
+                  <h4>Status: {item.status}</h4>
+                </div>
+              ))}
             </div>
           </>
         )}
@@ -307,14 +304,18 @@ const Internships = ({ isStudent = false, pro=false , isCompany  = false}) => {
                 <p>{selectedInternship.job_description}</p>
                 {isStudent && (
                   <>
-                  <button onClick={() => handleFormApply(selectedInternship)}>{selectedInternship.applied ? "Applied!" : "Apply to Internship"}</button>
-                <form>
-                  <label>Upload Extra Documents (optional):</label>
-                  <input type="file" name="filename" />
-                </form>
-                </>)
-                }
-                
+                    <button onClick={() => handleFormApply(selectedInternship)}>
+                      {selectedInternship.applied
+                        ? "Applied!"
+                        : "Apply to Internship"}
+                    </button>
+                    <form>
+                      <label>Upload Extra Documents (optional):</label>
+                      <input type="file" name="filename" />
+                    </form>
+                  </>
+                )}
+
                 <button onClick={handleCloseModal}>Close</button>
               </div>
             </div>
