@@ -160,11 +160,11 @@
   .modal-actions {
     margin-top: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20%;
   }
   
-  .save-button, .view-btn{
+  .save-button, .del-button, .view-btn{
     padding: 10px 24px;
     border-radius: 8px;
     border: 1px solid #3a7bd5;
@@ -197,7 +197,17 @@
   box-shadow: none; /* optional: remove shadow */
   transform: none; /* cancel transform on disabled */
 }
+  .del-button{
+    background-color: white;
+    color:red;
+    border: 1px solid red;
+  }
   
+  .del-button:hover{
+    background-color: red;
+     box-shadow: 0 4px 12px rgba(226, 13, 2, 0.4);
+    color:white;
+  }
   
   .close-button {
     font-size: 24px;
@@ -212,6 +222,8 @@
     background-color: red;
     color: #555;
   }
+
+  
 
   .add-icon{
     background: transparent;

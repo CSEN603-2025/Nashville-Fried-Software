@@ -131,7 +131,7 @@ const SCADStats: React.FC<SCADStatsProps> = ({ scad }) => {
       <div className={styles["top-lists"]}>
         {renderList("Most Used Courses", '% Usage', topCourses)}
         {renderList("Top Rated Companies", 'Rating', topRatedCompanies)}
-        {renderList("Top Internship Companies", 'Intenrship Count', topInternshipCompanies)}
+        {renderList("Top Internship Companies", 'Internship Count', topInternshipCompanies)}
       </div>
     </div>
   );

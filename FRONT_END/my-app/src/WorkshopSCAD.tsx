@@ -252,7 +252,7 @@ const WorkshopSCAD = () => {
                 </label>
 
                 <label>
-                Speaker Agenda:
+                Workshop Agenda:
                 <textarea
                     name="speakerAgenda"
                     placeholder="Detailed schedule or topics the speaker will cover"
@@ -270,7 +270,7 @@ const WorkshopSCAD = () => {
                   <>
                     <button className={styles['save-button']} type="submit" disabled={!isEditing}>Save</button>
                     <button className={styles['save-button']} type="button" onClick={handleEditClick}>Edit</button>
-                    <button className={styles['save-button']} type='button' onClick={handleDeleteClick}>Delete</button>
+                    <button className={styles['del-button']} type='button' onClick={handleDeleteClick}>Delete</button>
                   </>
                 )}
               </div>

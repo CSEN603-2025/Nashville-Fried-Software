@@ -86,7 +86,7 @@ const Internships = ({isStudent = false}) => {
   };
   return (
     <div className="cntnr">
-      {isStudent ? (<SideBar active="Internships"/>) : (<SideBarSCAD scad={true} active='Interniships'/>)}
+      {isStudent ? (<SideBar active="Internships"/>) : (<SideBarSCAD scad={true} active='Internships'/>)}
       <div className="main-display">
       
        { isStudent?
@@ -180,7 +180,7 @@ const Internships = ({isStudent = false}) => {
                     <h3>{internship.company_name}</h3>
                     <h4>Job Title: {internship.job_title}</h4>
                     <h4>Duration: {internship.duration}</h4>
-                    {isStudent && (
+                    {true && (
                       <button onClick={() => toViewInternship(index)}>
                         View Internship
                       </button>
@@ -267,11 +267,16 @@ const Internships = ({isStudent = false}) => {
                 </h4>
                 <h4>Job Description:</h4>
                 <p>{selectedInternship.job_description}</p>
-                <button>Apply to Internship</button>
+                {isStudent && (
+                  <>
+                  <button>Apply to Internship</button>
                 <form>
                   <label>Upload Extra Documents (optional):</label>
                   <input type="file" name="filename" />
                 </form>
+                </>)
+                }
+                
                 <button onClick={handleCloseModal}>Close</button>
               </div>
             </div>
