@@ -175,6 +175,7 @@ const Internships = ({isStudent = false}) => {
             <div className={styles["internshipListings"]}>
               {filteredInternships.length > 0 ? (
                 filteredInternships.map((internship, index) => (
+                  
                   <div key={index}>
                     <h3>{internship.company_name}</h3>
                     <h4>Job Title: {internship.job_title}</h4>

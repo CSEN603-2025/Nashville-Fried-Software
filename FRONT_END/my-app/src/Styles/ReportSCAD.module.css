@@ -58,7 +58,7 @@ font-size: 48px;
   }
   
   .report-card {
-    background-color: #5db2ff;
+    background: linear-gradient(135deg, #1f69d0 0%, #7bbdfa 100%);
     color: black;
     border-radius: 10px;
     padding: 1rem 1.5rem;
@@ -177,9 +177,10 @@ font-size: 48px;
     padding: 0.5rem 1rem;
     border: 1px  solid #3a7bd5;
     background-color:white;
+    color: #3a7bd5;
     height: 40px;
     width: 120px;
-    color: #3a7bd5;
+
     font-size: 18px;
     border-radius: 6px;
     cursor: pointer;
@@ -367,3 +368,5 @@ background-color: red;
   .status-list option:hover {
     background-color: #f1f1f1;
   }
+
+  
