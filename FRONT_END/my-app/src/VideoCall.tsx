@@ -10,14 +10,14 @@ import shareIcon from './assets/share.svg';
 import participantsIcon from './assets/participants.svg';
 import mutedIcon from './assets/muted.svg';
 import videoOffIcon from './assets/novideo.svg';
-import porkyJohn from './assets/john.png';
+import porkyJohn from './assets/person.svg';
 import muteSound from './assets/mute.wav'
 import unmuteSound from './assets/unute.wav'
 
 
 
 function VideoCall() {
-    const navigator = useNavigate()
+    const navigate = useNavigate()
     const videoRef = useRef(null);
     const cameraRef = useRef(null)
     let stream;
@@ -50,6 +50,7 @@ function VideoCall() {
         toggleVideo()
         if (!sharedVideo){
             setSharedVideo(true)
+            console.log(navigator)
             navigator.mediaDevices.getUserMedia({
                 video: {
                     width: 1920,
@@ -120,7 +121,7 @@ function VideoCall() {
             {shared && (
                 <video className={styles['screen-share']} width={400} height={200} ref={videoRef} autoPlay />
             )}
-            <div className={styles['card-title']}>Video call</div>
+            <div className={styles['card-title']}>Video Call</div>
             {showLeaveNotice && (
                 <div className={styles['leave-notice']}>John Pork has left the call.</div>
             )}
@@ -168,7 +169,7 @@ function VideoCall() {
 
                 {showModal && (
                 <div className={styles['leave-modal']}>
-                    <button onClick = {() => {navigator('/dashboardPRO')}} id='stringy3ny3ady' className={`${styles['modal-button']} ${styles['leave-call']}`}>
+                    <button onClick = {() => {navigate('/dashboardPRO')}} id='stringy3ny3ady' className={`${styles['modal-button']} ${styles['leave-call']}`}>
                     Leave Call
                     </button>
                     <button className={`${styles['modal-button']} ${styles['cancel']}`} onClick={cancelLeave}>

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import '../ComponentStyles/ProCard.css'
 import Workshops from './Workshops';
 import AssessmentList from './AssessmentsList';
+import lockIcon from '../../assets/lock.svg'
 
 
 const ProCard = ( {pro}) =>{
@@ -11,7 +12,7 @@ const ProCard = ( {pro}) =>{
     }
 
     return (
-        <div className="card-container">
+        <div className={pro ? "card-container" : "card-container"}>
   {pro ? (
     <>
       <button onClick={handleClick} className="switch">Switch View</button>
@@ -20,10 +21,13 @@ const ProCard = ( {pro}) =>{
     </>
   ) : (
     <>
-    <div className="not-pro-bg">
-        <div className="not-pro">
+      <div className='not-pro'>
+        <div className='text-no'>
+          <img src={lockIcon} className="lock-icon"/>
         <h2>Complete 3 months of Internships to access this feature!</h2>
+
         </div>
+
     </div>
     </>
 

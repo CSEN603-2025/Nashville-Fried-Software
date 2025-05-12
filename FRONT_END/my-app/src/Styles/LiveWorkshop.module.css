@@ -1,6 +1,7 @@
   /* Apply this class to the parent container */
   .bigboy{
     position: relative;
+
   }
   .centered-container {
   margin-bottom: 200px;
@@ -23,10 +24,10 @@
 
   .video-container {
     width: 100vw;
+    
     height: 100vh;
     z-index: 2;
-    background-color: #f4f4f4;
-    display: flex;
+    background: linear-gradient(-45deg, #5ee7df, #b490ca, #3bb1c8, #1da2d8);    display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -47,7 +48,7 @@
     width: 100%;
     gap: 30px;
     max-width: 1500px;
-    background-color: #f4f4f4;
+    background-color: transparent;
     padding: 0px 20px 20px 20px;
     transition:  0.6s ease;
   }
@@ -92,10 +93,12 @@
     align-items: center;
     justify-content: center;
     transition: background 0.2s ease;
+    color: #000;
   }
   
   .notes-button:hover {
     background: #eee;
+    color: #000;
   }
   
   .button-icon {
@@ -146,7 +149,7 @@
   
   .notes-input {
     width: 95%;
-    height: 50px;
+    height: 30px;
     resize: none;
     padding: 8px;
     border-radius: 4px;
@@ -198,6 +201,7 @@
     bottom: 10px;
     width: 100%;
     padding: 0 10px;
+
   }
   
   .message-input {
@@ -207,6 +211,8 @@
     border-radius: 20px;
     border: 1px solid #ccc;
     margin-right: 10px;
+    font-size: 18px;
+
   }
   
   .send-message-button {

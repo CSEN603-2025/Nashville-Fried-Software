@@ -1,5 +1,5 @@
 import React from 'react';
-import './Styles/LiveWorkshop.css';
+import styles from './Styles/LiveWorkshop.module.css';
 import {useState, useEffect, useRef} from 'react'
 import chatIcon from './assets/chat.svg';
 import addIcon from './assets/add.svg';
@@ -79,19 +79,19 @@ const LiveWorkshop = () => {
   };
 
   return (
-    <div className="bigboy">
-      <div className={`video-container ${hasLeft ? "blurred" : ""}`}>
-        <div className={`video-wrapper ${notesOpened ? "shrink" : ""}`}>
-          <div className={`videoo ${notesOpened ? "shrink" : ""}`}>
-            <div className="video-header">
-              <h2 className="workshop-title">React Basics Workshop</h2>
-              <div className="live-indicator">
-                <span className="red-dot" />
+    <div className={styles["bigboy"]}>
+      <div className={`${styles["video-container"]} ${hasLeft ? styles["blurred"] : ""}`}>
+        <div className={`${styles["video-wrapper"]} ${notesOpened ? styles["shrink"] : ""}`}>
+          <div className={`${styles["videoo"]} ${notesOpened ? styles["shrink"] : ""}`}>
+            <div className={styles["video-header"]}>
+              <h2 className={styles["workshop-title"]}>React Basics Workshop</h2>
+              <div className={styles["live-indicator"]}>
+                <span className={styles["red-dot"]} />
                 Live
               </div>
             </div>
             <video
-              className="video-frame"
+              className={styles["video-frame"]}
               src={workshopVideo}
               autoPlay
               muted
@@ -106,28 +106,28 @@ const LiveWorkshop = () => {
               }}
             />
             {showMessageNotice && !notesOpened && (
-              <div className="message-notice">
+              <div className={styles["message-notice"]}>
                 <strong>{msgNotice.user} : </strong>
                 {msgNotice.content}
               </div>
             )}
           </div>
 
-          <div className="sidebar">
+          <div className={styles["sidebar"]}>
             {!notesOpened && (
-              <div className="button-wrapper">
+              <div className={styles["button-wrapper"]}>
                 <button
-                  className="notes-button"
+                  className={styles["notes-button"]}
                   onClick={() => {
                     setNotesOpened(true);
                     setUnread(0);
                   }}
                 >
-                  <img src={chatIcon} alt="" className="button-icon" />
+                  <img src={chatIcon} alt="" className={styles["button-icon"]}/>
                   Chat
                 </button>
                 {unread > 0 && (
-                  <div className="notification-badge">{unread}</div>
+                  <div className={styles["notification-badge"]}>{unread}</div>
                 )}
               </div>
             )}
@@ -136,33 +136,31 @@ const LiveWorkshop = () => {
                 onClick={() => {
                   setHasLeft(true);
                 }}
-                className="notes-button"
+                className={styles["notes-button"]}
               >
-                <img src={leaveIcon} alt="" className="button-icon" />
+                <img src={leaveIcon} alt="" className={styles["button-icon"]} />
                 Leave
               </button>
             )}
           </div>
         </div>
 
-        <div className={`notes-section ${notesOpened ? "open" : "closed"}`}>
-          <div className="notes-header">
+        <div className={`${styles["notes-section"]} ${notesOpened ? styles["open"] : styles["closed"]}`}>
+          <div className={styles["notes-header"]}>
             <h1>Chat</h1>
             <button
-              className="close-button"
+              className={styles["close-button"]}
               onClick={() => setNotesOpened(false)}
             >
               ×
             </button>
           </div>
 
-          <div className="messages-list">
+          <div className={styles["messages-list"]}>
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`message-bubble ${
-                  message.user === "You" ? "sent" : "received"
-                }`}
+                className={`${styles["message-bubble"]} ${message.user === "You" ? styles["sent"] : styles["received"]}`}
               >
                 <strong>{message.user}: </strong>
                 <p>{message.content}</p>
@@ -171,23 +169,23 @@ const LiveWorkshop = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="message-input-container">
+          <div className={styles["message-input-container"]}>
             <textarea
-              className="message-input"
-              placeholder="Type a message..."
+              className={styles["message-input"]}
+              placeholder={styles["Type a message..."]}
               value={currMessage}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                 setCurrMessage(e.target.value)
               }
             />
-            <button onClick={sendMessage} className="send-message-button">
+            <button onClick={sendMessage} className={styles["send-message-button"]}>
               Send
-              <img src={sendIcon} alt="" className="send-button-icon" />
+              <img src={sendIcon} alt="" className={styles["send-button-icon"]} />
             </button>
           </div>
         </div>
       </div>
-      {hasLeft && <Rating className="centered-rating" />}
+      {hasLeft && <Rating className={styles["centered-rating"]} />}
     </div>
   );
 };
