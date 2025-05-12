@@ -158,7 +158,7 @@ function AppointmentsPage() {
   return (
     <div className="cntnr">
       <div className="main-display">
-        <SideBar />
+        <SideBar pro={true} active="Appointments" />
       
 
       <main className="appointments-content">

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './SoftwareEngineeringAssessment.css';
 import SideBar from '../Dashboard/SideBar';
+import { useNavigate } from 'react-router-dom';
 
 type Question = {
   id: string;
@@ -14,6 +15,8 @@ type AssessmentProps = {};
 
 const Assessments: React.FC<AssessmentProps> = () => {
 // Define the questions for the assessment
+  const navigate = useNavigate();
+  const [buttonText, setButtonText] = useState("Upload Score")
   const questions: Question[] = [
     {
       id: 'q1',
@@ -65,17 +68,22 @@ const Assessments: React.FC<AssessmentProps> = () => {
     });
 
     setScore(totalScore);
+    
+
+   
   };
 
   // Handle "Upload Score" button press
   const handleUploadScore = () => {
     setNotification('Your score has been uploaded to your profile!');
+     setButtonText("Uploading...")
+     setTimeout(() => navigate('/dashboardPRO'), 2200 );
   };
 
   return (
     <div className="cntnr">
       <div className="main-display">
-        <SideBar />
+        <SideBar pro={true} active="" />
 
     <div className="assessment-container">
       <h1 className="assessment-title">Software Engineering Assessment</h1>
@@ -113,7 +121,7 @@ const Assessments: React.FC<AssessmentProps> = () => {
       {notification && <p className="notification">{notification}</p>}
 
       <button className="upload-button" onClick={handleUploadScore}>
-        Upload Score
+        {buttonText}
       </button>
     </div>
     </div>

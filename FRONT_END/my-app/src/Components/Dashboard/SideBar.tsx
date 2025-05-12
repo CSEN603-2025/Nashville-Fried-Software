@@ -12,6 +12,9 @@ function SideBar({active, pro} : {active:string, pro:boolean}) {
       <Link className={active == 'Internships' ? 'active-link' : 'link'} to={ pro ? "/InternshipsPro": "/Internships"}>Internships</Link>
       <Link className={active == 'Evaluations' ? 'active-link' : 'link'} to={ pro ? "/EvaluatePro": "/Evaluate"}>Internship Evaluation</Link>
       <Link className={active == 'Reports' ? 'active-link' : 'link'}  to={ pro ? "/ReportPro": "/Report"}>Reports</Link>
+      {pro && <Link className={active == 'Appointments' ? 'active-link' : 'link'}  to="/Appointments">Appointments</Link>}
+      {/* {pro && <Link className={active == 'Assessments' ? 'active-link' : 'link'}  to="/Assessments">Assessments</Link>} */}
+ 
       <span className="scadtopia dashboard-span">SCADtopia</span>
     </div>
   );

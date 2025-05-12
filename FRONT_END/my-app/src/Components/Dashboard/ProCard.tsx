@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../ComponentStyles/ProCard.css'
 import Workshops from './Workshops';
-import AppointmentsList from './AppointmentsList';
+import AssessmentList from './AssessmentsList';
 
 
 const ProCard = ( {pro}) =>{
@@ -16,7 +16,7 @@ const ProCard = ( {pro}) =>{
     <>
       <button onClick={handleClick} className="switch">Switch View</button>
       {currView === 1 && <Workshops />}
-      {currView === 0 && <AppointmentsList />}
+      {currView === 0 && <AssessmentList />}
     </>
   ) : (
     <>
