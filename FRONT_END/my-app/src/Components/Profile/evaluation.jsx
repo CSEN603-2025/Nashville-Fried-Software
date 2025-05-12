@@ -10,31 +10,43 @@ const Evaluation = ({ pro }) => {
       company_name: "TechNova Inc.",
       evaluation: "Great work environment and supportive team.",
       recommend: "yes",
+      industry: "Software Development",
+      role: "Frontend Developer Intern",
     },
     {
       company_name: "InnoCore Solutions",
       evaluation: "Challenging workload with little guidance.",
       recommend: "no",
+      industry: "IT Consulting",
+      role: "Business Analyst Intern",
     },
     {
       company_name: "BrightLabs",
       evaluation: "Innovative projects and learning opportunities.",
       recommend: "yes",
+      industry: "Biotech",
+      role: "Data Science Intern",
     },
     {
       company_name: "QuantumSoft",
       evaluation: "Outdated tools and poor management.",
       recommend: "no",
+      industry: "Enterprise Software",
+      role: "Software Engineer Intern",
     },
     {
       company_name: "NeoEdge Technologies",
       evaluation: "Good mentorship and friendly colleagues.",
       recommend: "yes",
+      industry: "Cybersecurity",
+      role: "Security Analyst Intern",
     },
     {
       company_name: "DataSphere Corp.",
       evaluation: "Long hours but rewarding experience.",
       recommend: "yes",
+      industry: "Big Data Analytics",
+      role: "Data Engineer Intern",
     },
   ]);
   const [selectedWorkshop, setSelectedWorkshop] = useState(-1);
@@ -52,6 +64,7 @@ const Evaluation = ({ pro }) => {
   const handleModalOpen = (workshop) => {
     setSelectedWorkshop(workshop);
     setFormData(workshops[workshop]);
+    setError(false);
     setIsEditing(false);
     setShowModal(true);
   };
@@ -63,11 +76,13 @@ const Evaluation = ({ pro }) => {
       evaluation: "",
       recommend: "",
     });
+    setError(false);
     setIsEditing(true);
     setShowModal(true);
   };
 
   const handleEditClick = () => {
+    setError(false);
     setIsEditing(true);
   };
 
@@ -77,6 +92,7 @@ const Evaluation = ({ pro }) => {
       workshops.filter((workshop) => workshop !== workshops[selectedWorkshop])
     );
     setShowModal(false);
+    setError(false);
     setSelectedWorkshop(-1);
   };
 
@@ -91,6 +107,8 @@ const Evaluation = ({ pro }) => {
             : workshop
         )
       );
+      setShowModal(false);
+      setError(false);
     } else {
       if (
         !workshops.map((e) => e.company_name).includes(formData.company_name)
@@ -104,7 +122,7 @@ const Evaluation = ({ pro }) => {
         setTimeout(() => {
           setShowModal(false);
           setError(false);
-        }, 2000);
+        }, 1000);
       }
     }
     setIsEditing(false);
@@ -127,13 +145,17 @@ const Evaluation = ({ pro }) => {
           {workshops.map((workshop, index) => (
             <div key={index} className={styles["workshop-card"]}>
               <h3 className={styles["card-title"]}>{workshop.company_name}</h3>
+              <p className={styles["card-speaker"]}>
+                Industry : {workshop.industry}
+              </p>
+              <p className={styles["card-speaker"]}>Role : {workshop.role}</p>
               <button
                 className={styles["view-btn"]}
                 onClick={() => {
                   handleModalOpen(index);
                 }}
               >
-                View
+                View Evaluation
               </button>
             </div>
           ))}
@@ -154,7 +176,13 @@ const Evaluation = ({ pro }) => {
         <div className={styles["modal-overlay"]}>
           <div className={styles["modal-content"]}>
             <div className={styles["modal-header"]}>
-              <h2>{isEditing ? "Edit Workshop" : "Workshop Details"}</h2>
+              <h2>
+                {isEditing && selectedWorkshop >= 0
+                  ? "Edit Evaluation"
+                  : isEditing
+                  ? "New Evaluation"
+                  : "Evaluation Details"}
+              </h2>
               <button
                 className={styles["close-button"]}
                 onClick={() => {

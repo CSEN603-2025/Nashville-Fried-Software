@@ -7,43 +7,54 @@ import { faL } from "@fortawesome/free-solid-svg-icons";
 const EvaluateIntern = ({ pro }) => {
   const [workshops, setWorkshops] = useState([
     {
-      company_name: "TechNova Inc.",
-      evaluation: "Great work environment and supportive team.",
-      recommend: "yes",
+      student_name: "Ava Johnson",
+      evaluation:
+        "Ava was proactive and consistently met deadlines. Strong communication skills.",
+      role: "Marketing Intern",
+      major: "Business Administration",
     },
     {
-      company_name: "InnoCore Solutions",
-      evaluation: "Challenging workload with little guidance.",
-      recommend: "no",
+      student_name: "Liam Patel",
+      evaluation:
+        "Liam demonstrated excellent problem-solving abilities and adapted quickly to new tasks.",
+      role: "Software Developer Intern",
+      major: "Computer Science",
     },
     {
-      company_name: "BrightLabs",
-      evaluation: "Innovative projects and learning opportunities.",
-      recommend: "yes",
+      student_name: "Sophia Martinez",
+      evaluation:
+        "Sophia showed great initiative and worked well independently and with the team.",
+      role: "UX Design Intern",
+      major: "Graphic Design",
     },
     {
-      company_name: "QuantumSoft",
-      evaluation: "Outdated tools and poor management.",
-      recommend: "no",
+      student_name: "Noah Kim",
+      evaluation:
+        "Noah struggled initially but showed improvement by the end of the internship.",
+      role: "IT Support Intern",
+      major: "Information Technology",
     },
     {
-      company_name: "NeoEdge Technologies",
-      evaluation: "Good mentorship and friendly colleagues.",
-      recommend: "yes",
+      student_name: "Isabella Thompson",
+      evaluation:
+        "Isabella was highly dependable and delivered high-quality work consistently.",
+      role: "Data Analyst Intern",
+      major: "Statistics",
     },
     {
-      company_name: "DataSphere Corp.",
-      evaluation: "Long hours but rewarding experience.",
-      recommend: "yes",
+      student_name: "Elijah Brown",
+      evaluation:
+        "Elijah was enthusiastic and contributed positively to team discussions.",
+      role: "Product Management Intern",
+      major: "Management",
     },
   ]);
   const [selectedWorkshop, setSelectedWorkshop] = useState(-1);
   const [showModal, setShowModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    company_name: "",
+    student_name: "",
     evaluation: "",
-    recommend: "",
   });
 
   const [error, setError] = useState(false);
@@ -52,6 +63,7 @@ const EvaluateIntern = ({ pro }) => {
   const handleModalOpen = (workshop) => {
     setSelectedWorkshop(workshop);
     setFormData(workshops[workshop]);
+    setError(false);
     setIsEditing(false);
     setShowModal(true);
   };
@@ -59,15 +71,16 @@ const EvaluateIntern = ({ pro }) => {
   const handleAddModalOpen = () => {
     setSelectedWorkshop(-1);
     setFormData({
-      company_name: "",
+      student_name: "",
       evaluation: "",
-      recommend: "",
     });
+    setError(false);
     setIsEditing(true);
     setShowModal(true);
   };
 
   const handleEditClick = () => {
+    setError(false);
     setIsEditing(true);
   };
 
@@ -77,6 +90,7 @@ const EvaluateIntern = ({ pro }) => {
       workshops.filter((workshop) => workshop !== workshops[selectedWorkshop])
     );
     setShowModal(false);
+    setError(false);
     setSelectedWorkshop(-1);
   };
 
@@ -86,25 +100,27 @@ const EvaluateIntern = ({ pro }) => {
     if (selectedWorkshop >= 0) {
       setWorkshops(
         workshops.map((workshop) =>
-          workshop.company_name === workshops[selectedWorkshop].company_name
+          workshop.student_name === workshops[selectedWorkshop].student_name
             ? formData
             : workshop
         )
       );
+      setShowModal(false);
+      setError(false);
     } else {
       if (
-        !workshops.map((e) => e.company_name).includes(formData.company_name)
+        !workshops.map((e) => e.student_name).includes(formData.student_name)
       ) {
         setWorkshops([...workshops, formData]);
         setShowModal(false);
         setError(false);
       } else {
         setError(true);
-        setErrorMessage("Company Name already exists");
+        setErrorMessage("Student Name already exists");
         setTimeout(() => {
           setShowModal(false);
           setError(false);
-        }, 2000);
+        }, 1000);
       }
     }
     setIsEditing(false);
@@ -126,7 +142,9 @@ const EvaluateIntern = ({ pro }) => {
         <div className={styles["cards-container"]}>
           {workshops.map((workshop, index) => (
             <div key={index} className={styles["workshop-card"]}>
-              <h3 className={styles["card-title"]}>{workshop.company_name}</h3>
+              <h3 className={styles["card-title"]}>{workshop.student_name}</h3>
+              <p className={styles["card-speaker"]}>Role : {workshop.role}</p>
+              <p className={styles["card-speaker"]}>Major : {workshop.major}</p>
               <button
                 className={styles["view-btn"]}
                 onClick={() => {
@@ -154,7 +172,13 @@ const EvaluateIntern = ({ pro }) => {
         <div className={styles["modal-overlay"]}>
           <div className={styles["modal-content"]}>
             <div className={styles["modal-header"]}>
-              <h2>{isEditing ? "Edit Workshop" : "Workshop Details"}</h2>
+              <h2>
+                {isEditing && selectedWorkshop >= 0
+                  ? "Edit Evaluation"
+                  : isEditing
+                  ? "New Evaluation"
+                  : "Evaluation Details"}
+              </h2>
               <button
                 className={styles["close-button"]}
                 onClick={() => {
@@ -168,12 +192,12 @@ const EvaluateIntern = ({ pro }) => {
             </div>
             <form onSubmit={handleFormSubmit}>
               <label>
-                Company Name:
+                Student Name:
                 <input
                   type="text"
-                  name="company_name"
-                  placeholder="e.g. TechNova Inc."
-                  value={formData.company_name}
+                  name="student_name"
+                  placeholder="e.g. John Pork."
+                  value={formData.student_name}
                   onChange={handleInputChange}
                   disabled={!isEditing}
                   required
@@ -183,7 +207,7 @@ const EvaluateIntern = ({ pro }) => {
                 Evaluation:
                 <textarea
                   name="evaluation"
-                  placeholder="Evaluation of the company"
+                  placeholder="Evaluation of the student"
                   value={formData.evaluation}
                   onChange={handleInputChange}
                   disabled={!isEditing}

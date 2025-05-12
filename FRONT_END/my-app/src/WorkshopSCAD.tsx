@@ -202,7 +202,13 @@ const WorkshopSCAD = () => {
         <div className={styles["modal-overlay"]}>
           <div className={styles["modal-content"]}>
             <div className={styles["modal-header"]}>
-              <h2>{isEditing ? "Edit Workshop" : "Workshop Details"}</h2>
+              <h2>
+                {isEditing && selectedWorkshop >= 0
+                  ? "Edit Workshop"
+                  : isEditing
+                  ? "New Workshop"
+                  : "Workshop Details"}
+              </h2>
               <button
                 className={styles["close-button"]}
                 onClick={() => {
