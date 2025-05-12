@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import styles from "../../Styles/evalIntern.module.css";
 import SideBar from "../Dashboard/SideBar";
+import { useParams } from "react-router-dom";
 
 const EvaluateIntern = () => {
+  const { name } = useParams();
   const [evalStatus, setEvalStatus] = useState(false);
   return (
     <div className="cntnr">
       <SideBar />
       <div className="main-display">
-        <h1>Evaluate Student</h1>
+        <h1>Evaluate: {name}</h1>
         <div className={styles["formBox"]}>
           <form>
             {/* Student  Evaluation Textbox */}

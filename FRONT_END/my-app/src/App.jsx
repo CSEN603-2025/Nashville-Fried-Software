@@ -15,12 +15,12 @@ import ViewCompletedInternship from "./Components/Profile/viewCompletedInternshi
 import Applications from "./Components/Applications/Applications.jsx";
 import ViewApplicant from "./Components/Applications/ViewApplicant.jsx";
 import EvaluateIntern from "./Components/Applications/EvaluateIntern.jsx";
-import ViewStudent from "./Components/companyTest/viewStudent.jsx";
-import DashboardSCAD from './DashboardSCAD.tsx'
-import Students from './Students.tsx'
-import ReportSCAD from './ReportSCAD.tsx'
-import WorkshopSCAD from './WorkshopSCAD.tsx'
-import CompanySCAD from './CompanySCAD.tsx'
+import ViewStudent from "./Components/companyTest/ViewStudent.jsx";
+import DashboardSCAD from "./DashboardSCAD.tsx";
+import Students from "./Students.tsx";
+import ReportSCAD from "./ReportSCAD.tsx";
+import WorkshopSCAD from "./WorkshopSCAD.tsx";
+import CompanySCAD from "./CompanySCAD.tsx";
 
 function App() {
   return (
@@ -37,8 +37,11 @@ function App() {
         <Route path="/Profile" element={<Profile pro={false} />} />
         <Route path="/ProfilePro" element={<Profile pro={true} />} />
         <Route path="/Internships" element={<Internships isStudent={true} />} />
-        <Route path="/Internshipscad" element={<Internships isStudent={false} />} />
-        <Route path="/Evaluation" element={<Evaluation />} />
+        <Route
+          path="/Internshipscad"
+          element={<Internships isStudent={false} />}
+        />
+        <Route path="/Evaluation/:name" element={<Evaluation />} />
         <Route path="/Report" element={<Report />} />
         <Route path="/Workshops" element={<LiveWorkshop />} />
         <Route path="/RecWorkshop" element={<RecordedWorkshop />} />
@@ -49,13 +52,16 @@ function App() {
         />
         <Route path="/Applications" element={<Applications />} />
         <Route path="/viewApplicant/:id" element={<ViewApplicant />} />
-        <Route path="/evaluateIntern" element={<EvaluateIntern />} />
+        <Route path="/evaluateIntern/:name" element={<EvaluateIntern />} />
         <Route path="/viewStudent" element={<ViewStudent />} />
-        <Route path="/facultydashboard" element={<DashboardSCAD scad={false}/>} />
-        <Route path="/scaddashboard" element={<DashboardSCAD scad={true}/>} />
+        <Route
+          path="/facultydashboard"
+          element={<DashboardSCAD scad={false} />}
+        />
+        <Route path="/scaddashboard" element={<DashboardSCAD scad={true} />} />
         <Route path="/Students" element={<Students />} />
-        <Route path="/ReportSCAD" element={<ReportSCAD scad={true}/>} />
-        <Route path="/ReportFaculty" element={<ReportSCAD scad={false}/>} />
+        <Route path="/ReportSCAD" element={<ReportSCAD scad={true} />} />
+        <Route path="/ReportFaculty" element={<ReportSCAD scad={false} />} />
         <Route path="/WorkshopSCAD" element={<WorkshopSCAD />} />
         <Route path="/CompanySCAD" element={<CompanySCAD />} />
       </Routes>

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "../../Styles/internships.module.css";
 import SideBar from "../Dashboard/SideBar";
 
-const Internships = ({isStudent = false}) => {
+const Internships = ({ isStudent = false }) => {
   const navigate = useNavigate();
   const [view, setView] = useState("available");
   const [companySearch, setCompanySearch] = useState("");
@@ -22,8 +22,6 @@ const Internships = ({isStudent = false}) => {
 
   const [selectedInternship, setSelectedInternship] = useState(null);
   const [completedInternship, setCompletedInternship] = useState(null);
-
-  
 
   const filteredData = internshipHistory.filter((item) => {
     const matchesCompany = item.company_name
@@ -76,8 +74,8 @@ const Internships = ({isStudent = false}) => {
     setSelectedInternship(null);
   };
 
-  const toViewCompletedInternship = (index) => {
-    setCompletedInternship(filteredData[index]);
+  const toViewCompletedInternship = (name) => {
+    navigate("/Evaluation/" + name);
   };
 
   const handleCloseCompleted = () => {
@@ -87,9 +85,8 @@ const Internships = ({isStudent = false}) => {
     <div className="cntnr">
       <SideBar />
       <div className="main-display">
-      
-       { isStudent ?
-       (<div className={styles["toggle-container"]}>
+        {isStudent ? (
+          <div className={styles["toggle-container"]}>
             <>
               <button
                 onClick={() => setView("available")}
@@ -106,18 +103,18 @@ const Internships = ({isStudent = false}) => {
                 className={
                   view === "history"
                     ? `{ ${styles["toggle-option"]} ${styles["active"]} }`
-                    :  `{ ${styles["toggle-option"]} ${styles["inactive"]} }`
+                    : `{ ${styles["toggle-option"]} ${styles["inactive"]} }`
                 }
               >
                 Past/Present Internships
               </button>
             </>
-        
-        </div>
-       )  : <>
-              <h1 className="scad-title">Available Internships</h1>
-            </>
-        }
+          </div>
+        ) : (
+          <>
+            <h1 className="scad-title">Available Internships</h1>
+          </>
+        )}
 
         {view === "available" && (
           <>
@@ -236,8 +233,12 @@ const Internships = ({isStudent = false}) => {
                     <h4>Date: {item.date}</h4>
                     <h4>Status: {item.status}</h4>
                     {item.status === "internship complete" && (
-                      <button onClick={() => toViewCompletedInternship(index)}>
-                        View Internship
+                      <button
+                        onClick={() =>
+                          toViewCompletedInternship(item.company_name)
+                        }
+                      >
+                        Evaluate Company
                       </button>
                     )}
                   </div>

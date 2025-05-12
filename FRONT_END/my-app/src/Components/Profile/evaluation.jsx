@@ -1,13 +1,15 @@
 import React from "react";
 import styles from "../../Styles/eval.module.css";
 import SideBar from "../Dashboard/SideBar";
+import { useParams } from "react-router-dom";
 
 const Evaluation = () => {
+  const { name } = useParams();
   return (
     <div className="cntnr">
       <SideBar />
       <div className="main-display">
-        <h1>Evaluate a Company</h1>
+        <h1>Evaluate: {name}</h1>
         <div className={styles["formBox"]}>
           <form>
             {/* Company Evaluation Textbox */}
@@ -21,16 +23,21 @@ const Evaluation = () => {
             ></textarea>
             {/* Recommendation Radio Buttons */}
             <p>Would you recommend this company to other students?</p>
-          <div className={styles['radio-container']}>
-            <label className={styles['radio-label']}>
-              <input type="radio" name="recommendation" value="yes" required />
-              Yes
-            </label>{" "}
-            <label className={styles['radio-label']}>
-              <input type="radio" name="recommendation" value="no" />
-              No
-            </label>
-          </div>
+            <div className={styles["radio-container"]}>
+              <label className={styles["radio-label"]}>
+                <input
+                  type="radio"
+                  name="recommendation"
+                  value="yes"
+                  required
+                />
+                Yes
+              </label>{" "}
+              <label className={styles["radio-label"]}>
+                <input type="radio" name="recommendation" value="no" />
+                No
+              </label>
+            </div>
             <input type="submit" value="Submit Evaluation" />
           </form>
         </div>

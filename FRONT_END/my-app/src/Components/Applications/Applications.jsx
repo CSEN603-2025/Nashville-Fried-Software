@@ -52,8 +52,8 @@ const Applications = () => {
     setReviewStatus(false);
   };
 
-  const toEvaluateIntern = () => {
-    navigate("/evaluateIntern");
+  const toEvaluateIntern = (name) => {
+    navigate("/evaluateIntern/" + name);
   };
 
   return (
@@ -160,7 +160,7 @@ const Applications = () => {
                     <h4>Job Title: {item.jobTitle}</h4>
                     <h4>Status: {item.internshipStatus}</h4>
                     {item.internshipStatus === "completed internship" && (
-                      <button onClick={() => toEvaluateIntern()}>
+                      <button onClick={() => toEvaluateIntern(item.name)}>
                         Evaluate Intern
                       </button>
                     )}
