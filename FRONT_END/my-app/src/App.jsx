@@ -59,7 +59,14 @@ function App() {
         />
         <Route path="/Applications" element={<Applications />} />
         <Route path="/viewApplicant/:id" element={<ViewApplicant />} />
-        <Route path="/evaluateIntern" element={<EvaluateIntern />} />
+        <Route
+          path="/evaluateIntern"
+          element={<EvaluateIntern pro={false} />}
+        />
+        <Route
+          path="/evaluateInternPro"
+          element={<EvaluateIntern pro={false} />}
+        />
         <Route path="/viewStudent/:id" element={<ViewStudent />} />
         <Route
           path="/facultydashboard"
