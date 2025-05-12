@@ -7,7 +7,8 @@ import styles from "../../Styles/internships.module.css";
 import SideBar from "../Dashboard/SideBar";
 import SideBarSCAD from "../Dashboard/SideBarSCAD";
 import internshipStatusData from '../../internshipStatusData.json'
-const Internships = ({ isStudent = false, pro=false }) => {
+import SideBarCompany from '../Dashboard/SideBarCompany'
+const Internships = ({ isStudent = false, pro=false , isCompany  = false}) => {
   const navigate = useNavigate();
   const [view, setView] = useState("available");
   const [companySearch, setCompanySearch] = useState("");
@@ -91,7 +92,7 @@ const Internships = ({ isStudent = false, pro=false }) => {
   };
   return (
     <div className="cntnr">
-      {isStudent ? (<SideBar active="Internships" pro={pro}/>) : (<SideBarSCAD scad={true} active='Internships'/>)}
+      {isStudent ? (<SideBar active="Internships" pro={pro}/>) : isCompany ? (<SideBarCompany active = "Internshipcompany"/>) : (<SideBarSCAD scad={true} active='Internships'/>)}
       <div className="main-display">
       
        { isStudent?

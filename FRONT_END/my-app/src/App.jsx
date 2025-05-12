@@ -67,6 +67,8 @@ function App() {
         <Route path="/WorkshopSCAD" element={<WorkshopSCAD />} />
         <Route path="/CompanySCAD" element={<CompanySCAD />} />
         <Route path="/ViewStudent" element={<ViewStudent />} />
+        <Route path="/Internshipcompany" element={<Internships isStudent={false} isCompany = {true} />} />
+
 
         
         <Route path="/Appointments" element={<AppointmentsPage />} />

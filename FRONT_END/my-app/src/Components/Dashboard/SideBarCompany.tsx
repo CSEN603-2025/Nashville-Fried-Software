@@ -7,7 +7,8 @@ function SideBar({active} : {active:string})
             <div className="link-container">
                 <h2>Welcome, Company</h2>
                 <Link className={active == 'Dashboard' ? 'active-link' : 'link'} to="/company">My Profile</Link>
-                <Link className={active == 'Internships' ? 'active-link' : 'link'} to="/Applications">Internships</Link>
+                <Link className={active == 'Internships' ? 'active-link' : 'link'} to="/Applications">Applications</Link>
+                <Link className={active == 'Internshipcompany' ? 'active-link' : 'link'} to="/Internshipcompany"> Available Internships</Link>
                 <Link className={active == 'Evaluations' ? 'active-link' : 'link'} to="/evaluateIntern">Internship Evaluation</Link>
                 <span className="scadtopia dashboard-span">SCADtopia</span>
             </div>

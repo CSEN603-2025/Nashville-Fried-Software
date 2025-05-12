@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import '../ComponentStyles/RegisterCompany.css';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterCompany() {
+  const navigator = useNavigate();
   const [companyEmail, setCompanyEmail] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [industry, setIndustry] = useState('');
-  const [companySize, setCompanySize] = useState('');
-  const [companyLogo, setCompanyLogo] = useState('');
+  const [companySize, setCompanySize] = useState('small');
+  const [companyLogo, setCompanyLogo] = useState('Upload Company Logo');
 
   const [documentsUploaded, setDocumentsUploaded] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
@@ -27,12 +29,6 @@ function RegisterCompany() {
       return;
     }
 
-    // Validate company size (only numbers)
-    const sizeRegex = /^[0-9]+$/;
-    if (!sizeRegex.test(companySize)) {
-      setErrorMessage('Company Size should be a number.');
-      return;
-    }
 
     // Check if documents are uploaded
     if (!documentsUploaded) {
@@ -45,18 +41,26 @@ function RegisterCompany() {
     setErrorMessage('');
     
     // Display simple notification for email checking
-    setNotification('Check your Email to check application Status');
+    setNotification('Check your Email for Application Status!');
 
     // Hide the notification after 5 seconds
     setTimeout(() => {
       setNotification(null);
     }, 5000);
+
+    setTimeout(() => navigator('/'), 2000);
   };
 
   const handleUploadDocuments = () => {
     setDocumentsUploaded(true);
     setErrorMessage('');
   };
+
+  const handleUploadLogo = () =>{
+    setCompanyLogo("Uploading...")
+    setTimeout(() =>  setCompanyLogo("Uploaded!"), 1000)
+   
+  }
 
   return (
     <div className="register-container">
@@ -97,23 +101,19 @@ function RegisterCompany() {
           </div>
           <div className="input-group">
             <label>Company Size</label>
-            <input
-              type="text"
-              value={companySize}
-              onChange={(e) => setCompanySize(e.target.value)}
-              className="register-input"
-              placeholder="Numbers only"
-            />
+            <select 
+            name="companySize" id="" 
+            onChange = {(e) => setCompanySize(e.target.value)}
+            className="register-input">
+              <option value="small">Small (0-50)</option>
+              <option value="medium">Medium (50-100)</option>
+              <option value="large">Large (100-500)</option>
+              <option value="corporate">Corporate (500++)</option>
+            </select>
           </div>
           <div className="input-group">
             <label>Company Logo</label>
-            <input
-              type="text"
-              value={companyLogo}
-              onChange={(e) => setCompanyLogo(e.target.value)}
-              className="register-input"
-              placeholder="Image URL or file name"
-            />
+            <button onClick={handleUploadLogo}>{companyLogo}</button>
           </div>
         </div>
 
