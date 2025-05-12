@@ -26,6 +26,10 @@
     margin-bottom: 1.5rem;
     margin-top: 2rem;
   }
+
+  .header-row h1{
+font-size: 48px;
+  }
   
   .duration-filter {
     padding: 8px;
@@ -49,33 +53,44 @@
     align-items: center;
     gap: 1.2rem;
     margin-top: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 100px;
+    margin-bottom: 20px;
   }
   
   .report-card {
-    background-color: #ffffff;
+    background: linear-gradient(135deg, #1f69d0 0%, #7bbdfa 100%);
+    color: black;
     border-radius: 10px;
     padding: 1rem 1.5rem;
-    width: 550px;
+    width: 1050px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     
   }
 
-  .report-list :hover{
+  .report-list >:hover{
     transform: translateY(-4px);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
   }
   
   .report-info p {
     margin: 0.4rem 0;
-    font-size: 1.1rem;
+    font-size: 20px;
+    color: white;
+  }
+
+  .report-info strong {
+    margin: 0.4rem 0;
+    font-size: 36px;
+    color: white;
   }
   
-  .status {
-    font-weight: bold;
+  .report-info .status {
+    font-weight: 800;
+    font-size: 22px;
   }
   
   .accepted {
@@ -83,7 +98,8 @@
   }
   
   .pending {
-    color: #d4a300;
+    color: #f6c82f;
+    font-size: 32px;
   }
   
   .rejected, .flagged {
@@ -93,6 +109,8 @@
   .report-actions {
     display: flex;
     flex-direction: column;
+
+
     gap: 0.6rem;
   }
   
@@ -102,13 +120,16 @@
     border-radius: 6px;
     background-color: #007BFF;
     color: white;
-    font-size: 0.95rem;
+    font-size: 20px;
     cursor: pointer;
     transition: background-color 0.2s;
+    background-color: white;
+    color: #3a7bd5;;
   }
   
   .action-btn:hover, .clarify-btn:hover {
-    background-color: #005fc3;
+    color: white;
+    background-color: #3a7bd5;;
   }
   
   .modal-overlay {
@@ -149,16 +170,18 @@
   .modal h2{
     font-size: 48px;
   }
-  
+
+
   .submit-btn {
     margin-top: 1rem;
     padding: 0.5rem 1rem;
-    background-color: #28a745;
+    border: 1px  solid #3a7bd5;
+    background-color:white;
+    color: #3a7bd5;
     height: 40px;
     width: 120px;
-    color: white;
+
     font-size: 18px;
-    border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
@@ -166,7 +189,8 @@
   }
   
   .submit-btn:hover {
-    background-color: #218838;
+    background-color: #3a7bd5;
+    color: white;
   }
   
 
@@ -205,12 +229,19 @@
     position: absolute;
     top: 10px;
     right: 14px;
+    height: 30px;
+    width: 30px;
+    padding: 0px;
     background: transparent;
     border: none;
     font-size: 24px;
     font-weight: bold;
     color: #333;
     cursor: pointer;
+  }
+
+  .close-btn:hover {
+background-color: red;
   }
   
   /* Report content */
@@ -221,8 +252,9 @@
   }
   
   .modal p {
-    font-size: 1rem;
+    font-size: 1.8rem;
     margin-bottom: 1.5rem;
+    margin-top: 0.7rem;
     color: #444;
     line-height: 1.5;
   }
@@ -251,18 +283,20 @@
   
   /* Download button */
   .download-btn {
-    background-color: #2962ff;
-    color: white;
+    background-color: white;
+    color: #3a7bd5;;
     border: none;
     padding: 0.6rem 1.2rem;
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    border: 1px solid#3a7bd5;
   }
   
   .download-btn:hover {
-    background-color: #0039cb;
+    color: white;
+    background-color: #3a7bd5;;
   }
     
   h4{
@@ -298,7 +332,7 @@
     align-self: center;
   }
   .modal-status p{
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     align-self: center;
   }
 
@@ -334,3 +368,5 @@
   .status-list option:hover {
     background-color: #f1f1f1;
   }
+
+  

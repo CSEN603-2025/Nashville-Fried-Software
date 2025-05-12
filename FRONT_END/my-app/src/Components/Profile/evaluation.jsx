@@ -7,7 +7,7 @@ const Evaluation = () => {
   const { name } = useParams();
   return (
     <div className="cntnr">
-      <SideBar />
+      <SideBar active="Evaluations"/>
       <div className="main-display">
         <h1>Evaluate: {name}</h1>
         <div className={styles["formBox"]}>

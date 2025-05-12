@@ -9,7 +9,7 @@ const Notifications = ({notifications}) =>{
     const navigate = useNavigate();
     const [allNotifs, setAllNotifs] = useState([
       ...initial,
-      {msg: "John Pork has applied for your Backend Intern Position!", read: false, isUrgent:true}
+      {msg: "Alice Johnson has applied for your Software Engineering Intern Position!", read: false, isUrgent:true}
     ]);
     useEffect(() => {
         const newNotifs = notifications.map((msg) => ({ msg, read: false }));
@@ -31,9 +31,6 @@ const Notifications = ({notifications}) =>{
       setAllNotifs((prev) => prev.map((n) => ({ ...n, read: true })));
     };
 
-    const handleJoin = () =>{
-      navigate('/Applications')
-    }
   
     return (
       <div className="notifs">
@@ -46,7 +43,6 @@ const Notifications = ({notifications}) =>{
             <li key={idx} onClick={() => markRead(idx)}>
               {note.msg}
               {!note.read && <span className="red-dot"></span>}
-              {note.isUrgent && <button className="urgent-btn" onClick={handleJoin}>View Application</button>}
             </li>
           ))}
         </ul>

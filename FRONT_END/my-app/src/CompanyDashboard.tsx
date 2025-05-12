@@ -10,7 +10,7 @@ const CompanyDashboard = () =>{
     
     return (
     <div className="cntnr">
-        <SideBarCompany/>
+        <SideBarCompany active="Dashboard"/>
         <div className="main-display">
             {/* <CallBanner onMissedCall={(msg) => setNotifications((prev) => [...prev, msg])}/> */}
             <div className="one-card">

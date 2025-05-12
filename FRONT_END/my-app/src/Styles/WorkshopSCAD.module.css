@@ -1,6 +1,6 @@
 .cntnr{
     display: grid;
-    grid-template-columns: 33% 1fr; /* 30% for the left column, the rest for the right */
+    grid-template-columns: 30% 1fr; /* 30% for the left column, the rest for the right */
      /* Optional spacing between columns */
   }
 
@@ -33,13 +33,13 @@
   .add-btn {
     height: 100%;
     width: 100%;
-    background-color: #f5f5f5;
+    background: linear-gradient(135deg, #1f69d0 0%, #7bbdfa 100%);
     
   }
   
   .add-btn:hover {
-    background-color: #f5f5f5;
-  }
+    background: transparent;
+    }
   
   /* Card container to align cards in a grid */
   .cards-container {
@@ -51,7 +51,7 @@
   
   /* Workshop card styling */
   .workshop-card {
-    background-color: #f5f5f5;
+    background: linear-gradient(135deg, #1f69d0 0%, #7bbdfa 100%);
     border-radius: 10px;
     padding: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -66,26 +66,30 @@
   .workshop-card:hover {
     transform: translateY(-5px);
   }
+
   
   .card-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #333;
+    color: white;
   }
   
   .card-speaker {
-    font-size: 1rem;
-    color: #555;
+    font-size: 1.2rem;
+    color: white;
+    margin: 12px 0px;
+    font-weight: 600;
   }
   
   .card-time {
-    font-size: 0.9rem;
-    color: #777;
+    font-size: 1.1rem;
+    color: white;
+    margin: 12px 0px;
+    font-weight: 600;
   }
   
   .view-btn {
     margin-top: 10px;
-    background-color: #4CAF50;
     color: white;
     padding: 8px 16px;
     border: none;
@@ -157,23 +161,26 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    gap: 20%;
   }
   
-  .save-button{
+  .save-button, .del-button, .view-btn{
     padding: 10px 24px;
     border-radius: 8px;
-    border: none;
+    border: 1px solid #3a7bd5;
+    background-color: white;
+    color: #3a7bd5;
     cursor: pointer;
     font-size: 1rem;
     font-weight: 600;
-    background: linear-gradient(135deg, #4f46e5, #6366f1);
-    color: white;
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
     transition: all 0.3s ease;
   }
   
-  .save-button:hover {
+  .save-button:hover , .view-btn:hover{
     transform: translateY(-2px);
+   color: white;
+   background-color: #3a7bd5;
     box-shadow: 0 6px 16px rgba(99, 102, 241, 0.6);
   }
   
@@ -181,22 +188,45 @@
     transform: scale(0.98);
     box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
   }
+
+  .save-button:disabled {
+  color: #999; /* grey text */
+  border: 1px solid #ccc; /* grey border */
+  background-color: #f9f9f9; /* optional: subtle grey bg */
+  cursor: not-allowed;
+  box-shadow: none; /* optional: remove shadow */
+  transform: none; /* cancel transform on disabled */
+}
+  .del-button{
+    background-color: white;
+    color:red;
+    border: 1px solid red;
+  }
   
+  .del-button:hover{
+    background-color: red;
+     box-shadow: 0 4px 12px rgba(226, 13, 2, 0.4);
+    color:white;
+  }
   
   .close-button {
     font-size: 24px;
     background: transparent;
     border: none;
-    color: #555;
+    color: red;
     cursor: pointer;
     transition: color 0.2s ease-in-out;
   }
   
   .close-button:hover {
-    color: #d00;
+    background-color: red;
+    color: #555;
   }
 
+  
+
   .add-icon{
+    background: transparent;
     width: 100px;
     height: 100px;
   }

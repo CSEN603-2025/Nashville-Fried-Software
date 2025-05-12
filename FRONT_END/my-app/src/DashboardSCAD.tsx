@@ -14,7 +14,7 @@ const DashboardSCAD: React.FC<SCADStatsProps> = ({ scad }) =>{
     const [notifications, setNotifications] = useState([]);
     return (
     <div className={styles["cntnr"]}>
-        <SideBar scad={scad}/>
+        <SideBar scad={scad} active='Dashboard'/>
         <div className={styles['main-display']}>
             {scad && (<CallBanner onMissedCall={(msg) => setNotifications((prev) => [...prev, msg])}/>)}
             <Stats scad={scad}/>

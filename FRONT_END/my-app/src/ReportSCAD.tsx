@@ -180,7 +180,7 @@ const ReportSCAD = ({scad} : {scad:boolean}) => {
 
   return (
     <div className={styles["cntnr"]}>
-      <SideBar scad={scad}/>
+      <SideBar scad={scad} active='Reports'/>
       <div className={styles['main-display']}>
         <div className={styles['header-row']}>
           <h1 className={styles['page-title']}>Reports</h1>
@@ -208,7 +208,7 @@ const ReportSCAD = ({scad} : {scad:boolean}) => {
               <div className={styles['report-actions']}>
                 <button className={styles['action-btn']} onClick={() => openReportModal(report)}>View internship report</button>
                 <button onClick={() => openEvaluationModal(report)} className={styles['action-btn']}>View evaluation report</button>
-                {(report.status === 'Pending' || report.status === 'Rejected') && (
+                {(report.status === "Flagged" || report.status === 'Rejected') && (
                   <button className={styles['clarify-btn']} onClick={() => openModal(report)}>Submit clarification</button>
                 )}
               </div>

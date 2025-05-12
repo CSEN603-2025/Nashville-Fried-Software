@@ -5,6 +5,7 @@ import internshipHistory from "../../internshipHistory.json";
 import { useNavigate } from "react-router-dom";
 import styles from "../../Styles/internships.module.css";
 import SideBar from "../Dashboard/SideBar";
+import SideBarSCAD from "../Dashboard/SideBarSCAD";
 
 const Internships = ({ isStudent = false }) => {
   const navigate = useNavigate();
@@ -83,10 +84,11 @@ const Internships = ({ isStudent = false }) => {
   };
   return (
     <div className="cntnr">
-      <SideBar />
+      {isStudent ? (<SideBar active="Internships"/>) : (<SideBarSCAD scad={true} active='Internships'/>)}
       <div className="main-display">
-        {isStudent ? (
-          <div className={styles["toggle-container"]}>
+      
+       { isStudent?
+       (<div className={styles["toggle-container"]}>
             <>
               <button
                 onClick={() => setView("available")}
@@ -171,11 +173,12 @@ const Internships = ({ isStudent = false }) => {
             <div className={styles["internshipListings"]}>
               {filteredInternships.length > 0 ? (
                 filteredInternships.map((internship, index) => (
+                  
                   <div key={index}>
                     <h3>{internship.company_name}</h3>
                     <h4>Job Title: {internship.job_title}</h4>
                     <h4>Duration: {internship.duration}</h4>
-                    {isStudent && (
+                    {true && (
                       <button onClick={() => toViewInternship(index)}>
                         View Internship
                       </button>
@@ -266,11 +269,16 @@ const Internships = ({ isStudent = false }) => {
                 </h4>
                 <h4>Job Description:</h4>
                 <p>{selectedInternship.job_description}</p>
-                <button>Apply to Internship</button>
+                {isStudent && (
+                  <>
+                  <button>Apply to Internship</button>
                 <form>
                   <label>Upload Extra Documents (optional):</label>
                   <input type="file" name="filename" />
                 </form>
+                </>)
+                }
+                
                 <button onClick={handleCloseModal}>Close</button>
               </div>
             </div>

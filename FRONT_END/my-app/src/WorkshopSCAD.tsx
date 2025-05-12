@@ -10,7 +10,7 @@ const WorkshopSCAD = () => {
 
     const [workshops, setWorkshops] = useState([
         {
-          name: "AI in Modern Healthcare",
+          name: "Artificial Intelligence in Modern Healthcare",
           startDateTime: "2025-06-10T09:00",
           endDateTime: "2025-06-10T12:00",
           speaker: "Dr. Lena Matthews",
@@ -37,7 +37,7 @@ const WorkshopSCAD = () => {
           speakerAgenda: "UX principles for emerging tech, Designing for voice and AR, Interactive prototype creation, Peer feedback loop."
         },
         {
-          name: "Data Visualization with D3.js",
+          name: "Data Visualization and Analysis with D3.js",
           startDateTime: "2025-06-13T09:30",
           endDateTime: "2025-06-13T12:30",
           speaker: "Carlos Vega",
@@ -46,7 +46,7 @@ const WorkshopSCAD = () => {
           speakerAgenda: "Intro to D3.js, Binding data to DOM elements, Building dynamic charts, Hands-on project."
         },
         {
-          name: "Intro to Quantum Computing",
+          name: "Introduction to Quantum Computing",
           startDateTime: "2025-06-14T11:00",
           endDateTime: "2025-06-14T14:00",
           speaker: "Dr. Nina El-Tayeb",
@@ -132,7 +132,7 @@ const WorkshopSCAD = () => {
 
   return (
     <div className={styles["cntnr"]}>
-      <SideBar scad={true}/>
+      <SideBar scad={true} active='Workshops'/>
       <div className={styles["main-display"]}>
         <div className={styles["header-row"]}>
           <h1 className={styles["page-title"]}>Workshops</h1>
@@ -141,8 +141,16 @@ const WorkshopSCAD = () => {
           {workshops.map((workshop, index) => (
             <div key={index} className={styles["workshop-card"]}>
               <h3 className={styles["card-title"]}>{workshop.name}</h3>
-              <p className={styles["card-speaker"]}>{workshop.speaker}</p>
-              <p className={styles["card-time"]}>{new Date(workshop.startDateTime).toLocaleString()}</p>
+              <p className={styles["card-speaker"]}>Speaker : {workshop.speaker}</p>
+              <p className={styles["card-time"]}>Starts on : {new Date(workshop.startDateTime).toLocaleString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true,
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+              })}
+              </p>
               <button className={styles["view-btn"]} onClick={() => {handleModalOpen(index)}}>View</button>
             </div>
           ))}
@@ -179,6 +187,7 @@ const WorkshopSCAD = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     disabled={!isEditing}
+                    required
                 />
                 </label>
 
@@ -191,6 +200,7 @@ const WorkshopSCAD = () => {
                     value={formData.speaker}
                     onChange={handleInputChange}
                     disabled={!isEditing}
+                    required
                 />
                 </label>
 
@@ -203,6 +213,7 @@ const WorkshopSCAD = () => {
                     value={formData.startDateTime}
                     onChange={handleInputChange}
                     disabled={!isEditing}
+                    required
                     />
                 </label>
                 <label>
@@ -213,6 +224,7 @@ const WorkshopSCAD = () => {
                     value={formData.endDateTime}
                     onChange={handleInputChange}
                     disabled={!isEditing}
+                    required
                     />
                 </label>
                 </div>
@@ -240,7 +252,7 @@ const WorkshopSCAD = () => {
                 </label>
 
                 <label>
-                Speaker Agenda:
+                Workshop Agenda:
                 <textarea
                     name="speakerAgenda"
                     placeholder="Detailed schedule or topics the speaker will cover"
@@ -253,15 +265,12 @@ const WorkshopSCAD = () => {
               <div className={styles["modal-actions"]}>
                 
                 {isEditing ? (
-                  <>
                     <button className={styles['save-button']} type="submit">Save</button>
-                    <button className={styles['save-button']} type="button" onClick={() => {setIsEditing(false)}}>Cancel</button>
-                  </>
                 ) : (
                   <>
-                    <button className={styles['save-button']} type="submit">Save</button>
+                    <button className={styles['save-button']} type="submit" disabled={!isEditing}>Save</button>
                     <button className={styles['save-button']} type="button" onClick={handleEditClick}>Edit</button>
-                    <button className={styles['save-button']} type='button' onClick={handleDeleteClick}>Delete</button>
+                    <button className={styles['del-button']} type='button' onClick={handleDeleteClick}>Delete</button>
                   </>
                 )}
               </div>

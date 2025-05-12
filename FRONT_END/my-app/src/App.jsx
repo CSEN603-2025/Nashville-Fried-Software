@@ -32,7 +32,6 @@ function App() {
         <Route path="/company" element={<CompanyDashboard />} />
         <Route path="/registerCompany" element={<registerCompany />} />
         <Route path="/call" element={<LoginPage />} />
-        <Route path="/Report" element={<Report />} />
         <Route path="/VideoCall" element={<VideoCall />} />
         <Route path="/Profile" element={<Profile pro={false} />} />
         <Route path="/ProfilePro" element={<Profile pro={true} />} />
@@ -52,18 +51,18 @@ function App() {
         />
         <Route path="/Applications" element={<Applications />} />
         <Route path="/viewApplicant/:id" element={<ViewApplicant />} />
-        <Route path="/evaluateIntern/:name" element={<EvaluateIntern />} />
-        <Route path="/viewStudent" element={<ViewStudent />} />
-        <Route
-          path="/facultydashboard"
-          element={<DashboardSCAD scad={false} />}
-        />
-        <Route path="/scaddashboard" element={<DashboardSCAD scad={true} />} />
+        <Route path="/evaluateIntern" element={<EvaluateIntern />} />
+        <Route path="/viewStudent/:id" element={<ViewStudent />} />
+        <Route path="/facultydashboard" element={<DashboardSCAD scad={false}/>} />
+        <Route path="/scaddashboard" element={<DashboardSCAD scad={true}/>} />
         <Route path="/Students" element={<Students />} />
         <Route path="/ReportSCAD" element={<ReportSCAD scad={true} />} />
         <Route path="/ReportFaculty" element={<ReportSCAD scad={false} />} />
         <Route path="/WorkshopSCAD" element={<WorkshopSCAD />} />
         <Route path="/CompanySCAD" element={<CompanySCAD />} />
+        <Route path="/ViewStudent" element={<ViewStudent />} />
+
+        
       </Routes>
     </Router>
   );
