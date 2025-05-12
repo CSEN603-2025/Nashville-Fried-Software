@@ -23,20 +23,5 @@
     "company_name": "PixelCraft Studios",
     "job_title": "Graphic Design Intern",
     "status": "pending"
-  },
-  {
-    "company_name": "HealthWare Labs",
-    "job_title": "Machine Learning Intern",
-    "status": "accepted"
-  },
-  {
-    "company_name": "EcoSmart Tech",
-    "job_title": "Sustainability Research Intern",
-    "status": "rejected"
-  },
-  {
-    "company_name": "BrightFuture AI",
-    "job_title": "AI Research Intern",
-    "status": "finalized"
   }
 ]

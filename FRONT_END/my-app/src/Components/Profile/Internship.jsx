@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "../../Styles/internships.module.css";
 import SideBar from "../Dashboard/SideBar";
 import SideBarSCAD from "../Dashboard/SideBarSCAD";
-
-const Internships = ({ isStudent = false }) => {
+import internshipStatusData from '../../internshipStatusData.json'
+const Internships = ({ isStudent = false, pro=false }) => {
   const navigate = useNavigate();
   const [view, setView] = useState("available");
   const [companySearch, setCompanySearch] = useState("");
@@ -84,7 +84,7 @@ const Internships = ({ isStudent = false }) => {
   };
   return (
     <div className="cntnr">
-      {isStudent ? (<SideBar active="Internships"/>) : (<SideBarSCAD scad={true} active='Internships'/>)}
+      {isStudent ? (<SideBar active="Internships" pro={pro}/>) : (<SideBarSCAD scad={true} active='Internships'/>)}
       <div className="main-display">
       
        { isStudent?
@@ -109,6 +109,17 @@ const Internships = ({ isStudent = false }) => {
                 }
               >
                 Past/Present Internships
+              </button>
+
+              <button
+                onClick={() => setView("applied")}
+                className={
+                  view === "applied"
+                    ? `{ ${styles["toggle-option"]} ${styles["active"]} }`
+                    : `{ ${styles["toggle-option"]} ${styles["inactive"]} }`
+                }
+              >
+               Applied Internships 
               </button>
             </>
           </div>
@@ -249,6 +260,23 @@ const Internships = ({ isStudent = false }) => {
               ) : (
                 <p>No records match your filters.</p>
               )}
+            </div>
+          </>
+        )}
+
+        {view === "applied" && (
+          <>
+            <div className={styles["internshipListings"]}>
+              {internshipStatusData.map((item, index) => (
+                <div key={index}>
+                    <h3>{item.company_name}</h3>
+                    <h4>Job Title: {item.job_title}</h4>
+                    <h4>Status: {item.status}</h4>
+                  </div>
+              ))
+            }
+                
+                
             </div>
           </>
         )}

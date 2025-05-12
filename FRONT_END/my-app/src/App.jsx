@@ -36,12 +36,14 @@ function App() {
         <Route path="/Profile" element={<Profile pro={false} />} />
         <Route path="/ProfilePro" element={<Profile pro={true} />} />
         <Route path="/Internships" element={<Internships isStudent={true} />} />
+        <Route path="/InternshipsPro" element={<Internships isStudent={true} pro={true} />} />
         <Route
           path="/Internshipscad"
           element={<Internships isStudent={false} />}
         />
         <Route path="/Evaluation/:name" element={<Evaluation />} />
         <Route path="/Report" element={<Report />} />
+        <Route path="/ReportPro" element={<Report  pro={true}/>} />
         <Route path="/Workshops" element={<LiveWorkshop />} />
         <Route path="/RecWorkshop" element={<RecordedWorkshop />} />
         <Route path="/viewInternship/:id" element={<ViewInternship />} />

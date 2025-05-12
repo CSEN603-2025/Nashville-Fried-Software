@@ -3,7 +3,7 @@ import "../ComponentStyles/Sidebar.css";
 import SideBar from '../Dashboard/SideBar';
 import "../ComponentStyles/Report.css";
 
-function Report() {
+function Report({pro}) {
   const [reports, setReports] = useState([
     { id: 1, title: 'Report 1', intro: 'Intro 1', body: 'Body 1', submitted: false, appealed: false, courses: [] },
     { id: 2, title: 'Report 2', intro: 'Intro 2', body: 'Body 2', submitted: false, appealed: false, courses: [] },
@@ -134,7 +134,7 @@ function Report() {
 
   return (
     <div className="report-layout">
-      <SideBar active='Reports'/>
+      <SideBar active='Reports' pro={pro}/>
 
       <div className="report-content">
         {creating || viewingReport !== null ? (
