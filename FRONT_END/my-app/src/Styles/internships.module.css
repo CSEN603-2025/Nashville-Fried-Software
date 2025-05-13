@@ -159,18 +159,25 @@ h1 {
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  background-color: white;
+  color: #3a7bd5;
   margin-top: 10px;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .internshipListings button:hover {
-  background-color: #0056b3;
-  transform: scale(1.03);
+  border-radius: 8px;
+  border: 1px solid #3a7bd5;
+  color: white;
+  background-color: #3a7bd5;
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.6);
 }
 
 .internshipListings button:active {
-  background-color: #003d80;
-  transform: scale(0.97);
+  border-radius: 8px;
+  border: 1px solid #3a7bd5;
 }
 
 .search-container {
@@ -233,34 +240,55 @@ h1 {
 }
 
 .jobmodal {
-  animation: modalPop 0.32s cubic-bezier(0.23, 1.12, 0.72, 1.01);
-  background: #fff;
-  border-radius: 10px;
-  padding: 24px 32px;
-  max-width: 420px;
-  width: 100%;
-  box-shadow: 0 4px 18px rgba(58, 123, 213, 0.18);
-  border: 2px solid #2563eb;
-  color: #2563eb;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
 }
 
-.jobmodal h2 {
-  color: #2563eb;
-  font-size: 1.3rem;
+.modal-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.close-btn {
+  background: transparent;
+  color: #f44336;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 0px 5px 0px 5px;
+  max-height: 50px;
+  align-self: center;
+}
+
+.close-btn:hover{
+  transform: scale(1.05);
+  background-color:#f44336;
+}
+
+.modal-title {
+  color: black;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 12px;
+  margin-top: 12px;
 }
 
 .jobmodal p {
-  color: #2563eb;
-  font-size: 1rem;
-  margin-bottom: 8px;
+  color: #333;
+  font-size: 1.2rem;
 }
 
-.jobmodal button {
+.jobmodal strong {
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.apply-btn{
   background: #fff;
   color: #2563eb;
   border: 2px solid #2563eb;
@@ -274,8 +302,8 @@ h1 {
   transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
 }
 
-.jobmodal button:hover,
-.jobmodal button:focus {
+.apply-btn:hover,
+.apply-btn:focus {
   background: #2563eb;
   color: #fff;
   border-color: #2563eb;
@@ -285,7 +313,7 @@ h1 {
   filter: brightness(1.08);
 }
 
-.jobmodal button:active {
+.apply-btn:active {
   transform: scale(0.97);
   filter: brightness(0.95);
 }
@@ -358,4 +386,31 @@ h1 {
   border: 1px solid #0078d7;     /* 3. Darker border */
   border-radius: 25px;           /* Makes the border rounded */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);  /* 4. Light shadow to create visual distinction */
+}
+
+.break {
+  border: none;
+  height: 2px;
+  background: radial-gradient(circle at center, #7bbdfa 0%, transparent 110%);
+  background-repeat: repeat-x;
+  background-size: 100% 100%;
+  margin: 25px 0;
+}
+
+.upload-apply{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0px;
+  font-size: 18px;
+}
+
+.upload-apply form{
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.upload-input{
+  font-size: 18px;
 }

@@ -160,10 +160,15 @@ const CompanySCAD = () => {
                         <button className={styles["close-btn"]} onClick={handleModalClose}>×</button>
                     </div>
                     <p><strong>Industry:</strong> {selectedCompany.industry}</p>
+                    <hr className={styles["break"]}/>
                     <p><strong>Location:</strong> {selectedCompany.location}</p>
+                    <hr className={styles["break"]}/>
                     <p><strong>Description:</strong> {selectedCompany.description}</p>
+                    <hr className={styles["break"]}/>
                     <p><strong>Founder:</strong> {selectedCompany.founder}</p>
+                    <hr className={styles["break"]}/>
                     <p><strong>Founded in:</strong> {selectedCompany.foundedIn}</p>
+                    <hr className={styles["break"]}/>
                     <div className={styles["modal-buttons"]}>
                         <button onClick={handleRemoveCompany} className={styles["accept-btn"]}>Accept</button>
                         <button onClick={handleRemoveCompany} className={styles["reject-btn"]}>Reject</button>

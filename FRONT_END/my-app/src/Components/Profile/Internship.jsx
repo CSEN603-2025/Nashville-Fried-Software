@@ -289,34 +289,41 @@ const Internships = ({ isStudent = false, pro = false, isCompany = false }) => {
           <div className={styles["jobmodal-overlay"]}>
             <div className={styles["jobmodal"]}>
               <div className={styles["view-internship-container"]}>
-                <h1>{selectedInternship.company_name}</h1>
-                <h4>Job Title: {selectedInternship.job_title}</h4>
-                <h4>Duration: {selectedInternship.duration}</h4>
-                <h4>
-                  Paid or Unpaid: {selectedInternship.paid ? "Paid" : "Unpaid"}
-                </h4>
-                <h4>Expected Salary: {selectedInternship.expected_salary}</h4>
-                <h4>
-                  Skills Required:{" "}
+                  <div className={styles['modal-header']}>
+                        <h2 className={styles["modal-title"]}>{selectedInternship.company_name}</h2>
+                        <button className={styles["close-btn"]} onClick={handleCloseModal}>×</button>
+                    </div>
+                <p><strong>Job Title: </strong>{selectedInternship.job_title}</p>
+                <hr className={styles["break"]}/>
+                <p><strong>Duration: </strong>{selectedInternship.duration}</p>
+                <hr className={styles["break"]}/>
+                <p>
+                <strong>Paid or Unpaid: </strong>{selectedInternship.paid ? "Paid" : "Unpaid"}
+                </p>
+                <hr className={styles["break"]}/>
+                <p><strong>Expected Salary: </strong>{selectedInternship.expected_salary}</p>
+                <hr className={styles["break"]}/>
+                <p>
+                  <strong>Skills Required: </strong>
                   {selectedInternship.skills_required.join(", ")}
-                </h4>
-                <h4>Job Description:</h4>
+                </p>
+                <hr className={styles["break"]}/>
+                <strong>Job Description:</strong>
                 <p>{selectedInternship.job_description}</p>
+                <hr className={styles["break"]}/>
                 {isStudent && (
-                  <>
-                    <button onClick={() => handleFormApply(selectedInternship)}>
-                      {selectedInternship.applied
-                        ? "Applied!"
-                        : "Apply to Internship"}
-                    </button>
-                    <form>
-                      <label>Upload Extra Documents (optional):</label>
-                      <input type="file" name="filename" />
-                    </form>
-                  </>
+                  <div className={styles["upload-apply"]}>
+                      <form>
+                        <label>Upload Extra Documents (optional):</label>
+                        <input className={styles["upload-input"]} type="file" name="filename" />
+                      </form>
+                      <button className={styles["apply-btn"]} onClick={() => handleFormApply(selectedInternship)}>
+                        {selectedInternship.applied
+                          ? "Applied!"
+                          : "Apply to Internship"}
+                      </button>
+                  </div>
                 )}
-
-                <button onClick={handleCloseModal}>Close</button>
               </div>
             </div>
           </div>
@@ -325,11 +332,16 @@ const Internships = ({ isStudent = false, pro = false, isCompany = false }) => {
           <div className={styles["jobmodal-overlay"]}>
             <div className={styles["jobmodal"]}>
               <div className={styles["view-internship-container"]}>
-                <h1>{completedInternship.company_name}</h1>
-                <h2>Job Title: {completedInternship.job_title}</h2>
-                <h3>Date {completedInternship.date}</h3>
-                <h4>Status: {completedInternship.status}</h4>
-                <button onClick={handleCloseCompleted}>Close</button>
+                    <div className={styles['modal-header']}>
+                        <h2 className={styles["modal-title"]}>{completedInternship.company_name}</h2>
+                        <button className={styles["close-btn"]} onClick={handleCloseCompleted}>×</button>
+                    </div>
+                <p><strong>Job Title: </strong>{completedInternship.job_title}</p>
+                <hr className={styles["break"]}/>
+                <p><strong>Date: </strong> {completedInternship.date}</p>
+                <hr className={styles["break"]}/>
+                <p><strong>Status: </strong>{completedInternship.status}</p>
+                <hr className={styles["break"]}/>
               </div>
             </div>
           </div>

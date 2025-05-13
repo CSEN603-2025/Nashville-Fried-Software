@@ -42,11 +42,12 @@
   .interests-list {
     display: flex;
     gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
 
   }
   
   .interest-pill {
-    margin-top: 10px;
     padding: 0rem 0.8rem;
     border-radius: 10px;
     background:  #3bb1c8;
@@ -294,11 +295,25 @@
     gap: 50px;
     margin-bottom: 1.5rem;
   }
+
+  .header-row h1{
+    font-size: 58px;
+    margin-top: 24px;
+  }
   
   .duration-filter {
     padding: 8px;
     font-size: 1rem;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #00bcd4;
+  }
+
+  .filter-div{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 20px;
+    color: #00bcd4;
+    font-weight: bold;
   }
   

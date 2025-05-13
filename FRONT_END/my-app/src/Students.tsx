@@ -30,17 +30,20 @@ const Students = () => {
       <div className={styles['main-display']}>
       <div className={styles['header-row']}>
         <h1 className={styles['page-title']}>Students</h1>
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className={styles['duration-filter']}
-        >
-          <option value="-1">All Statuses</option>
-          <option value="0">0 months</option>
-          <option value="1">1 month</option>
-          <option value="2">2 months</option>
-          <option value="3">3 months</option>
-        </select>
+        <div className={styles["filter-div"]}>
+          Months Completed: 
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className={styles['duration-filter']}
+          >
+            <option value="-1">Any</option>
+            <option value="0">0 months</option>
+            <option value="1">1 month</option>
+            <option value="2">2 months</option>
+            <option value="3">3 months</option>
+          </select>
+        </div>
       </div>
         <div className={styles['student-list']}>
           {studentsList.filter(student => (parseInt(statusFilter) == -1 || student.monthsCompleted == parseInt(statusFilter))).map((student, idx) => (

@@ -168,7 +168,8 @@ font-size: 48px;
   }
 
   .modal h2{
-    font-size: 48px;
+    font-size: 40px;
+    text-align: center;
   }
 
 
@@ -227,14 +228,14 @@ font-size: 48px;
   /* Close button */
   .close-btn {
     position: absolute;
-    top: 10px;
-    right: 14px;
-    height: 30px;
-    width: 30px;
+    top: 20px;
+    right: 20px;
+    height: 40px;
+    width: 40px;
     padding: 0px;
     background: transparent;
     border: none;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     color: #333;
     cursor: pointer;
@@ -245,14 +246,9 @@ background-color: red;
   }
   
   /* Report content */
-  .modal h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #222;
-  }
   
   .modal p {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     margin-bottom: 1.5rem;
     margin-top: 0.7rem;
     color: #444;
@@ -292,6 +288,7 @@ background-color: red;
     cursor: pointer;
     transition: background-color 0.2s ease;
     border: 1px solid#3a7bd5;
+    font-weight: 600;
   }
   
   .download-btn:hover {
