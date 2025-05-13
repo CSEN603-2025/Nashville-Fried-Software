@@ -35,12 +35,17 @@ body {
 .profileInfo {
   border-radius: 15px;
   padding: 10px;
+  margin-top: 30px;
+  color: white;
   margin-bottom: 15px;
   max-width: 100%;
+  background: linear-gradient(135deg, #3a7bd5 0%, #5db2ff 100%);
 }
 
 .profileInfo h2 {
   text-align: center;
+  font-size: 40px;
+  color: white;
 }
 
 .interests-activities-wrapper {
@@ -53,15 +58,22 @@ body {
 
 .section-box {
   flex: 1;
-  background-color: #f9fafb;
+  background-color: transparent;
   padding: 16px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .section-box h4 {
   font-size: 20px;
   margin-bottom: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .interest-container {
@@ -71,7 +83,7 @@ body {
 }
 
 .interest-box {
-  background-color: #e8f0fe;
+  background-color: rgba(255, 255, 255, 0.15);
   border-radius: 8px;
   padding: 8px 14px;
   font-size: 15px;
@@ -83,10 +95,6 @@ body {
   margin-left: 20px;
 }
 
-.profileInfo h2 {
-  margin-bottom: 15px;
-  color: #333;
-}
 
 .previousInternships_m > div {
   background-color: white;
@@ -214,17 +222,28 @@ button:hover {
 }
 
 .remove-btn {
-  background-color: transparent;
+  background-color: white;
   border: none;
   color: red;
   font-weight: bold;
   cursor: pointer;
 }
 
+.remove-btn:hover {
+  color: white;
+  background-color: red;
+}
+
 .edit-input {
   margin-top: 10px;
   display: flex;
   gap: 10px;
+}
+
+.edit-input input{
+  border-radius: 6px;
+  border: 1px solid #3a7bd5;
+  padding-left: 5px;
 }
 
 .edit-btn {
@@ -242,7 +261,7 @@ button:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.85); /* semi-transparent */
+  background-color: rgba(0,0,0, 0.25); /* semi-transparent */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -252,27 +271,120 @@ button:hover {
 /* Enlarged internship section */
 .internship-form {
   background: white;
-  padding: 50px;
+  padding: 25px 50px 25px 50px;
   border-radius: 1rem;
   min-width: 500px;
+  max-width: 500px;
   max-height: 500px;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   font-size: 1.2rem; /* make it bigger */
   z-index: 1001;
+  color: #3a7bd5;
 }
 
-.profile-main-content {
-  margin-left: 400px;
+.internship-form  h2{
+  color: #3a7bd5;
+  margin-top: 0px;
+
+}
+
+.form-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.form-buttons button{
+  margin-top: 10px;
+  color: #3a7bd5;
+  background-color: white;
+  border: 1px solid #3a7bd5;
+}
+
+.form-buttons button:hover{
+  background-color: #3a7bd5;
+  color: white;
+
+}
+
+.internship-form  form{
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 20px;
+
+}
+
+.responses-div{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.respo-pill {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  height: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #3a7bd5;
+  color: white;
+  border-radius: 12px; /* pill shape */
+  margin-bottom: 8px;
+}
+
+.remove-button {
+  background-color: white;
+  color: #375bd7;
+  border: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 6px;
+  font-size: 36px;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0px;
+}
+
+.remove-button:hover {
+  background-color: #dce4ff;
+}
+
+.responsibilities{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-height: 150px;
+  overflow-y: auto;
+  gap: 10px;
+  border-radius: 6px;
+  padding: 5px;
+}
+
+.internship-form form label{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+
+.profile-main-content {
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
   animation: slideInProfile 0.7s cubic-bezier(.23,1.12,.72,1.01);
 }
 
 .profile-grid-top {
   display: grid;
-  grid-template-columns: 2fr 1fr;
   gap: 32px;
   align-items: flex-start;
 }
@@ -290,16 +402,62 @@ button:hover {
 }
 
 .profile-grid-bottom {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  display: flex;
   gap: 32px;
-  align-items: flex-start;
+  justify-content: center;
 }
+
+.mloosh-esm{
+  background: linear-gradient(135deg, #3a7bd5 0%, #5db2ff 100%);
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  transition: all 0.3s ease-in ;
+}
+
+.mloosh-esm:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.mloosh-esm form{
+  gap: 30px;
+}
+
+.mloosh-esm select{
+  margin-left: 20px;
+}
+
+.mloosh-esm label{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+}
+
+.submit-btnn{
+  color: #3a7bd5;
+  background-color: white;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.submit-btnn:hover{
+  background-color: #3a7bd5;
+  color: white;
+}
+
+
+
 .previous-internships-col {
   min-width: 0;
 }
 .major-sems-col {
-  min-width: 0;
+  width: 70%;
 }
 
 @media (max-width: 1200px) {
@@ -338,16 +496,20 @@ button:hover {
 .profileInfo, .section-box, .companyViews, .majorSems, .previousInternships > div {
   transition: box-shadow 0.25s, transform 0.18s;
 } 
- .profileInfo:hover, .section-box:hover, .companyViews:hover, .majorSems:hover, .previousInternships > div:hover {
+ .profileInfo:hover, .companyViews:hover, .majorSems:hover, .previousInternships > div:hover {
   box-shadow: 0 6px 24px rgba(58,123,213,0.13);
 }
 
 button, .editButton, .addInternship {
-  transition: background 0.18s, color 0.18s, transform 0.12s;
+  transition: all 0.18s, color 0.18s, transform 0.12s;
+  height: 36px;
+  background-color: white;
+  color: #007bff;
 }
 button:hover, .editButton:hover, .addInternship:hover {
   color: white;
   background-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .collapsible-list {
@@ -373,8 +535,9 @@ button:hover, .editButton:hover, .addInternship:hover {
   border: none;
   color: #007bff;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.4rem;
   text-align: left;
+  height: 60px;
   padding: 10px 14px;
   border-radius: 8px;
   cursor: pointer;
@@ -389,6 +552,24 @@ button:hover, .editButton:hover, .addInternship:hover {
   display: inline-block;
 }
 
+.collapsible-internships h3{
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.add-internship{
+  height: 35px;
+  width: 35px;
+  font-size: 24px;
+  padding-top: 4px;
+}
+
 .rotate {
   transform: rotate(90deg);
 }
@@ -400,11 +581,21 @@ button:hover, .editButton:hover, .addInternship:hover {
   transition: max-height 0.3s cubic-bezier(.23,1.12,.72,1.01);
 }
 .collapsible-content {
-  padding: 10px 18px 12px 18px;
-  color: #333;
+  padding: 0px 18px 12px 18px;
+  color: #007bff;
   font-size: 0.97rem;
   animation: fadeInProfileCollapse 0.3s;
 }
+
+.collapsible-content h4{
+ margin-bottom: 10px;
+ font-weight: 400;
+}
+
+.collapsible-content h4 strong{
+  margin-bottom: 10px;
+  font-weight: 700;
+ }
 @keyframes fadeInProfileCollapse {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }

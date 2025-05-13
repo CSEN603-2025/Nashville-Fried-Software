@@ -1,7 +1,7 @@
 .notifs {
     flex-grow: 1;
     padding: 16px;
-    background: #fff;
+    background: linear-gradient(135deg, #3a7bd5 0%, #5db2ff 100%);
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     max-width: inherit;
@@ -13,6 +13,9 @@
     margin-top: 12px;
     font-size: 48px;
     font-weight: 600;
+    color: white;
+
+    
   }
   
   .notifs ul {
@@ -22,11 +25,14 @@
   }
   
   .notifs li {
-    background: #f5f5f5;
     margin-bottom: 5px;
+    background: rgba(255,255,255,0.10);
     padding: 10px 12px;
     border-radius: 6px;
     font-size: 22px;
+    color: #fff;
+    transition: background 0.2s;
+    position: relative;
   }
   
 
@@ -36,17 +42,8 @@
     margin: 0;
   }
   
-  .notifs li {
-    position: relative;
-    padding: 10px 12px;
-    background: #f5f5f5;
-    margin-bottom: 6px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
   .notifs li:hover {
-    background: #e0e0e0;
+    background: rgba(255,255,255,0.18);
   }
   
   .online-div{
@@ -101,8 +98,8 @@
     font-size: 1.2rem;
     margin-left: 20px;
     padding: 5px;
-    background-color: hsl(210, 79%, 46%);
-    color: white;
+    background-color: white;
+    color: #1976d2;
     border: none;
     border-radius: 8px;
   }

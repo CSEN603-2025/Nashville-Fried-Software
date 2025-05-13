@@ -3,13 +3,11 @@
     font-size: 1rem;
     padding: 16px;
     border-radius: 8px;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+    background-color: transparent;
   }
   
-  .internship-cycle:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-  }
+
   
   .internship-cycle h2 {
     font-size: 2.25rem;
@@ -27,7 +25,7 @@
     align-items: center;
     gap: 0.4rem;
     font-size: 1rem;
-    color: #444;
+    color: white;
   }
   
   .date-label button {
@@ -47,6 +45,7 @@
     width: 16px;
     height: 16px;
     transition: transform 0.2s ease;
+    color: white;
   }
   
   .date-label button:hover .edit-icon {
@@ -73,9 +72,24 @@
   
   .progress-fill {
     height: 100%;
-    background-color: #4caf50;
+    background: linear-gradient(135deg, #5ee7df, #b490ca, #3bb1c8, #1da2d8);
+    animation: gradientShimmer 3.69s ease infinite;
     transition: width 0.3s ease, background-color 0.3s ease;
+    background-size: 400% 400%;
   }
+
+
+@keyframes gradientShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
   
   .progress-bar:hover .progress-fill {
     background-color: #43a047; /* Slightly darker on hover */
@@ -83,7 +97,7 @@
   
   .progress-text {
     font-size: 0.875rem;
-    color: #666;
+    color: white;
     text-align: right;
   }
   

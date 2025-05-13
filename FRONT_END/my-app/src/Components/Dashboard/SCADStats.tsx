@@ -12,7 +12,7 @@ import InternshipCycle from './InternshipCycle.tsx'
 interface SCADStatsProps {
   scad: boolean;
 }
-const COLORS = ['#4CAF50', '#F44336', '#FFEB3B']; // green, red, yellow
+const COLORS = ['#b490ca', '#3bb1c8', '#1da2d8']; // green, red, yellow
 
 const SCADStats: React.FC<SCADStatsProps> = ({ scad }) => {
     const [generateText,setGenerateText] = useState('Generate report')
@@ -90,6 +90,7 @@ const SCADStats: React.FC<SCADStatsProps> = ({ scad }) => {
             dataKey="value"
             nameKey="name"
             outerRadius={150}
+            labelLine={false}
             label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
                 const RADIAN = Math.PI / 180;
                 const radius = innerRadius + (outerRadius - innerRadius) / 2;
@@ -115,17 +116,17 @@ const SCADStats: React.FC<SCADStatsProps> = ({ scad }) => {
             </Pie>
             </PieChart>
           </ResponsiveContainer>
-          <div className={styles['report-header']}>
-            <span className={styles['report-title']}>Report Stats</span>
-            <button onClick={() => {setGenerateText('Report generated')}} className={styles['report-btn']}>{generateText}</button>
-          </div>
           </div>
         </div>
+
         <div className={styles["review-time"]}>
           <InternshipCycle startDate="2025-04-01" endDate="2025-07-31" scad={scad}/>
           <strong>Average Review Time:  {reportStats.averageReviewTime}</strong>
         </div>
       </div>
+      <div className={styles['report-header']}>
+            <button onClick={() => {setGenerateText('Report generated')}} className={generateText == "Generate report" ? styles['report-btn'] : styles['report-btn2']}>{generateText}</button>
+          </div>
 
       {/* Top lists */}
       <div className={styles["top-lists"]}>

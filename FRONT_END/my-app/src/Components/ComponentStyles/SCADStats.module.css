@@ -1,4 +1,5 @@
 .dashboard-container {
+
     padding: 20px;
     font-family: Arial, sans-serif;
   }
@@ -7,7 +8,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
   }
   
   .chart-container {
@@ -20,21 +21,28 @@
     min-width: 250px;
     max-width: 100%;
     margin-left: 10px;
-    background-color: #ebebebe7;
     padding: 16px;
     gap: 100px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     justify-content: center;
     text-align: center;
+    background: linear-gradient(135deg, #3a7bd5 0%, #5db2ff 100%);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    color: white;
+
+  }
+
+  .review-time:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
   }
   
   .review-value {
     color: black;
     font-weight: bold;
     font-size: 40px;
-    margin-top: 5px;
-  }
+    margin-top: 5px;  }
 
   .review-value strong{
     text-align: center;
@@ -51,8 +59,9 @@
   }
   
   .list-card {
-    background-color: #fff;
+    background: linear-gradient(135deg, #3a7bd5 0%, #5db2ff 100%);    
     border: 1px solid #ddd;
+    color: white;
     padding: 16px;
     border-radius: 8px;
     flex: 1;
@@ -60,7 +69,7 @@
   }
   
   .list-card h3 {
-    font-size: 16px;
+    font-size: 24px;
     margin-bottom: 10px;
   }
   
@@ -117,8 +126,11 @@
   .report-header {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 90px;
     margin-bottom: 1rem;
+    margin-top: 10px;
+
   }
   
   .report-title {
@@ -129,15 +141,35 @@
   
   .report-btn {
     padding: 0.4rem 0.8rem;
-    background: linear-gradient(to right, #cba0db, #ffffff);
-    border: none;
+    color: #3a7bd5;
+    background-color: white;  
+    border: 1px solid #3a7bd5;
     border-radius: 8px;
-    font-size: 0.85rem;
+    font-size: 1.2rem;
     cursor: pointer;
     transition: background 0.3s;
   }
   
   .report-btn:hover {
-    background: linear-gradient(to right, #b88fd1, #f2f2f2);
+    background-color: #3a7bd5;
+    color: white;
+
   }
-  
+
+  .report-btn2 {
+    padding: 0.4rem 0.8rem;
+    color: #3a7bd5;
+    background-color: white;  
+    border: 1px solid #3a7bd5;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .report-btn2:hover {
+    color: #3a7bd5;
+    background-color: white;
+  }
+
+

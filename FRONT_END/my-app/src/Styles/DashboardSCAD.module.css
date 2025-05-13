@@ -1,6 +1,6 @@
 .cntnr{
     display: grid;
-    grid-template-columns: 33% 1fr; /* 30% for the left column, the rest for the right */
+    grid-template-columns: 30% 1fr; /* 30% for the left column, the rest for the right */
      /* Optional spacing between columns */
   }
 

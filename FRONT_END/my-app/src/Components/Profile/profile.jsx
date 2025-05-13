@@ -3,6 +3,8 @@ import { useState } from "react";
 import styles from "../../Styles/profile.module.css";
 import completedInternships from "../../previousInternships.json";
 import SideBar from "../Dashboard/SideBar";
+import doneIcon from "../../assets/donee.svg";
+import plusIcon from "../../assets/plus2.svg";
 
 const Profile = ({ pro }) => {
   let jobInterests = [
@@ -11,7 +13,7 @@ const Profile = ({ pro }) => {
     "Cybersecurity",
     "Data Science",
   ];
-  let collegeActivities = ["coding competitions", "clubs", "group projects"];
+  let collegeActivities = ["Coding Competitions", "Clubs", "Group Projects"];
   const [selectedMajor, setSelectedMajor] = useState("");
   const [selectedSemester, setSelectedSemester] = useState("");
   const [confirmationMessage, setConfirmationMessage] = useState("");
@@ -30,9 +32,11 @@ const Profile = ({ pro }) => {
   const [isAddingInternship, setIsAddingInternship] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [jobTitle, setJobTitle] = useState("");
-  const [responsibilities, setResponsibilities] = useState([""]);
+  const [responsibilities, setResponsibilities] = useState([]);
   const [duration, setDuration] = useState("");
   const [warning, setWarning] = useState("");
+  const [newResponsibility, setNewResponsibility] = useState('');
+
 
   const [expandedInternship, setExpandedInternship] = useState(null);
 
@@ -44,14 +48,11 @@ const Profile = ({ pro }) => {
         : `You selected Major: ${selectedMajor}, Semester: ${selectedSemester}`
     );
   };
-
-  const handleAddResponsibility = () => {
-    setResponsibilities([...responsibilities, ""]);
+  const handleAddResponsibility = (value) => {
+    setResponsibilities([...responsibilities, value]);
   };
-  const handleRemoveResponsibility = () => {
-    if (responsibilities.length > 1) {
-      setResponsibilities(responsibilities.slice(0, -1));
-    }
+  const handleRemoveResponsibility = (indexToRemove) => {
+    setResponsibilities(responsibilities.filter((_, i) => i !== indexToRemove));
   };
 
   const handleResponsibilityChange = (index, value) => {
@@ -110,12 +111,12 @@ const Profile = ({ pro }) => {
   let semesters = ["3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th"];
   let name = "John Pork";
   return (
-    <div className="cntnr">
+    <div className={styles["cntnr"]}>
       <SideBar active="Profile" pro={pro}/>
-      <div className="main-display">
-        <div className="profile-main-content">
-          <div className="profile-grid-top">
-            <div className="profile-info-col">
+      <div className={styles["main-display"]}>
+        <div className={styles["profile-main-content"]}>
+          <div className={styles["profile-grid-top"]}>
+            <div className={styles["profile-info-col"]}>
               <div className={styles["profileInfo"]}>
                 <h2>
                   Profile Information: {name} {pro ? "[PRO]" : ""}
@@ -124,24 +125,29 @@ const Profile = ({ pro }) => {
                   <div className={styles["section-box"]}>
                     <h4>
                       Job Interests:
+                      {isEditingJobInterests ? (<button onClick={() =>
+                          setIsEditingJobInterests(!isEditingJobInterests)
+                        } className={styles["editButton"]}>
+                        <img src={doneIcon} height={20} width={20} />
+                      </button>) : (<button onClick={() =>
+                          setIsEditingJobInterests(!isEditingJobInterests)
+                        } className={styles["editButton"]}>
                       <svg
                         width="20px"
                         height="20px"
                         viewBox="0 0 24 24"
-                        fill="none"
+                        fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg"
-                        className="editButton"
-                        onClick={() =>
-                          setIsEditingJobInterests(!isEditingJobInterests)
-                        }
                       >
+                                                
                         <path
                           fill-rule="evenodd"
                           clip-rule="evenodd"
                           d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z"
-                          fill="#0F0F0F"
+                          fill="currentColor"
                         />
                       </svg>
+                      </button>)}
                     </h4>
 
                     {isEditingJobInterests && (
@@ -163,10 +169,7 @@ const Profile = ({ pro }) => {
                             }
                           }}
                         >
-                          Add
-                        </button>
-                        <button onClick={() => setIsEditingJobInterests(false)}>
-                          Done
+                          <img src={plusIcon} color="#3a7bd5" height={20} width={20} />
                         </button>
                       </div>
                     )}
@@ -202,25 +205,27 @@ const Profile = ({ pro }) => {
                               {jobInterest}
                               {isEditingJobInterests && (
                                 <>
-                                  <svg
-                                    width="16px"
-                                    height="16px"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="editButton"
-                                    onClick={() => {
+                                <button                                     onClick={() => {
                                       setEditingText(jobInterest);
                                       setEditingJobIndex(idx);
-                                    }}
+                                    }} className={styles["editButton"]}>
+                                  <svg
+                                    width="14px"
+                                    height="14px"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="editButton"
                                   >
                                     <path
                                       fillRule="evenodd"
                                       clipRule="evenodd"
                                       d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z"
-                                      fill="#0F0F0F"
+                                      fill="currentColor"
                                     />
                                   </svg>
+                                  </button>
+
 
                                   <button
                                     className={styles["remove-btn"]}
@@ -246,24 +251,25 @@ const Profile = ({ pro }) => {
                   <div className={styles["section-box"]}>
                     <h4>
                       College Activities:
-                      <svg
-                        width="20px"
-                        height="20px"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="editButton"
-                        onClick={() =>
-                          setIsEditingActivities(!isEditingActivities)
-                        }
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z"
-                          fill="#0F0F0F"
-                        />
-                      </svg>
+                      <button  onClick={() => {
+                                      setIsEditingActivities(!isEditingActivities)
+                                    }} className={styles["editButton"]}>
+                                  <svg
+                                    width="20px"
+                                    height="20px"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="editButton"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      clipRule="evenodd"
+                                      d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z"
+                                      fill="currentColor"
+                                    />
+                                  </svg>
+                                  </button>
                     </h4>
 
                     {isEditingActivities && (
@@ -285,10 +291,7 @@ const Profile = ({ pro }) => {
                             }
                           }}
                         >
-                          Add
-                        </button>
-                        <button onClick={() => setIsEditingActivities(false)}>
-                          Done
+                          <img src={plusIcon} color="#3a7bd5" height={20} width={20} />
                         </button>
                       </div>
                     )}
@@ -324,25 +327,26 @@ const Profile = ({ pro }) => {
                               {activity}
                               {isEditingActivities && (
                                 <>
-                                  <svg
-                                    width="16px"
-                                    height="16px"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="editButton"
-                                    onClick={() => {
+                                  <button                                     onClick={() => {
                                       setEditingText(activity);
                                       setEditingActivityIndex(idx);
-                                    }}
+                                    }} className={styles["editButton"]}>
+                                  <svg
+                                    width="14px"
+                                    height="14px"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="editButton"
                                   >
                                     <path
                                       fillRule="evenodd"
                                       clipRule="evenodd"
                                       d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z"
-                                      fill="#0F0F0F"
+                                      fill="currentColor"
                                     />
                                   </svg>
+                                  </button>
 
                                   <button
                                     className={styles["remove-btn"]}
@@ -365,10 +369,10 @@ const Profile = ({ pro }) => {
                     </div>
                   </div>
                 </div>
-                <div className="collapsible-internships">
+                <div className={styles["collapsible-internships"]}>
                   <h3>
                     Previous Internships{" "}
-                    <button
+                    <button className={styles["add-internship"]}
                       onClick={() => {
                         setIsAddingInternship(true);
                         setWarning("");
@@ -380,6 +384,7 @@ const Profile = ({ pro }) => {
                   {isAddingInternship && (
                     <div className={styles["internship-form-overlay"]}>
                       <div className={styles["internship-form"]}>
+                        <h2>New Internship</h2>
                         <form onSubmit={handleAddInternship}>
                           <label>
                             Company Name:
@@ -397,40 +402,44 @@ const Profile = ({ pro }) => {
                               onChange={(e) => setJobTitle(e.target.value)}
                             />
                           </label>
-                          <label>
+                          <div className={styles["responses-div"]}>
                             Responsibilities:
+                            <div className={styles["responsibilities"]}>
+
                             {responsibilities.map((responsibility, index) => (
-                              <div key={index}>
-                                <input
-                                  type="text"
-                                  value={responsibility}
-                                  onChange={(e) =>
-                                    handleResponsibilityChange(
-                                      index,
-                                      e.target.value
-                                    )
-                                  }
-                                />
-                                {index === responsibilities.length - 1 && (
-                                  <button
-                                    type="button"
-                                    onClick={handleAddResponsibility}
-                                  >
-                                    Add Responsibility
-                                  </button>
-                                )}
-                                {index === responsibilities.length - 1 &&
-                                  responsibilities.length > 1 && (
-                                    <button
-                                      type="button"
-                                      onClick={handleRemoveResponsibility}
-                                    >
-                                      Remove Responsibility
-                                    </button>
-                                  )}
+                                <div className={styles["respo-pill"]} key={index}>
+                                <div>{responsibility}</div>
+                                <button
+                                  className={styles["remove-button"]}
+                                  type="button"
+                                  onClick={() => handleRemoveResponsibility(index)}
+                                >
+                                  -
+                                </button>
                               </div>
                             ))}
-                          </label>
+
+                            <label>
+                              <input
+                                type="text"
+                                value={newResponsibility}
+                                onChange={(e) => setNewResponsibility(e.target.value)}
+                              />
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  if (newResponsibility.trim()) {
+                                    handleAddResponsibility(newResponsibility.trim());
+                                    setNewResponsibility('');
+                                  }
+                                }}
+                              >
+                                +
+                              </button>
+                            </label>
+
+                           </div>
+                          </div>
                           <label>
                             Duration:
                             <input
@@ -444,13 +453,17 @@ const Profile = ({ pro }) => {
                               {warning}
                             </p>
                           )}
-                          <button type="submit">Save Internship</button>
-                          <button
-                            type="button"
-                            onClick={() => setIsAddingInternship(false)}
-                          >
-                            Cancel
-                          </button>
+                          <div className={styles["form-buttons"]}>
+                            <button
+                              type="button"
+                              onClick={() => {setIsAddingInternship(false); setResponsibilities([])}}
+                            >
+                              Cancel
+                            </button>
+                            <button type="submit">Save Internship</button>
+                            
+                          </div>
+                    
                         </form>
                       </div>
                     </div>
@@ -477,7 +490,7 @@ const Profile = ({ pro }) => {
                                 : "")
                             }
                           >
-                            ▼
+                            ▶
                           </span>
                         </button>
                         <div
@@ -492,13 +505,13 @@ const Profile = ({ pro }) => {
                         >
                           {expandedInternship === idx && (
                             <div className={styles["collapsible-content"]}>
-                              <h4>Responsibilities:</h4>
+                              <h4><strong>Responsibilities:</strong></h4>
                               <ul>
                                 {internship.responsibilities.map((resp, i) => (
                                   <li key={i}>{resp}</li>
                                 ))}
                               </ul>
-                              <h4>Duration: {internship.duration}</h4>
+                              <h4><strong>Duration: </strong>{internship.duration}</h4> 
                             </div>
                           )}
                         </div>
@@ -525,10 +538,10 @@ const Profile = ({ pro }) => {
               </>
             )}
           </div>
-          <div className="profile-grid-bottom">
-            <div className="major-sems-col">
+          <div className={styles["profile-grid-bottom"]}>
+            <div className={styles["major-sems-col"]}>
               <div className={styles["majorSems"]}>
-                <div>
+                <div className={styles["mloosh-esm"]}>
                   <h2>Select a Major & Semester:</h2>
                   <form onSubmit={handleSubmit}>
                     <label>
@@ -537,7 +550,7 @@ const Profile = ({ pro }) => {
                         value={selectedMajor}
                         onChange={(e) => setSelectedMajor(e.target.value)}
                       >
-                        <option value="">--Select Major--</option>
+                        <option value="">Select Major</option>
                         {majors.map((major, idx) => (
                           <option key={idx} value={major}>
                             {major}
@@ -546,12 +559,12 @@ const Profile = ({ pro }) => {
                       </select>
                     </label>
                     <label>
-                      Semester:
+                      Semester:     
                       <select
                         value={selectedSemester}
                         onChange={(e) => setSelectedSemester(e.target.value)}
                       >
-                        <option value="">--Select Semester--</option>
+                        <option value="">Select Semester</option>
                         {semesters.map((sem, idx) => (
                           <option key={idx} value={sem}>
                             {sem}
@@ -559,7 +572,7 @@ const Profile = ({ pro }) => {
                         ))}
                       </select>
                     </label>
-                    <button type="submit">Submit</button>
+                    <button className={styles['submit-btnn']} type="submit">Submit</button>
                   </form>
                   {confirmationMessage && <p>{confirmationMessage}</p>}
                 </div>

@@ -200,7 +200,7 @@
   .break {
     border: none;
     height: 2px;
-    background: radial-gradient(circle at center, #888 0%, transparent 120%);
+    background: radial-gradient(circle at center, #7bbdfa 0%, transparent 110%);
     background-repeat: repeat-x;
     background-size: 100% 100%;
     margin: 25px 0;
