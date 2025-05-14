@@ -1,16 +1,3 @@
-cntnr {
-  display: grid;
-  grid-template-columns: 30% 1fr;
-}
-
-.main-display {
-  grid-column: 2;
-  display: flex;
-  flex-direction: column;
-}
-
-
-
 .assessment-container {
   max-width: 700px;
   margin: 2rem auto;
@@ -89,7 +76,16 @@ input[type="radio"] {
   font-style: italic;
 }
 
+.cntnr {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+}
 
+.main-display {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+}
 
 @keyframes fadeIn {
   from {

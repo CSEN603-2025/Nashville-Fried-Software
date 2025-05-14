@@ -34,7 +34,7 @@ const Notifications = ({ notifications, pro }) => {
       read: false,
       isUrgent: false,
     },
-    (pro ? { msg: "STARTING NOW: React Basics Workshop!", read: false, isUrgent: true } : { msg:"PWC ETIC has declined your application.", read:false, isUrgent:false})
+    (pro ? { msg: "STARTING NOW: CV Writing Workshop!", read: false, isUrgent: true } : { msg:"PWC ETIC has declined your application.", read:false, isUrgent:false})
     ,
   ]);
 
