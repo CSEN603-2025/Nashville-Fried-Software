@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import SideBar from "../Dashboard/SideBar";
 import styles from "../ComponentStyles/Report.module.css";
+import plusIcon from "../../assets/plus.svg"
 
 function Report({ pro }) {
   const [reports, setReports] = useState([
     {
+      id:0,
       role: "Software Engineering Intern",
       company: "Google",
       title: "Building Scalable Web Services",
@@ -21,6 +23,7 @@ function Report({ pro }) {
       ],
     },
     {
+      id:1,
       role: "Data Analyst Intern",
       company: "Amazon",
       title: "Data-Driven Decision Making",
@@ -33,6 +36,7 @@ function Report({ pro }) {
       relevant_courses: ["Data Science", "Database Systems", "Statistics"],
     },
     {
+      id:2,
       role: "Cybersecurity Intern",
       company: "Cisco",
       title: "Vulnerability Assessment and Mitigation",
@@ -49,6 +53,7 @@ function Report({ pro }) {
       ],
     },
     {
+      id:3,
       role: "Product Management Intern",
       company: "Meta",
       title: "Launching User-Centered Features",
@@ -68,6 +73,7 @@ function Report({ pro }) {
       ],
     },
     {
+      id:4,
       role: "AI Research Intern",
       company: "OpenAI",
       title: "Fine-tuning Language Models",
@@ -83,55 +89,10 @@ function Report({ pro }) {
         "Deep Learning",
       ],
     },
-    {
-      role: "UI/UX Design Intern",
-      company: "Adobe",
-      title: "Designing for Accessibility",
-      intro: "The report highlights my role in enhancing UI accessibility.",
-      body: "I redesigned key UI elements in a flagship product to meet WCAG standards. Usability testing showed a 20% improvement in task completion for users with visual impairments.",
-      status: "Pending",
-      comments: [],
-      appealed: false,
-      relevant_courses: [
-        "UI/UX Design",
-        "Accessibility in Computing",
-        "Visual Design",
-      ],
-    },
-    {
-      role: "Cloud Engineering Intern",
-      company: "IBM",
-      title: "Optimizing Cloud Infrastructure",
-      intro:
-        "Summary of work done to reduce cloud service costs and increase reliability.",
-      body: "I created Terraform scripts to manage multi-cloud environments and implemented cost analysis tools that identified $10k/month in savings.",
-      status: "Flagged",
-      comments: ["Needs more clarity on individual contribution."],
-      appealed: false,
-      relevant_courses: ["Cloud Computing", "DevOps", "Infrastructure as Code"],
-    },
-    {
-      role: "Marketing Intern",
-      company: "Netflix",
-      title: "Social Media Campaign Analytics",
-      intro:
-        "This report covers how I analyzed data from social campaigns to drive strategy.",
-      body: "Using tools like Tableau and Google Analytics, I assessed campaign effectiveness and delivered weekly reports that shaped audience targeting strategies.",
-      status: "Rejected",
-      comments: [
-        "Report reads like a blog post.",
-        "Lacks structure and depth.",
-      ],
-      appealed: false,
-      relevant_courses: [
-        "Digital Marketing",
-        "Data Visualization",
-        "Consumer Behavior",
-      ],
-    },
   ]);
   const [drafts, setDrafts] = useState([
     {
+      id:0,
       role: "Backend Developer Intern",
       company: "Stripe",
       title: "Improving Payment APIs",
@@ -142,6 +103,7 @@ function Report({ pro }) {
       relevant_courses: ["Software Engineering", "Databases", "System Design"],
     },
     {
+      id:1,
       role: "Machine Learning Intern",
       company: "Tesla",
       title: "Autonomous Driving Data Analysis",
@@ -156,6 +118,7 @@ function Report({ pro }) {
       ],
     },
     {
+      id:2,
       role: "DevOps Intern",
       company: "Red Hat",
       title: "CI/CD Pipeline Automation",
@@ -166,6 +129,7 @@ function Report({ pro }) {
       relevant_courses: ["DevOps", "Cloud Computing", "Infrastructure as Code"],
     },
   ]);
+  const [currId, setCurrId] = useState(3)
   const courses = [
     "Web Development",
     "Distributed Systems",
@@ -200,17 +164,92 @@ function Report({ pro }) {
   const openDraftModal = (draft) => setSelectedDraft(draft);
   const closeDraftModal = () => setSelectedDraft(null);
 
+  const [newCourse, setNewCourse] = useState("");
+
+const handleRemoveCourse = (indexToRemove) => {
+  const updatedCourses = selectedDraft.relevant_courses.filter(
+    (_, index) => index !== indexToRemove
+  );
+  handleEdit("relevant_courses", updatedCourses);
+};
+
+const handleAddCourse = () => {
+  if (!newCourse.trim()) return;
+  const updatedCourses = [
+    ...(selectedDraft.relevant_courses || []),
+    newCourse.trim(),
+  ];
+  handleEdit("relevant_courses", updatedCourses);
+  setNewCourse("");
+};
+
+  const handleAppeal = () => {
 
 
-  const handleDraftSubmit = (idx) => {
+
+    setSelectedReport((prev) => ({
+      ...prev,
+      appealed: true,
+    }));
+
+    setReports((prevDrafts) =>
+      prevDrafts.map((draft) =>
+        draft.id === selectedReport.id ? {...draft, appealed: true} : draft
+      )
+    );
+
+  };
+
+
+  const addDraft = () => {
+    console.log(currId)
+    let newDraft = {
+      id:currId,
+      role: "",
+      company: "",
+      title: "",
+      intro: "",
+      body: "",
+      status: "Draft",
+      relevant_courses: [],
+    }
+    setDrafts([...drafts, newDraft])
+    openDraftModal(newDraft)
+    setCurrId(currId+1)
+  }
+
+  const handleDraftDelete = () => {
+    setDrafts((prevDrafts) => {
+      return prevDrafts.filter((draft) => draft.id !== selectedDraft.id);
+    });
+    closeDraftModal()
+  }
+
+  const handleDraftSave = () => { 
+    setDrafts((prevDrafts) =>
+      prevDrafts.map((draft) =>
+        draft.id === selectedDraft.id ? selectedDraft : draft
+      )
+    );
+    console.log(drafts)
+    
+    closeDraftModal();
+  }
+
+  const handleDraftSubmit = () => {
   if (!selectedDraft) return;
   // Step 1: Save the changes made to the draft (handled already through the onChange event)
-
+  setDrafts((prevDrafts) =>
+    prevDrafts.map((draft) =>
+      draft.id === selectedDraft.id ? selectedDraft : draft
+    )
+  );
   // Step 2: Append the draft to the reports list with status "Pending" and appealed: false
   const newReport = {
     ...selectedDraft,
     status: "Pending",
     appealed: false,
+    id: reports.length
   };
 
   setReports((prevReports) => [...prevReports, newReport]);
@@ -218,7 +257,7 @@ function Report({ pro }) {
   // Step 3: Remove the draft from the drafts list after it's been added to reports
   // setDrafts((prevDrafts) => prevDrafts.filter((draft) => draft !== selectedDraft));
   setDrafts((prevDrafts) => {
-    return prevDrafts.filter((draft,i) => i !== idx);
+    return prevDrafts.filter((draft) => draft.id !== selectedDraft.id);
   });
 
   // Close the draft modal after submitting
@@ -231,13 +270,14 @@ function Report({ pro }) {
       [field]: value,
     }));
   };
+
+
   return (
     <div className={styles["cntnr"]}>
       <SideBar active="Reports" pro={pro} />
       <div className={styles["main-display"]}>
-        <h1>REPORTS</h1>
         <div className={styles["reports-wrapper"]}>
-          <h2>Finalized Reports</h2>
+          <h2 className={styles['section-header']}>Finalized Reports</h2>
           <div className={styles["report-list"]}>
             {reports.map((r, i) => (
               <div
@@ -255,7 +295,7 @@ function Report({ pro }) {
                   className={styles["view-btn"]}
                   onClick={() => openModal(r)}
                 >
-                  View
+                  View Report
                 </button>
               </div>
             ))}
@@ -273,16 +313,32 @@ function Report({ pro }) {
                   <p>
                     <strong>Role:</strong> {selectedReport.role}
                   </p>
+                  <hr className={styles["break"]}/>
                   <p>
                     <strong>Company:</strong> {selectedReport.company}
                   </p>
+                  <hr className={styles["break"]}/>
                   <p>
                     <strong>Status:</strong> {selectedReport.status}
                   </p>
+                  <hr className={styles["break"]}/>
                   <p className={styles["modal-intro"]}>
                     {selectedReport.intro}
                   </p>
                   <p className={styles["modal-body"]}>{selectedReport.body}</p>
+                  <hr className={styles["break"]}/>
+                  {selectedReport.relevant_courses && selectedReport.relevant_courses.length > 0 && (
+                    <div className={styles["courses-section"]}>
+                      <h4 className={styles["courses-title"]}>Relevant Courses</h4>
+                      <div className={styles["courses-container"]}>
+                        {selectedReport.relevant_courses.map((course, index) => (
+                          <div key={index} className={styles["course-card"]}>
+                            {course}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {["Flagged", "Rejected"].includes(selectedReport.status) &&
                     selectedReport.comments.length > 0 && (
@@ -296,17 +352,31 @@ function Report({ pro }) {
                       </div>
                     )}
 
-                  {(selectedReport.status == "Flagged" ||
-                    selectedReport.status == "Rejected") && (
-                    <button className={styles["appeal-btn"]}>Appeal</button>
+                  {(selectedReport.status === "Flagged" || selectedReport.status === "Rejected") && (
+                    <div className={styles["appeal-section"]}>
+                      {!selectedReport.appealed && (
+                        <textarea
+                          className={styles["appeal-input"]}
+                          placeholder="Enter appeal message..."
+                        />
+                      )}
+                      <button
+                        className={styles["appeal-btn"]}
+                        onClick={handleAppeal}
+                        disabled={selectedReport.appealed}
+                      >
+                        {selectedReport.appealed ? "Appealed!" : "Appeal"}
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
             )}
           </div>
         </div>
+        <hr className={styles["break"]}/>
         <div className={styles["drafts-wrapper"]}>
-          <h2>Draft Reports</h2>
+          <h2 className={styles['section-header']}>Draft Reports</h2>
 
           <div className={styles["Draft-list"]}>
             {drafts.map((r, i) => (
@@ -325,11 +395,15 @@ function Report({ pro }) {
                   className={styles["view-btn"]}
                   onClick={() => openDraftModal(r)}
                 >
-                  View
+                  View Report
                 </button>
               </div>
             ))}
+            <div onClick={addDraft} className={`${styles["report-card-plus"]}`}>
+              <img src={plusIcon} className={styles['pluslus']} />
+             </div>
           </div>
+          
 
           {selectedDraft && (
             <div className={styles["modal-overlay"]} onClick={closeDraftModal}>
@@ -343,7 +417,14 @@ function Report({ pro }) {
                 >
                   ✕
                 </button>
-                <h2>{selectedDraft.title}</h2>
+                <h2>
+                  <strong>Title:</strong>
+                  <input
+                    type="text"
+                    value={selectedDraft.title}
+                    onChange={(e) => handleEdit("title", e.target.value)}
+                  />
+                </h2>
 
                 <p>
                   <strong>Role:</strong>
@@ -362,16 +443,6 @@ function Report({ pro }) {
                     onChange={(e) => handleEdit("company", e.target.value)}
                   />
                 </p>
-
-                <p>
-                  <strong>Status:</strong>
-                  <input
-                    type="text"
-                    value={selectedDraft.status}
-                    onChange={(e) => handleEdit("status", e.target.value)}
-                  />
-                </p>
-
                 <p className={styles["modal-intro"]}>
                   <strong>Intro:</strong>
                   <input
@@ -389,12 +460,58 @@ function Report({ pro }) {
                   />
                 </p>
 
-                <button
-                  className={styles["submit-draft"]}
-                  onClick={()=>handleDraftSubmit(i)}
-                >
-                  Submit Draft
-                </button>
+                <div className={styles["courses-section"]}>
+                  <h4 className={styles["courses-title"]}>Relevant Courses</h4>
+                  <div className={styles["courses-container"]}>
+                    {selectedDraft.relevant_courses?.map((course, index) => (
+                      <div key={index} className={styles["course-card"]}>
+                        {course}
+                        <button
+                          className={styles["course-remove"]}
+                          onClick={() => handleRemoveCourse(index)}
+                        >
+                          <span>&#8722;</span>
+                        </button>
+                      </div>
+                    ))}
+                    <div className={styles["course-add-container"]}>
+                      <input
+                        type="text"
+                        value={newCourse}
+                        onChange={(e) => setNewCourse(e.target.value)}
+                        className={styles["course-input"]}
+                        placeholder="Add course..."
+                      />
+                      <button
+                        className={styles["course-add"]}
+                        onClick={handleAddCourse}
+                        disabled={!newCourse.trim()}
+                      >
+                        <span>+</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles["action-buttons"]}>
+                  <button
+                    className={styles["submit-draft"]}
+                    onClick={handleDraftSubmit}
+                  >
+                    Submit Draft
+                  </button>
+                  <button
+                    className={styles["submit-draft"]}
+                    onClick={handleDraftSave}
+                  >
+                    Save Draft
+                  </button>
+                  <button
+                    className={styles["delete-draft"]}
+                    onClick={handleDraftDelete}
+                  >
+                    Delete Draft
+                  </button>
+                </div>
               </div>
             </div>
           )}

@@ -14,6 +14,8 @@
 }
 
 
+
+
 .report-list, .Draft-list {
   display: grid;
   gap: 1rem;
@@ -22,12 +24,44 @@
 }
 
 .report-card {
-  background: white;
+  display: grid;
+  grid-template-rows: 80px, 50px, 50px, 50px;
+  background: linear-gradient(135deg, #7bbdfa 0%,  #1f69d0 100%);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 1rem;
   transition: transform 0.2s ease;
+  color: white;
   position: relative;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.report-card-plus {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1f69d0 0%, #7bbdfa 100%);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  transition: transform 0.2s ease;
+  color: white;
+  position: relative;
+  align-items: center;
+  transition: all 0.2s ease;
+  min-height: 200px;
+}
+
+.report-card:hover, .report-card-plus:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.pluslus{
+  width:150px;
+  height: 150px;
+  margin-top: 20px;
+
 }
 
 .report-title {
@@ -36,8 +70,10 @@
 
 .report-meta {
   font-size: 0.95rem;
-  color: #444;
+  color: white;
 }
+
+
 
 .report-status {
   margin: 0.5rem 0;
@@ -51,12 +87,22 @@
 .status-Draft { border-left: 5px solid rgb(134, 134, 134); }
 
 .view-btn {
-  background: #3a7bd5;
-  color: white;
-  border: none;
+  background: white;
+  color: #007bff;
+  border: 1px solid #007bff;
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 0.9rem;
+  width: 50%;
+  justify-self: center;
+  margin-top: 10px;
+}
+
+.view-btn:hover {
+  color: white;
+  background-color: #007bff;
+  border: 1px solid #007bff;
 }
 
 .modal-overlay {
@@ -77,7 +123,7 @@
   padding: 1.5rem;
   border-radius: 12px;
   width: 90%;
-  max-width: 500px;
+  max-width: 800px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   position: relative;
   animation: fadeIn 0.3s ease-in-out;
@@ -119,3 +165,233 @@
 .modal-intro, .modal-body {
   margin-top: 0.5rem;
 }
+
+
+  .courses-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #fefefe;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .courses-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.1em;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .courses-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    max-height: 120px;
+    gap: 0.5rem;
+  }
+  
+  .course-card {
+    background-color: #e6f0ff;
+    border: 1px solid #b3d1ff;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.85em;
+    font-weight: 500;
+    color: #003366;
+    white-space: nowrap;
+  }
+
+  
+  .course-card {
+    display: flex;
+    align-items: center;
+    background-color: #e6f0ff;
+    border: 1px solid #b3d1ff;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.85em;
+    font-weight: 500;
+    color: #003366;
+    white-space: nowrap;
+  }
+  
+  .course-remove {
+    margin-left: 6px;
+    background: #ffdddd;
+    color: #a00;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+    font-size: 0.8em;
+    cursor: pointer;
+    line-height: 1;
+  }
+  
+  .course-add-container {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+  }
+  
+  .course-input {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.85em;
+    width: 120px;
+  }
+  
+  .course-add {
+    background: #ddffdd;
+    color: #080;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  
+  .appeal-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    max-width: 100%;
+  }
+  
+  .appeal-input {
+    resize: none;
+    padding: 8px;
+    font-size: 0.9em;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    min-height: 60px;
+    max-height: 120px;
+  }
+  
+  .appeal-btn {
+    background-color: white;
+    color: #2563eb;
+    font-weight: bold;
+    border: 1px solid #2563eb;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 40%;
+    align-self: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .appeal-btn:hover{
+    background: #2563eb;
+    color: #fff;
+  }
+  
+  .appeal-btn:disabled {
+    background-color: #d0ffd0;
+    color: #080;
+    cursor: default;
+  }
+
+  .break {
+    border: none;
+    height: 2px;
+    background: #7bbdfa;
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+    margin: 25px 20px 25px 10px;
+  }
+
+  .modal h2{
+    margin-top: 0px;
+    margin-bottom: 35px;
+    font-size: 2.5rem;
+  }
+
+  .modal p{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .modal p strong, .courses-title{
+    font-size: 1.2rem;
+    color: black;
+    margin-left: 0px;
+  }
+
+  .modal p input{
+    font-size: 1.2rem;
+    padding: 10px 10px;
+    border-radius: 8px;
+  }
+
+  .modal p textarea{
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 10px;
+    resize: none;
+    overflow-y: auto;
+    border-radius: 8px;
+  }
+
+  .modal h2{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .modal h2 input{
+    font-size: 2rem;
+    padding: 10px 5px;
+    border-radius: 8px;
+  }
+
+  .action-buttons{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .submit-draft{
+    background-color: white;
+    border: 1px solid #007bff;
+    color: #007bff;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .submit-draft:hover{
+    color: white;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+  }
+
+  .course-remove span{
+    position: relative;
+    top: -3px;
+    left: -1px
+  }
+
+  .course-add span{
+    position: relative;
+    top: -4px;
+    left: -0.5px
+  }
+
+  .course-add-container input{
+    padding: 10px 5px;
+  }
+
+  .section-header{
+    font-size: 2.4rem;
+  }
