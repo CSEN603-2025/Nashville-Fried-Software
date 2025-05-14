@@ -6,6 +6,7 @@ import SideBar from "../Dashboard/SideBar";
 import doneIcon from "../../assets/donee.svg";
 import plusIcon from "../../assets/plus2.svg";
 
+
 const Profile = ({ pro }) => {
   let jobInterests = [
     "Backend Development",
@@ -119,7 +120,7 @@ const Profile = ({ pro }) => {
             <div className={styles["profile-info-col"]}>
               <div className={styles["profileInfo"]}>
                 <h2>
-                  Profile Information: {name} {pro ? "[PRO]" : ""}
+                  Profile: {name} {pro ? "[PRO]" : ""}
                 </h2>
                 <div className={styles["interests-activities-wrapper"]}>
                   <div className={styles["section-box"]}>
@@ -159,6 +160,7 @@ const Profile = ({ pro }) => {
                           onChange={(e) => setJobInterestInput(e.target.value)}
                         />
                         <button
+                          className = {styles['add-btn']}
                           onClick={() => {
                             if (jobInterestInput.trim()) {
                               setJobInterestsState([
@@ -169,7 +171,8 @@ const Profile = ({ pro }) => {
                             }
                           }}
                         >
-                          <img src={plusIcon} color="#3a7bd5" height={20} width={20} />
+                          {/* <img src={plusIcon} color="#3a7bd5" height={20} width={20} /> */}
+                          +
                         </button>
                       </div>
                     )}
@@ -281,6 +284,7 @@ const Profile = ({ pro }) => {
                           onChange={(e) => setActivityInput(e.target.value)}
                         />
                         <button
+                          className = {styles['add-btn']}
                           onClick={() => {
                             if (activityInput.trim()) {
                               setCollegeActivitiesState([
@@ -291,7 +295,8 @@ const Profile = ({ pro }) => {
                             }
                           }}
                         >
-                          <img src={plusIcon} color="#3a7bd5" height={20} width={20} />
+                          {/* <img src={plusIcon} color="#3a7bd5" height={20} width={20} /> */}
+                          +
                         </button>
                       </div>
                     )}
@@ -402,6 +407,14 @@ const Profile = ({ pro }) => {
                               onChange={(e) => setJobTitle(e.target.value)}
                             />
                           </label>
+                              <label>
+                            Duration:
+                            <input
+                              type="text"
+                              value={duration}
+                              onChange={(e) => setDuration(e.target.value)}
+                            />
+                          </label>
                           <div className={styles["responses-div"]}>
                             Responsibilities:
                             <div className={styles["responsibilities"]}>
@@ -414,7 +427,7 @@ const Profile = ({ pro }) => {
                                   type="button"
                                   onClick={() => handleRemoveResponsibility(index)}
                                 >
-                                  -
+                                -
                                 </button>
                               </div>
                             ))}
@@ -426,6 +439,7 @@ const Profile = ({ pro }) => {
                                 onChange={(e) => setNewResponsibility(e.target.value)}
                               />
                               <button
+                  
                                 type="button"
                                 onClick={() => {
                                   if (newResponsibility.trim()) {
@@ -440,14 +454,7 @@ const Profile = ({ pro }) => {
 
                            </div>
                           </div>
-                          <label>
-                            Duration:
-                            <input
-                              type="text"
-                              value={duration}
-                              onChange={(e) => setDuration(e.target.value)}
-                            />
-                          </label>
+                      
                           {warning && (
                             <p style={{ color: "red", marginTop: "10px" }}>
                               {warning}
@@ -455,12 +462,13 @@ const Profile = ({ pro }) => {
                           )}
                           <div className={styles["form-buttons"]}>
                             <button
+                              className = {styles['submit-btnn']}
                               type="button"
                               onClick={() => {setIsAddingInternship(false); setResponsibilities([])}}
                             >
                               Cancel
                             </button>
-                            <button type="submit">Save Internship</button>
+                            <button className={styles['submit-btnn']} type="submit">Save Internship</button>
                             
                           </div>
                     
@@ -523,11 +531,13 @@ const Profile = ({ pro }) => {
             </div>
             {pro && (
               <>
-                <h3 className="whichcompanies">
-                  Which companies viewed your profile:{" "}
-                </h3>
-                <div className="company-views-col">
+                
+                <div className={styles['company-views-col']}>
+                  
                   <div className={styles["companyViews"]}>
+                    <h2 className={styles['whichcompanies']}>
+                  Companies that viewed your Profile:{" "}
+                </h2>
                     <ul>
                       {companies.map((company, idx) => (
                         <li key={idx}>{company}</li>

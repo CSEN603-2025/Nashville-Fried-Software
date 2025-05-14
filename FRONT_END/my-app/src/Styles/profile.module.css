@@ -14,16 +14,16 @@ body {
   align-items: center;
   max-height: 20vh;
 }
-.cntnr{
-    display: grid;
-    grid-template-columns: 30% 1fr; /* 30% for the left column, the rest for the right */
-     /* Optional spacing between columns */
-  }
+.cntnr {
+  display: grid;
+  grid-template-columns: 30% 1fr; /* 30% for the left column, the rest for the right */
+  /* Optional spacing between columns */
+}
 
-.main-display{
-    grid-column: 2;
-    display: flex;
-    flex-direction: column;
+.main-display {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero {
@@ -95,7 +95,6 @@ body {
   margin-left: 20px;
 }
 
-
 .previousInternships_m > div {
   background-color: white;
   border-radius: 8px;
@@ -110,8 +109,6 @@ body {
 
 .companyViews {
   flex: 1;
-  background-color: #f0f0ff;
-  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
 }
@@ -153,15 +150,15 @@ button:hover {
   background-color: #0056b3;
 }
 
-
 .companyViews {
-  max-height: 300px; /* Adjust height as needed */
+  max-height: 400px; /* Adjust height as needed */
   overflow-y: auto;
-  padding: 16px;
-  background-color: #f9f9f9;
+  padding: 5px;
+  background: linear-gradient(135deg, #3a7bd5 0%, #5db2ff 100%);
   border-radius: 12px;
+  padding: 50px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px;
+  margin-bottom: 5px;
 }
 
 .companyViews ul {
@@ -240,7 +237,7 @@ button:hover {
   gap: 10px;
 }
 
-.edit-input input{
+.edit-input input {
   border-radius: 6px;
   border: 1px solid #3a7bd5;
   padding-left: 5px;
@@ -261,7 +258,7 @@ button:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0,0,0, 0.25); /* semi-transparent */
+  background-color: rgba(0, 0, 0, 0.25); /* semi-transparent */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -283,39 +280,36 @@ button:hover {
   color: #3a7bd5;
 }
 
-.internship-form  h2{
+.internship-form h2 {
   color: #3a7bd5;
   margin-top: 0px;
-
 }
 
-.form-buttons{
+.form-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.form-buttons button{
+.form-buttons button {
   margin-top: 10px;
   color: #3a7bd5;
   background-color: white;
   border: 1px solid #3a7bd5;
 }
 
-.form-buttons button:hover{
+.form-buttons button:hover {
   background-color: #3a7bd5;
   color: white;
-
 }
 
-.internship-form  form{
+.internship-form form {
   display: flex;
   flex-direction: column;
   gap: 20px;
-
 }
 
-.responses-div{
+.responses-div {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -324,6 +318,7 @@ button:hover {
 .respo-pill {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   gap: 8px;
   padding: 6px 12px;
@@ -343,7 +338,10 @@ button:hover {
   height: 20px;
   width: 20px;
   border-radius: 6px;
-  font-size: 36px;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: red;
   cursor: pointer;
   font-weight: bold;
@@ -354,7 +352,7 @@ button:hover {
   background-color: #dce4ff;
 }
 
-.responsibilities{
+.responsibilities {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -365,35 +363,31 @@ button:hover {
   padding: 5px;
 }
 
-.internship-form form label{
+.internship-form form label {
   display: flex;
   flex-direction: row;
   gap: 10px;
   justify-content: space-between;
   align-items: center;
-  
 }
-
 
 .profile-main-content {
   margin-right: 20px;
   display: flex;
   flex-direction: column;
   gap: 0px;
-  animation: slideInProfile 0.7s cubic-bezier(.23,1.12,.72,1.01);
+  animation: slideInProfile 0.7s cubic-bezier(0.23, 1.12, 0.72, 1.01);
 }
 
 .profile-grid-top {
   display: grid;
-  gap: 32px;
+  gap: 5px;
   align-items: flex-start;
 }
 .profile-info-col {
   min-width: 0;
 }
-.company-views-col {
-  min-width: 0;
-}
+
 
 .profile-grid-middle {
   display: grid;
@@ -403,55 +397,53 @@ button:hover {
 
 .profile-grid-bottom {
   display: flex;
-  gap: 32px;
   justify-content: center;
+  margin-top: 5px;
 }
 
-.mloosh-esm{
+.mloosh-esm {
   background: linear-gradient(135deg, #3a7bd5 0%, #5db2ff 100%);
   color: white;
-  width: 100%;
+  width: 1155px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-  transition: all 0.3s ease-in ;
+  transition: all 0.3s ease-in;
 }
 
-.mloosh-esm:hover{
+.mloosh-esm:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.mloosh-esm form{
+.mloosh-esm form {
   gap: 30px;
 }
 
-.mloosh-esm select{
+.mloosh-esm select {
   margin-left: 20px;
 }
 
-.mloosh-esm label{
+.mloosh-esm label {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 20px;
 }
 
-.submit-btnn{
+.submit-btnn {
   color: #3a7bd5;
   background-color: white;
   margin-bottom: 20px;
   font-size: 20px;
 }
 
-.submit-btnn:hover{
+.submit-btnn:hover {
   background-color: #3a7bd5;
   color: white;
 }
-
-
 
 .previous-internships-col {
   min-width: 0;
@@ -465,7 +457,9 @@ button:hover {
     margin-left: 0;
     padding: 0 16px;
   }
-  .profile-grid-top, .profile-grid-middle, .profile-grid-bottom {
+  .profile-grid-top,
+  .profile-grid-middle,
+  .profile-grid-bottom {
     grid-template-columns: 1fr;
     gap: 24px;
   }
@@ -476,7 +470,9 @@ button:hover {
     margin-left: 0;
     padding: 0 4px;
   }
-  .profile-grid-top, .profile-grid-middle, .profile-grid-bottom {
+  .profile-grid-top,
+  .profile-grid-middle,
+  .profile-grid-bottom {
     grid-template-columns: 1fr;
     gap: 16px;
   }
@@ -493,37 +489,62 @@ button:hover {
   }
 }
 
-.profileInfo, .section-box, .companyViews, .majorSems, .previousInternships > div {
+.profileInfo,
+.section-box,
+.companyViews,
+.majorSems,
+.previousInternships > div {
   transition: box-shadow 0.25s, transform 0.18s;
-} 
- .profileInfo:hover, .companyViews:hover, .majorSems:hover, .previousInternships > div:hover {
-  box-shadow: 0 6px 24px rgba(58,123,213,0.13);
+}
+.profileInfo:hover,
+.companyViews:hover,
+.majorSems:hover,
+.previousInternships > div:hover {
+  box-shadow: 0 6px 24px rgba(58, 123, 213, 0.13);
 }
 
-button, .editButton, .addInternship {
+
+
+
+.add-btn,
+.editButton,
+.addInternship {
   transition: all 0.18s, color 0.18s, transform 0.12s;
   height: 36px;
   background-color: white;
   color: #007bff;
 }
-button:hover, .editButton:hover, .addInternship:hover {
+
+.add-btn {
+  width: 30px;
+  font-size: 20px;
+  text-align: center;
+}
+
+button:hover,
+.editButton:hover,
+.addInternship:hover {
   color: white;
   background-color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
+
+
 .collapsible-list {
+  
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 90%;
+  width: 97%;
+  display: flex;
+  flex-direction: column;
 }
 .collapsible-item {
   margin-bottom: 8px;
   border-radius: 8px;
   background: #f9fafb;
-
-  box-shadow: 0 1px 4px rgba(58,123,213,0.07);
+  box-shadow: 0 1px 4px rgba(58, 123, 213, 0.07);
   transition: box-shadow 0.18s;
 }
 .collapsible-toggle {
@@ -544,15 +565,13 @@ button:hover, .editButton:hover, .addInternship:hover {
   transition: background 0.18s, color 0.18s;
 }
 
-.whichcompanies{
-  font-size: 50rem;
-}
+
 .arrow-icon {
   transition: transform 0.3s ease;
   display: inline-block;
 }
 
-.collapsible-internships h3{
+.collapsible-internships h3 {
   font-size: 2.5rem;
   text-align: center;
   font-weight: 700;
@@ -563,7 +582,8 @@ button:hover, .editButton:hover, .addInternship:hover {
   gap: 30px;
 }
 
-.add-internship{
+
+.add-internship {
   height: 35px;
   width: 35px;
   font-size: 24px;
@@ -578,7 +598,7 @@ button:hover, .editButton:hover, .addInternship:hover {
   background: #fff;
   border-radius: 0 0 8px 8px;
   overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(.23,1.12,.72,1.01);
+  transition: max-height 0.3s cubic-bezier(0.23, 1.12, 0.72, 1.01);
 }
 .collapsible-content {
   padding: 0px 18px 12px 18px;
@@ -587,16 +607,29 @@ button:hover, .editButton:hover, .addInternship:hover {
   animation: fadeInProfileCollapse 0.3s;
 }
 
-.collapsible-content h4{
- margin-bottom: 10px;
- font-weight: 400;
+.collapsible-content h4 {
+  margin-bottom: 10px;
+  font-weight: 400;
 }
 
-.collapsible-content h4 strong{
+.collapsible-content h4 strong {
   margin-bottom: 10px;
   font-weight: 700;
- }
+}
 @keyframes fadeInProfileCollapse {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.whichcompanies {
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
 }

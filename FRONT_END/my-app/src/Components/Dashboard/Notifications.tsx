@@ -27,7 +27,7 @@ const Notifications = ({ notifications, pro }) => {
       read: false,
       isUrgent: false,
     },
-       (pro ? { msg: "SCAD Appointment Scheduled for May 10th", read: false, isUrgent: true } : { msg:"Deloitte has declined your application.", read:false, isUrgent:false})
+       (pro ? { msg: "SCAD Appointment Scheduled for May 10th", read: false, isUrgent: false } : { msg:"Deloitte has declined your application.", read:false, isUrgent:false})
 ,
     {
       msg: "🔔 The next internship cycle will start on May 25th!",
