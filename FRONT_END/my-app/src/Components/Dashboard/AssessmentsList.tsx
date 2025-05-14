@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 const AssessmentList = () =>{
     return (
         <>
-        <h3>Assessments</h3>
+        <h3 className="card-title">Assessments</h3>
         <div className="info-box">
             <ul>
-            <li> <Link to= "/Assessments"> Software Engineering Trivia</Link> </li>
+            <li> <Link to= "/Assessments"> - Software Engineering Trivia</Link> </li>
             <li></li>
             </ul>
         </div>

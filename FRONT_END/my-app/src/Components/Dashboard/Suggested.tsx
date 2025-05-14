@@ -47,7 +47,7 @@ const Suggested = () => {
               ×
             </button>
             <video className="video-modal-content" controls>
-              <source src="your-video.mp4" type="video/mp4" />
+              <source src="" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>

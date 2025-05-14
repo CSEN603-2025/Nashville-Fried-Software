@@ -1,18 +1,39 @@
+
+
 .register-container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(-45deg, #5ee7df, #b490ca, #3bb1c8, #1da2d8);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f5f5f5;
   position: relative;
 }
 
+.register-title {
+  color: white;
+  font-weight: 800;
+}
+
+
 .register-box {
-  background-color: white;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 400px;
+   width: 60%;
+  margin: 0 auto;
+  padding: 80px;
+  border: 4px solid transparent;
+  border-radius: 20px;
+  opacity: 0.95;
+  background: 
+    linear-gradient(#e1f0f7, #e1f0f7) padding-box,
+    linear-gradient(270deg, #1da2d8, #3bb1c8, #5ee7df, #1da2d8) border-box;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  animation: animateBorder 6s linear infinite;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .register-title {
@@ -70,8 +91,8 @@
 
 .error-message {
   color: red;
-  margin-top: 10px;
-  text-align: center;
+   font-weight: 800;
+  font-size: 1.75rem;
 }
 
 /* Simple notification style */

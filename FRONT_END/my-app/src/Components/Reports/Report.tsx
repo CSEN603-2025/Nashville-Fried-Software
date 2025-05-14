@@ -1,258 +1,407 @@
-import React, { useState } from 'react';
-import "../ComponentStyles/Sidebar.css";
-import SideBar from '../Dashboard/SideBar';
-import "../ComponentStyles/Report.css";
+import React, { useState } from "react";
+import SideBar from "../Dashboard/SideBar";
+import styles from "../ComponentStyles/Report.module.css";
 
-function Report({pro}) {
+function Report({ pro }) {
   const [reports, setReports] = useState([
-    { id: 1, title: 'Report 1', intro: 'Intro 1', body: 'Body 1', submitted: false, appealed: false, courses: [] },
-    { id: 2, title: 'Report 2', intro: 'Intro 2', body: 'Body 2', submitted: false, appealed: false, courses: [] },
-    { id: 3, title: 'Report 3', intro: 'Intro 3', body: 'Body 3', submitted: false, appealed: false, courses: [] },
+    {
+      role: "Software Engineering Intern",
+      company: "Google",
+      title: "Building Scalable Web Services",
+      intro:
+        "This report outlines my experience building APIs for scalable web applications.",
+      body: "During my internship, I worked on developing RESTful services in Go and optimized existing endpoints for latency. I collaborated with a cross-functional team using Agile practices.",
+      status: "Pending",
+      comments: [],
+      appealed: false,
+      relevant_courses: [
+        "Web Development",
+        "Distributed Systems",
+        "Software Engineering",
+      ],
+    },
+    {
+      role: "Data Analyst Intern",
+      company: "Amazon",
+      title: "Data-Driven Decision Making",
+      intro:
+        "A report summarizing my internship focused on analytics to support business strategy.",
+      body: "I utilized SQL and Python to generate key insights from large datasets and presented weekly dashboards to the operations team, influencing inventory decisions.",
+      status: "Flagged",
+      comments: ["Too much focus on tools, not enough on outcomes."],
+      appealed: false,
+      relevant_courses: ["Data Science", "Database Systems", "Statistics"],
+    },
+    {
+      role: "Cybersecurity Intern",
+      company: "Cisco",
+      title: "Vulnerability Assessment and Mitigation",
+      intro:
+        "This report discusses the security protocols I evaluated during my internship.",
+      body: "I ran weekly vulnerability scans on internal networks and proposed remediations for identified issues. One proposal led to adoption across three business units.",
+      status: "Accepted",
+      comments: [],
+      appealed: false,
+      relevant_courses: [
+        "Network Security",
+        "Operating Systems",
+        "Cryptography",
+      ],
+    },
+    {
+      role: "Product Management Intern",
+      company: "Meta",
+      title: "Launching User-Centered Features",
+      intro:
+        "Overview of my contributions to feature development in a fast-paced PM environment.",
+      body: "I led user interviews, synthesized feedback, and helped design a new onboarding feature that increased user retention by 15% on pilot groups.",
+      status: "Rejected",
+      comments: [
+        "Not enough technical detail.",
+        "Missing clear metrics of success.",
+      ],
+      appealed: false,
+      relevant_courses: [
+        "Human-Computer Interaction",
+        "Project Management",
+        "Software Product Design",
+      ],
+    },
+    {
+      role: "AI Research Intern",
+      company: "OpenAI",
+      title: "Fine-tuning Language Models",
+      intro:
+        "An account of my time working on LLM fine-tuning techniques and evaluation.",
+      body: "I trained and evaluated transformer models on specialized datasets. My contributions helped improve performance on niche domain tasks by 7%.",
+      status: "Accepted",
+      comments: [],
+      appealed: false,
+      relevant_courses: [
+        "Machine Learning",
+        "Natural Language Processing",
+        "Deep Learning",
+      ],
+    },
+    {
+      role: "UI/UX Design Intern",
+      company: "Adobe",
+      title: "Designing for Accessibility",
+      intro: "The report highlights my role in enhancing UI accessibility.",
+      body: "I redesigned key UI elements in a flagship product to meet WCAG standards. Usability testing showed a 20% improvement in task completion for users with visual impairments.",
+      status: "Pending",
+      comments: [],
+      appealed: false,
+      relevant_courses: [
+        "UI/UX Design",
+        "Accessibility in Computing",
+        "Visual Design",
+      ],
+    },
+    {
+      role: "Cloud Engineering Intern",
+      company: "IBM",
+      title: "Optimizing Cloud Infrastructure",
+      intro:
+        "Summary of work done to reduce cloud service costs and increase reliability.",
+      body: "I created Terraform scripts to manage multi-cloud environments and implemented cost analysis tools that identified $10k/month in savings.",
+      status: "Flagged",
+      comments: ["Needs more clarity on individual contribution."],
+      appealed: false,
+      relevant_courses: ["Cloud Computing", "DevOps", "Infrastructure as Code"],
+    },
+    {
+      role: "Marketing Intern",
+      company: "Netflix",
+      title: "Social Media Campaign Analytics",
+      intro:
+        "This report covers how I analyzed data from social campaigns to drive strategy.",
+      body: "Using tools like Tableau and Google Analytics, I assessed campaign effectiveness and delivered weekly reports that shaped audience targeting strategies.",
+      status: "Rejected",
+      comments: [
+        "Report reads like a blog post.",
+        "Lacks structure and depth.",
+      ],
+      appealed: false,
+      relevant_courses: [
+        "Digital Marketing",
+        "Data Visualization",
+        "Consumer Behavior",
+      ],
+    },
   ]);
+  const [drafts, setDrafts] = useState([
+    {
+      role: "Backend Developer Intern",
+      company: "Stripe",
+      title: "Improving Payment APIs",
+      intro:
+        "This report covers backend optimization techniques applied to Stripe's payment systems.",
+      body: "I worked on microservices written in Java and improved response times by 18% through caching and database indexing.",
+      status: "Draft",
+      relevant_courses: ["Software Engineering", "Databases", "System Design"],
+    },
+    {
+      role: "Machine Learning Intern",
+      company: "Tesla",
+      title: "Autonomous Driving Data Analysis",
+      intro:
+        "An exploration of computer vision models in the context of autonomous driving.",
+      body: "I developed models to detect lane markings and vehicles using PyTorch, achieving over 92% accuracy on test sets.",
+      status: "Draft",
+      relevant_courses: [
+        "Machine Learning",
+        "Computer Vision",
+        "Deep Learning",
+      ],
+    },
+    {
+      role: "DevOps Intern",
+      company: "Red Hat",
+      title: "CI/CD Pipeline Automation",
+      intro:
+        "The report outlines my work on automating the deployment process using Jenkins and Docker.",
+      body: "I created a CI/CD pipeline that reduced deployment time by 60%, with integrated testing and rollback mechanisms.",
+      status: "Draft",
+      relevant_courses: ["DevOps", "Cloud Computing", "Infrastructure as Code"],
+    },
+  ]);
+  const courses = [
+    "Web Development",
+    "Distributed Systems",
+    "Software Engineering",
+    "Data Science",
+    "Database Systems",
+    "Statistics",
+    "Network Security",
+    "Operating Systems",
+    "Cryptography",
+    "Human-Computer Interaction",
+    "Project Management",
+    "Software Product Design",
+    "Machine Learning",
+    "Natural Language Processing",
+    "Deep Learning",
+    "UI/UX Design",
+    "Accessibility in Computing",
+    "Visual Design",
+    "Cloud Computing",
+    "DevOps",
+    "Infrastructure as Code",
+    "Digital Marketing",
+    "Data Visualization",
+    "Consumer Behavior",
+  ];
 
-  const [comments, setComments] = useState({
-    1: "nice sub",
-    2: "mid sub",
-    3: "ts pmo sub"
+  const [selectedReport, setSelectedReport] = useState(null);
+  const [selectedDraft, setSelectedDraft] = useState(null);
+  const openModal = (report) => setSelectedReport(report);
+  const closeModal = () => setSelectedReport(null);
+  const openDraftModal = (draft) => setSelectedDraft(draft);
+  const closeDraftModal = () => setSelectedDraft(null);
+
+
+
+  const handleDraftSubmit = (idx) => {
+  if (!selectedDraft) return;
+  // Step 1: Save the changes made to the draft (handled already through the onChange event)
+
+  // Step 2: Append the draft to the reports list with status "Pending" and appealed: false
+  const newReport = {
+    ...selectedDraft,
+    status: "Pending",
+    appealed: false,
+  };
+
+  setReports((prevReports) => [...prevReports, newReport]);
+
+  // Step 3: Remove the draft from the drafts list after it's been added to reports
+  // setDrafts((prevDrafts) => prevDrafts.filter((draft) => draft !== selectedDraft));
+  setDrafts((prevDrafts) => {
+    return prevDrafts.filter((draft,i) => i !== idx);
   });
 
-  const [creating, setCreating] = useState(false);
-  const [viewingReport, setViewingReport] = useState(null);
-  const [editing, setEditing] = useState(false);
+  // Close the draft modal after submitting
+  closeDraftModal();
+};
 
-  const [title, setTitle] = useState('');
-  const [intro, setIntro] = useState('');
-  const [body, setBody] = useState('');
-  const [selectedCourses, setSelectedCourses] = useState([]);
-
-  const [showCommentsModal, setShowCommentsModal] = useState(false);
-  const [selectedReportId, setSelectedReportId] = useState(null);
-
-  const courseList = ['CA', 'SE', 'DMET', 'NETWORKS'];
-
-  const handleClick = (reportId: number) => {
-    const selected = reports.find(report => report.id === reportId);
-    if (!selected) return;
-    setTitle(selected.title);
-    setIntro(selected.intro);
-    setBody(selected.body);
-    setSelectedCourses(selected.courses || []);
-    setViewingReport(reportId);
-    setEditing(false);
+  const handleEdit = (field, value) => {
+    setSelectedDraft((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
   };
-
-  const handleCreate = () => {
-    setTitle('');
-    setIntro('');
-    setBody('');
-    setSelectedCourses([]);
-    setCreating(true);
-    setViewingReport(null);
-  };
-
-  const handleSave = () => {
-    if (title.trim()) {
-      if (creating) {
-        const newReport = {
-          id: reports.length > 0 ? Math.max(...reports.map(r => r.id)) + 1 : 1,
-          title: title.trim(),
-          intro: intro.trim(),
-          body: body.trim(),
-          submitted: false,
-          appealed: false,
-          courses: selectedCourses
-        };
-        setReports([...reports, newReport]);
-        setCreating(false);
-        setViewingReport(null);
-      } else if (viewingReport !== null) {
-        // Update the existing report with new data
-        setReports(reports.map(report =>
-          report.id === viewingReport
-            ? { ...report, title: title.trim(), intro: intro.trim(), body: body.trim(), courses: selectedCourses }
-            : report
-        ));
-        // Clear the form fields after saving
-        setViewingReport(null);
-        setEditing(false);
-      }
-      setTitle('');
-      setIntro('');
-      setBody('');
-      setSelectedCourses([]);
-    }
-  };
-  
-
-  const handleBack = () => {
-    setCreating(false);
-    setViewingReport(null);
-    setTitle('');
-    setIntro('');
-    setBody('');
-    setSelectedCourses([]);
-    setEditing(false);
-  };
-
-  const handleEdit = () => {
-    setEditing(true);
-  };
-
-  const handleDelete = (reportId: number) => {
-    setReports(reports.filter(report => report.id !== reportId));
-  };
-
-  const handleCourseToggle = (course: string) => {
-    setSelectedCourses(prev =>
-      prev.includes(course) ? prev.filter(c => c !== course) : [...prev, course]
-    );
-  };
-
-  const handleReportSubmit = (reportId: number) => {
-    setReports(reports.map(report =>
-      report.id === reportId ? { ...report, submitted: true } : report
-    ));
-  };
-
-  const handleViewSubmission = (reportId: number) => {
-    setShowCommentsModal(true);
-    setSelectedReportId(reportId);
-  };
-
-  const closeCommentsModal = () => {
-    setShowCommentsModal(false);
-  };
-
-  const handleAppeal = (reportId: number) => {
-    setReports(reports.map(report =>
-      report.id === reportId && !report.appealed
-        ? { ...report, appealed: true }
-        : report
-    ));
-    setShowCommentsModal(false);
-  };
-
   return (
-    <div className="report-layout">
-      <SideBar active='Reports' pro={pro}/>
+    <div className={styles["cntnr"]}>
+      <SideBar active="Reports" pro={pro} />
+      <div className={styles["main-display"]}>
+        <h1>REPORTS</h1>
+        <div className={styles["reports-wrapper"]}>
+          <h2>Finalized Reports</h2>
+          <div className={styles["report-list"]}>
+            {reports.map((r, i) => (
+              <div
+                className={`${styles["report-card"]} ${
+                  styles[`status-${r.status}`]
+                }`}
+                key={i}
+              >
+                <h2 className={styles["report-title"]}>{r.title}</h2>
+                <p className={styles["report-meta"]}>
+                  {r.role} @ {r.company}
+                </p>
+                <p className={styles["report-status"]}>Status: {r.status}</p>
+                <button
+                  className={styles["view-btn"]}
+                  onClick={() => openModal(r)}
+                >
+                  View
+                </button>
+              </div>
+            ))}
 
-      <div className="report-content">
-        {creating || viewingReport !== null ? (
-          <div className="create-form">
-            <div className="form-columns">
-              <div className="report-fields">
-                <textarea
-                  className="report-textarea title-box"
-                  placeholder="Title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  disabled={!creating && !editing}
-                />
-                <textarea
-                  className="report-textarea intro-box"
-                  placeholder="Introduction"
-                  value={intro}
-                  onChange={(e) => setIntro(e.target.value)}
-                  disabled={!creating && !editing}
-                />
-                <textarea
-                  className="report-textarea body-box"
-                  placeholder="Report Body"
-                  value={body}
-                  onChange={(e) => setBody(e.target.value)}
-                  disabled={!creating && !editing}
-                />
+            {selectedReport && (
+              <div className={styles["modal-overlay"]} onClick={closeModal}>
+                <div
+                  className={styles["modal"]}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button className={styles["close-btn"]} onClick={closeModal}>
+                    ✕
+                  </button>
+                  <h2>{selectedReport.title}</h2>
+                  <p>
+                    <strong>Role:</strong> {selectedReport.role}
+                  </p>
+                  <p>
+                    <strong>Company:</strong> {selectedReport.company}
+                  </p>
+                  <p>
+                    <strong>Status:</strong> {selectedReport.status}
+                  </p>
+                  <p className={styles["modal-intro"]}>
+                    {selectedReport.intro}
+                  </p>
+                  <p className={styles["modal-body"]}>{selectedReport.body}</p>
+
+                  {["Flagged", "Rejected"].includes(selectedReport.status) &&
+                    selectedReport.comments.length > 0 && (
+                      <div className={styles["comment-box"]}>
+                        <h4>Comments:</h4>
+                        <ul>
+                          {selectedReport.comments.map((c, i) => (
+                            <li key={i}>{c}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                  {(selectedReport.status == "Flagged" ||
+                    selectedReport.status == "Rejected") && (
+                    <button className={styles["appeal-btn"]}>Appeal</button>
+                  )}
+                </div>
               </div>
-              <div className="courses-list-container">
-                <h2 className="courses-title"><strong>COURSES</strong></h2>
-                <ul className="courses-list">
-                  {courseList.map(course => (
-                    <li key={course} className="course-item">
-                      <label>
-                        <input
-                          type="checkbox"
-                          checked={selectedCourses.includes(course)}
-                          onChange={() => handleCourseToggle(course)}
-                          disabled={!creating && !editing}
-                        />
-                        {course}
-                      </label>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="form-buttons">
-              {(creating || editing) && <button className="save-button" onClick={handleSave}>Save</button>}
-              {!creating && !editing && <button className="create-button" onClick={handleEdit}>Edit</button>}
-              <button className="back-button" onClick={handleBack}>Back</button>
-            </div>
+            )}
           </div>
-        ) : (
-          <>
-            <div className="report-list-container">
-              <div className="report-list-title-container">
-                <h2 className="report-list-title">REPORTS</h2>
-                <button className="create-button" onClick={handleCreate}>Create New Report</button>
+        </div>
+        <div className={styles["drafts-wrapper"]}>
+          <h2>Draft Reports</h2>
+
+          <div className={styles["Draft-list"]}>
+            {drafts.map((r, i) => (
+              <div
+                className={`${styles["report-card"]} ${
+                  styles[`status-${r.status}`]
+                }`}
+                key={i}
+              >
+                <h2 className={styles["report-title"]}>{r.title}</h2>
+                <p className={styles["report-meta"]}>
+                  {r.role} @ {r.company}
+                </p>
+                <p className={styles["report-status"]}>Status: {r.status}</p>
+                <button
+                  className={styles["view-btn"]}
+                  onClick={() => openDraftModal(r)}
+                >
+                  View
+                </button>
               </div>
-              <ul className="report-list">
-                {reports.map((report) => (
-                  <li key={report.id} className="report-item">
-                    <span
-                      onClick={() => handleClick(report.id)}
-                      style={{ flexGrow: 1, cursor: 'pointer' }}
-                    >
-                      {report.title}
-                      {report.appealed && (
-                        <span className="appeal-label" style={{ marginLeft: 8, color: '#d9534f', fontWeight: 'bold' }}>
-                          (Appeal Pending)
-                        </span>
-                      )}
-                    </span>
-                    {!report.submitted && (
-                      <button className="submit-button" onClick={() => handleReportSubmit(report.id)}>
-                        Submit
-                      </button>
-                    )}
-                    {report.submitted && (
-                      <button className="view-button" onClick={() => handleViewSubmission(report.id)}>
-                        View Comments
-                      </button>
-                    )}
-                    <button
-                      className="delete-button"
-                      onClick={() => handleDelete(report.id)}
-                      style={{ marginLeft: '10px' }}
-                    >
-                      Delete
-                    </button>
-                  </li>
-                ))}
-              </ul>
+            ))}
+          </div>
+
+          {selectedDraft && (
+            <div className={styles["modal-overlay"]} onClick={closeDraftModal}>
+              <div
+                className={styles["modal"]}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  className={styles["close-btn"]}
+                  onClick={closeDraftModal}
+                >
+                  ✕
+                </button>
+                <h2>{selectedDraft.title}</h2>
+
+                <p>
+                  <strong>Role:</strong>
+                  <input
+                    type="text"
+                    value={selectedDraft.role}
+                    onChange={(e) => handleEdit("role", e.target.value)}
+                  />
+                </p>
+
+                <p>
+                  <strong>Company:</strong>
+                  <input
+                    type="text"
+                    value={selectedDraft.company}
+                    onChange={(e) => handleEdit("company", e.target.value)}
+                  />
+                </p>
+
+                <p>
+                  <strong>Status:</strong>
+                  <input
+                    type="text"
+                    value={selectedDraft.status}
+                    onChange={(e) => handleEdit("status", e.target.value)}
+                  />
+                </p>
+
+                <p className={styles["modal-intro"]}>
+                  <strong>Intro:</strong>
+                  <input
+                    type="text"
+                    value={selectedDraft.intro}
+                    onChange={(e) => handleEdit("intro", e.target.value)}
+                  />
+                </p>
+
+                <p className={styles["modal-body"]}>
+                  <strong>Body:</strong>
+                  <textarea
+                    value={selectedDraft.body}
+                    onChange={(e) => handleEdit("body", e.target.value)}
+                  />
+                </p>
+
+                <button
+                  className={styles["submit-draft"]}
+                  onClick={()=>handleDraftSubmit(i)}
+                >
+                  Submit Draft
+                </button>
+              </div>
             </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Comments Modal */}
-      {showCommentsModal && selectedReportId !== null && (
-        <div className="comments-modal">
-          <div className="comments-modal-content">
-            <h3>Comments</h3>
-            <p>{comments[selectedReportId]}</p>
-            <button
-              className="appeal-button"
-              onClick={() => handleAppeal(selectedReportId)}
-              disabled={reports.find(r => r.id === selectedReportId)?.appealed}
-            >
-              {reports.find(r => r.id === selectedReportId)?.appealed ? "Appeal Submitted" : "Appeal"}
-            </button>
-            <button className="close-comments-modal" onClick={closeCommentsModal}>
-              Close
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

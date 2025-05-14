@@ -7,9 +7,16 @@
     padding: 10px;
 }
 
+.card-title{
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-align: center;
+}
+
 .info-box a {
     color: #fff;
     text-decoration: none;
+    font-size: 24px;
     font-weight: 600;
     padding: 2px 4px;
     border-radius: 4px;

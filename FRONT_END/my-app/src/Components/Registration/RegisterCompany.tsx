@@ -63,14 +63,17 @@ function RegisterCompany() {
   }
 
   return (
-    <div className="register-container">
+   
+     
+
+      <div className="register-container">
+         <h1 className="register-title"> <span className="scadtopia">SCADtopia</span> Registration</h1>
       {notification && (
         <div className="simple-notification">
           {notification}
         </div>
       )}
       <div className="register-box">
-        <h2 className="register-title">Register</h2>
         <div className="register-fields">
           <div className="input-group">
             <label>Company Email</label>
@@ -129,6 +132,8 @@ function RegisterCompany() {
         </div>
       </div>
     </div>
+
+    
   );
 }
 

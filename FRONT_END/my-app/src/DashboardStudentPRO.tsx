@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import react from "react";
 import SideBar from './Components/Dashboard/SideBar'
-import Workshops from './Components/Dashboard/Workshops'
 import Suggested from './Components/Dashboard/Suggested';
 import Notifications from './Components/Dashboard/Notifications'
 import CallBanner from "./Components/Dashboard/CallBanner";

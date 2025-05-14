@@ -1,0 +1,121 @@
+/* ==== Layout ==== */
+
+.cntnr{
+    display: grid;
+    grid-template-columns: 30% 1fr; /* 30% for the left column, the rest for the right */
+     /* Optional spacing between columns */
+  }
+
+.main-display{
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.report-list, .Draft-list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding: 1rem;
+}
+
+.report-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.report-title {
+  margin-bottom: 0.3rem;
+}
+
+.report-meta {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.report-status {
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+
+.status-Accepted { border-left: 5px solid green; }
+.status-Rejected { border-left: 5px solid red; }
+.status-Pending { border-left: 5px solid orange; }
+.status-Flagged { border-left: 5px solid darkgoldenrod; }
+.status-Draft { border-left: 5px solid rgb(134, 134, 134); }
+
+.view-btn {
+  background: #3a7bd5;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.comment-box {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f8f8f8;
+  border-left: 4px solid #d00;
+  border-radius: 6px;
+}
+
+.appeal-btn {
+  margin-top: 1rem;
+  background: #f39c12;
+  border: none;
+  padding: 8px 14px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-intro, .modal-body {
+  margin-top: 0.5rem;
+}
