@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './SoftwareEngineeringAssessment.css';
+import styles from './SoftwareEngineeringAssessment.module.css';
 import SideBar from '../Dashboard/SideBar';
 import { useNavigate } from 'react-router-dom';
 
@@ -81,19 +81,19 @@ const Assessments: React.FC<AssessmentProps> = () => {
   };
 
   return (
-    <div className="cntnr">
-      <div className="main-display">
+    <div className={styles["cntnr"]}>
+      <div className={styles["main-display"]}>
         <SideBar pro={true} active="" />
 
-    <div className="assessment-container">
-      <h1 className="assessment-title">Software Engineering Assessment</h1>
+    <div className={styles["assessment-container"]}>
+      <h1 className={styles["assessment-title"]}>Software Engineering Assessment</h1>
 
-      <form onSubmit={(e) => e.preventDefault()} className="assessment-form">
+      <form onSubmit={(e) => e.preventDefault()} className={styles["assessment-form"]}>
         {questions.map((question) => (
-          <div key={question.id} className="question-block">
-            <p className="question-text">{question.questionText}</p>
+          <div key={question.id} className={styles["question-block"]}>
+            <p className={styles["question-text"]}>{question.questionText}</p>
             {question.options.map((option, index) => (
-              <label key={index} className="option-label">
+              <label key={index} className={styles["option-label"]}>
                 <input
                   type="radio"
                   name={question.id}
@@ -107,20 +107,20 @@ const Assessments: React.FC<AssessmentProps> = () => {
           </div>
         ))}
 
-        <button type="button" className="submit-button" onClick={handleSubmit}>
+        <button type="button" className={styles["submit-button"]} onClick={handleSubmit}>
           Submit
         </button>
       </form>
 
       {score !== null && (
-        <div className="score-display">
+        <div className={styles["score-display"]}>
           <h3>Your Score: {score} / {questions.length}</h3>
         </div>
       )}
 
-      {notification && <p className="notification">{notification}</p>}
+      {notification && <p className={styles["notification"]}>{notification}</p>}
 
-      <button className="upload-button" onClick={handleUploadScore}>
+      <button className={styles["upload-button"]} onClick={handleUploadScore}>
         {buttonText}
       </button>
     </div>
