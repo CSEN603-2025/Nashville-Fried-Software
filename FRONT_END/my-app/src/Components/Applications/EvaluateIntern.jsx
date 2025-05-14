@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SideBar from "../Dashboard/SideBar";
+import SideBar from "../Dashboard/SideBarCompany";
 import styles from "../../Styles/WorkshopSCAD.module.css";
 import addIcon from "../../assets/plus.svg";
 import { faL } from "@fortawesome/free-solid-svg-icons";
