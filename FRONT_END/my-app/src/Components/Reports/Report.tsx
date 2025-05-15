@@ -21,6 +21,7 @@ function Report({ pro }) {
         "Distributed Systems",
         "Software Engineering",
       ],
+      downloaded: false
     },
     {
       id:1,
@@ -34,6 +35,8 @@ function Report({ pro }) {
       comments: ["Too much focus on tools, not enough on outcomes."],
       appealed: false,
       relevant_courses: ["Data Science", "Database Systems", "Statistics"],
+      downloaded: false
+
     },
     {
       id:2,
@@ -51,6 +54,8 @@ function Report({ pro }) {
         "Operating Systems",
         "Cryptography",
       ],
+      downloaded: false
+
     },
     {
       id:3,
@@ -71,6 +76,7 @@ function Report({ pro }) {
         "Project Management",
         "Software Product Design",
       ],
+      downloaded: false
     },
     {
       id:4,
@@ -88,6 +94,8 @@ function Report({ pro }) {
         "Natural Language Processing",
         "Deep Learning",
       ],
+      downloaded: false
+
     },
   ]);
   const [drafts, setDrafts] = useState([
@@ -156,7 +164,6 @@ function Report({ pro }) {
     "Data Visualization",
     "Consumer Behavior",
   ];
-
   const [selectedReport, setSelectedReport] = useState(null);
   const [selectedDraft, setSelectedDraft] = useState(null);
   const openModal = (report) => setSelectedReport(report);
@@ -172,6 +179,23 @@ const handleRemoveCourse = (indexToRemove) => {
   );
   handleEdit("relevant_courses", updatedCourses);
 };
+
+const handlePDF = (id) =>{
+  
+  setReports((reports) =>
+      reports.map((report) =>
+        report.id === id ? {...report, downloaded: true} : report
+      )
+    );
+
+  setTimeout(()=>{
+     setReports((reports) =>
+      reports.map((report) =>
+        report.id === id ? {...report, downloaded: false} : report
+      )
+    );
+   }, 1000)
+}
 
 const handleAddCourse = () => {
   if (!newCourse.trim()) return;
@@ -291,12 +315,21 @@ const handleAddCourse = () => {
                   {r.role} @ {r.company}
                 </p>
                 <p className={styles["report-status"]}>Status: {r.status}</p>
-                <button
+                <div className={styles['card-btns']}>
+                  <button
                   className={styles["view-btn"]}
                   onClick={() => openModal(r)}
                 >
                   View Report
                 </button>
+                <button
+                  className={styles["view-btn"]}
+                  onClick={() =>handlePDF(r.id)}
+                >
+                  {r.downloaded ? "Downloaded" : "Download PDF"}
+                </button>
+                </div>
+                
               </div>
             ))}
 

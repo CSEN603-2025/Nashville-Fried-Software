@@ -46,10 +46,16 @@ const Suggested = () => {
             <button className="video-modal-close" onClick={closeVideoModal}>
               ×
             </button>
-            <video className="video-modal-content" controls>
-              <source src="" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+           <iframe
+  className="video-player"
+  width="100%"
+  height="400"
+  src="https://www.youtube.com/embed/jGYzEPyTWMQ"
+  title="YouTube video"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
           </div>
         </div>
         )}

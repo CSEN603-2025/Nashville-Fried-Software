@@ -11,24 +11,58 @@
   overflow: hidden; /* Ensure gradient background doesn't overflow */
 }
 
+.contact-avatar{
+  border-radius: 50%;
+}
+
+.contact-book-container {
+  padding: 30px;
+}
+
+
+.contact-item{
+  display: flex;
+  justify-content: center;
+  gap:30px;
+}
+
 .contact-book h2 {
   text-align: center;
   color: #fff;
   margin-bottom: 1.2rem;
 }
 
+
+.contact-name{
+  font-size: 1.4rem;
+}
 .contact-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap:30px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .contact-list li {
   display: flex;
+  width: 90%;
+  justify-self: center;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  justify-content: space-around;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in;
   padding: 0.75rem 0;
+}
+.contact-list li:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .contact-info {
@@ -37,6 +71,18 @@
   gap: 1rem;
 }
 
+.contact-button {
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: white;
+  color: #007bff;
+  transition: all 0.2s ease-in;
+}
+.contact-button:hover {
+  
+  color: white;
+  background-color: #007bff;
+}
 .contact-info img {
   border-radius: 50%;
   width: 50px;

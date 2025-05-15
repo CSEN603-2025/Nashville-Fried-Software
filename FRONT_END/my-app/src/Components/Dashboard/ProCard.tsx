@@ -13,7 +13,6 @@ const ProCard = ( {pro}) =>{
   {pro ? (
           <>
               <div className="toggle-container">
-              <div className={`toggle-slider ${view}`}></div>
               <button
                 onClick={() => setView("assessments")}
                 className={`toggle-option ${view === "assessments" ? "active" : "inactive"}`}

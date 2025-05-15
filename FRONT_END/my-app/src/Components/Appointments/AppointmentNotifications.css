@@ -1,9 +1,8 @@
 .notifications-container {
-  max-width: 700px;
-  margin: 2rem auto;
   padding: 1.5rem;
   background: linear-gradient(135deg, #5db2ff 0%, #3a7bd5 100%);
   color: #fff;
+  margin-right: 30px;
   border-radius: 12px;
   border: none;
   box-shadow: 0 2px 8px rgba(58, 123, 213, 0.10);
@@ -42,10 +41,12 @@
 .notification-item strong {
   display: block;
   color: #fff;
+  font-size: 1.5rem;
   margin-bottom: 0.25rem;
 }
 
 .notification-item p {
+  font-size: 1.3rem;
   margin: 0.25rem 0;
   color: #dcdcdc;
 }
@@ -60,28 +61,23 @@
 }
 
 .response-buttons button {
+  font-size: 1.2rem;
   margin-right: 0.5rem;
   padding: 0.4rem 0.8rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  color: white;
-  background-color: #2ecc71;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.response-buttons .accept {
-  background-color: #4caf50;
-}
-
-.response-buttons .reject {
-  background-color: #e74c3c;
+  color: #007bff;
+  background-color: white;
+  transition: all 0.2s ease-in-out;
 }
 
 .response-buttons .accept:hover {
-  background-color: #27ae60;
+  color:green;
+
 }
 
 .response-buttons .reject:hover {
-  background-color: #c0392b;
+  color: #e74c3c;
 }
+

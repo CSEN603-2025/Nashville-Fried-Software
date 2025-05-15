@@ -44,13 +44,6 @@ function AppointmentRequestForm({ recipient, onSendRequest }: AppointmentRequest
   return (
     <div className="appointment-form-container">
       <h3>Request Appointment with {recipient.firstName} {recipient.lastName}</h3>
-      <img
-        className="profile-picture"
-        src={recipient.profilePicture}
-        alt={`${recipient.firstName} ${recipient.lastName}`}
-        width="50"
-        height="50"
-      />
       <form className="appointment-form" onSubmit={handleSubmit}>
         <div>
           <label>Date: </label>

@@ -86,6 +86,11 @@
 .status-Flagged { border-left: 5px solid darkgoldenrod; }
 .status-Draft { border-left: 5px solid rgb(134, 134, 134); }
 
+.card-btns {
+  display: flex;
+  justify-content: space-evenly;
+
+}
 .view-btn {
   background: white;
   color: #007bff;
@@ -94,7 +99,7 @@
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
-  width: 50%;
+  width: 40%;
   justify-self: center;
   margin-top: 10px;
 }

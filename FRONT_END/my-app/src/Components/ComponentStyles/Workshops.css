@@ -63,10 +63,33 @@
   z-index: 10000;
 }
 
-.modal-box {
+.modal-boxxyy{
   background: #fff;
   padding: 20px;
   border-radius: 8px;
-  width: 80%;
+  font-size: 1.5rem;
+  width: 30%;
   color: #3a7bd5;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-boxxyy h4 {
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+.close-workshop-modal-btn {
+  font-size: 1.3rem;
+  background-color: white;
+  color: #007bff;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #007bff;
+  width: 50%;
+  align-self: center;
+}
+.close-workshop-modal-btn:hover {
+  color: white;
+  background-color: #007bff;
 }

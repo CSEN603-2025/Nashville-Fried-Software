@@ -38,11 +38,11 @@ const WorkshopList = () => {
 
       {modalContent && (
         <div className="modal-overlay" onClick={() => setModalContent(null)}>
-          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-boxxyy" onClick={(e) => e.stopPropagation()}>
             <h4>{modalContent.name}</h4>
             <p>{modalContent.details}</p>
             <p> Workshop Date: {modalContent.date}</p>
-            <button onClick={() => setModalContent(null)}>Close</button>
+            <button className="close-workshop-modal-btn" onClick={() => setModalContent(null)}>Close</button>
           </div>
         </div>
       )}
