@@ -18,7 +18,7 @@ const Applications = () => {
 
   const [selectedApplicant, setSelectedApplicant] = useState(null);
   const [review, setReview] = useState("");
-  const [reviewStatus, setReviewStatus] = useState(false);
+  const [reviewStatus, setReviewStatus] = useState("Set Status");
 
   const filteredApplicants = applicants.filter((applicant) => {
     const matchesIndustry = industryFilter
@@ -48,9 +48,14 @@ const Applications = () => {
 
   const handleCloseModal = () => {
     setSelectedApplicant(null);
+    setReviewStatus("Set Status");
     setReview("");
-    setReviewStatus(false);
   };
+
+  const handleStatusSet = () =>{
+    setReviewStatus("Setting...")
+    setTimeout(() => setReviewStatus("Status Set"), 800);
+  }
 
   const toEvaluateIntern = (index) => {
     setSelectedApplicant(currentInterns[index]);
@@ -179,6 +184,7 @@ const Applications = () => {
                 <h1>{selectedApplicant.name}</h1>
 
                 <h4>Job Title: {selectedApplicant.jobTitle}</h4>
+                 <hr className={styles["break3"]}/>
                 <div className={styles["interestss"]}>
                 <h4>Job Interests:</h4>
                 <ul>
@@ -186,15 +192,22 @@ const Applications = () => {
                     <li key={index}>{interest}</li>
                   ))}
                 </ul>
+                
                 </div>
+                 <hr className={styles["break3"]}/>
                 
                 <h4>Major: {selectedApplicant.major}</h4>
+                 <hr className={styles["break3"]}/>
                 <h4>Semester: {selectedApplicant.semester}</h4>
+                 <hr className={styles["break3"]}/>
 
                 {selectedApplicant.applicationStatus === "under review" && (
                   <>
+
                     <p>Set the application status</p>
-                    <label>
+                    
+                    <div className={styles["statusi"]}>
+                         <label>
                       <input
                         type="radio"
                         name="recommendation"
@@ -223,15 +236,16 @@ const Applications = () => {
                       Rejected
                     </label>
                     <br />
-                    <button onClick={() => setReviewStatus(true)}>
-                      Set status
-                    </button>
+                    </div>
+                   
+                 
                   </>
                 )}
 
                 {selectedApplicant.applicationStatus === "finalised" && (
                   <>
                     <p>Set the Intern status: </p>
+                    <div className={styles["statusi"]}>
                     <label>
                       <input
                         type="radio"
@@ -252,19 +266,18 @@ const Applications = () => {
                       Internship Complete
                     </label>
                     <br />
-                    <button onClick={() => setReviewStatus(true)}>
-                      Set status
-                    </button>
+                    </div>
+                  
                   </>
                 )}
 
-                {reviewStatus && (
-                  <>
-                    <p>Status Set: {review}</p>
-                  </>
-                )}
-
-                <button onClick={handleCloseModal}>Close</button>
+                <div className={styles["buttonsi"]}>
+                  <button onClick={handleCloseModal}>Close</button>
+                  {view !== "currentInterns" && <button onClick={handleStatusSet}>
+                      {reviewStatus}
+                    </button>}
+                </div>
+                
               </div>
             </div>
           </div>

@@ -136,10 +136,9 @@ const Evaluation = ({ pro }) => {
 
   return (
     <div className={styles["cntnr"]}>
-      <SideBar scad={true} active="Workshops" pro={pro} />
+      <SideBar scad={true} active="Evaluations" pro={pro} />
       <div className={styles["main-display"]}>
         <div className={styles["header-row"]}>
-          <h1 className={styles["page-title"]}>Evaluations</h1>
         </div>
         <div className={styles["cards-container"]}>
           {workshops.map((workshop, index) => (

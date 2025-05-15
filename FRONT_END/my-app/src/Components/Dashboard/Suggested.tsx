@@ -44,7 +44,7 @@ const Suggested = () => {
             onClick={(e) => e.stopPropagation()} // Prevent closing on modal click
           >
             <button className="video-modal-close" onClick={closeVideoModal}>
-              ×
+              <span> ×</span>
             </button>
            <iframe
   className="video-player"

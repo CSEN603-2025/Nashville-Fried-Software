@@ -138,7 +138,7 @@ const Internships = ({ isStudent = false, pro = false, isCompany = false }) => {
           </div>
         ) : (
           <>
-            <h1 className="scad-title">Available Internships</h1>
+        
           </>
         )}
 

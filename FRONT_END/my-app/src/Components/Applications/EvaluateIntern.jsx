@@ -55,6 +55,8 @@ const EvaluateIntern = ({ pro }) => {
   const [formData, setFormData] = useState({
     student_name: "",
     evaluation: "",
+    role: "",
+    major: "",
   });
 
   const [error, setError] = useState(false);
@@ -134,10 +136,9 @@ const EvaluateIntern = ({ pro }) => {
 
   return (
     <div className={styles["cntnr"]}>
-      <SideBar scad={true} active="Workshops" pro={pro} />
+      <SideBar scad={true} active="Evaluations" pro={pro} />
       <div className={styles["main-display"]}>
         <div className={styles["header-row"]}>
-          <h1 className={styles["page-title"]}>Evaluations</h1>
         </div>
         <div className={styles["cards-container"]}>
           {workshops.map((workshop, index) => (
@@ -198,6 +199,30 @@ const EvaluateIntern = ({ pro }) => {
                   name="student_name"
                   placeholder="e.g. John Pork."
                   value={formData.student_name}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  required
+                />
+              </label>
+              <label>
+                Role:
+                <input
+                  type="text"
+                  name="role"
+                  placeholder="e.g. Marketing Intern."
+                  value={formData.role}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  required
+                />
+              </label>
+              <label>
+                Major:
+                <input
+                  type="text"
+                  name="major"
+                  placeholder="e.g. BI."
+                  value={formData.major}
                   onChange={handleInputChange}
                   disabled={!isEditing}
                   required

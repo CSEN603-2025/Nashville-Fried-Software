@@ -80,7 +80,7 @@
   border-radius: 12px;
   padding: 1rem;
   max-width: 600px;
-  padding: 30px;
+  padding: 50px;
   width: 90%;
   position: relative;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -91,13 +91,21 @@
   position: absolute;
   top: 0.5rem;
   right: 1rem;
-  font-size: 1.2rem;
+  font-size: 24px;
   height: 30px;
   text-align: center;
   background: none;
   border: none;
   cursor: pointer;
-  color: #444;
+  color: red;
+  display: flex;
+}
+.video-modal-close span {
+  align-self: center;
+}
+.video-modal-close:hover {
+  background-color: red;
+  color: white;
 }
 
 .video-modal-content {
