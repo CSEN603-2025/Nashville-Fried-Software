@@ -85,3 +85,99 @@
   height: 50px;
   color: white;
 }
+
+.toggle-container {
+  display: flex;
+  border-radius: 25px;
+  overflow: hidden;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  align-self: center;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+
+/* Default style for both options */
+.toggle-option {
+  flex: 1;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s ease;
+  background-color: #f8f8f8;
+  border-radius: 25px;
+}
+
+/* Unselected option styling */
+.toggle-option.inactive {
+  background-color: transparent;
+  color: #666;
+  border: 1px solid #f8f8f8;
+  font-weight: normal;
+}
+
+/* Selected option styling with all four visual cues */
+.toggle-option.active {
+  background-color:transparent;       /* 1. Light shading */
+  color: #0078d7;                /* 2. Bold text label (color) */
+  font-weight: bold;             /* 2. Bold text label (weight) */
+  border: 1px solid #0078d7;     /* 3. Darker border */
+  border-radius: 25px;           /* Makes the border rounded */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);  /* 4. Light shadow to create visual distinction */
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 50px;
+  left:584px;
+  width: 227px;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #0078d7;
+  border-radius: 25px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.toggle-slider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 200%;
+  animation: shine-move 3s linear infinite;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+@keyframes shine-move {
+  0% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+.toggle-slider.assessments {
+  transform: translateX(0%);
+}
+
+.toggle-slider.workshops {
+  transform: translateX(100%);
+}

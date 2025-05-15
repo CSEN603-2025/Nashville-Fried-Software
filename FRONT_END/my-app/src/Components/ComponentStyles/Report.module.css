@@ -136,12 +136,18 @@
 
 .close-btn {
   position: absolute;
-  top: 10px;
+  top: 25px;
   right: 14px;
   background: transparent;
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
+  color: red;
+}
+
+.close-btn:hover {
+  background-color: red;
+
 }
 
 .comment-box {
@@ -242,8 +248,8 @@
     padding: 4px 8px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 0.85em;
-    width: 120px;
+    font-size: 0.9em;
+    width: auto;
   }
   
   .course-add {
@@ -300,10 +306,20 @@
   .appeal-btn:disabled {
     background-color: #d0ffd0;
     color: #080;
+    border: 1px solid #080;
     cursor: default;
   }
 
   .break {
+    border: none;
+    height: 2px;
+    background: radial-gradient(circle at center, #7bbdfa 0%, transparent 110%);
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+    margin: 25px 20px 25px 10px;
+  }
+
+  .break2 {
     border: none;
     height: 2px;
     background: #7bbdfa;
@@ -374,6 +390,20 @@
     color: white;
     border: 1px solid #007bff;
     background-color: #007bff;
+  }
+
+  .delete-draft{
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .delete-draft:hover{
+    color: white;
+    border: 1px solid red;
+    background-color: red;
   }
 
   .course-remove span{

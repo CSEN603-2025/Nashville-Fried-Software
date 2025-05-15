@@ -19,7 +19,6 @@ const WorkshopList = () => {
 
   return (
     <>
-      <h3>Upcoming Workshops</h3>
     <div className="workshop-container">
       <ul className="ws-list">
         {workshopData.map((w, i) => (

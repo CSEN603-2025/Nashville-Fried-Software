@@ -160,9 +160,9 @@ function Report({ pro }) {
   const [selectedReport, setSelectedReport] = useState(null);
   const [selectedDraft, setSelectedDraft] = useState(null);
   const openModal = (report) => setSelectedReport(report);
-  const closeModal = () => setSelectedReport(null);
+  const closeModal = () => {setSelectedReport(null)}
   const openDraftModal = (draft) => setSelectedDraft(draft);
-  const closeDraftModal = () => setSelectedDraft(null);
+  const closeDraftModal = () => {setSelectedDraft(null);; setNewCourse("")}
 
   const [newCourse, setNewCourse] = useState("");
 
@@ -301,7 +301,7 @@ const handleAddCourse = () => {
             ))}
 
             {selectedReport && (
-              <div className={styles["modal-overlay"]} onClick={closeModal}>
+              <div className={styles["modal-overlay"]}>
                 <div
                   className={styles["modal"]}
                   onClick={(e) => e.stopPropagation()}
@@ -374,7 +374,7 @@ const handleAddCourse = () => {
             )}
           </div>
         </div>
-        <hr className={styles["break"]}/>
+        <hr className={styles["break2"]}/>
         <div className={styles["drafts-wrapper"]}>
           <h2 className={styles['section-header']}>Draft Reports</h2>
 
@@ -475,13 +475,18 @@ const handleAddCourse = () => {
                       </div>
                     ))}
                     <div className={styles["course-add-container"]}>
-                      <input
-                        type="text"
+                      <select
                         value={newCourse}
                         onChange={(e) => setNewCourse(e.target.value)}
                         className={styles["course-input"]}
-                        placeholder="Add course..."
-                      />
+                      >
+                        <option value="">Select course...</option>
+                        {courses.map((course, index) => (
+                          <option key={index} value={course}>
+                            {course}
+                          </option>
+                        ))}
+                      </select>
                       <button
                         className={styles["course-add"]}
                         onClick={handleAddCourse}

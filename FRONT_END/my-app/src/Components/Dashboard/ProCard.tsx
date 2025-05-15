@@ -6,19 +6,31 @@ import lockIcon from '../../assets/lock.svg'
 
 
 const ProCard = ( {pro}) =>{
-    const [currView, setCurrView] = useState(0);
-    const handleClick = () => {
-        currView === 0 ? setCurrView(1) : setCurrView(0);
-    }
+    const [view, setView] = useState("assessments");
 
     return (
         <div className={pro ? "card-container" : "card-container"}>
   {pro ? (
-    <>
-      <button onClick={handleClick} className="switch">Switch View</button>
-      {currView === 1 && <Workshops />}
-      {currView === 0 && <AssessmentList />}
-    </>
+          <>
+              <div className="toggle-container">
+              <div className={`toggle-slider ${view}`}></div>
+              <button
+                onClick={() => setView("assessments")}
+                className={`toggle-option ${view === "assessments" ? "active" : "inactive"}`}
+              >
+                Assessments
+              </button>
+              <button
+                onClick={() => setView("workshops")}
+                className={`toggle-option ${view === "workshops" ? "active" : "inactive"}`}
+              >
+                Upcoming Workshops
+              </button>
+            </div>
+            
+            {view === "assessments" && <AssessmentList />}
+            {view === "workshops" && <Workshops />}
+        </>
   ) : (
     <>
       <div className='not-pro'>

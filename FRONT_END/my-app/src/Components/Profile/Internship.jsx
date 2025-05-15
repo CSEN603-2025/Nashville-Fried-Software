@@ -341,7 +341,7 @@ const Internships = ({ isStudent = false, pro = false, isCompany = false }) => {
                 <p><strong>Date: </strong> {completedInternship.date}</p>
                 <hr className={styles["break"]}/>
                 <p><strong>Status: </strong>{completedInternship.status}</p>
-                <hr className={styles["break"]}/>
+
               </div>
             </div>
           </div>
