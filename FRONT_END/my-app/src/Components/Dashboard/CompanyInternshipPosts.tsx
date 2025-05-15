@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import internshipListings from "../../internshipListingsCompany.json";
 import internshipHistory from "../../internshipHistory.json";
 import "../ComponentStyles/CompanyInternshipPosts.css";
+import plusIcon from "../../assets/plus2.svg"
 
 // Import from the new location
 
@@ -153,7 +154,6 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
       {view === "available" && (
         <div className="view-section">
             <div className="top-stuff">
-                <button className="new-job-btn"onClick={handlePostingClick}>Add New Posting</button>
                 <h1 className="section-title">Your Internship Postings</h1>
             </div>
         
@@ -201,11 +201,15 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
                   <button className="view-btn" onClick={() => handleViewInternship(internship)}>View Internship</button>
                 </div>
               ))
+              
             ) : (
               <p className="no-results">
                 No internships match your search.
               </p>
             )}
+              <div onClick={handlePostingClick} className="internship-card-add">
+                    <img src={plusIcon} className="plus" />
+              </div>
           </div>
         </div>
       )}
@@ -225,8 +229,8 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
               )}
               <input name="skills_required" placeholder="Skills (comma separated)" value={formData.skills_required} onChange={handleFormChange} required />
               <textarea name="job_description" placeholder="Job Description" value={formData.job_description} onChange={handleFormChange} required />
-              <button type="submit">Submit</button>
-              <button type="button" onClick={() => setShowModal(false)}>Cancel</button>
+              <button className="edit-btn" type="submit">Submit</button>
+              <button className="edit-btn" type="button" onClick={() => {setShowModal(false);setIsEditingModal(false)}}>Cancel</button>
             </form>
           </div>
         </div>
@@ -236,9 +240,7 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
           <div className="jobmodal">
             <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
               <h2 style={{ flex: 1 }}>{selectedInternship.job_title}</h2>
-              {!isEditingModal && (
-                <button style={{ padding: '4px 12px', fontSize: '0.95rem', margin: 0 }} onClick={handleEditModal}>Edit</button>
-              )}
+              <button className="close-botton" onClick={handleCloseModal}>x</button>
             </div>
             {isEditingModal ? (
               <>
@@ -268,9 +270,9 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
                   Skills Required (comma separated):
                   <input name="skills_required" value={typeof editModalData.skills_required === 'string' ? editModalData.skills_required : editModalData.skills_required.join(', ')} onChange={handleEditModalChange} style={{ width: '100%', marginTop: 2 }} />
                 </label>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '10px' }}>
-                  <button onClick={handleCancelModalEdit}>Cancel</button>
-                  <button onClick={handleSaveModalEdit}>Save</button>
+                <div style={{ display: 'flex', justifyContent: 'flex-start', width: '100%', marginTop: '10px' }}>
+                <button className="edit-btn" onClick={handleSaveModalEdit}>Save</button>
+                  <button className="edit-btn" onClick={handleCancelModalEdit}>Cancel</button>
                 </div>
               </>
             ) : (
@@ -283,8 +285,10 @@ const CompanyInternshipPosts = ({ CompanyName = "" }) => {
                 )}
                 <p><strong>Skills Required:</strong> {selectedInternship.skills_required && selectedInternship.skills_required.join ? selectedInternship.skills_required.join(', ') : selectedInternship.skills_required}</p>
                 <p><strong>Total Applicants:</strong> {selectedInternship.totalApps}</p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '10px' }}>
-                  <button onClick={handleCloseModal}>Close</button>
+                <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', marginTop: '10px' }}>
+                {!isEditingModal && (
+                <button className="edit-btn" onClick={handleEditModal}>Edit</button>
+              )}
                   <button className="delete-btn" onClick={() => handleDeletePost(selectedInternship.id)}>Delete Posting</button>
                 </div>
               </>

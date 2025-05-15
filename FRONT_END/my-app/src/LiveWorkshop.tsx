@@ -7,6 +7,7 @@ import deleteIcon from './assets/delete.svg';
 import leaveIcon from './assets/leave.svg';
 import Rating from './Components/VidWork/Rating'
 import workshopVideo from './assets/workshop.mp4'
+import notesIcon from './assets/notes.svg';
 import sendIcon from './assets/send.svg'
 
 
@@ -14,6 +15,9 @@ const LiveWorkshop = () => {
   const messagesEndRef = useRef(null);
   const [showMessageNotice, setShowMessageNotice] = useState(false);
 
+  const [actualNotesOpened, setActualNotesOpened] = useState(false)
+  const [notes, setNotes] = useState([])
+  const [currNote, setCurrNote] = useState('')
   const [unread, setUnread] = useState(0);
   const [notesOpened, setNotesOpened] = useState(false);
   const [hasLeft, setHasLeft] = useState(false);
@@ -81,7 +85,7 @@ const LiveWorkshop = () => {
   return (
     <div className={styles["bigboy"]}>
       <div className={`${styles["video-container"]} ${hasLeft ? styles["blurred"] : ""}`}>
-        <div className={`${styles["video-wrapper"]} ${notesOpened ? styles["shrink"] : ""}`}>
+        <div className={`${styles["video-wrapper"]} ${(notesOpened || actualNotesOpened) ? styles["shrink"] : ""}`}>
           <div className={`${styles["videoo"]} ${notesOpened ? styles["shrink"] : ""}`}>
             <div className={styles["video-header"]}>
               <h2 className={styles["workshop-title"]}>React Basics Workshop</h2>
@@ -114,7 +118,7 @@ const LiveWorkshop = () => {
           </div>
 
           <div className={styles["sidebar"]}>
-            {!notesOpened && (
+            {!notesOpened && !actualNotesOpened && (
               <div className={styles["button-wrapper"]}>
                 <button
                   className={styles["notes-button"]}
@@ -131,7 +135,11 @@ const LiveWorkshop = () => {
                 )}
               </div>
             )}
-            {!notesOpened && (
+            {!notesOpened && !actualNotesOpened && (<button className='notes-button' onClick={() => setActualNotesOpened(true)}>
+                <img src={notesIcon} alt = '' className="button-icon1" />
+                Notes
+            </button>)}
+            {!notesOpened && !actualNotesOpened && (
               <button
                 onClick={() => {
                   setHasLeft(true);
@@ -145,7 +153,7 @@ const LiveWorkshop = () => {
           </div>
         </div>
 
-        <div className={`${styles["notes-section"]} ${notesOpened ? styles["open"] : styles["closed"]}`}>
+        {notesOpened && (<div className={`${styles["notes-section"]} ${notesOpened ? styles["open"] : styles["closed"]}`}>
           <div className={styles["notes-header"]}>
             <h1>Chat</h1>
             <button
@@ -183,9 +191,54 @@ const LiveWorkshop = () => {
               <img src={sendIcon} alt="" className={styles["send-button-icon"]} />
             </button>
           </div>
-        </div>
+        </div>)}
+
+        {actualNotesOpened && (<div className={`${styles["chat-section"]} ${actualNotesOpened ? styles["open"] : styles["closed"]}`}>
+          <div className={styles["chat-header"]}>
+            <h1>Notes</h1>
+            <button className={styles["chat-close-button"]} onClick={() => setActualNotesOpened(false)}>×</button>
+          </div>
+          <div className={styles["chat-list"]}>
+            {notes.map((note, index) => (
+              <div key={index} className={styles["chat-item"]}>
+                <p>{note}</p>
+              </div>
+            ))}
+          </div>
+          <div className={styles["chat-spacer"]}>
+            <textarea
+              className={styles["chat-input"]}
+              placeholder="Type your note here..."
+              value={currNote}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setCurrNote(e.target.value)}
+            />
+            <div className={styles["button-container"]}>
+              <button
+                onClick={() => {
+                  setNotes([...notes, currNote]);
+                  setCurrNote("");
+                }}
+                className={styles["take-chat"]}
+              >
+                Take note
+                <img src={addIcon} alt="" className={styles["chat-button-icon"]} />
+              </button>
+              <button
+                onClick={() => {
+                  setNotes([]);
+                }}
+                className={styles["clear-chat"]}
+              >
+                Clear notes
+                <img src={deleteIcon} alt="" className={styles["chat-button-icon"]} />
+              </button>
+            </div>
+          </div>
+        </div>)}
+
+        
       </div>
-      {hasLeft && <Rating workshop="React Basics Workshop!" className={styles["centered-rating"]} />}
+      {hasLeft && <Rating workshop="React Basics Workshop!" />}
     </div>
   );
 };

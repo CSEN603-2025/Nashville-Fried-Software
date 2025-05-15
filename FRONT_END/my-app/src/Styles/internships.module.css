@@ -415,3 +415,8 @@ h1 {
 .upload-input{
   font-size: 18px;
 }
+
+.view-internship-container{
+  display: flex;
+  flex-direction: column;
+}

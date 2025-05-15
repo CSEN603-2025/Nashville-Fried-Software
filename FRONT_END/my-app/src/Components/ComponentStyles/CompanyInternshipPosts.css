@@ -22,7 +22,7 @@
 
 /* Section Titles */
 .section-title {
-  font-size: 20px;
+  font-size: 40px;
   color: #fff;
   text-align: center;
   margin-bottom: 10px;
@@ -40,6 +40,8 @@
   margin-bottom: 18px;
   margin-top: 10px;
   border: 2px solid rgba(255,255,255,0.25);
+  display: flex;
+  justify-content: space-around;
 }
 
 .search-row {
@@ -78,10 +80,9 @@
 .search-container-company .search-input,
 .search-container-company .search-select {
   background: #fff;
-  color: #2563eb;
+  color: #666;
   border: none;
   border-radius: 6px;
-  padding: 8px 12px;
   font-size: 1rem;
   font-weight: 500;
   box-shadow: 0 1px 3px rgba(58,123,213,0.08);
@@ -95,9 +96,9 @@
   border: none;
 }
 
-.search-container-company .search-input::placeholder {
-  color: #8bb6f9;
-  opacity: 1;
+.search-container-company .search-input{
+  margin-top: 5px;
+  padding: 8px 12px;
 }
 
 /* Internship Listings */
@@ -125,7 +126,7 @@
   overflow-y: auto;
   transition: transform 0.15s, box-shadow 0.15s;
 }
-.internship-card:hover {
+.internship-card:hover , .internship-card-add:hover{
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 6px 18px rgba(58,123,213,0.18);
 }
@@ -239,7 +240,7 @@
   transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
 }
 
-.jobmodal button:hover, .jobmodal button:focus {
+.jobmodal button:hover {
   background: #2563eb;
   color: #fff;
   border-color: #2563eb;
@@ -249,20 +250,39 @@
   filter: brightness(1.08);
 }
 
-.jobmodal button:active {
-  transform: scale(0.97);
-  filter: brightness(0.95);
-}
 
 .jobmodal button.delete-btn {
   border-color: #e53935;
   color: #e53935;
 }
-.jobmodal button.delete-btn:hover, .jobmodal button.delete-btn:focus {
-  background: #e53935;
-  color: #fff;
+.jobmodal button.delete-btn:hover{
   border-color: #e53935;
-  box-shadow: 0 2px 8px rgba(229,57,53,0.15);
+  background-color: #e53935;
+  color: white;
+}
+
+.jobmodal button.close-botton {
+  border: none;
+  color: #e53935;
+  margin-top: 0px;
+}
+
+.jobmodal button.close-botton:hover {
+  border: none;
+  color: white;
+  background-color: #e53935;
+}
+
+.jobmodal button.edit-btn {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+
+.jobmodal button.edit-btn:hover {
+  border-color: #2563eb;
+  color: white;
+  background-color: #2563eb;
 }
 
 .internship-form {
@@ -270,6 +290,7 @@
   flex-direction: column;
   box-shadow: none;
   gap: 12px;
+  align-self: center;
 }
 
 .internship-form input,
@@ -279,31 +300,22 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   width: 100%;
+  resize: none;
 }
 
 .internship-form textarea {
   resize: vertical;
   min-height: 80px;
+  resize: none;
 }
 
-.internship-form button {
-  padding: 10px;
-  border: none;
-  background-color: var(--primary-color, #007bff);
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.internship-form button[type="button"] {
-  background-color: #999;
-}
 
 .internship-form label {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 1rem;
+  color: black;
 }
 .internship-form input[type="checkbox"] {
   width: auto;
@@ -330,4 +342,25 @@
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+}
+
+.internship-card-add{
+  max-width: calc(25% - 12px);
+  min-width: 190px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #2563eb;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(58,123,213,0.10);
+  padding: 10px 8px 8px 8px;
+  overflow-y: auto;
+  transition: transform 0.15s, box-shadow 0.15s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plus{
+  width: 70px;
+  height: 70px;
 }

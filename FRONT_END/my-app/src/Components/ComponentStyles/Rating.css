@@ -6,12 +6,12 @@
     background-color: transparent
   }
   
-  .rating-box {
+  .rating-box{
     background-color: #222;
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 35%;
+    top: 25%;
     left: 30%;
     padding: 20px;
     border-radius: 8px;
@@ -22,6 +22,89 @@
     max-width: 700px;
     max-height: 700px;
     width: 100%;
+  }
+
+  .certificate-box {
+    background-color: #fefefe;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 50px;
+    border: 8px double #d4af37;
+    border-radius: 12px;
+    font-family: "Georgia", serif;
+    color: #333;
+    text-align: center;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    gap: 30px;
+  }
+
+  .certificate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+  }
+  
+  .certificate-header h2 {
+    flex: 1;
+    margin: 0 auto;
+    font-size: 32px;
+    font-weight: bold;
+    align-self: center;
+    color: #2c2c2c;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: red;
+  }
+
+  .close-btn:hover {
+    color: white;
+    background-color: red;
+  }
+  
+  .certificate-body {
+    font-size: 20px;
+    margin-top: 20px;
+    line-height: 1.8;
+    color: #444;
+  }
+  
+  .certificate-body strong {
+    color: #000;
+    font-weight: bold;
+    font-family: "Times New Roman", serif;
+  }
+  
+  .download-btn {
+    margin: 20px auto 0;
+    background-color: #d4af37;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s;
+    font-weight: bold;
+  }
+  
+  .download-btn:hover {
+    background-color: #b89628;
+    transform: scale(1.05);
   }
   
   .stars-container {

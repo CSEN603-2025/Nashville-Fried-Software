@@ -69,7 +69,6 @@
     flex-direction: column;
     color: #000;
     gap:8px;
-    font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     font-size: 20px;
     align-items: center;
@@ -79,6 +78,7 @@
   
   .notes-button:hover {
     background: #eee;
+    color: black;
   }
   
   .button-icon1 {

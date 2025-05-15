@@ -177,12 +177,17 @@ const Applications = () => {
             <div className={styles["jobmodal"]}>
               <div className={styles["view-internship-container"]}>
                 <h1>{selectedApplicant.name}</h1>
+
                 <h4>Job Title: {selectedApplicant.jobTitle}</h4>
+                <div className={styles["interestss"]}>
+                <h4>Job Interests:</h4>
                 <ul>
                   {selectedApplicant.jobInterests.map((interest, index) => (
                     <li key={index}>{interest}</li>
                   ))}
                 </ul>
+                </div>
+                
                 <h4>Major: {selectedApplicant.major}</h4>
                 <h4>Semester: {selectedApplicant.semester}</h4>
 
