@@ -70,7 +70,7 @@ const RecordedWorkshop = () => {
         </div>
     </div>
     </div>
-    {hasLeft && (<Rating className="centered-rating"/>)}
+    {hasLeft && (<Rating workshop="Angular Basics Workshop!" className="centered-rating"/>)}
     </div>
   );
 };

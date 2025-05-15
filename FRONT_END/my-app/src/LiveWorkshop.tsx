@@ -185,7 +185,7 @@ const LiveWorkshop = () => {
           </div>
         </div>
       </div>
-      {hasLeft && <Rating className={styles["centered-rating"]} />}
+      {hasLeft && <Rating workshop="React Basics Workshop!" className={styles["centered-rating"]} />}
     </div>
   );
 };

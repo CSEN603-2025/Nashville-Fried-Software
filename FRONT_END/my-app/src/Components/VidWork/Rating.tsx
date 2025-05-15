@@ -4,7 +4,7 @@ import '../ComponentStyles/Rating.css'
 
 
 
-const Rating = () => {
+const Rating = ({workshop} : {workshop : string}) => {
   const navigate = useNavigate()
   const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState("");
@@ -36,7 +36,7 @@ const Rating = () => {
         placeholder="Enter your feedback here..."
         value={feedback}
         onChange={handleFeedbackChange} />
-      <button onClick={() => { navigate('/dashboardPRO'); } } className="submit-button">
+      <button onClick={() => { workshop.includes("React") ? navigate('/dashboardPROlive')  : navigate('/dashboardPROrec') } } className="submit-button">
         Submit and Exit
       </button>
     </div><textarea

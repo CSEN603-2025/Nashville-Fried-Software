@@ -34,8 +34,9 @@ const Notifications = ({ notifications, pro }) => {
       read: false,
       isUrgent: false,
     },
-    (pro ? { msg: "STARTING NOW: React Basics Workshop!", read: false, isUrgent: true } : { msg:"PWC ETIC has declined your application.", read:false, isUrgent:false})
+    (pro ? { msg: "STARTING NOW: React Basics Workshop!", read: false, isUrgent: true , isLive:true} : { msg:"PWC ETIC has declined your application.", read:false, isUrgent:false})
     ,
+    (pro &&  { msg: "You registered in a pre-recorded workshop: Angular Basics Workshop!", read: false, isUrgent: true , isLive:false})
   ]);
 
   useEffect(() => {
@@ -62,6 +63,10 @@ const Notifications = ({ notifications, pro }) => {
     navigate("/Workshops");
   };
 
+  const handleWatch = () => {
+    navigate("/RecWorkshop");
+  };
+
   return (
     <div className="notifs">
       <div className="notif-header">
@@ -75,9 +80,14 @@ const Notifications = ({ notifications, pro }) => {
           <li key={idx} onClick={() => markRead(idx)}>
             {note.msg}
             {!note.read && <span className="red-dot"></span>}
-            {note.isUrgent && (
+            {note.isUrgent && note.isLive &&(
               <button className="urgent-btn" onClick={handleJoin}>
                 Join Now
+              </button>
+            )}
+            {note.isUrgent && !note.isLive &&(
+              <button className="urgent-btn" onClick={handleWatch}>
+                Watch Now
               </button>
             )}
           </li>

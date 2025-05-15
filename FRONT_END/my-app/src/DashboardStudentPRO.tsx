@@ -5,8 +5,13 @@ import Notifications from './Components/Dashboard/Notifications'
 import CallBanner from "./Components/Dashboard/CallBanner";
 import ProCard from "./Components/Dashboard/ProCard";
 import './Styles/Dashboard.css'
-const DashboardStudent = ({pro}) =>{
+const DashboardStudent = ({pro, workshop} : {pro:boolean, workshop:string}) =>{
+    console.log(workshop)
     const [notifications, setNotifications] = useState([]);
+    if (workshop){
+        workshop.includes("React") ? setNotifications(["You recieved a certificate for attending 'React Basics Workshop!'"]) 
+        : setNotifications(["You recieved a certificate for attending 'Angular Basics Workshop!'"]) 
+    }
     return (
     <div className="cntnr">
         <SideBar active="Dashboard" pro= {pro}/>
